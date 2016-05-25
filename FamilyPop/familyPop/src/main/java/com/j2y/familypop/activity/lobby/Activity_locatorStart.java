@@ -88,6 +88,7 @@ public class Activity_locatorStart extends BaseActivity implements View.OnClickL
             case R.id.button_start_locator_waiting_topmenu_home:
 
                 startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
+                finish();
 
                 break;
             case R.id.button_start_locator_next:
@@ -104,6 +105,7 @@ public class Activity_locatorStart extends BaseActivity implements View.OnClickL
                 InitLocalization();
 
                 startActivity(new Intent(MainActivity.Instance, Activity_locatorWaitingForConnection.class));
+                finish();
                 break;
         }
     }

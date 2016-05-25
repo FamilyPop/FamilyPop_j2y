@@ -128,6 +128,7 @@ public class Activity_serverCalibrationLocation extends Activity implements View
             case R.id.button_calibrationlocation_next:
                 locationInfo_save();
                 startActivity( new Intent(MainActivity.Instance, Activity_serverCalibration.class));
+                finish();
                 break;
 
             case R.id.button_calibration_location_left:

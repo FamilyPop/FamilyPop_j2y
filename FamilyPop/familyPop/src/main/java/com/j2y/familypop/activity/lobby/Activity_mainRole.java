@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.ImageButton;
 
 import com.j2y.familypop.MainActivity;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.client.Activity_clientStart;
 import com.j2y.familypop.activity.server.Activity_serverStart;
@@ -63,6 +64,7 @@ public class Activity_mainRole extends BaseActivity implements View.OnClickListe
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_dialogue_start_role);
 
+
         // ui
 //        _client = (Button) findViewById(R.id.button_role_client);
 //        _location = (Button) findViewById(R.id.button_role_locator);
@@ -111,6 +113,7 @@ public class Activity_mainRole extends BaseActivity implements View.OnClickListe
             // top menu
             case R.id.button_start_role_topmenu_home:
                 startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
+                finish();
                 break;
 
             // role buttons
@@ -172,23 +175,11 @@ public class Activity_mainRole extends BaseActivity implements View.OnClickListe
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     private void onNextButton()
     {
-
-        if(_selectRoleButton ==  eRoleButtons.CLIENT)
+        switch (_selectRoleButton)
         {
-            startActivity(new Intent(MainActivity.Instance, Activity_clientStart.class));
-
+            case CLIENT: startActivity(new Intent(MainActivity.Instance, Activity_clientStart.class)); break;
+            case SERVER: startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class)); break;
         }
-        if(_selectRoleButton ==  eRoleButtons.LOCATOR)
-        {
-            startActivity(new Intent(MainActivity.Instance, Activity_locatorStart.class));
-
-        }
-        if(_selectRoleButton ==  eRoleButtons.SERVER)
-        {
-            startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));
-
-        }
-
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -206,11 +197,11 @@ public class Activity_mainRole extends BaseActivity implements View.OnClickListe
         //Drawable backgruond = imagebutton.getBackground();
         if( check)
         {
-            imagebutton.setImageResource(R.drawable.button_base_on);
+            imagebutton.setImageResource(R.drawable.button_role_on);
         }
         else
         {
-            imagebutton.setImageResource(R.drawable.button_base_off);
+            imagebutton.setImageResource(R.drawable.button_role_off);
         }
     }
 }

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.network.client.FpNetFacade_client;
 import com.j2y.network.server.FpNetFacade_server;
 import com.nclab.familypop.R;
@@ -103,12 +103,13 @@ public class Activity_mainRoleBackup extends Activity implements View.OnClickLis
                 {
                     if(_selectMode == eSelectMode.SERVER && FpNetFacade_server.Instance.IsConnected())
                     {
-                        startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
+                        //startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
                         return;
                     }
                     else if(_selectMode == eSelectMode.CLIENT && FpNetFacade_client.Instance.IsConnected())
                     {
                         startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
+                        finish();
                         return;
                     }
                 }

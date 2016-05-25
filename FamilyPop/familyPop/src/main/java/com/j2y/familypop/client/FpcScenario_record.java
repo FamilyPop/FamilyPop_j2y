@@ -29,14 +29,14 @@ public class FpcScenario_record extends FpcScenario_base
     {
         Log.i("[J2Y]", "FpcScenario_record:OnActivated");
 
-        //MainActivity.Instance._socioPhone.startRecord(0, "temp");
-        SystemClock.sleep(50);
-        //Log.i("[J2Y]", "[SocioPhone] startRecord ");
-
-        FpcTalkRecord talk = FpcRoot.Instance.NewTalkRecord();
-        talk._startTime = System.currentTimeMillis();
-
-        Activity_clientMain.Instance.NewVoiceAmplitudeTask();
+//        //MainActivity.Instance._socioPhone.startRecord(0, "temp");
+//        SystemClock.sleep(50);
+//        //Log.i("[J2Y]", "[SocioPhone] startRecord ");
+//
+//        FpcTalkRecord talk = FpcRoot.Instance.NewTalkRecord();
+//        talk._startTime = System.currentTimeMillis();
+//
+//        Activity_clientMain.Instance.NewVoiceAmplitudeTask();
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------

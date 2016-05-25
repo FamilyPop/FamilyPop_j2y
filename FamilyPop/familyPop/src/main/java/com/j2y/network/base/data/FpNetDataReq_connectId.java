@@ -10,6 +10,7 @@ import com.j2y.network.base.FpNetOutgoingMessage;
 public class FpNetDataReq_connectId extends FpNetData_base
 {
     public int _clientId;
+    public int _colorType;
     //----------------------------------------------------------------
     // 메시지 파싱
     @Override
@@ -17,6 +18,7 @@ public class FpNetDataReq_connectId extends FpNetData_base
     {
         super.Parse(inMsg);
         _clientId = inMsg.ReadInt();
+        _colorType = inMsg.ReadInt();
     }
 
     //----------------------------------------------------------------
@@ -26,5 +28,6 @@ public class FpNetDataReq_connectId extends FpNetData_base
     {
         super.Packing(outMsg);
         outMsg.Write(_clientId);
+        outMsg.Write(_colorType);
     }
 }

@@ -88,11 +88,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.0" level="project" />
-    <orderEntry type="library" exported="" name="box2d_processing" level="project" />
+    <orderEntry type="library" exported="" name="org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2" level="project" />
     <orderEntry type="library" exported="" name="palette-v7-21.0.0" level="project" />
-    <orderEntry type="library" exported="" name="jbox2d-library-2.2.1-ds" level="project" />
     <orderEntry type="library" exported="" name="android-core" level="project" />
     <orderEntry type="module" module-name="socioPhone_lib_dist" exported="" />
     <orderEntry type="module" module-name="mmlib" exported="" />
+    <orderEntry type="module" module-name="andEnginePhysicsBox2DExtension" exported="" />
+    <orderEntry type="module" module-name="andEngine" exported="" />
   </component>
 </module>

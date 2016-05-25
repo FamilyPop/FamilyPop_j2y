@@ -1,7 +1,9 @@
 package com.j2y.familypop.server;
 
+import org.andengine.extension.physics.box2d.PhysicsWorld;
+
 import processing.core.PApplet;
-import shiffman.box2d.Box2DProcessing;
+//import shiffman.box2d.Box2DProcessing;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -12,12 +14,13 @@ import shiffman.box2d.Box2DProcessing;
 
 public class FpsScenario_base
 {
-	PApplet _applet;
-	Box2DProcessing _box2d;
+	//PApplet _applet;
+	//Box2DProcessing _box2d;
+	PhysicsWorld _physicsWorld;
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
 	public FpsScenario_base()
-	{	
+	{
 	}	
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,19 +35,22 @@ public class FpsScenario_base
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
-	public void OnSetup(PApplet scPApplet, Box2DProcessing box2d)
+	//public void OnSetup(PApplet scPApplet, Box2DProcessing box2d)
+	public void OnSetup(PhysicsWorld physicsWorld)
 	{	
-		_applet = scPApplet;
-		_box2d = box2d;
+		//_applet = scPApplet;
+		//_box2d = box2d;
+		_physicsWorld = physicsWorld;
 	}	
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
 	public void OnDraw()
 	{
-        if(_applet == null || _box2d == null)
+        //if(_applet == null || _box2d == null)
+		if( _physicsWorld == null)
             return;
-        _applet.background(0);
-		_box2d.step();
+        //_applet.background(0);
+		//_box2d.step();
 	}
     public void  Create_smile_bubble() {}
 	//------------------------------------------------------------------------------------------------------------------------------------------------------

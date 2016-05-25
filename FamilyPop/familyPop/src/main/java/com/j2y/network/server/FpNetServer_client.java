@@ -26,14 +26,15 @@ public class FpNetServer_client extends FpNetFacade_base
 	public static int _index;
 	public int _clientID;
 	public String _user_name;
-    public int _bubble_color_type;
+    public int _bubble_color_type; //# 사용 안함.
+
 	public int _user_posid;
 
 	// Network
 	private FpNetIOStream _ioStream;
 	
 	// Scenario
-	public FpsScenario_base _curScenario;
+	//public FpsScenario_base _curScenario;
 	
 	// Game(FamilyBomb)
 //	public ArrayList<FpsBubble> _bubble;
@@ -41,12 +42,13 @@ public class FpNetServer_client extends FpNetFacade_base
 	
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
-	public FpNetServer_client(Socket socket, Handler handle, FpsScenario_base curScenario)
+	//public FpNetServer_client(Socket socket, Handler handle, FpsScenario_base curScenario)
+	public FpNetServer_client(Socket socket, Handler handle)
 	{
 		_clientID = _index++;
 		_socket = socket;
 		
-		_curScenario = curScenario;
+		//_curScenario = curScenario;
         _user_name = "user1";
         _bubble_color_type = 0;
 		_user_posid = 0;
@@ -63,6 +65,7 @@ public class FpNetServer_client extends FpNetFacade_base
         super.Disconnect();
 	}
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //
     // 패킷 전송
     //
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

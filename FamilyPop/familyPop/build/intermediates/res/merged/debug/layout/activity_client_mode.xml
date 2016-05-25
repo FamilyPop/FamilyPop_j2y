@@ -777,6 +777,28 @@
             android:layout_alignWithParentIfMissing="false"
             android:layout_alignParentBottom="false"
             android:layout_centerInParent="true" />
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/button_connectServer"
+            android:background="@drawable/button_talk"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_connectServer"
+            android:background="@drawable/image_connect_to_server"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_connectFail"
+            android:background="@drawable/image_connect_to_server_fail"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <!-- topmenu_featuremenu -->
@@ -924,7 +946,36 @@
         android:layout_marginTop="15dp"
         android:visibility="gone" />
 
+    <!--photo view-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_photoView">
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView_photo_rightTop"
+            android:layout_gravity="center_vertical|right" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView_photo_leftBottom"
+            android:layout_gravity="left|bottom" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView_photo_rightBottom"
+            android:layout_gravity="right|bottom" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView_photo_leftTop"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
 </RelativeLayout>
 
 

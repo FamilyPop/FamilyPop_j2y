@@ -34,7 +34,7 @@ public class Activity_locatorWaitingForConnection extends BaseActivity implement
         _button_home = (ImageButton) findViewById(R.id.button_start_locator_waiting_topmenu_home);
         _button_home.setOnClickListener(this);
 
-        //  ±×³É 3ÃÊÈÄ¿¡ ºñ±³ ÇØº¸°í ±â¸é ¾ÀÀüÈ¯ ¾Æ´Ï¸é Àü È­¸éÀ¸·Î.
+        //  ï¿½×³ï¿½ 3ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¯ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         new Handler().postDelayed(new Runnable()
         {
             @Override
@@ -43,6 +43,7 @@ public class Activity_locatorWaitingForConnection extends BaseActivity implement
                 if (MainActivity.Instance._localization._client.connected)
                 {
                     startActivity(new Intent(MainActivity.Instance, Activity_locatorNowCalibrating.class));
+                    finish();
                     //startActivity(new Intent(MainActivity.Instance, Activity_locatorWaitingForConnection.class));
                 }
                 else
@@ -64,8 +65,8 @@ public class Activity_locatorWaitingForConnection extends BaseActivity implement
     {
         switch (v.getId())
         {
-            case R.id.button_start_locator_waiting_topmenu_home:  startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class)); break;
-            case R.id.button_start_locator_next: startActivity(new Intent(MainActivity.Instance, Activity_locatorNowCalibrating.class)); break;
+            case R.id.button_start_locator_waiting_topmenu_home:  startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class)); finish();break;
+            case R.id.button_start_locator_next: startActivity(new Intent(MainActivity.Instance, Activity_locatorNowCalibrating.class)); finish();break;
         }
     }
 }

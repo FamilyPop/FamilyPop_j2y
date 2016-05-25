@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.BaseActivity;
 import com.nclab.familypop.R;
 
@@ -170,6 +171,8 @@ public class Activity_title extends BaseActivity implements View.OnClickListener
             Log.i("[J2Y]", "Activity_title:onTouchEvent");
 
             startActivity(new Intent(this, Activity_talkHistory.class));
+            //startActivity(new Intent(this, Activity_serverMain_andEngine.class));
+            finish();
             //StartActivity(this, Activity_talkHistory.class);
 
         }
@@ -194,7 +197,7 @@ public class Activity_title extends BaseActivity implements View.OnClickListener
 //                    @Override
 //                    public void onClick(DialogInterface dialog, int which)
 //                    {
-//                        // га╥н╪╪╫╨ а╬╥А.
+//                        // О©╫О©╫О©╫н╪О©╫О©╫О©╫ О©╫О©╫О©╫О©╫.
 //                        android.os.Process.killProcess(android.os.Process.myPid());
 //                    }
 //                })

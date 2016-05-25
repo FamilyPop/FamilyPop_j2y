@@ -107,10 +107,11 @@ public class JoyStick
     {
         mContext = context;
 
-        stick = BitmapFactory.decodeResource(mContext.getResources(), stick_res_id);
-
-        stick_width = stick.getWidth();
-        stick_height = stick.getHeight();
+        Set_stick(stick_res_id);
+//        stick = BitmapFactory.decodeResource(mContext.getResources(), stick_res_id);
+//
+//        stick_width = stick.getWidth();
+//        stick_height = stick.getHeight();
 
         draw = new DrawCanvas(mContext);
         paint = new Paint();
@@ -118,15 +119,31 @@ public class JoyStick
         params = mLayout.getLayoutParams();
     }
 
+    public void Set_stick(int stick_res_id)
+    {
+        stick = BitmapFactory.decodeResource(mContext.getResources(), stick_res_id);
+        stick_width = stick.getWidth();
+        stick_height = stick.getHeight();
+    }
+    public void Set_stick(Drawable drw)
+    {
+        stick = drawableToBitmap(drw);
+        stick_width = stick.getWidth();
+        stick_height = stick.getHeight();
+
+    }
+
+
     public JoyStick (Context context, ViewGroup layout, Drawable drw)
     {
         mContext = context;
 
         //stick = ((BitmapDrawable)drw).getBitmap();
-        stick = drawableToBitmap(drw);
-
-        stick_width = stick.getWidth();
-        stick_height = stick.getHeight();
+//        stick = drawableToBitmap(drw);
+//
+//        stick_width = stick.getWidth();
+//        stick_height = stick.getHeight();
+        Set_stick(drw);
 
         draw = new DrawCanvas(mContext);
         //draw.setRotation();

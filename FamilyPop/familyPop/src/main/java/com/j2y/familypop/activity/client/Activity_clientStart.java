@@ -19,7 +19,8 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
+import com.j2y.familypop.activity.lobby.Activity_input_userName;
 import com.j2y.familypop.activity.server.Activity_serverCalibration;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
@@ -123,7 +124,7 @@ public class Activity_clientStart extends Activity implements View.OnClickListen
         _radio_button_colors[2] = (RadioButton) findViewById(R.id.radioButton3);    // 노랑
         _radio_button_colors[3] = (RadioButton) findViewById(R.id.radioButton4);    // 파랑
         _radio_button_colors[4] = (RadioButton) findViewById(R.id.radioButton5);    // 핑크
-        _radio_button_colors[5] = (RadioButton) findViewById(R.id.radioButton6);    // 
+        _radio_button_colors[5] = (RadioButton) findViewById(R.id.radioButton6);    //
         for(int i = 0; i < _radio_button_colors.length; ++i)
             _radio_button_colors[i].setOnClickListener(optionOnClickListener);
         _radio_button_colors[FpcRoot.Instance._bubble_color_type].setChecked(true);
@@ -143,7 +144,7 @@ public class Activity_clientStart extends Activity implements View.OnClickListen
         _radio_button_posID[FpcRoot.Instance._user_posid].setChecked(true);
 
 
-        _onceClick_connectToServer = false;
+        //_onceClick_connectToServer = false;
 
         // 컬러와 위치를 선택한다.
         _checkbox_pos_color[eCheckBoxPosColor.PINK.getValue()] = (CheckBox) findViewById(R.id.checkBox_pos_color_pink);
@@ -207,7 +208,14 @@ public class Activity_clientStart extends Activity implements View.OnClickListen
     {
         switch (v.getId())
         {
-            case R.id.ClientNextButton: connectToServer(); break;
+            //case R.id.ClientNextButton: connectToServer(); break;
+            case R.id.ClientNextButton:
+
+                save_client_information();
+                MainActivity.Instance._serverIP = _ipText.getText();
+                startActivity(new Intent(MainActivity.Instance, Activity_input_userName.class));
+
+                break;
 
             // 사용자색 선택
             case R.id.checkBox_pos_color_pink: setUserPos(eCheckBoxPosColor.PINK);   break;
@@ -221,105 +229,6 @@ public class Activity_clientStart extends Activity implements View.OnClickListen
 
 
     }
-
-    boolean _onceClick_connectToServer;
-    private void connectToServer()
-    {
-        save_client_information();
-
-        if( MainActivity.Instance._virtualServer)
-        {
-            startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
-        }
-        else
-        {
-            if( _onceClick_connectToServer == true) return;
-            FpcRoot.Instance._user_name = _user_name.getText().toString();
-            FpcRoot.Instance.ConnectToServer(_ipText.getText().toString());
-
-            _connectedTime = System.currentTimeMillis();
-            _onceClick_connectToServer = true;
-
-
-            _image_servertoConnect.setVisibility(View.VISIBLE);
-            _image_servertoConnectFail.setVisibility(View.GONE);
-
-            ChangeScenarioActivity();
-        }
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------
-    private long _connectedTime;
-    boolean _connectFail = false;
-    public void ChangeScenarioActivity()
-    {
-
-        new Thread()
-        {
-            @Override
-            public void run()
-            {
-                while(true)
-                {
-                    if(FpNetFacade_client.Instance.IsConnected() && FpNetFacade_client.Instance._recv_connected_message)
-                    {
-                        //if( MainActivity.Instance._ready)
-                        {
-                            Log.i("[J2Y]", "userPosID" + FpcRoot.Instance._user_posid);
-                            FpNetFacade_client.Instance.SendPacket_setUserInfo(_user_name.getText().toString(), FpcRoot.Instance._bubble_color_type, FpcRoot.Instance._user_posid);
-                            startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
-
-//                            //server state 시나리오 선택
-//                            startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
-//                            FpNetFacade_client.Instance.SendPacket_req_changeScenario(MainActivity.Instance._curServerScenario);
-
-                            _onceClick_connectToServer = false;
-                            //MainActivity.Instance._ready = false;
-                            finish();
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        //
-                        long deltaTime = System.currentTimeMillis() - _connectedTime;
-                        if(deltaTime > 5000) // 5초간 대기.
-                        {
-                            FpcRoot.Instance.DisconnectServer();
-                            _connectFail = true;
-                            //finish();
-                            break;
-                        }
-                    }
-                }
-            }
-        }.start();
-
-        new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                if( _connectFail )
-                {
-                    _image_servertoConnect.setVisibility(View.GONE);
-                    _image_servertoConnectFail.setVisibility(View.VISIBLE);
-                    _connectFail = false;
-                    new Handler().postDelayed(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            _image_servertoConnect.setVisibility(View.GONE);
-                            _image_servertoConnectFail.setVisibility(View.GONE);
-                            _onceClick_connectToServer = false;
-                            //finish();
-                        }
-                    }, 3000);
-                }
-            }
-        },6000);
-    }
-
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 컬러 레디오 버튼
     //

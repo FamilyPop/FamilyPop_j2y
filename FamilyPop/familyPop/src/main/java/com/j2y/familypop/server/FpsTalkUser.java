@@ -9,25 +9,29 @@ package com.j2y.familypop.server;
 
 import android.util.Log;
 
-import com.j2y.familypop.server.render.FpsBubble;
+//import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.server.render.FpsBubble;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.server.FpNetServer_client;
 import com.j2y.familypop.server.render.FpsAttractor;
 
+import org.andengine.extension.physics.box2d.PhysicsWorld;
+
 import java.util.ArrayList;
 
-import shiffman.box2d.Box2DProcessing;
+//import shiffman.box2d.Box2DProcessing;
 
 public class FpsTalkUser
 {
     public FpNetServer_client _net_client;
 
     // Game(FamilyBomb)
-    public ArrayList<FpsBubble> _bubble;
+    //public ArrayList<FpsBubble> _bubble;
     public FpsAttractor _attractor;
     public ArrayList<Integer> _smile_events = new ArrayList<Integer>();
     public int _bubble_color_type;
     public int _user_posid;
+    public long _uid_attractor = -1;
 
     // Calibration
     public float _calibrationX;
@@ -52,17 +56,18 @@ public class FpsTalkUser
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     public void ResetMovers()
     {
-        if( _bubble == null) return;
-        if( _bubble.size() == 0 ) return;
-
-        for(FpsBubble move : _bubble)
-            move.DestroyMover();
-        _bubble.clear();
+//        if( _bubble == null) return;
+//        if( _bubble.size() == 0 ) return;
+//
+//        for(FpsBubble move : _bubble)
+//            move.DestroyMover();
+//        _bubble.clear();
     }
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
-    public void CreateAttractor(Box2DProcessing box2d, int width, int height)
+    //public void CreateAttractor(Box2DProcessing box2d, int width, int height)
+    public void CreateAttractor(PhysicsWorld physicsWorld, int width, int height)
     {
 
         /*
@@ -167,8 +172,9 @@ public class FpsTalkUser
 
             //Random random = new Random();
             //int color = random.nextInt(FpNetConstants.ColorSize - 1);
-            _attractor = new FpsAttractor(box2d, 100, _calibrationX, _calibrationY, FpNetConstants.ColorArray[_net_client._clientID]);
-            _bubble = new ArrayList<FpsBubble>();
+            //_attractor = new FpsAttractor(box2d, 100, _calibrationX, _calibrationY, FpNetConstants.ColorArray[_net_client._clientID]); // back 16 05 11
+            //_attractor = new FpsAttractor(physicsWorld, 100, _calibrationX, _calibrationY, FpNetConstants.ColorArray[_net_client._clientID]); // back 16 05 11
+            //_bubble = new ArrayList<FpsBubble>();
 
         }
         //Log.i("[J2Y]", "---------------------------------- END CreateAttractor --------------------------------------------------");

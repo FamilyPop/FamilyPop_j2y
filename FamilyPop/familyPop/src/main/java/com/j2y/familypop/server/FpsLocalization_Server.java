@@ -6,7 +6,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.client.FpcRoot;
 
 import cps.mobilemaestro.library.MMDeviceInfo;
@@ -113,18 +113,18 @@ public class FpsLocalization_Server
                     // CPS: location result class 생성 및 id도 같이 return
                     MMLocationResult locResult = (MMLocationResult)msg.obj;
                     Log.i("[J2Y]", "[LocalizationServer] Measurement for " + locResult.getId() + " is completed with (" + locResult.getLocX() + ", " + locResult.getLocY() + ")");
-                    if(Activity_serverMain.Instance != null)
-                    {
-                        if( Activity_serverMain.Instance._netEvent_tttSytleSuccess )
-                        {
-                            Activity_serverMain.Instance._tictactoe._curStyle = FpsTicTacToe.eTictactoeImageIndex.getValue(Activity_serverMain.Instance._ttt_style);
-                            Activity_serverMain.Instance._locX = locResult.getLocX(); //0 이 x 인가??
-                            Activity_serverMain.Instance._locY = locResult.getLocY(); //1 이 y 인가??
-                            Activity_serverMain.Instance.TicTacToe_tileChange(locResult.getId());
-
-                            Activity_serverMain.Instance._netEvent_tttSytleSuccess = false;
-                        }
-                    }
+//                    if(Activity_serverMain.Instance != null)
+//                    {
+//                        if( Activity_serverMain.Instance._netEvent_tttSytleSuccess )
+//                        {
+//                            Activity_serverMain.Instance._tictactoe._curStyle = FpsTicTacToe.eTictactoeImageIndex.getValue(Activity_serverMain.Instance._ttt_style);
+//                            Activity_serverMain.Instance._locX = locResult.getLocX(); //0 이 x 인가??
+//                            Activity_serverMain.Instance._locY = locResult.getLocY(); //1 이 y 인가??
+//                            Activity_serverMain.Instance.TicTacToe_tileChange(locResult.getId());
+//
+//                            Activity_serverMain.Instance._netEvent_tttSytleSuccess = false;
+//                        }
+//                    }
 
                     break;
                 case 5:

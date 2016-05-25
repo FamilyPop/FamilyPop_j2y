@@ -45,7 +45,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.j2y.familypop.activity.Activity_serverMain" android:screenOrientation="landscape" android:label="@layout/activity_main"></activity>
+        <!--<activity android:name="com.j2y.familypop.activity.Activity_serverMain" android:screenOrientation="landscape" android:label="@layout/activity_main"></activity>-->
+        <activity android:name="com.j2y.familypop.activity.Activity_serverMain_andEngine" android:screenOrientation="landscape" android:label="@layout/activity_main"></activity>
         <activity android:name="com.j2y.familypop.activity.Activity_clientMain" android:label="@layout/activity_client"></activity>
 
         <!-- user interaction  이렇게 하면 안될거 같음. -->
@@ -68,12 +69,16 @@
         <!-- start_server_calibration -->
         <activity android:name="com.j2y.familypop.activity.server.Activity_serverCalibration" android:label="@layout/activity_calibration"></activity>
         <activity android:name="com.j2y.familypop.activity.server.Activity_serverCalibrationLocation" android:label="@layout/activity_calibration_location"></activity>
+        <activity android:name="com.j2y.familypop.activity.lobby.Activity_photoGallery" android:label="@layout/activity_dialogue_photo_gallery"></activity>
+        <activity android:name="com.j2y.familypop.activity.lobby.Activity_topicGallery" android:label="@layout/activity_dialogue_topic_gallery"></activity>
 
         <!-- start_locator_calibration -->
         <activity android:name="com.j2y.familypop.activity.lobby.Activity_locatorWaitingForConnection" android:label="@layout/activity_dialogue_start_locator_waitingforconnection"></activity>
         <activity android:name="com.j2y.familypop.activity.lobby.Activity_locatorNowCalibrating" android:label="@layout/activity_dialogue_start_locator_nowcalibrating"></activity>
-        <!--<activity android:name="com.j2y.familypop.activity.lobby.Activity_locatorNowCalibrating" android:lable="@layout/activity_dialogue_start_locator_nowcalibrating"></activity>-->
 
+        <!-- start_client-->
+        <activity android:name="com.j2y.familypop.activity.lobby.Activity_input_userName" android:label="@layout/activity_dialogue_start_client_input_id"></activity>
+        <activity android:name="com.j2y.familypop.activity.lobby.Activity_facebook_connected" android:label="@layout/activity_dialogue_start_client_facebook"></activity>
 
     </application>
 

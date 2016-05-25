@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FamilyPop.iml" filepath="$PROJECT_DIR$/FamilyPop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/familyPop/familyPop.iml" filepath="$PROJECT_DIR$/familyPop/familyPop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/andEngine/andEngine.iml" filepath="$PROJECT_DIR$/andEngine/andEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/andEnginePhysicsBox2DExtension/andEnginePhysicsBox2DExtension.iml" filepath="$PROJECT_DIR$/andEnginePhysicsBox2DExtension/andEnginePhysicsBox2DExtension.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FamilyPop/familyPop.iml" filepath="$PROJECT_DIR$/FamilyPop/familyPop.iml" />
       <module fileurl="file://$PROJECT_DIR$/mmlib/mmlib.iml" filepath="$PROJECT_DIR$/mmlib/mmlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/socioPhone_lib_dist/socioPhone_lib_dist.iml" filepath="$PROJECT_DIR$/socioPhone_lib_dist/socioPhone_lib_dist.iml" />
     </modules>

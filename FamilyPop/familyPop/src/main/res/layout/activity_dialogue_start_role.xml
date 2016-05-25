@@ -5,18 +5,105 @@
     android:background="@color/color_default_background"
     android:weightSum="1">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CLIENT"
-        android:id="@+id/button_role_client"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button_state_1"
-        android:textColor="@color/color_default_string"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+
 
     <!-- locator -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView16"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/text_start_dialogue"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_start_role_topmenu_setting"
+            android:background="@drawable/button_topmenu_setting"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_start_role_topmenu_home"
+            android:background="@drawable/button_top_menu"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/frameLayout2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SERVER"
+            android:id="@+id/button_role_server"
+            android:background="@drawable/button_role_on"
+            android:textColor="@color/color_default_string"
+            android:layout_gravity="left|center_vertical"
+            android:layout_alignTop="@+id/button_role_client"
+            android:layout_alignEnd="@+id/button_start_role_topmenu_setting" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLIENT"
+            android:id="@+id/button_role_client"
+            android:background="@drawable/button_role_on"
+            android:textColor="@color/color_default_string"
+            android:layout_gravity="center_vertical|right"
+            android:layout_above="@+id/checkBox"
+            android:layout_centerHorizontal="true"
+            android:baselineAlignBottom="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SERVER"
+            android:id="@+id/textView31"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/button_role_server"
+            android:layout_alignLeft="@+id/button_role_server"
+            android:textSize="15dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="CLIENT"
+            android:id="@+id/textView29"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_alignTop="@+id/button_role_client"
+            android:layout_alignLeft="@+id/button_role_client"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="28dp" />
+    </FrameLayout>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,72 +120,12 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SERVER"
-        android:id="@+id/button_role_server"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/button_state_1"
-        android:textColor="@color/color_default_string"
-        android:layout_below="@+id/imageView15"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REMEMBER IT"
-        android:id="@+id/checkBox"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/color_default_string"
-        android:button="@drawable/style_checkbox_start_role"
-        android:checked="false"
-        android:paddingLeft="10dp"
-        android:layout_below="@+id/button_role_client"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/button_start_role_next"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/style_button_next"
-        android:layout_below="@+id/checkBox"
+        android:layout_below="@+id/imageView15"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_start_role_topmenu_home"
-        android:background="@drawable/button_home"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_start_role_topmenu_setting"
-        android:background="@drawable/button_topmenu_setting"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="CLIENT"
-        android:id="@+id/textView29"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_alignTop="@+id/button_role_client"
-        android:layout_alignLeft="@+id/button_role_client"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="15dp" />
+        android:layout_marginTop="78dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,35 +142,28 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="SERVER"
-        android:id="@+id/textView31"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:layout_alignTop="@+id/button_role_server"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_alignLeft="@+id/button_role_server"
-        android:textSize="15dp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView15"
         android:background="@drawable/text_signup_please_select_a_roll_a_dialogue"
-        android:layout_below="@+id/imageView16"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp" />
+        android:layout_below="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        android:visibility="gone"/>
 
-    <ImageView
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView16"
+        android:text="REMEMBER THIS AS DEFAULT SETTING"
+        android:id="@+id/checkBox"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/color_default_string"
+        android:button="@drawable/check_none"
+        android:checked="false"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/frameLayout2"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/text_start_a_dialogue"
-        android:layout_marginTop="15dp" />
+        android:textSize="12dp"/>
 
 </RelativeLayout>

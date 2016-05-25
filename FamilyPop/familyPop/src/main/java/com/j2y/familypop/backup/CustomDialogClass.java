@@ -93,6 +93,7 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
             {
                 case R.id.button_dialogue_home:
                     startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
+                    finish();
                     break;
             }
         }

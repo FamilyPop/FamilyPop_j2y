@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PImage;
-import shiffman.box2d.Box2DProcessing;
+//import shiffman.box2d.Box2DProcessing;
 
 /**
  * Created by gmpguru on 2015-07-01.
@@ -99,35 +99,35 @@ public class FpsTicTacToe
 
         //TicTacToe_checkSuccessful(eTictactoeImageIndex.O.getValue());
     }
-    public void Draw(PApplet applet, Box2DProcessing box2d)
-    {
-        // grid
-        applet.image(_tictactoe_grid, (applet.width - _tictactoe_grid.width) / 2, (applet.height - _tictactoe_grid.height) / 2);
-
-        float centerX = 0.0f;//(this.width - (_ttt_images.get(0).width*3)) / 2;
-        float centerY = 0.0f;//(this.height - (_ttt_images.get(0).height*3)) / 2;
-        float posX = 0.0f;
-        float posY = 0.0f;
-
-        int spacesX = 310; // x 간격
-        int spacesY = 110;  // y 간격
-
-        for( int i=0; i<9; i++)
-        {
-            //centerX = (applet.width - (_ttt_images.get(_tileIndex[i]).width*3)) / 2;
-            //centerY = (applet.height - (_ttt_images.get(_tileIndex[i]).height*3)) / 2;
-
-            centerX = (applet.width - ((_ttt_images.get(_tileIndex[i]).width*3)+(spacesX * 2))) / 2;
-            centerY = (applet.height - ((_ttt_images.get(_tileIndex[i]).height*3)+(spacesY * 2))) / 2;
-
-            posX = centerX + (_ttt_images.get(_tileIndex[i]).width * (i % 3));
-            posY = centerY + (_ttt_images.get(_tileIndex[i]).height * (i/3));
-
-            if( _tileIndex[i] == eTictactoeImageIndex.EMPTY.getValue()) continue;
-
-            applet.image(_ttt_images.get(_tileIndex[i]), posX + ((i % 3) * spacesX), posY + ((i / 3) * spacesY));
-        }
-    }
+//    public void Draw(PApplet applet, Box2DProcessing box2d)
+//    {
+//        // grid
+//        applet.image(_tictactoe_grid, (applet.width - _tictactoe_grid.width) / 2, (applet.height - _tictactoe_grid.height) / 2);
+//
+//        float centerX = 0.0f;//(this.width - (_ttt_images.get(0).width*3)) / 2;
+//        float centerY = 0.0f;//(this.height - (_ttt_images.get(0).height*3)) / 2;
+//        float posX = 0.0f;
+//        float posY = 0.0f;
+//
+//        int spacesX = 310; // x 간격
+//        int spacesY = 110;  // y 간격
+//
+//        for( int i=0; i<9; i++)
+//        {
+//            //centerX = (applet.width - (_ttt_images.get(_tileIndex[i]).width*3)) / 2;
+//            //centerY = (applet.height - (_ttt_images.get(_tileIndex[i]).height*3)) / 2;
+//
+//            centerX = (applet.width - ((_ttt_images.get(_tileIndex[i]).width*3)+(spacesX * 2))) / 2;
+//            centerY = (applet.height - ((_ttt_images.get(_tileIndex[i]).height*3)+(spacesY * 2))) / 2;
+//
+//            posX = centerX + (_ttt_images.get(_tileIndex[i]).width * (i % 3));
+//            posY = centerY + (_ttt_images.get(_tileIndex[i]).height * (i/3));
+//
+//            if( _tileIndex[i] == eTictactoeImageIndex.EMPTY.getValue()) continue;
+//
+//            applet.image(_ttt_images.get(_tileIndex[i]), posX + ((i % 3) * spacesX), posY + ((i / 3) * spacesY));
+//        }
+//    }
 
     public void TicTacToe_tileChange(int index, eTictactoeImageIndex style )
     {

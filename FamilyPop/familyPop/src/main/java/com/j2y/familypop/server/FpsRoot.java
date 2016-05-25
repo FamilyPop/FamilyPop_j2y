@@ -10,7 +10,10 @@ import java.util.TimerTask;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
+import com.j2y.familypop.activity.manager.Manager_contents;
+import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.server.FpNetFacade_server;
@@ -35,7 +38,7 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
     public static FpNetFacade_server _server;
 
     public FpsMobileDeviceManager _mobileDeviceManager;  // 사용안하남 ?
-    public FpsScenarioDirector _scenarioDirector;
+    //public FpsScenarioDirector _scenarioDirector;
     public FpsTableDisplyer _tableDisplayer;
     public SocioPhone _socioPhone;
 
@@ -57,7 +60,7 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
 
         _mobileDeviceManager = new FpsMobileDeviceManager();
         _tableDisplayer = new FpsTableDisplyer();
-        _scenarioDirector = new FpsScenarioDirector();
+        //_scenarioDirector = new FpsScenarioDirector();
 
         _exitServer = true;
 
@@ -79,9 +82,11 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
         _server.StartServer(7778);
 
         InitSocioPhone();
-        InitLocalization();
 
-        //MainActivity.Sleep(500);
+        // 제거하기로함.
+        //InitLocalization();
+
+        MainActivity.Sleep(500);
 
         _exitServer = false;
     }
@@ -96,7 +101,7 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
         _server.CloseServer();
         //MainActivity.Sleep(500);
         _room_user_names = "";
-        _scenarioDirector.ChangeScenario(FpNetConstants.SCENARIO_NONE);
+       // _scenarioDirector.ChangeScenario(FpNetConstants.SCENARIO_NONE);
         _exitServer = true;
         //if(Activity_serverMain.Instance != null)
         //    Activity_serverMain.Instance.CloseServer();
@@ -200,8 +205,8 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
     @Override
     public void onDisplayMessageArrived(int type, String message)
     {
-        if(Activity_serverMain.Instance != null)
-            Activity_serverMain.Instance.OnDisplayMessageArrived(type, message);
+//        if(Activity_serverMain.Instance != null)
+//            Activity_serverMain.Instance.OnDisplayMessageArrived(type, message);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -211,8 +216,8 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
         if(!_using_sociophone_voice)
             return;
 
-        if (Activity_serverMain.Instance != null)
-            Activity_serverMain.Instance.OnTurnDataReceived(speakerID[0]);
+//        if (Activity_serverMain.Instance != null)
+//            Activity_serverMain.Instance.OnTurnDataReceived(speakerID[0]);
     }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -233,8 +238,10 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
 
         if(_using_sociophone_voice)
             return;
-        if (Activity_serverMain.Instance == null)
-            return;
+
+        if(Activity_serverMain_andEngine.Instance == null) return;
+        //if (Activity_serverMain.Instance == null)
+            //return;
 
         // voice 값이 너무 작으면 제거
         if(voice < _voice_threadhold)
@@ -249,14 +256,12 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
             if (_speaker_voice[client._clientID + 2] <= 0)
             {
                 allClientTalk = false;
-
             }
-//            if (_speaker_voice[client._clientID + 2] >= 10000)
-//                smile = true;
-
-            if (_speaker_voice[client._clientID + 2] <= Activity_serverMain.Instance._regulation_seekBar_smileEffect)
+            //if (_speaker_voice[client._clientID + 2] <= Activity_serverMain.Instance._regulation_seekBar_smileEffect)
+            if (_speaker_voice[client._clientID + 2] <= Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_smileEffect)
+            {
                 smile = false;
-
+            }
         }
 
         if(smile && (System.currentTimeMillis() - _smile_event_timer > 5000))
@@ -267,19 +272,25 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
             //FpsTalkUser talk_user = Activity_serverMain.Instance.GetTalkUser(client);
             //talk_user._smile_events.add(event_time);
 
-            Activity_serverMain.Instance.OnEvent_smile(event_time);
-            // 이벤트 전파
-            FpNetData_smileEvent outMsg = new FpNetData_smileEvent();
-            outMsg._time = event_time;
-            FpNetFacade_server.Instance.BroadcastPacket(FpNetConstants.SCNoti_smileEvent, outMsg);
+            // 서버에 smile actor 생성.( 유저 수만큼 )
+            Activity_serverMain_andEngine.Instance.OnEvent_smile();
+
+            // 이벤트 전파 ( 각 클라이언트 에서 연출을 위해 보네는 메세지..
+            //FpNetData_smileEvent outMsg = new FpNetData_smileEvent();
+            //outMsg._time = event_time;
+            //FpNetFacade_server.Instance.BroadcastPacket(FpNetConstants.SCNoti_smileEvent, outMsg);
         }
-        else if(allClientTalk)
+        //else if(allClientTalk)
+        if( allClientTalk)
         {
             int maxVoiceSpeaker = finde_max_speaker_voice();
 
             Log.i("[J2Y]", "[C->S] familyTalk_voice:" + maxVoiceSpeaker + ":" + _speaker_voice[maxVoiceSpeaker]);
 
-            Activity_serverMain.Instance.OnTurnDataReceived(maxVoiceSpeaker);
+           // Activity_serverMain.Instance.OnTurnDataReceived(maxVoiceSpeaker);
+            Contents_talk contents_talk = ((Contents_talk) Manager_contents.Instance.GetCurrentContents());
+            contents_talk.OnTurnDataReceived(maxVoiceSpeaker);
+
             reset_speaker_voice();
         }
     }

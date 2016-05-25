@@ -1,6 +1,6 @@
 package com.j2y.familypop.client;
 
-import org.jbox2d.common.Vec3;
+//import org.jbox2d.common.Vec3;
 
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.client.FpNetFacade_client;
@@ -24,7 +24,11 @@ public class FpcScenario_game extends FpcScenario_base implements SensorEventLis
 	
 	// Sensor
 	long _accelerDelayTime;
-	Vec3 _lastPos;
+	float _lastPosX = 0.0f;
+	float _lastPosY = 0.0f;
+	float _lastPosZ = 0.0f;
+
+	//Vec3 _lastPos;
 	Sensor _accelerormeterSensor;
 	Sensor _oriSensor;
 	
@@ -32,7 +36,7 @@ public class FpcScenario_game extends FpcScenario_base implements SensorEventLis
 	public FpcScenario_game()
 	{
 		_accelerDelayTime = 0;
-		_lastPos = new Vec3(0, 0, 0);
+		//_lastPos = new Vec3(0, 0, 0);
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,16 +84,20 @@ public class FpcScenario_game extends FpcScenario_base implements SensorEventLis
 	            {
 	            	_accelerDelayTime = currentTime;
 	              
-	                double speed = Math.abs(event.values[0] + event.values[1] + event.values[2] - _lastPos.x - _lastPos.y - _lastPos.z) / gabOfTime * 10000;
+	                //double speed = Math.abs(event.values[0] + event.values[1] + event.values[2] - _lastPos.x - _lastPos.y - _lastPos.z) / gabOfTime * 10000;
+					double speed = Math.abs(event.values[0] + event.values[1] + event.values[2] - _lastPosX - _lastPosY - _lastPosZ) / gabOfTime * 10000;
 	 
 	                if (speed > 1100)
 	                {
 	                	_accelerStart = true;
 	                }
 	 
-	                _lastPos.x = event.values[0];
-	                _lastPos.y = event.values[1];
-	                _lastPos.z = event.values[2];
+//	                _lastPos.x = event.values[0];
+//	                _lastPos.y = event.values[1];
+//	                _lastPos.z = event.values[2];
+					_lastPosX = event.values[0];
+					_lastPosY = event.values[1];
+					_lastPosZ = event.values[2];
 	            }
             break;
 

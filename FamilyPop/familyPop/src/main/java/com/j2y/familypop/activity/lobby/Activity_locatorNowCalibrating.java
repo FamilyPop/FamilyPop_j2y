@@ -37,7 +37,7 @@ public class Activity_locatorNowCalibrating extends BaseActivity implements View
     {
         switch(v.getId())
         {
-            case R.id.button_start_locator_waiting_topmenu_home:  startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class)); break;
+            case R.id.button_start_locator_waiting_topmenu_home:  startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class)); finish(); break;
         }
     }
 }

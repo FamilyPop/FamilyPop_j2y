@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.j2y.engine.ColumnListView;
 import com.j2y.familypop.MainActivity;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.TouchMove;
 import com.j2y.familypop.activity.client.Activity_clientStart;
@@ -334,9 +335,9 @@ public class Activity_talkHistory extends BaseActivity implements View.OnClickLi
                 active_topmenu_role(false);
                 break;
             // topmenu_role
-            case R.id.button_history_topmenu_client: startActivity(new Intent(MainActivity.Instance, Activity_clientStart.class));   active_topmenu_role(false); break;
-            case R.id.button_history_topmenu_locator: startActivity(new Intent(MainActivity.Instance, Activity_locatorStart.class)); active_topmenu_role(false); break;
-            case R.id.button_history_topmenu_server:  startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));  active_topmenu_role(false); break;
+            case R.id.button_history_topmenu_client: startActivity(new Intent(MainActivity.Instance, Activity_clientStart.class));   active_topmenu_role(false); finish();break;
+            case R.id.button_history_topmenu_locator: startActivity(new Intent(MainActivity.Instance, Activity_locatorStart.class)); active_topmenu_role(false); finish();break;
+            case R.id.button_history_topmenu_server:  startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));  active_topmenu_role(false); finish();break;
             //case R.id.button_history_topmenu_server:  StartActivity(this, Activity_serverStart.class);  active_topmenu_role(false); break;
             case R.id.button_add_history:
                 if( _touchMove_button_addHistory._isClick)

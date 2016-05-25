@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
 import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcLocalization_Client;
 import com.nclab.familypop.R;
@@ -159,7 +159,7 @@ public class Activity_serverCalibration extends Activity implements View.OnClick
 
                             switch (v.getId()) {
                                 case R.id.button_custom_dialog_ok:
-                                    startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
+                                    //startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
 
                                     main.SetFamilypopSettingValue_int("_calibration_height_length", Integer.parseInt(_editText_height_length.getText().toString()));
                                     main.SetFamilypopSettingValue_int("_calibration_width_length", Integer.parseInt(_editText_width_length.getText().toString()));

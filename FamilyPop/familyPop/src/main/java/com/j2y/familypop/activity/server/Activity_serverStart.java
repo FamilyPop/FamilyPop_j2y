@@ -11,15 +11,14 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageButton;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.Activity_serverMain;
-import com.j2y.familypop.activity.lobby.Activity_talkHistory;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
-import com.j2y.network.server.FpNetFacade_server;
+import com.j2y.familypop.server.FpsRoot;
 import com.nclab.familypop.R;
+import com.nclab.sociophone.interfaces.MeasurementCallback;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -28,11 +27,10 @@ import com.nclab.familypop.R;
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-public class Activity_serverStart extends Activity implements View.OnClickListener
+public class Activity_serverStart extends Activity
 {
-    ImageButton _button_home;
-    ImageButton _button_next;
     TextView _serverIP;
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
@@ -46,14 +44,9 @@ public class Activity_serverStart extends Activity implements View.OnClickListen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // 세로 고정
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);// 가로 고정
-        setContentView(R.layout.activity_dialogue_start_server);
+        //setContentView(R.layout.activity_dialogue_start_server);
+        setContentView(R.layout.activity_dialogue_start_server_sample);
 
-        //ui
-        _button_next = (ImageButton) findViewById(R.id.button_start_server_next);
-        _button_next.setOnClickListener(this);
-
-        _button_home = (ImageButton) findViewById(R.id.button_start_server_topmenu_home);
-        _button_home.setOnClickListener(this);
 
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
@@ -62,33 +55,42 @@ public class Activity_serverStart extends Activity implements View.OnClickListen
         _serverIP = (TextView) findViewById(R.id.ServerIPText);
         _serverIP.setText(ipAddressStr);
 
+
+        // maanager
+
+        // net
+        FpsRoot.Instance.StartServer();
+        //
+        android.os.Handler handler = new android.os.Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Toast.makeText(Activity_serverMain.this, "Calibration started", Toast.LENGTH_SHORT).show();
+
+                FpsRoot.Instance._socioPhone.measureSilenceVolThreshold(5000, new MeasurementCallback() {
+                    @Override
+                    public void done(int result) {
+                        FpsRoot.Instance._socioPhone.setSilenceVolThreshold(result * 1.5);
+                        //Toast.makeText(Activity_serverMain.this, "Clibration completed 1", Toast.LENGTH_SHORT).show();
+                        Log.i("JeungminOh", "Calibration completed");
+                    }
+                });
+
+                FpsRoot.Instance._socioPhone.measureSilenceVolVarThreshold(5000, new MeasurementCallback() {
+                    @Override
+                    public void done(int result) {
+                        FpsRoot.Instance._socioPhone.setSilenceVolVarThreshold(result * 1.5);
+                        //Toast.makeText(Activity_serverMain.this, "Clibration completed 2", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }, 5000);
+
+        if(Build.VERSION.SDK_INT > 10){ StrictMode.enableDefaults();}
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
     }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.button_start_server_next:
-                //startActivity(new Intent(MainActivity.Instance, Activity_serverCalibrationLocation.class));
-
-                //FpNetFacade_server.Instance.StartServer(7778);
-                //MainActivity.Instance._socioPhone.isServer = true;
-                //MainActivity.Instance._socioPhone.openServer();
-                //ChangeProcessingActivity();
-
-                //startActivity(new Intent(this, Activity_serverMain.class));
-
-                onClick_start();
-
-
-                break;
-
-            case R.id.button_start_role_topmenu_home: startActivity(new Intent(this, Activity_talkHistory.class)); break;
-        }
-    }
-
     private void onClick_start()
     {
         Dialog_MessageBox_ok_cancel megBox = new Dialog_MessageBox_ok_cancel(this, "OK", "SKIP")
@@ -113,12 +115,13 @@ public class Activity_serverStart extends Activity implements View.OnClickListen
 
                         // ~�̸��극�̼� ����
                         startActivity(new Intent(MainActivity.Instance, Activity_serverCalibrationLocation.class));
+                        finish();
 
                         break;
                     case R.id.button_custom_dialog_cancel: //skip
 
                         // ���� ����
-                        startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
+                        //startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));
 
                         break;
                 }

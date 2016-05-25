@@ -47,7 +47,6 @@ public class FpTCPConnector extends Thread
 			_socket = new Socket(mTargetIP, mTargetPort);
 			_socket.setReuseAddress(true);
 			_connected = true;
-			
 		} 
 		catch (UnknownHostException e) 
 		{

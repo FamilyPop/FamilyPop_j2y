@@ -1,14 +1,19 @@
 package com.j2y.familypop;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.lobby.Activity_title;
+import com.j2y.familypop.activity.manager.Manager_contents;
+import com.j2y.familypop.activity.manager.Manager_photoGallery;
+import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.client.FpcLocalization_Client;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcTalkRecord;
 import com.j2y.familypop.server.FpsRoot;
-import com.j2y.familypop.server.FpsScenarioDirector;
+//import com.j2y.familypop.server.FpsScenarioDirector;
 import com.j2y.network.base.FpNetConstants;
 import com.nclab.familypop.R;
 import com.nclab.sociophone.SocioPhone;
@@ -23,19 +28,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -50,6 +45,9 @@ public class MainActivity extends Activity
 	public FpsRoot _fpsRoot;
 	public FpcRoot _fpcRoot;
     public FpcLocalization_Client _localization;
+    public Editable _serverIP;
+    public Editable _userName;
+    public boolean _serverActivityStart = false;
 
     public double _calibration_width_length;
     public double _calibration_height_length;
@@ -67,15 +65,22 @@ public class MainActivity extends Activity
 
 
     //client init info
-    //public boolean _ready;
-    //public int _curServerScenario;  // server -> client
+    public boolean _ready;
+    public Manager_contents.eType_contents _curServerScenario;  // server -> client
 
+    //Manager
+    public Manager_photoGallery _photoManager;
+    public Manager_users _manager_users;
     //------------------------------------------------------------------------------------------------------------------------------------------------------
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
         Log.i("[J2Y]", "MainActivity:onCreate");
+
+        // manager
+        _manager_users = new Manager_users();
+        _photoManager = new Manager_photoGallery();
 
         _familypopSetting = getSharedPreferences("familypopSetting",0);
 
@@ -85,6 +90,7 @@ public class MainActivity extends Activity
 		_virtualServer = false;
 
 		startActivity(new Intent(this, Activity_title.class));
+        //startActivity(new Intent(this, Activity_serverMain_andEngine.class));
 
 		_fpsRoot = new FpsRoot();
 		_fpcRoot = new FpcRoot();
@@ -107,7 +113,7 @@ public class MainActivity extends Activity
 
         //client init info
         //_ready = false;
-        //_curServerScenario = FpNetConstants.SCENARIO_NONE;
+        _curServerScenario = Manager_contents.eType_contents.CONTENTS_NOT;//FpNetConstants.SCENARIO_NONE;
     }
 
 
@@ -244,5 +250,4 @@ public class MainActivity extends Activity
 //        Log.i("[SI]", _debug_name + "_End timecount : " + _debug_timecount);
 //        Log.i("[SI]", _debug_name + "_"+(end -_debug_timecount )  +" milliseconds");
     }
-
 }

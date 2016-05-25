@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.j2y.engine.ColumnListView;
 import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.activity.server.Activity_serverCalibration;
 import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
@@ -266,6 +266,7 @@ public class ListViewAdapter_talkHistory extends BaseAdapter implements View.OnC
             FpcRoot.Instance._selected_talk_record = clickItem._fpcTalkRecord;
 
             MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_talkHistoryPlayback.class));
+
         }
         if( v.getId() == R.id.button_listview_item_history_delete ||
             v.getId() == R.id.button_listview_item_history_delete1)

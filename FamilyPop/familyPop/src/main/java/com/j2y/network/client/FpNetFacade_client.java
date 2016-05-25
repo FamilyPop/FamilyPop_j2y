@@ -9,9 +9,10 @@ import android.widget.Toast;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.Activity_serverMain;
+//import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.activity.Interaction_Target;
 import com.j2y.familypop.activity.JoyStick;
+import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
 import com.j2y.familypop.server.FpsRoot;
@@ -198,8 +199,8 @@ public class FpNetFacade_client extends FpNetFacade_base
             FpNetDataNoti_serverInfo msg = new FpNetDataNoti_serverInfo();
             msg.Parse(inMsg);
 
-            //MainActivity.Instance._curServerScenario = msg._curScenario;
-           // MainActivity.Instance._ready = true;
+           MainActivity.Instance._curServerScenario =  Manager_contents.eType_contents.IntToType_contents(msg._curScenario);//eType_contens msg._curScenario;
+           MainActivity.Instance._ready = true;
         }
     };
 
@@ -314,10 +315,10 @@ public class FpNetFacade_client extends FpNetFacade_base
                 Activity_clientMain.Instance._text_user.setText(data._userNames);
 
 
-                String[] bubbleDatas = data._bubblesInfo.split("/");
-                String[] clientDatas = data._clientsInfo.split("/");
+                String[] bubbleDatas = data._bubblesInfo.split(",");
+                String[] clientDatas = data._clientsInfo.split(",");
 
-                Activity_clientMain.Instance.allDeactive_targetImage();
+
                 Activity_clientMain.Instance.clear_touchViewObject();
 
                 for( int i=0; i<bubbleDatas.length; i++)
@@ -325,7 +326,7 @@ public class FpNetFacade_client extends FpNetFacade_base
                     Interaction_Target target = target = new Interaction_Target();
                     target._bubbleColorType = Integer.parseInt(bubbleDatas[i]);
                     target._clientId = Integer.parseInt(clientDatas[i]);
-                    target._targetImage = Activity_clientMain.Instance.active_targetImage(target._bubbleColorType);
+
                     Activity_clientMain.Instance.add_touchViewObject(target);
                 }
 
@@ -353,7 +354,11 @@ public class FpNetFacade_client extends FpNetFacade_base
             FpNetDataNoti_changeScenario data = new FpNetDataNoti_changeScenario();
             data.Parse(inMsg);
 
-            FpcRoot.Instance._scenarioDirectorProxy.ChangeScenario(data._changeScenario);
+            Manager_contents.Instance.Content_change(Manager_contents.eType_contents.IntToType_contents(data._changeScenario));
+
+
+
+            //FpcRoot.Instance._scenarioDirectorProxy.ChangeScenario(data._changeScenario);
 
 //            if( Activity_clientMain.Instance._selectScenario !=  data._changeScenario)
 //            {
@@ -476,6 +481,8 @@ public class FpNetFacade_client extends FpNetFacade_base
                     Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._color), cInfo._clientId,cInfo._posX, cInfo._posY);
                 }
             }
+
+            Activity_clientMain.Instance.Set_StyleJoyStick(FpcRoot.Instance._clientId);
             //Activity_clientMain.Instance._joystick.AddItem();
         }
     };
@@ -490,8 +497,8 @@ public class FpNetFacade_client extends FpNetFacade_base
             FpNetDataReq_connectId data = new FpNetDataReq_connectId();
             data.Parse(inMsg);
             FpcRoot.Instance._clientId = data._clientId;
+            FpcRoot.Instance._bubble_color_type = data._colorType;
             //Activity_clientMain.Instance.OnEventSC_bang();
-
         }
     };
 
@@ -588,6 +595,7 @@ public class FpNetFacade_client extends FpNetFacade_base
     // 이미지 공유 요청
     public void SendPacket_req_shareImage(Bitmap shareBitmap)
     {
+        //
         Log.i("[J2Y]", "[C->S] 이미지 공유 요청");
         FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
         if(shareBitmap != null)

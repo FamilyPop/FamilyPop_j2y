@@ -15,7 +15,7 @@ public class FpNetDataNoti_clientUpdate extends FpNetData_base
 //    public float _dirY;
 //    public int _clientid;
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÄ½Ì
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
     @Override
     public void Parse(FpNetIncomingMessage inMsg)
     {
@@ -33,7 +33,7 @@ public class FpNetDataNoti_clientUpdate extends FpNetData_base
         }
     }
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÐÅ·
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·
     @Override
     public void Packing(FpNetOutgoingMessage outMsg)
     {
@@ -50,7 +50,7 @@ public class FpNetDataNoti_clientUpdate extends FpNetData_base
     }
 
     //----------------------------------------------------------------
-    // µ¥ÀÌÅÍ Ãß°¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     public void AddClientData(float posx, float posy, int color, int clientID)
     {
         if( _clientInfos == null ) _clientInfos = new ArrayList<clientInfo>();
@@ -73,7 +73,7 @@ public class FpNetDataNoti_clientUpdate extends FpNetData_base
         public int _clientId;
 
         //----------------------------------------------------------------
-        // ¸Þ½ÃÁö ÆÄ½Ì
+        // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
         public void Parse(FpNetIncomingMessage inMsg)
         {
             _posX = inMsg.ReadFloat();
@@ -82,7 +82,7 @@ public class FpNetDataNoti_clientUpdate extends FpNetData_base
             _clientId = inMsg.ReadInt();
         }
         //----------------------------------------------------------------
-        // ¸Þ½ÃÁö ÆÐÅ·
+        // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·
         public void Packing(FpNetOutgoingMessage outMsg)
         {
             outMsg.Write(_posX);
