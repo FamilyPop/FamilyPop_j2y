@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\familyPop\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
         "map": [
             {
                 "to": {
@@ -12,59 +12,7 @@
                     "endOffset": 201
                 },
                 "from": {
-                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\familyPop\\src\\main\\res\\values-v14\\styles.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 225,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 373
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_back_160513\\familyPop\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 4,
-                    "endColumn": 12,
-                    "endOffset": 201
-                },
-                "from": {
-                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_back_160513\\familyPop\\src\\main\\res\\values-v14\\styles.xml",
-                    "position": {
-                        "startLine": 7,
-                        "startColumn": 4,
-                        "startOffset": 227,
-                        "endLine": 9,
-                        "endColumn": 12,
-                        "endOffset": 375
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_back_160520\\familyPop\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 4,
-                    "endColumn": 12,
-                    "endOffset": 201
-                },
-                "from": {
-                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_back_160520\\familyPop\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,

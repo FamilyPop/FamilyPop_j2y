@@ -1,5 +1,6 @@
 package com.j2y.familypop.activity;
 
+import android.graphics.Bitmap;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -20,6 +21,7 @@ import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.server.FpsTalkUser;
+import com.j2y.network.base.FpNetUtil;
 import com.j2y.network.server.FpNetFacade_server;
 
 import org.andengine.engine.Engine;
@@ -32,6 +34,7 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -39,6 +42,7 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.sensor.acceleration.AccelerationData;
 import org.andengine.input.sensor.acceleration.IAccelerationListener;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 import java.util.ArrayList;
@@ -78,11 +82,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     // user pos
     private ArrayList<Vector2> _userStartPos;
 
-    // image names
-    private ArrayList<String> _userImageNames = null;
     // Info_regulation
     private Info_regulation info_regulation = null;
     public Info_regulation GetInfo_regulation(){return info_regulation;}
+    public Scene Get_scene(){return _scene;}
     //====================================================================================================
     // andengine init
     boolean _scheduleEngineStart;
@@ -128,14 +131,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         _manager_contents = new Manager_contents(true);
         _manager_contents.Instance.Content_change(Manager_contents.eType_contents.CONTENTS_READY);
 
-
-
         // andEngein_test
         //a1 = create_attractor(_userStartPos.get(0).x, _userStartPos.get(0).y, "user-01.png");
         //a2 = create_attractor(_userStartPos.get(1).x, _userStartPos.get(1).y, "user-02.png");
         //a3 = create_attractor(_userStartPos.get(2).x, _userStartPos.get(2).y, "user-03.png");
-        //a4 =create_attractor(_userStartPos.get(3).x, _userStartPos.get(3).y, "user-04.png");
-
+        //a4 = create_attractor(_userStartPos.get(3).x, _userStartPos.get(3).y, "user-04.png");
 
         Activity_serverMain_andEngine.Instance.Init_attractor();
 
@@ -214,20 +214,16 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
     public void Init_attractor()
     {
-        if (_userImageNames == null )
-        {
-            _userImageNames = new ArrayList<String>();
-            _userImageNames.add("user-01.png");
-            _userImageNames.add("user-02.png");
-            _userImageNames.add("user-03.png");
-            _userImageNames.add("user-04.png");
-        }
+
         Manager_users magUsers = Manager_users.Instance;
 
         int posCount = 0;
         for( FpsTalkUser user :  magUsers.Get_talk_users().values() )
         {
-            user._uid_attractor = create_attractor(_userStartPos.get(posCount).x, _userStartPos.get(posCount).y, _userImageNames.get(posCount)).Get_UniqueNumber();
+            Actor_attractor attractor = create_attractor(_userStartPos.get(posCount).x, _userStartPos.get(posCount).y,
+                                                                                        Manager_resource.Instance.Get_userImage( Manager_resource.eImageIndex_color.IntToImageColor(posCount)));
+            user._uid_attractor = attractor.Get_UniqueNumber();
+            attractor.Set_colorId(posCount);
             posCount++;
         }
     }
@@ -247,17 +243,23 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     //====================================================================================================
     private Actor_attractor create_attractor(float x, float y, String imageName)
     {
-        AnimatedSprite face;
+        //AnimatedSprite face;
         //face = new AnimatedSprite(x, y, _manager_resource.GetTiledTexture(imageName), this.getVertexBufferObjectManager());
         //face.setScale(0.6f, 0.6f);
-        face = create_animatedSprite(x, y, imageName);
+        //face = create_animatedSprite(x, y, imageName);
+
+        Sprite face = null;
+        face = create_sprite(x, y, imageName);
         return _manager_actor.Create_attractor(_scene, _physicsWorld, face);
     }
     // talk
     private Actor_talk create_talk(float x, float y, String imageName, Actor_attractor attractor)
     {
         Actor_talk ret = null;
-        AnimatedSprite face = create_animatedSprite(x, y, imageName);
+        //AnimatedSprite face = create_animatedSprite(x, y, imageName);
+        //ret = _manager_actor.Create_talk(_scene, _physicsWorld, face, attractor);
+
+        Sprite face = create_sprite(x, y, imageName);
         ret = _manager_actor.Create_talk(_scene, _physicsWorld, face, attractor);
         return ret;
     }
@@ -270,8 +272,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         //float y = CAMERA_HEIGHT/2;
 
         Actor_talk ret = null;
-        AnimatedSprite face = null;
-        AnimatedSprite flower = null;
+        //AnimatedSprite face = null;
+        //AnimatedSprite flower = null;
+        Sprite face = null;
+        Sprite flower = null;
 
         Vector2 newPos = new Vector2();
         newPos.x = attractor.Get_Sprite().getX() - x;
@@ -281,15 +285,22 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         newPos.x *=70f;
         newPos.y *=70f;
 //
-        face = create_animatedSprite(x + newPos.x, y + newPos.y, imageName);
-        flower = create_animatedSprite(0, 0, flowerName);
-        face.setScale(0.3f, 0.3f);
+        //face = create_animatedSprite(x + newPos.x, y + newPos.y, imageName);
+        //flower = create_animatedSprite(0, 0, flowerName);
+
+        face = create_sprite(x + newPos.x, y + newPos.y, imageName);
+        flower = create_sprite(0, 0, flowerName);
+        flower.setPosition( (-flower.getWidth()/2) + (face.getWidth()/2),
+                (-flower.getHeight()/2) + (face.getHeight()/2));
+
+        face.setScale(1f, 1f);
         flower.setScale(0, 0);
         flower.setZIndex(-1);
 
 
         ret = Manager_actor.Instance.Create_talk(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
+        ret.Set_maxFlowerScale(0.9f);
 
         return ret;
     }
@@ -298,11 +309,19 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     {
         Actor_smile ret = null;
 
-        AnimatedSprite face = null;
-        AnimatedSprite flower = null;
+//        AnimatedSprite face = null;
+//        AnimatedSprite flower = null;
+//
+//        face = create_animatedSprite(x, y, "smile_k-01-01.png");
+//        flower = create_animatedSprite(0, 0, flowerName);
 
-        face = create_animatedSprite(x, y, "smile_k-01-01.png");
-        flower = create_animatedSprite(0, 0, flowerName);
+        Sprite face = null;
+        Sprite flower = null;
+
+        face = create_sprite(x, y, "smile_01.png");
+        flower = create_sprite(0, 0, flowerName);
+        flower.setPosition( (-flower.getWidth()/2) + (face.getWidth()/2),
+                (-flower.getHeight()/2) + (face.getHeight()/2));
 
         face.setScale(0.6f, 0.6f);
         flower.setScale(0, 0);
@@ -314,24 +333,32 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         return ret;
     }
-
     // good
-    public Actor_good Create_good(float x, float y, String flowerName, Actor_attractor attractor)
+    public Actor_good Create_good(float x, float y, String faceName, String flowerName, Actor_attractor attractor)
     {
         Actor_good ret = null;
 
-        AnimatedSprite face = null;
-        AnimatedSprite flower = null;
+//        AnimatedSprite face = null;
+//        AnimatedSprite flower = null;
+//
+//        face = create_animatedSprite(x, y, "heart_k-01-01.png");
+//        flower = create_animatedSprite(0, 0,flowerName);
 
-        face = create_animatedSprite(x, y, "heart_k-01-01.png");
-        flower = create_animatedSprite(0, 0,flowerName);
+        Sprite face = null;
+        Sprite flower = null;
 
-        face.setScale(0.6f, 0.6f);
+        face = create_sprite(x, y, faceName);
+        flower = create_sprite(0, 0, flowerName);
+        flower.setPosition( (-flower.getWidth()/2) + (face.getWidth()/2),
+                            (-flower.getHeight()/2) + (face.getHeight()/2));
+
+        face.setScale(1f, 1f);
         flower.setScale(0, 0);
         flower.setZIndex(-1);
 
         ret = Manager_actor.Instance.Create_good(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
+        ret.Set_maxFlowerScale(0.9f);
 
         return ret;
     }
@@ -353,8 +380,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             }
         }
 
+        String goodName = Manager_resource.Instance.Get_userLike(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID) );
         String petalName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID), Manager_resource.eType_petal.PETAL_GOOD);
-        Create_good(f.x, f.y, petalName, to);
+        ret = Create_good(f.x, f.y, goodName, petalName, to);
 
         return ret;
     }
@@ -375,9 +403,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             if( user._uid_attractor == from.Get_UniqueNumber() ){ fromUser = user; }
         }
 
+        String goodName = Manager_resource.Instance.Get_userLike(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID) );
         String petalName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID), Manager_resource.eType_petal.PETAL_GOOD);
-        Create_good(f.x, f.y, petalName, to);
-
+        ret = Create_good(f.x, f.y, goodName,petalName, to);
+        //ret.Set_maxFlowerScale(0.5f);
 
         return ret;
     }
@@ -409,6 +438,15 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         face.setScale(0.6f, 0.6f);
         return face;
     }
+    private Sprite  create_sprite(float x, float y, String imageName)
+    {
+        Sprite face = null;
+
+        ITextureRegion spriteTexture = Manager_resource.Instance.GetSpriteTexture(imageName);
+        face = new Sprite(x, y, spriteTexture, this.getVertexBufferObjectManager());
+        face.setScale(1.5f, 1.5f);
+        return face;
+    }
     //====================================================================================================
     // event
     //====================================================================================================
@@ -422,6 +460,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             Actor_smile actor = Create_smile(CAMERA_HEIGHT/2 - 24, CAMERA_HEIGHT/2 - 48,fileName,attractor);
             actor.Set_maxFlowerScale(1.3f);
         }
+    }
+    public synchronized void OnEvent_shareimage(int posIndex, Bitmap bitmap)
+    {
+        float posx = (CAMERA_WIDTH /2 )- (bitmap.getWidth()/2);
+        float posy = (CAMERA_HEIGHT /2) -(bitmap.getHeight()/2 );
+
+        Manager_resource.Instance.Create_sprite(posx, posy, _scene, this,bitmap);
     }
     //====================================================================================================
     // bubble 컨트롤.
@@ -471,6 +516,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         return false;
     }
+    public void CloseServer()
+    {
+        finish();
+    }
+
     //
     //====================================================================================================
     // class s

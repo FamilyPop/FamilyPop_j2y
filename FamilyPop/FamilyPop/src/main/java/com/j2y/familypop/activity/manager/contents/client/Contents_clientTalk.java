@@ -1,6 +1,7 @@
 package com.j2y.familypop.activity.manager.contents.client;
 
 import android.util.Log;
+import android.view.View;
 
 import com.j2y.familypop.activity.Activity_clientMain;
 import com.j2y.familypop.activity.JoyStick;
@@ -25,6 +26,7 @@ public class Contents_clientTalk extends BaseContents
         super.init();
 
         _joystick = Activity_clientMain.Instance._joystick;
+        Activity_clientMain.Instance._button_connectServer.setVisibility(View.GONE);
     }
     @Override
     public  synchronized boolean update()
@@ -42,7 +44,6 @@ public class Contents_clientTalk extends BaseContents
             _voiceAvgCount = 0;
             FpNetFacade_client.Instance.SendPacket_familyTalk_voice(_voiceAmpAvg);
         }
-
         // joystick
         if( _joystick != null)
         {

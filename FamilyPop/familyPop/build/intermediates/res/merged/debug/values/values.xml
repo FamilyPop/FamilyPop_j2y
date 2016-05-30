@@ -19,12 +19,14 @@
     <color name="pink">#E64496</color>
     <color name="purple">#B200FF</color>
     <color name="red">#E44742</color>
+    <color name="transparent">#e6e6e6</color>
     <color name="yellow">#EBEC4B</color>
     <declare-styleable name="ColumnListView"><attr format="integer" name="columns"/><attr format="dimension" name="column_padding"/><attr format="boolean" name="overscroll"/><attr format="float" name="fling_damping"/><attr format="integer" name="snap_spring"/><attr format="float" name="rubberband_factor"/></declare-styleable>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <string name="action_settings">Settings</string>
     <string name="app_name">FamilyPop</string>
+    <string name="facebook_app_id">630105753813228</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_familypop">FAMILY POP</string>
     <string name="title_history">HISTORY</string>

@@ -115,12 +115,16 @@ public class Contents_talk extends BaseContents
             if( speakerId >= 0)
             {
                 String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(speakerId));
-                String petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(speakerId), Manager_resource.eType_petal.PETAL_TALK);
+                String petalImageName;
 
 
                 Actor_talk bubble = null;
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(_userRef.get()._uid_attractor);
+                petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
+
+
                 bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
+                bubble.Set_colorId(speakerId);
 
                 if (bubble != null) {
                     _current_bubble = bubble;
@@ -135,7 +139,7 @@ public class Contents_talk extends BaseContents
             float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._plusMoverRadius;
             //float elapsed
             //Activity_serverMain_andEngine.Instance.getEngine().getSecondsElapsedTotal()
-            _current_bubble.Set_plusScale(scale * 0.01f, scale * 0.01f);
+            _current_bubble.Set_plusScale(scale * 0.001f, scale * 0.001f);
 
         }
     }

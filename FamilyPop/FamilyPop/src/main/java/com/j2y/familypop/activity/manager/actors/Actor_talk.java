@@ -22,11 +22,19 @@ public class Actor_talk  extends BaseActor
 
     private int _start_time = 0;
     private int _end_time = 0;
+    private float _maxTalkScale = 0.3f;
+
 
     public Actor_talk(Body body, Sprite sprite, long uniqueNumber)
     {
         super(body, sprite, uniqueNumber);
     }
+
+    public int GetStart_time(){ return _start_time; }
+    public void SetStart_time(int start_time){ _start_time = start_time;}
+    public int GetEnd_time(){ return _end_time; }
+    public void SetEnd_time(int end_time){ _end_time = end_time;}
+
     @Override
     public boolean onUpdate(float pSecondsElapsed)
     {
@@ -45,11 +53,12 @@ public class Actor_talk  extends BaseActor
     public void SetAttractor(Actor_attractor attractor){ mAttractor = attractor; }
     public void Set_plusScale(float x, float y)
     {
-        if( mSprite.getScaleX() < 1f && mSprite.getScaleY() < 1f)
+        if( mSprite.getScaleX() < _maxTalkScale && mSprite.getScaleY() < _maxTalkScale)
         {
             mSprite.setScale(mSprite.getScaleX() + x, mSprite.getScaleY() + y);
         }
     }
+    public float Get_Scale(){return mSprite.getScaleX();}
     public void StartMover(int record_end_time)
     {
         mIsMover = true;

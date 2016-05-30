@@ -20,16 +20,43 @@ public class Manager_photoGallery
 {
     public static Manager_photoGallery Instance;
 
-    public ArrayList<ImageInfo> _imageList;
-    public ArrayList<Bitmap> _bitmap_file;
+    private ArrayList<ImageInfo> _imageList;
+    private ArrayList<Bitmap> _bitmap_file;
 
+    //================================================================================================
+    // get
+    public int Get_countImageList(){ return  _imageList.size(); }
+    public int Get_countBitmap(){return _bitmap_file.size();}
+    public void Release_lists()
+    {
+        _imageList = new ArrayList<>();
+        _bitmap_file = new ArrayList<>();
+    }
+
+    public Bitmap Get_bitmap(int index)
+    {
+        Bitmap ret = null;
+        if( Get_countBitmap() == 0) return ret;
+
+        ret = _bitmap_file.get(index);
+
+        return ret;
+    }
+    public ImageInfo Get_inageInfo(int index)
+    {
+        ImageInfo ret = null;
+        if( Get_countImageList() == 0) return ret;
+
+        ret = _imageList.get(index);
+
+        return ret;
+    }
     public Manager_photoGallery()
     {
         Instance = this;
         _imageList = new ArrayList<ImageInfo>();
         _bitmap_file = new ArrayList<Bitmap>();
     }
-
     public void SetArrayList(ArrayList<ImageInfo> imageList)
     {
         if(imageList.size() <= 0 )

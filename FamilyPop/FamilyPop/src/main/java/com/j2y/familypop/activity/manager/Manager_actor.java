@@ -47,7 +47,8 @@ public class Manager_actor
         public BodyDef.BodyType type_body = BodyDef.BodyType.DynamicBody;
         public PhysicsWorld physicsWorld = null;
         //public eType_texture type_useTexture = eType_texture.TEXTURE;
-        public AnimatedSprite animatedsprite  = null;
+        //public AnimatedSprite animatedsprite  = null;
+        public Sprite sprite  = null;
         //    public Sprite sprite = null;
         public long actor_unique_number = -1;
 
@@ -100,8 +101,6 @@ public class Manager_actor
         mActors.put(eType_actor.ACTOR_BEE, new ArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_SMILE, new ArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_GOOD, new ArrayList<BaseActor>());
-
-
     }
     private long getUniqueNumber()
     {
@@ -139,21 +138,21 @@ public class Manager_actor
         switch(info.type_actor)
         {
             case ACTOR_ATTRACTOR:
-                ret = new Actor_attractor (createCircleBody(info.physicsWorld, info.animatedsprite, info.type_body, objectFixtureDef, 0.5f), info.animatedsprite, info.actor_unique_number);
+                ret = new Actor_attractor (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
                 break;
             case ACTOR_TALK:
-                ret = new Actor_talk (createCircleBody(info.physicsWorld, info.animatedsprite, info.type_body, objectFixtureDef, 0.7f), info.animatedsprite, info.actor_unique_number);
+                ret = new Actor_talk (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.7f), info.sprite, info.actor_unique_number);
                 break;
             case ACTOR_BEE: break;
             case ACTOR_GOOD:
-                ret = new Actor_good(createCircleBody(info.physicsWorld, info.animatedsprite, info.type_body, objectFixtureDef, 0.9f), info.animatedsprite,info.actor_unique_number);
+                ret = new Actor_good(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.9f), info.sprite,info.actor_unique_number);
                 break;
             case ACTOR_SMILE:
-                ret = new Actor_smile(createCircleBody(info.physicsWorld, info.animatedsprite, info.type_body, objectFixtureDef, 0.65f), info.animatedsprite,info.actor_unique_number);
+                ret = new Actor_smile(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.65f), info.sprite,info.actor_unique_number);
                 break;
         }
 
-        info.animatedsprite.animate(info.animate, 1);
+        //info.sprite.animate(info.animate, 1);
         //info.animatedsprite.attachChild();
         //info.animatedsprite.getChildByIndex(0).setZIndex();
         //info.animatedsprite.setZIndex();
@@ -162,7 +161,7 @@ public class Manager_actor
         return ret;
     }
     // todo : 이벤트와 bee 생성 함수도 만들어야 함 (Create_bee , Create_event)
-    public Actor_attractor Create_attractor(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
+    public Actor_attractor Create_attractor(Scene scene, PhysicsWorld physicsWorld, Sprite sprite)
     {
         Actor_attractor ret = null;
 
@@ -172,7 +171,7 @@ public class Manager_actor
         actorInfo.scaleY = 1;
         actorInfo.type_body = BodyDef.BodyType.StaticBody;
         actorInfo.physicsWorld = physicsWorld;
-        actorInfo.animatedsprite = sprite;
+        actorInfo.sprite = sprite;
 
         ret = (Actor_attractor)Create_actor(actorInfo);
 
@@ -183,7 +182,7 @@ public class Manager_actor
         }
         return ret;
     }
-    public Actor_talk Create_talk( Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite, Actor_attractor actor_attractor)
+    public Actor_talk Create_talk( Scene scene, PhysicsWorld physicsWorld, Sprite sprite, Actor_attractor actor_attractor)
     {
         Actor_talk ret = null;
 
@@ -194,7 +193,7 @@ public class Manager_actor
         actorInfo.scaleY = 1;
         actorInfo.type_body = BodyDef.BodyType.DynamicBody;
         actorInfo.physicsWorld = physicsWorld;
-        actorInfo.animatedsprite = sprite;
+        actorInfo.sprite = sprite;
 
         ret = (Actor_talk)Create_actor(actorInfo);
         ret.SetAttractor(actor_attractor);
@@ -209,7 +208,7 @@ public class Manager_actor
 
         return ret;
     }
-    public Actor_good Create_good(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite, Actor_attractor actor_attractor)
+    public Actor_good Create_good(Scene scene, PhysicsWorld physicsWorld, Sprite sprite, Actor_attractor actor_attractor)
     {
         Actor_good ret = null;
 
@@ -220,7 +219,7 @@ public class Manager_actor
         actorInfo.scaleY = 1;
         actorInfo.type_body = BodyDef.BodyType.DynamicBody;
         actorInfo.physicsWorld = physicsWorld;
-        actorInfo.animatedsprite = sprite;
+        actorInfo.sprite = sprite;
 
         ret = (Actor_good)Create_actor(actorInfo);
         ret.SetAttractor(actor_attractor);
@@ -233,7 +232,7 @@ public class Manager_actor
 
         return ret;
     }
-    public Actor_smile Create_smile(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite, Actor_attractor actor_attractor)
+    public Actor_smile Create_smile(Scene scene, PhysicsWorld physicsWorld, Sprite sprite, Actor_attractor actor_attractor)
     {
         Actor_smile ret = null;
 
@@ -244,7 +243,7 @@ public class Manager_actor
         actorInfo.scaleY = 1;
         actorInfo.type_body = BodyDef.BodyType.DynamicBody;
         actorInfo.physicsWorld = physicsWorld;
-        actorInfo.animatedsprite = sprite;
+        actorInfo.sprite = sprite;
 
         ret = (Actor_smile)Create_actor(actorInfo);
         ret.SetAttractor(actor_attractor);
@@ -324,7 +323,7 @@ public class Manager_actor
     }
     //=========================================================================================================================================
     // add child sprite
-    public void AttachChild(BaseActor actor, AnimatedSprite attachSprite)
+    public void AttachChild(BaseActor actor, Sprite attachSprite)
     {
         actor.Get_Sprite().attachChild(attachSprite);
     }

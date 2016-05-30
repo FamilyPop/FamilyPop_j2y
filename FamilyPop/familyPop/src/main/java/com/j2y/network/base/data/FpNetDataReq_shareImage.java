@@ -7,13 +7,34 @@ package com.j2y.network.base.data;
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+import android.graphics.Bitmap;
+
 import com.j2y.network.base.FpNetIncomingMessage;
 import com.j2y.network.base.FpNetOutgoingMessage;
+import com.j2y.network.base.FpNetUtil;
+
+import java.util.ArrayList;
 
 public class FpNetDataReq_shareImage extends FpNetData_base
 {
-    public byte[] _bitMapByteArray;
+    private int _count_bitmap;
+    private ArrayList<byte[]> _bitArrays;
 
+    public FpNetDataReq_shareImage()
+    {
+        _count_bitmap = 0;
+        _bitArrays = new ArrayList<>();
+    }
+    //----------------------------------------------------------------
+    //
+    public int Get_count(){return _count_bitmap;}
+    public byte[] Get_bitArray(int index ){return _bitArrays.get(index);}
+    public void Add_bitmap( Bitmap bitmap)
+    {
+        byte[] item = FpNetUtil.BitmapToByteArray(bitmap);
+        _bitArrays.add(item);
+        ++_count_bitmap;
+    }
     //----------------------------------------------------------------
     // 메시지 파싱
     @Override
@@ -21,9 +42,13 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     {
         super.Parse(inMsg);
 
-        int length = inMsg.ReadInt();
-        if(length > 0)
-            _bitMapByteArray = inMsg.ReadByteArray(length);
+        _count_bitmap = inMsg.ReadInt();
+
+        for(int i=0; i<_count_bitmap; ++i)
+        {
+            int length = inMsg.ReadInt();
+            _bitArrays.add(inMsg.ReadByteArray(length));
+        }
     }
 
     //----------------------------------------------------------------
@@ -33,12 +58,11 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     {
         super.Packing(outMsg);
 
-        if(null == _bitMapByteArray)
-            outMsg.Write((int)0);
-        else {
-            outMsg.Write(_bitMapByteArray.length);
-            if (_bitMapByteArray.length > 0)
-                outMsg.Write(_bitMapByteArray);
+        outMsg.Write(_count_bitmap);
+        for(byte[] data : _bitArrays)
+        {
+            outMsg.Write(data.length);
+            outMsg.Write(data);
         }
     }
 }

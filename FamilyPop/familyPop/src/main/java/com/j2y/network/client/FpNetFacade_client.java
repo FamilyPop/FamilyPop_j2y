@@ -13,6 +13,7 @@ import com.j2y.familypop.activity.Activity_clientMain;
 import com.j2y.familypop.activity.Interaction_Target;
 import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.manager.Manager_contents;
+import com.j2y.familypop.activity.manager.Manager_photoGallery;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
 import com.j2y.familypop.server.FpsRoot;
@@ -409,13 +410,28 @@ public class FpNetFacade_client extends FpNetFacade_base
         public void CallBack(FpNetIncomingMessage inMsg)
         {
 
+
             Log.i("[J2Y]", "[패킷수신] 이미지 공유");
 
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
             data.Parse(inMsg);
 
             if(Activity_clientMain.Instance != null)
-                Activity_clientMain.Instance.SetupSharedImage(data._bitMapByteArray);
+            {
+                if( data.Get_count() == 0)
+                {
+                    for (int i = 0; i < 4; ++i) {
+                        Activity_clientMain.Instance.SetupSharedImage(i, null);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < data.Get_count(); ++i) {
+                        Activity_clientMain.Instance.SetupSharedImage(i, data.Get_bitArray(i));
+                    }
+                }
+            }
+                //Activity_clientMain.Instance.SetupSharedImage(data._bitMapByteArray);
         }
     };
 
@@ -593,15 +609,31 @@ public class FpNetFacade_client extends FpNetFacade_base
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 이미지 공유 요청
-    public void SendPacket_req_shareImage(Bitmap shareBitmap)
+    //public void SendPacket_req_shareImage(Bitmap shareBitmap)
+    public void SendPacket_req_shareImage()
     {
         //
-        Log.i("[J2Y]", "[C->S] 이미지 공유 요청");
+//        Log.i("[J2Y]", "[C->S] 이미지 공유 요청");
+//        FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
+//        if(shareBitmap != null)
+//            reqPaket._bitMapByteArray = FpNetUtil.BitmapToByteArray(shareBitmap);
+//        else
+//            reqPaket._bitMapByteArray = null;
+//
+//        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
+
         FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
-        if(shareBitmap != null)
-            reqPaket._bitMapByteArray = FpNetUtil.BitmapToByteArray(shareBitmap);
-        else
-            reqPaket._bitMapByteArray = null;
+        Manager_photoGallery photo = Manager_photoGallery.Instance;
+
+        if(photo.Get_countBitmap() == 0 ) {
+            sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
+            return;
+        }
+
+        for(int i=0; i<photo.Get_countBitmap(); ++i)
+        {
+            reqPaket.Add_bitmap(photo.Get_bitmap(i));
+        }
 
         sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
     }

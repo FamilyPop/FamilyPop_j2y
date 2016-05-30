@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,7 +21,6 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +28,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,33 +40,23 @@ import android.widget.TextView;
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.lobby.Activity_talkHistory;
 import com.j2y.familypop.activity.lobby.Popup_dialogueMenu;
-import com.j2y.familypop.activity.lobby.Popup_dialogue_historyMenu;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
-import com.j2y.familypop.activity.manager.contents.BaseContents;
-import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
-import com.j2y.familypop.backup.CustomDialogClass;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
 import com.j2y.familypop.client.FpcScenario_base;
 import com.j2y.familypop.client.FpcTalkRecord;
 //import com.j2y.familypop.server.FpsScenarioDirector;
-import com.j2y.familypop.server.FpsTalkUser;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.FpNetUtil;
 import com.j2y.network.base.data.FpNetData_base;
 import com.j2y.network.client.FpNetFacade_client;
-import com.j2y.network.server.FpNetServer_client;
 import com.nclab.familypop.R;
 
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import java.sql.Date;
 import java.util.concurrent.locks.Lock;
@@ -79,12 +66,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 //import org.jbox2d.common.Vec3;
-
-import com.j2y.familypop.activity.JoyStick;
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -219,15 +203,21 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
     // pictures view
     private FrameLayout _layout_photoView;
-    private ImageView   _image_leftTop;
-    private ImageView   _image_rightTop;
-    private ImageView   _image_leftBottom;
-    private ImageView   _image_rightBottom;
+
+    private ImageButton   _image_leftTop;
+    private ImageButton   _image_rightTop;
+    private ImageButton   _image_leftBottom;
+    private ImageButton   _image_rightBottom;
+
 
     // connect server
-    private ImageButton _button_connectServer;
+    public ImageButton _button_connectServer;
     public ImageView _image_servertoConnect = null;
     public ImageView _image_servertoConnectFail = null;
+
+    public RelativeLayout _photoView = null;
+    public Activity_photoGallery _photoGallery = null;
+    //public Activity_photoGallery _activity_photoGallery = null;
 
     // manager
     Manager_contents _manager_contents = null;
@@ -331,6 +321,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         Manager_photoGallery photoGallery = Manager_photoGallery.Instance;
 
 
+        // connect server
+        connectToServer();
 	}
      @Override
     protected void onDestroy()
@@ -430,6 +422,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 }
                 active_featureMenu(false);
                 break;
+
 
             case R.id.button_client_dialogue_topmenu_feature:
                 //active_featureMenu(true);
@@ -618,7 +611,12 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             case R.id.button_client_dialogue_topmenu_bomb:
                 OnClock_bomb_instruction();
                 break;
-            case R.id.button_connectServer: connectToServer(); break;
+            case R.id.button_connectServer:
+                //connectToServer();
+                Activity_clientMain.Instance._selectScenario = Manager_contents.eType_contents.CONTENTS_TALK.getValue();
+                FpNetFacade_client.Instance.SendPacket_req_changeScenario(Activity_clientMain.Instance._selectScenario);
+                _button_connectServer.setVisibility(View.GONE);
+                break;
 		}
         //_joystick.onClick(view);
 	}
@@ -1185,7 +1183,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         try
                         {
                             Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), imageData.getData());
-                            FpNetFacade_client.Instance.SendPacket_req_shareImage(image_bitmap);
+                            //FpNetFacade_client.Instance.SendPacket_req_shareImage(image_bitmap);
+                            FpNetFacade_client.Instance.SendPacket_req_shareImage();
                         }
                         catch (IOException e)
                         {
@@ -1198,36 +1197,65 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 공유 이미지를 설정한다.
-    public void SetupSharedImage(byte[] image)
+    public void SetupSharedImage(int index , byte[] image)
     {
 
-        if(null == image)
+        ImageButton inButton = null;
+        switch(index)
         {
-            SetupSharedImage((Bitmap)null);
+            // left top
+            case 0: inButton = _image_leftTop;   break;
+            // right top
+            case 1: inButton = _image_rightTop; break;
+            // left buttom
+            case 2: inButton = _image_leftBottom; break;
+            // right buttom
+            case 3: inButton = _image_rightBottom; break;
+        }
+        if(inButton != null )
+        {
+            if(null == image)
+            {
+                SetupSharedImage(inButton,(Bitmap)null);
+            }
+            else
+            {
+                Bitmap selectedImage = FpNetUtil.ByteArrayToBitmap(image);
+                SetupSharedImage(inButton,selectedImage);
+            }
+        }
+
+
+
+    }
+    public void SetupSharedImage(ImageButton imageButton,  Bitmap selectedImage)
+    {
+
+        if(null == selectedImage)
+        {
+            //_shared_image.setVisibility(View.INVISIBLE);
+            imageButton.setVisibility(View.GONE);
         }
         else
         {
-            Bitmap selectedImage = FpNetUtil.ByteArrayToBitmap(image);
-            SetupSharedImage(selectedImage);
-        }
-
-    }
-    public void SetupSharedImage(Bitmap selectedImage) {
-
-        if(null == selectedImage) {
-            _shared_image.setVisibility(View.INVISIBLE);
-        }
-        else {
             // temp.jpg파일을 이미지뷰에 씌운다.
-            _shared_image.setVisibility(View.VISIBLE);
-            _shared_image.setImageBitmap(selectedImage);
-            _shared_image.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
+//            _shared_image.setVisibility(View.VISIBLE);
+//            _shared_image.setImageBitmap(selectedImage);
+//            _shared_image.setOnClickListener(new OnClickListener();
 
-                    Dialog_MessageBox_ok_cancel megBox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance, "Ok", "Cancel") {
+            imageButton.setVisibility(View.VISIBLE);
+            imageButton.setImageBitmap(selectedImage);
+            imageButton.setOnClickListener(new OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                    Dialog_MessageBox_ok_cancel megBox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance, "Ok", "Cancel")
+                    {
                         @Override
-                        protected void onCreate(Bundle savedInstanceState) {
+                        protected void onCreate(Bundle savedInstanceState)
+                        {
                             super.onCreate(savedInstanceState);
 
                             _content.setText("Do you want to stop sharing photo?");
@@ -1235,13 +1263,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         }
 
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(View v)
+                        {
                             super.onClick(v);
 
                             switch (v.getId()) {
                                 case R.id.button_custom_dialog_ok: // ok
-                                    _shared_image.setVisibility(View.INVISIBLE);
-                                    FpNetFacade_client.Instance.SendPacket_req_shareImage(null);
+                                    //_shared_image.setVisibility(View.INVISIBLE);
+                                    all_deActive();
+                                    Manager_photoGallery.Instance.Release_lists();
+                                    FpNetFacade_client.Instance.SendPacket_req_shareImage();
                                     cancel();
                                     break;
                                 case R.id.button_custom_dialog_cancel: //skip
@@ -1255,6 +1286,18 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             });
         }
     }
+
+    private void all_deActive()
+    {
+        _image_leftTop.setVisibility(View.GONE);
+        // right top
+        _image_rightTop.setVisibility(View.GONE);
+        // left buttom
+        _image_leftBottom.setVisibility(View.GONE);
+        // right buttom
+        _image_rightBottom.setVisibility(View.GONE);
+    }
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // GUI Widgets
     //
@@ -1541,11 +1584,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
         // photo view
         _layout_photoView = (FrameLayout)findViewById(R.id.layout_photoView);
-        _image_leftTop = (ImageView)findViewById(R.id.imageView_photo_leftTop);
-        _image_rightTop = (ImageView)findViewById(R.id.imageView_photo_rightTop);
-        _image_leftBottom = (ImageView)findViewById(R.id.imageView_photo_leftBottom);
-        _image_rightBottom = (ImageView)findViewById(R.id.imageView_photo_rightBottom);
-
+        _image_leftTop = (ImageButton)findViewById(R.id.imageView_photo_leftTop);
+        _image_rightTop = (ImageButton)findViewById(R.id.imageView_photo_rightTop);
+        _image_leftBottom = (ImageButton)findViewById(R.id.imageView_photo_leftBottom);
+        _image_rightBottom = (ImageButton)findViewById(R.id.imageView_photo_rightBottom);
 
 
         // user message
@@ -1586,6 +1628,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _image_servertoConnect = (ImageView)findViewById(R.id.image_connectServer);
         _image_servertoConnectFail = (ImageView)findViewById(R.id.image_connectFail);
 
+
+        // photo view
+        //_photoView = (RelativeLayout)findViewById(R.id.llImageList);
+        _photoGallery = new Activity_photoGallery(this, (GridView)findViewById(R.id.grid_view));
     }
 
     public void Set_StyleJoyStick(int clientId)
@@ -1732,7 +1778,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
 
                         SaveTalkRecord();
-                        //FpcRoot.Instance._socioPhone.recordRelease(); //저장후 레코더 날리기.
 
                         if(exit_talk)
                         {
@@ -1745,7 +1790,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         }
                         else
                         {
-                            //SaveTalkRecord();
+
                             cancel();
                         }
                     }
@@ -1972,7 +2017,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         {
              _image_servertoConnectFail.setVisibility(View.GONE);
               _image_servertoConnect.setVisibility(View.GONE);
-              _button_connectServer.setVisibility(View.GONE);
+              //_button_connectServer.setVisibility(View.GONE);
         }
 
 
@@ -2002,6 +2047,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         },6000);
     }
     // end server 접속
+    //private void
 }
 
 

@@ -1,15 +1,22 @@
 package com.j2y.network.server;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.badlogic.gdx.math.Vector2;
 import com.j2y.familypop.MainActivity;
 //import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
+import com.j2y.familypop.activity.manager.Manager_actor;
 import com.j2y.familypop.activity.manager.Manager_contents;
+import com.j2y.familypop.activity.manager.Manager_resource;
 import com.j2y.familypop.activity.manager.Manager_users;
+import com.j2y.familypop.activity.manager.actors.Actor_attractor;
+import com.j2y.familypop.activity.manager.actors.Actor_talk;
+import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.server.Activity_serverCalibration;
 import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
 import com.j2y.familypop.client.FpcRoot;
@@ -24,6 +31,7 @@ import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.FpNetFacade_base;
 import com.j2y.network.base.FpNetIncomingMessage;
 import com.j2y.network.base.FpNetMessageCallBack;
+import com.j2y.network.base.FpNetUtil;
 import com.j2y.network.base.data.FpNetDataNoti_changeScenario;
 import com.j2y.network.base.data.FpNetDataNoti_roomInfo;
 import com.j2y.network.base.data.FpNetDataReq_TicTacToe_index;
@@ -36,6 +44,7 @@ import com.j2y.network.base.data.FpNetData_familyTalk;
 import com.j2y.network.base.data.FpNetData_setUserInfo;
 import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.base.data.FpNetData_userInteraction;
+import com.j2y.network.client.FpNetFacade_client;
 import com.j2y.network.server.packet.PacketListener_connect;
 
 //import org.jbox2d.common.Vec2;
@@ -454,8 +463,6 @@ public class FpNetServer_packetHandler
             FpNetData_familyTalk data = new FpNetData_familyTalk();
             data.Parse(inMsg);
 
-
-
             FpsRoot.Instance.onJ2yTurnDataReceived(client._clientID, data._voice);
         }
     };
@@ -524,6 +531,27 @@ public class FpNetServer_packetHandler
         {
             Log.i("[J2Y]", "[패킷수신] 이미지 공유");
 
+            FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
+            data.Parse(inMsg);
+
+            _net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
+
+            if( data.Get_count() != 0)
+            {
+                for( int i=0; i<data.Get_count(); ++i)
+                {
+                    //Manager_resource.Instance.Create_sprite()
+                    Bitmap shareImage = FpNetUtil.ByteArrayToBitmap(data.Get_bitArray(i));
+
+                    Activity_serverMain_andEngine.Instance.OnEvent_shareimage(i, shareImage);
+                }
+            }
+            else
+            {
+                Manager_resource.Instance.ReleaseAll_sprites(Activity_serverMain_andEngine.Instance.Get_scene());
+            }
+
+
 //            //FpNetServer_client client = (FpNetServer_client)inMsg._obj;
 //            FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
 //            data.Parse(inMsg);
@@ -557,19 +585,31 @@ public class FpNetServer_packetHandler
             if(client == null)
                 return;
 
-           // if(FpsScenarioDirector.Instance.GetActiveScenarioType() == FpNetConstants.SCENARIO_RECORD)
+            //if(FpsScenarioDirector.Instance.GetActiveScenarioType() == FpNetConstants.SCENARIO_RECORD)
             {
                 FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
 
                 // todo: 메인쓰레드, 렌더링쓰레드 충돌남
-//                FpsTalkUser talk_user = Activity_serverMain.Instance.GetTalkUser(client);
-//                if(null == talk_user)
-//                    return;
+                //FpsTalkUser talk_user = Activity_serverMain.Instance.GetTalkUser(client);
+                FpsTalkUser talk_user =  Manager_users.Instance.GetTalkUser(client);// Activity_serverMain.Instance.GetTalkUser(client);
+                if(null == talk_user)
+                    return;
+
+                Actor_attractor attractor = Manager_actor.Instance.Get_attractor(talk_user._uid_attractor);
 
 //                outMsg._attractor._x = talk_user._attractor.GetPosition().x;
 //                outMsg._attractor._y = talk_user._attractor.GetPosition().y;
-//                outMsg._attractor._color = client._clientID;
-//
+                outMsg._attractor._x = attractor.Get_Body().getPosition().x;
+                outMsg._attractor._y = attractor.Get_Body().getPosition().y;
+                outMsg._attractor._color = client._clientID;
+
+                for(BaseActor actor : Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK))
+                {
+                    Actor_talk talk = (Actor_talk)actor;
+                    Vector2 pos = talk.Get_Body().getPosition();
+                    outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x, pos.y, talk.Get_Scale(), talk.Get_colorId() );
+                }
+
 //                for(FpsBubble bubble : talk_user._bubble)
 //                {
 //                    Vec2 pos = bubble.GetPosition();
@@ -577,9 +617,9 @@ public class FpNetServer_packetHandler
 //                    outMsg.AddRecordData(bubble._start_time, bubble._end_time, pos.x, pos.y, bubble._rad, bubble._colorId);
 //                }
 
-               // outMsg._smile_events.addAll(talk_user._smile_events);
+                outMsg._smile_events.addAll(talk_user._smile_events);
 
-                //client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
+                client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
             }
         }
     };

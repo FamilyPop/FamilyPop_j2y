@@ -305,14 +305,15 @@ public class FpNetFacade_server extends FpNetFacade_base
     public void RemoveClient(FpNetServer_client client)
     {
         // todo: 클라이언트 한명만 나가기
-//        if(Activity_serverMain.Instance != null)
-//            FpNetFacade_server.Instance.Send_talk_record_info();
-//
-//        // 현재 버전은 서버 종료하기
-//        FpsRoot.Instance.CloseServer();
-//
-//        if(Activity_serverMain.Instance != null)
-//            Activity_serverMain.Instance.CloseServer();
+        if(Activity_serverMain_andEngine.Instance != null)
+            FpNetFacade_server.Instance.Send_talk_record_info();
+
+        // 현재 버전은 서버 종료하기
+        FpsRoot.Instance.CloseServer();
+
+        if(Activity_serverMain_andEngine.Instance != null) {
+            Activity_serverMain_andEngine.Instance.CloseServer();
+        }
     }
 
     public FpNetServer_client GetClientByIndex(int index)

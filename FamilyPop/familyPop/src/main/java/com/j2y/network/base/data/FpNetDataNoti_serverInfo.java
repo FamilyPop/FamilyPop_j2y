@@ -8,10 +8,10 @@ import com.j2y.network.base.FpNetOutgoingMessage;
  */
 public class FpNetDataNoti_serverInfo extends FpNetData_base
 {
-    // ¼­¹öÀÇ ½Ã³ª¸®¿À »óÅÂ.
+    //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     public int _curScenario;
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÄ½Ì
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
     @Override
     public void Parse(FpNetIncomingMessage inMsg)
     {
@@ -20,7 +20,7 @@ public class FpNetDataNoti_serverInfo extends FpNetData_base
         _curScenario = inMsg.ReadInt();
     }
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÐÅ·
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·
     @Override
     public void Packing(FpNetOutgoingMessage outMsg)
     {

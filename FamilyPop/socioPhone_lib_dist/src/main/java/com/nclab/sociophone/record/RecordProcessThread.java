@@ -92,16 +92,12 @@ public class RecordProcessThread
 
         mContext.registerReceiver(symphonyReceiver, new IntentFilter("com.nclab.partitioning.DEFAULT"));
     }
-
     public void stopRecord() {
         _recording = false;
     }
-
     public double GetSoundAmplitue() {
         return _sound_amplitude;
     }
-
-
     //
     public String GetFilePath()
     {

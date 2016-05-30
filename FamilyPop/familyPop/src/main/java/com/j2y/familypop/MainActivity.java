@@ -3,7 +3,7 @@ package com.j2y.familypop;
 import android.app.ActivityManager;
 import android.content.Intent;
 import com.j2y.familypop.activity.Activity_clientMain;
-//import com.j2y.familypop.activity.Activity_serverMain;
+
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.lobby.Activity_title;
 import com.j2y.familypop.activity.manager.Manager_contents;
@@ -13,8 +13,9 @@ import com.j2y.familypop.client.FpcLocalization_Client;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcTalkRecord;
 import com.j2y.familypop.server.FpsRoot;
-//import com.j2y.familypop.server.FpsScenarioDirector;
+
 import com.j2y.network.base.FpNetConstants;
+
 import com.nclab.familypop.R;
 import com.nclab.sociophone.SocioPhone;
 import com.nclab.sociophone.interfaces.DisplayInterface;
@@ -28,9 +29,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.provider.Contacts;
 import android.text.Editable;
 import android.util.Log;
 import android.view.Window;
+//import com.facebook.FacebookSdk;
+//import com.facebook.LoggingBehavior;
+
+import static android.provider.Contacts.Settings.*;
+
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -73,11 +80,14 @@ public class MainActivity extends Activity
     public Manager_users _manager_users;
     //------------------------------------------------------------------------------------------------------------------------------------------------------
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+	protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Log.i("[J2Y]", "MainActivity:onCreate");
 
+
+//        com.facebook.Settings.getApplicationSignature()
+//        Setting.getApplicationSignature(this);
+        //Settings.getApplicationSignature(this);
         // manager
         _manager_users = new Manager_users();
         _photoManager = new Manager_photoGallery();
@@ -114,6 +124,8 @@ public class MainActivity extends Activity
         //client init info
         //_ready = false;
         _curServerScenario = Manager_contents.eType_contents.CONTENTS_NOT;//FpNetConstants.SCENARIO_NONE;
+
+        //FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
 

@@ -1,12 +1,7 @@
 package com.j2y.familypop.activity.lobby;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,10 +10,8 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
-import com.j2y.familypop.activity.BaseActivity;
+import com.j2y.familypop.activity.Activity_photoGallery;
 import com.j2y.familypop.activity.manager.Manager_contents;
-import com.j2y.familypop.client.FpcScenarioDirectorProxy;
-import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
 
@@ -82,7 +75,7 @@ public class Popup_dialogueMenu implements View.OnClickListener
         _quit_dialogue_button = (ImageButton) _view.findViewById(R.id.button_dialog_quit_dialog);
         _quit_dialogue_button.setOnClickListener(this);
 
-        ((Button) _view.findViewById(R.id.test_talk)).setOnClickListener(this);
+        //((Button) _view.findViewById(R.id.test_talk)).setOnClickListener(this);
 
         _profileName.setText(username);
     }
@@ -118,8 +111,10 @@ public class Popup_dialogueMenu implements View.OnClickListener
                 break;
             case R.id.button_dialog_quit_dialog:
                 _profileName.setText("quit");
+                //onClick_Quitdialogue(false, false, true);
+                Activity_clientMain.Instance.onClick_Quitdialogue(false, true, true);
                 break;
-            case R.id.test_talk: onTalk();  break;
+            //case R.id.test_talk: onTalk();  break;
 
         }
         _popupWindow.dismiss();
@@ -137,7 +132,9 @@ public class Popup_dialogueMenu implements View.OnClickListener
     }
     private void onSharing_pictures()
     {
-        MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_photoGallery.class));
+        //MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_photoGallery.class));
+        Activity_clientMain.Instance._photoGallery.Active();
+       // FpNetFacade_client.Instance.SendPacket_req_shareImage();
     }
 
 //    private String get_user_name()
