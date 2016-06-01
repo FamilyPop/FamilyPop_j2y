@@ -93,7 +93,7 @@ public class Contents_talk extends BaseContents
         }
     }
 
-    AtomicReference<FpsTalkUser> _userRef = new AtomicReference<>();
+
 
     private synchronized void IsBubbleStarting(boolean isBubbleStarting) {
         //Log.i("KAIST", "-----Bubble starts: " + currentSpeakerId + "/" + previousSpeakerId);
@@ -105,32 +105,33 @@ public class Contents_talk extends BaseContents
             _current_bubble = null;
         }
 
-        FpsTalkUser user = null;
-        Manager_users.Instance.FindTalkUser_byId(currentSpeakerId-2, _userRef);
+        AtomicReference<FpsTalkUser> userRef = new AtomicReference<>();
+        Manager_users.Instance.FindTalkUser_byId(currentSpeakerId-2, userRef);
 
-        if (_userRef.get() != null)
+        if (userRef.get() != null)
         {
             // 3.2. 새로운 버블 생성
             int speakerId = currentSpeakerId - 2;
-            if( speakerId >= 0)
+            int preSpeaker = previousSpeakerId-2;
+            if( speakerId >= 0 && preSpeaker >=0 )
             {
-                String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(speakerId));
-                String petalImageName;
 
+                    // 발사할 (지금 말하고있는 꽃잎 생성)
+                    String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker));
+                    String petalImageName;
 
-                Actor_talk bubble = null;
-                Actor_attractor attractor = Manager_actor.Instance.Get_attractor(_userRef.get()._uid_attractor);
-                petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
+                    Actor_talk bubble = null;
+                    Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
+                    petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
 
+                    bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
+                    bubble.Set_colorId(preSpeaker);
 
-                bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
-                bubble.Set_colorId(speakerId);
-
-                if (bubble != null) {
-                    _current_bubble = bubble;
+                    if (bubble != null) {
+                        _current_bubble = bubble;
+                    }
                 }
             }
-        }
 }
     private void IsBubbleGrowing(boolean isBubbleGrowing) {
         //Log.i("KAIST", "Bubble grows: " + currentSpeakerId + "/" + previousSpeakerId);
@@ -139,8 +140,7 @@ public class Contents_talk extends BaseContents
             float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._plusMoverRadius;
             //float elapsed
             //Activity_serverMain_andEngine.Instance.getEngine().getSecondsElapsedTotal()
-            _current_bubble.Set_plusScale(scale * 0.001f, scale * 0.001f);
-
+            _current_bubble.Set_plusScale(scale * 0.01f, scale * 0.01f);
         }
     }
     private void IsBubbleEnding(boolean isBubbleGrowing) {

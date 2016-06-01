@@ -6,6 +6,7 @@ import com.j2y.familypop.activity.Activity_clientMain;
 import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.Vector2;
 import com.j2y.familypop.activity.manager.contents.BaseContents;
+import com.j2y.familypop.client.FpcRoot;
 import com.j2y.network.client.FpNetFacade_client;
 
 /**
@@ -14,11 +15,13 @@ import com.j2y.network.client.FpNetFacade_client;
 public class Contents_clientReady extends BaseContents
 {
     private JoyStick _joystick = null;
+
     @Override
-    public void init()
+    public  void init()
     {
         super.init();
         _joystick = Activity_clientMain.Instance._joystick;
+
     }
     @Override
     public boolean update()
@@ -32,7 +35,7 @@ public class Contents_clientReady extends BaseContents
                 Vector2 v2 = new Vector2(_joystick.getX(),_joystick.getY());
                 Vector2 n = v2.nor();
 
-                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, -n.y);
+                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, -n.y, FpcRoot.Instance._clientId);
             }
         }
 

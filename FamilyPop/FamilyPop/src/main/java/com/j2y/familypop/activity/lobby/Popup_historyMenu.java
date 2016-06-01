@@ -41,7 +41,7 @@ public class Popup_historyMenu implements View.OnClickListener
 
     public Popup_historyMenu(View v, String profile_name)
     {
-        _view      = v;
+        _view = v;
 
         //레이아웃 셋팅
         _profileName = (TextView)_view.findViewById(R.id.text_profile_name);

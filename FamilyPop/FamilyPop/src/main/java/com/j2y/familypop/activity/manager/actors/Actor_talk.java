@@ -22,7 +22,7 @@ public class Actor_talk  extends BaseActor
 
     private int _start_time = 0;
     private int _end_time = 0;
-    private float _maxTalkScale = 0.3f;
+    private float _maxTalkScale = 0.6f;
 
 
     public Actor_talk(Body body, Sprite sprite, long uniqueNumber)

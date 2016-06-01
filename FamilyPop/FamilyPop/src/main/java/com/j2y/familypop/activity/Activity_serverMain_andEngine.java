@@ -17,6 +17,7 @@ import com.j2y.familypop.activity.manager.Manager_resource;
 import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_good;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
@@ -65,8 +66,6 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     Actor_attractor a2 = null;
     Actor_attractor a3 = null;
     Actor_attractor a4 = null;
-
-
 
     // andengine
     private PhysicsWorld _physicsWorld = null;
@@ -178,8 +177,12 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         for( BaseActor actor : attractors ){ actor.onUpdate(pSecondsElapsed); }
 
         // good
-        ArrayList<BaseActor> good = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
-        for( BaseActor actor : good){actor.onUpdate(pSecondsElapsed);}
+        ArrayList<BaseActor> goods = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
+        for( BaseActor actor : goods){actor.onUpdate(pSecondsElapsed);}
+
+        // bee
+        ArrayList<BaseActor> bees = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE);
+        for(BaseActor actor : bees){actor.onUpdate(pSecondsElapsed);}
 
 //        // update good
 //        ArrayList<BaseActor> good = mManagerActor.GetActorsList(eType_actor.ACTOR_GOOD);
@@ -217,14 +220,14 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         Manager_users magUsers = Manager_users.Instance;
 
-        int posCount = 0;
+        //int posCount = 0;
         for( FpsTalkUser user :  magUsers.Get_talk_users().values() )
         {
-            Actor_attractor attractor = create_attractor(_userStartPos.get(posCount).x, _userStartPos.get(posCount).y,
-                                                                                        Manager_resource.Instance.Get_userImage( Manager_resource.eImageIndex_color.IntToImageColor(posCount)));
+            Actor_attractor attractor = create_attractor(_userStartPos.get(user._net_client._clientID).x, _userStartPos.get(user._net_client._clientID).y,
+                                                                                        Manager_resource.Instance.Get_userImage( Manager_resource.eImageIndex_color.IntToImageColor(user._net_client._clientID)));
             user._uid_attractor = attractor.Get_UniqueNumber();
-            attractor.Set_colorId(posCount);
-            posCount++;
+            attractor.Set_colorId(user._net_client._clientID);
+            //posCount++;
         }
     }
     public void release_attractor()
@@ -241,8 +244,21 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     //====================================================================================================
     // create actor
     //====================================================================================================
-    private Actor_attractor create_attractor(float x, float y, String imageName)
+    // Actor_honeyBee
+    private Actor_honeyBee create_honeybee(float x, float y, String tileImageName)
     {
+        Actor_honeyBee ret = null;
+
+        AnimatedSprite face;
+        Manager_resource manager_resource = Manager_resource.Instance;
+        Manager_actor manager_actor = Manager_actor.Instance;
+
+        face = new AnimatedSprite(x , y , manager_resource.GetTiledTexture(tileImageName), this.getVertexBufferObjectManager());
+        ret = manager_actor.Create_honeyBee(_scene, _physicsWorld, face);
+        return ret;
+    }
+    // attarctor
+    private Actor_attractor create_attractor(float x, float y, String imageName){
         //AnimatedSprite face;
         //face = new AnimatedSprite(x, y, _manager_resource.GetTiledTexture(imageName), this.getVertexBufferObjectManager());
         //face.setScale(0.6f, 0.6f);
@@ -300,7 +316,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         ret = Manager_actor.Instance.Create_talk(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
-        ret.Set_maxFlowerScale(0.9f);
+        ret.Set_maxFlowerScale(0.7f);
 
         return ret;
     }
@@ -460,6 +476,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             Actor_smile actor = Create_smile(CAMERA_HEIGHT/2 - 24, CAMERA_HEIGHT/2 - 48,fileName,attractor);
             actor.Set_maxFlowerScale(1.3f);
         }
+    }
+    public synchronized  Actor_honeyBee OnEvent_honeybee()
+    {
+        return create_honeybee(CAMERA_WIDTH/2, CAMERA_HEIGHT/2,"event_honeyBee");
     }
     public synchronized void OnEvent_shareimage(int posIndex, Bitmap bitmap)
     {

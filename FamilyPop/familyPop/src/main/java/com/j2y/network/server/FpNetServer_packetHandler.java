@@ -172,24 +172,25 @@ public class FpNetServer_packetHandler
 
             //create_attractor(_userStartPos.get(0).x, _userStartPos.get(0).y, "user-01.png").Get_UniqueNumber();
 
-            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+           // FpNetServer_client client = (FpNetServer_client)inMsg._obj;
 
             FpNetData_setUserInfo data = new FpNetData_setUserInfo();
             data.Parse(inMsg);
 
-            client._user_name = data._userName;
-            client._bubble_color_type = data._bubbleColorType;
-            client._user_posid = data._user_posid;
+            //client._user_name = data._userName;
+            //client._bubble_color_type = data._bubbleColorType;
+            //client._user_posid = data._user_posid;
             //client._clientID = data._clientId;
 
-            FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);
+            //FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);
 
-            if(talk_user != null) {
-                talk_user._bubble_color_type = client._bubble_color_type;
-                talk_user._user_posid = data._user_posid;
-            }
+            //if(talk_user != null) {
+                // 사용안함
+                //talk_user._bubble_color_type = client._bubble_color_type;
+                //talk_user._user_posid = data._user_posid;
+            //}
 
-            Log.i("[J2Y]", "userPosID:  " + talk_user._user_posid);
+            //Log.i("[J2Y]", "userPosID:  " + talk_user._user_posid);
 
             if(FpsRoot.Instance._room_user_names == "")
                 FpsRoot.Instance._room_user_names = data._userName;
@@ -200,8 +201,10 @@ public class FpNetServer_packetHandler
             String bubblesInfo = "";
             String clientsInfo = "";
             //FpsRoot.Instance.
-            for( FpNetServer_client c : FpNetFacade_server.Instance._clients )
+            //for( FpNetServer_client c : FpNetFacade_server.Instance._clients )
+            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values() )// FpNetFacade_server.Instance._clients )
             {
+                FpNetServer_client c = user._net_client;
                 bubblesInfo += c._bubble_color_type + ",";
                 clientsInfo += c._clientID + ",";
             }
@@ -280,6 +283,8 @@ public class FpNetServer_packetHandler
         @Override
         public void CallBack(FpNetIncomingMessage inMsg)
         {
+
+            Activity_serverMain_andEngine.Instance.OnEvent_honeybee();
 
 //            Log.i("[J2Y]", "[패킷수신] 게임 시작");
 //

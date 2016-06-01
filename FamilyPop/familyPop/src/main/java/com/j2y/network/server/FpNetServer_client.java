@@ -23,7 +23,7 @@ import com.j2y.network.base.data.FpNetData_base;
 public class FpNetServer_client extends FpNetFacade_base
 {
 
-	public static int _index;
+	public static int _index = 0;
 	public int _clientID;
 	public String _user_name;
     public int _bubble_color_type; //# 사용 안함.
@@ -45,7 +45,8 @@ public class FpNetServer_client extends FpNetFacade_base
 	//public FpNetServer_client(Socket socket, Handler handle, FpsScenario_base curScenario)
 	public FpNetServer_client(Socket socket, Handler handle)
 	{
-		_clientID = _index++;
+		_clientID = _index;
+		++_index;
 		_socket = socket;
 		
 		//_curScenario = curScenario;

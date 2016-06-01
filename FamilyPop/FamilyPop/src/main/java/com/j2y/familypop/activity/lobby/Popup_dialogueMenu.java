@@ -108,6 +108,7 @@ public class Popup_dialogueMenu implements View.OnClickListener
                 break;
             case R.id.button_dialog_flower_bomb:
                 _profileName.setText("flower");
+                onFlower_bomb();
                 break;
             case R.id.button_dialog_quit_dialog:
                 _profileName.setText("quit");
@@ -136,7 +137,11 @@ public class Popup_dialogueMenu implements View.OnClickListener
         Activity_clientMain.Instance._photoGallery.Active();
        // FpNetFacade_client.Instance.SendPacket_req_shareImage();
     }
-
+    private void onFlower_bomb()
+    {
+        // start bee
+        FpNetFacade_client.Instance.SendPacket_req_startGame();
+    }
 //    private String get_user_name()
 //    {
 //        String name = Activity_talkHistory.Instance._userName;

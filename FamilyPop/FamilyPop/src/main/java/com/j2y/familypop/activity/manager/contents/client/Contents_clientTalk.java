@@ -8,6 +8,7 @@ import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.Vector2;
 import com.j2y.familypop.activity.manager.contents.BaseContents;
 import com.j2y.familypop.client.FpcRoot;
+import com.j2y.familypop.server.FpsRoot;
 import com.j2y.network.client.FpNetFacade_client;
 
 /**
@@ -18,6 +19,7 @@ public class Contents_clientTalk extends BaseContents
 
     private int _voiceAvgCount;
     private float _voiceAmpAvg;
+    //private int _clientId;
     private JoyStick _joystick = null;
 
     @Override
@@ -26,13 +28,14 @@ public class Contents_clientTalk extends BaseContents
         super.init();
 
         _joystick = Activity_clientMain.Instance._joystick;
+      //  _clientId = FpcRoot.Instance._clientId;
         Activity_clientMain.Instance._button_connectServer.setVisibility(View.GONE);
+
     }
     @Override
     public  synchronized boolean update()
     {
         //Log.e("[J2Y]", "talk_clientUpdate");
-
         double amplitude = FpcRoot.Instance._socioPhone.GetSoundAmplitue();
         Log.i("[J2Y]", " amplitude :  "+amplitude);
         ++_voiceAvgCount;
@@ -52,7 +55,7 @@ public class Contents_clientTalk extends BaseContents
                 Vector2 v2 = new Vector2(_joystick.getX(),_joystick.getY());
                 Vector2 n = v2.nor();
 
-                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, -n.y);
+                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, -n.y,FpcRoot.Instance._clientId);
             }
         }
         return super.update();

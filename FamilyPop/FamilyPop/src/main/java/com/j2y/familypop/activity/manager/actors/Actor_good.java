@@ -18,6 +18,7 @@ public class Actor_good extends BaseActor
         mIsFlower = true;
     }
 
+    @Override
     public boolean onUpdate(float pSecondsElapsed)
     {
         super.onUpdate(pSecondsElapsed);

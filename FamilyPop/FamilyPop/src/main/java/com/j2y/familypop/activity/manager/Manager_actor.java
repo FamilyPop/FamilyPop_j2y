@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_good;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
@@ -82,6 +83,7 @@ public class Manager_actor
     private HashMap<eType_actor, ArrayList<BaseActor>> mActors = null;
     private long actor_unique_number = 100000;
 
+
     // ===========================================================
     // methods
     // ===========================================================
@@ -141,14 +143,16 @@ public class Manager_actor
                 ret = new Actor_attractor (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
                 break;
             case ACTOR_TALK:
-                ret = new Actor_talk (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.7f), info.sprite, info.actor_unique_number);
+                ret = new Actor_talk (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 1.0f), info.sprite, info.actor_unique_number);
                 break;
-            case ACTOR_BEE: break;
+            case ACTOR_BEE:
+                ret = new Actor_honeyBee(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
+                break;
             case ACTOR_GOOD:
-                ret = new Actor_good(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.9f), info.sprite,info.actor_unique_number);
+                ret = new Actor_good(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.8f), info.sprite,info.actor_unique_number);
                 break;
             case ACTOR_SMILE:
-                ret = new Actor_smile(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.65f), info.sprite,info.actor_unique_number);
+                ret = new Actor_smile(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 1.0f), info.sprite,info.actor_unique_number);
                 break;
         }
 
@@ -161,6 +165,30 @@ public class Manager_actor
         return ret;
     }
     // todo : 이벤트와 bee 생성 함수도 만들어야 함 (Create_bee , Create_event)
+    public Actor_honeyBee Create_honeyBee(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
+    {
+        Actor_honeyBee ret = null;
+
+        Info_actor actorInfo = new Info_actor();
+        actorInfo.type_actor = eType_actor.ACTOR_BEE;
+        actorInfo.scaleX = 1;
+        actorInfo.scaleY = 1;
+        actorInfo.type_body = BodyDef.BodyType.StaticBody;
+        actorInfo.physicsWorld = physicsWorld;
+        actorInfo.sprite = sprite;
+
+        ret = (Actor_honeyBee)Create_actor(actorInfo);
+
+        ((AnimatedSprite)ret.Get_Sprite()).animate(100, true);
+        if( ret.Get_Body() != null)
+        {
+            scene.attachChild(sprite);
+            physicsWorld.registerPhysicsConnector(new PhysicsConnector(sprite, ret.Get_Body(), true, true));
+        }
+
+
+        return ret;
+    }
     public Actor_attractor Create_attractor(Scene scene, PhysicsWorld physicsWorld, Sprite sprite)
     {
         Actor_attractor ret = null;
@@ -283,6 +311,7 @@ public class Manager_actor
 
         return ret;
     }
+
     // ===========================================================
     // destroy actor
     // ===========================================================

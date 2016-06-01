@@ -13,24 +13,27 @@ public class FpNetDataReq_bubbleMove extends FpNetData_base
     public float _dirY;
     public int _clientid;
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÄ½Ì
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½
     @Override
     public void Parse(FpNetIncomingMessage inMsg)
     {
         super.Parse(inMsg);
         _dirX = inMsg.ReadFloat();
         _dirY = inMsg.ReadFloat();
+        _clientid = inMsg.ReadInt();
 
-        _clientid = ((FpNetServer_client)inMsg._obj )._clientID;
+        //_clientid = ((FpNetServer_client)inMsg._obj )._clientID;
     }
 
     //----------------------------------------------------------------
-    // ¸Þ½ÃÁö ÆÐÅ·
+    // ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½Å·
     @Override
     public void Packing(FpNetOutgoingMessage outMsg)
     {
         super.Packing(outMsg);
         outMsg.Write(_dirX);
         outMsg.Write(_dirY);
+        outMsg.Write(_clientid);
+
     }
 }

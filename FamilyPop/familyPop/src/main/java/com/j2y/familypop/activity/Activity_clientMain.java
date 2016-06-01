@@ -322,7 +322,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
 
         // connect server
-        connectToServer();
+        //connectToServer();
 	}
      @Override
     protected void onDestroy()

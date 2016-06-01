@@ -688,11 +688,12 @@ public class FpNetFacade_client extends FpNetFacade_base
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------
     // 사용자 메세지
-    public void SendPacket_req_userInput_bubbleMove(float dirX, float dirY)
+    public void SendPacket_req_userInput_bubbleMove(float dirX, float dirY, int clientId)
     {
         FpNetDataReq_bubbleMove reqPaket = new FpNetDataReq_bubbleMove();
         reqPaket._dirX = dirX;
         reqPaket._dirY = dirY;
+        reqPaket._clientid = clientId;
 
         sendMessage(FpNetConstants.CSReq_userInput_bubbleMove, reqPaket);
     }

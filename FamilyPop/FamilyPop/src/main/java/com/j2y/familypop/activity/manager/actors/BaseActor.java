@@ -47,7 +47,7 @@ public class BaseActor
             IEntity temp = mSprite.getChildByIndex(0);
             if (temp != null) {
                 if (_spriteScale <= _maxSpriteScale) {
-                    _spriteScale += pSecondsElapsed * 1.0f;
+                    _spriteScale += pSecondsElapsed * 0.3f;
                     mSprite.getChildByIndex(0).setScale(_spriteScale);
                 }
             }

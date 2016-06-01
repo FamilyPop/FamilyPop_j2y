@@ -190,38 +190,8 @@ public class Manager_resource {
 
         //- texture load
         // todo : 문자열 따로 관리 해야함 (문자열 다빼불자)
-        // server (main)
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "fire_k-01-01.png", "fire_k-01-01.png", 0, 0, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "heart_k-01-01.png", "heart_k-01-01.png", 0, 96, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_k-01-01.png", "smile_k-01-01.png", 0, 192, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "star_k-01-01.png", "star_k-01-01.png", 0, 288, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "like_petal-01.png", "like_petal-01.png", 0, 384, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "like_petal-02.png", "like_petal-02.png", 0, 480, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "like_petal-03.png", "like_petal-03.png", 0, 576, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "like_petal-04.png", "like_petal-04.png", 0, 672, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "like_petal-05.png", "like_petal-05.png", 0, 768, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_petal-01.png", "smile_petal-01.png", 0, 864, 2, 1);
-//
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_petal-04.png", "smile_petal-04.png", 192, 96, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_petal-05.png", "smile_petal-05.png", 192, 192, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "talk_petal-01.png", "talk_petal-01.png", 192, 288, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "talk_petal-02.png", "talk_petal-02.png", 192, 384, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "talk_petal-03.png", "talk_petal-03.png", 192, 480, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "talk_petal-04.png", "talk_petal-04.png", 192, 576, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "talk_petal-05.png", "talk_petal-05.png", 192, 672, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "user-01.png", "user-01.png", 192, 768, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "user-02.png", "user-02.png", 192, 864, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "user-03.png", "user-03.png", 192, 960, 2, 1);
-//
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "user-04.png", "user-04.png", 384, 0, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "user-05.png", "user-05.png", 384, 96, 2, 1);
-//
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_petal-02.png", "smile_petal-02.png", 384, 192, 2, 1);
-//        add_TiledTexture(eType_atlas.ATLAS_SERVER, "smile_petal-03.png", "smile_petal-03.png", 384, 288, 2, 1);
 
-        // todo : 벌 스프라이트 만들어야함.
-
-        //sprite 는 뒤에 두게 인자는 사용하지 않음.
+        add_TiledTexture(eType_atlas.ATLAS_SERVER, "event_honeyBee", "FloPop_Server_Resources-25.png", 0, 0, 2,1);
         //꽃잎
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "talk_petal-01.png", "FloPop_Server_Resources-01.png", 0, 128);
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "talk_petal-02.png", "FloPop_Server_Resources-02.png", 0, 256);
@@ -446,7 +416,5 @@ public class Manager_resource {
         }
         _flash_sprites.clear();
     }
-
-
 }
 

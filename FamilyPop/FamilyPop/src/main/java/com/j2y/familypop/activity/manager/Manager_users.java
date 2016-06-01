@@ -15,7 +15,7 @@ public class Manager_users {
     public static Manager_users Instance = null;
     private Lock _lock_user = new ReentrantLock();
 
-    private int _colorTypeCount = -1;
+    private int _colorTypeCount = 0;
 
     // net
     private HashMap<FpNetServer_client, FpsTalkUser> _talk_users = new HashMap<FpNetServer_client, FpsTalkUser>();
@@ -91,6 +91,8 @@ public class Manager_users {
 
     public int GetColor_UniqueNumber()
     {
-        return _colorTypeCount++;
+        int ret = _colorTypeCount;
+        _colorTypeCount++;
+        return ret;
     }
 }
