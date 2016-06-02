@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.server.FpsRoot;
+import com.j2y.familypop.server.FpsTalkUser;
 import com.nclab.familypop.R;
 import com.nclab.sociophone.interfaces.MeasurementCallback;
 
@@ -30,8 +31,6 @@ import com.nclab.sociophone.interfaces.MeasurementCallback;
 public class Activity_serverStart extends Activity
 {
     TextView _serverIP;
-
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +58,7 @@ public class Activity_serverStart extends Activity
         // maanager
 
         // net
+        FpsRoot.Instance.CloseServer();
         FpsRoot.Instance.StartServer();
         //
         android.os.Handler handler = new android.os.Handler();

@@ -55,12 +55,14 @@ public class JoyStick
 //                0xff4D82D6,     // blue
 //                0xff66ff66, 	// �ӽ�
     // item
-    public static final String ITEM_PINK = "0";
-    public static final String ITEM_RED = "1";
-    public static final String ITEM_YELLOW = "2";
-    public static final String ITEM_GREEN = "3";
-    public static final String ITEM_PHTHALOGREEN = "4";
-    public static final String ITEM_BLUE = "5";
+    public static final int ITEM_ORANGE = 0;
+    public static final int ITEM_YELLOW = 1;
+    public static final int ITEM_GREEN = 2;
+    public static final int ITEM_PURPLE = 3;
+    public static final int ITEM_SKY_BULE = 4;
+    public static final int ITEM_RED = 5;
+
+    //COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4);
 
     // stick style
     public static final int STICK_STYLE_BLUE = 0;
@@ -526,31 +528,39 @@ public class JoyStick
 
         item._clientId = clientId;
         //Drawable drawble = null;
-        switch (key)
+        /*
+            public static final String ITEM_ORANGE = "0";
+    public static final String ITEM_YELLOW = "1";
+    public static final String ITEM_GREEN = "2";
+    public static final String ITEM_PURPLE = "3";
+    public static final String ITEM_SKY_BULE = "4";
+    public static final String ITEM_RED = "5";
+         */
+        switch (clientId)
         {
-            case JoyStick.ITEM_BLUE:
-                item.active = res.getDrawable(R.drawable.image_stickupos_blue);
-                item.deactive = res.getDrawable(R.drawable.image_stickupos_blue);
+            case JoyStick.ITEM_ORANGE:
+                item.active = res.getDrawable(R.drawable.image_stickupos_pink);
+                item.deactive = res.getDrawable(R.drawable.image_stickupos_pink);
+                break;
+            case JoyStick.ITEM_YELLOW:
+                item.active = res.getDrawable(R.drawable.image_stickupos_yellow);
+                item.deactive = res.getDrawable(R.drawable.image_stickupos_yellow);
                 break;
             case JoyStick.ITEM_GREEN:
                 item.active = res.getDrawable(R.drawable.image_stickupos_green);
                 item.deactive = res.getDrawable(R.drawable.image_stickupos_green);
                 break;
-            case JoyStick.ITEM_PHTHALOGREEN:
+            case JoyStick.ITEM_PURPLE:
+                item.active = res.getDrawable(R.drawable.image_stickupos_blue);
+                item.deactive = res.getDrawable(R.drawable.image_stickupos_blue);
+                break;
+            case JoyStick.ITEM_SKY_BULE:
                 item.active = res.getDrawable(R.drawable.image_stickupos_phthalogreen);
                 item.deactive = res.getDrawable(R.drawable.image_stickupos_phthalogreen);
-                break;
-            case JoyStick.ITEM_PINK:
-                item.active = res.getDrawable(R.drawable.image_stickupos_pink);
-                item.deactive = res.getDrawable(R.drawable.image_stickupos_pink);
                 break;
             case JoyStick.ITEM_RED:
                 item.active = res.getDrawable(R.drawable.image_stickupos_red);
                 item.deactive = res.getDrawable(R.drawable.image_stickupos_red);
-                break;
-            case JoyStick.ITEM_YELLOW:
-                item.active = res.getDrawable(R.drawable.image_stickupos_yellow);
-                item.deactive = res.getDrawable(R.drawable.image_stickupos_yellow);
                 break;
         }
 
@@ -567,7 +577,7 @@ public class JoyStick
         item._button.setX(x-70);
         item._button.setY(y-70);
 
-        _drawItems.put(key, item);
+        _drawItems.put( key, item);
     }
     public void Remove_itemAll()
     {

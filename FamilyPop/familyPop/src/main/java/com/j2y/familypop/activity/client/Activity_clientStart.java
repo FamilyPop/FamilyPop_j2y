@@ -214,7 +214,7 @@ public class Activity_clientStart extends Activity implements View.OnClickListen
                 save_client_information();
                 MainActivity.Instance._serverIP = _ipText.getText();
                 startActivity(new Intent(MainActivity.Instance, Activity_input_userName.class));
-
+                finish();
                 break;
 
             // 사용자색 선택

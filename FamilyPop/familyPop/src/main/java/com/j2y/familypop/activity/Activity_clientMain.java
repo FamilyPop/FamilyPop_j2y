@@ -1224,9 +1224,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 SetupSharedImage(inButton,selectedImage);
             }
         }
-
-
-
     }
     public void SetupSharedImage(ImageButton imageButton,  Bitmap selectedImage)
     {

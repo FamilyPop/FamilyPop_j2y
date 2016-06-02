@@ -15,7 +15,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Activity_serverStart" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -46,76 +46,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Contents_talk.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/server/Contents_talk.java">
+      <file leaf-file-name="Contents_clientTalk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="115" column="49" selection-start-line="115" selection-start-column="49" selection-end-line="115" selection-end-column="49" />
+              <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actor_talk.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_talk.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#onUpdate#0;class#Actor_talk#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecordProcessThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/socioPhone_lib_dist/src/main/java/com/nclab/sociophone/record/RecordProcessThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FpNetOutgoingMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/FpNetOutgoingMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextureAtlas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/andEngine/src/main/java/org/andengine/opengl/texture/atlas/TextureAtlas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager_resource.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_resource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62827224">
-              <caret line="308" column="53" selection-start-line="308" selection-start-column="53" selection-end-line="308" selection-end-column="53" />
-              <folding>
-                <element signature="method#init_loadTexture#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#init_textureNames#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#add_TiledTexture#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#add_spriteTexture#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#GetTiledTexture#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#GetSpriteTexture#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#Get_petalNames#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#Get_userLike#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#create_sprite#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#Create_sprite#0;class#Manager_resource#0" expanded="false" />
-                <element signature="method#ReleaseAll_sprites#0;class#Manager_resource#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager_users.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -124,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_actor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="295" column="27" selection-start-line="295" selection-start-column="27" selection-end-line="295" selection-end-column="27" />
+              <caret line="145" column="34" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -134,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_serverMain_andEngine.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="493" column="63" selection-start-line="493" selection-start-column="63" selection-end-line="493" selection-end-column="63" />
+              <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
               <folding>
                 <element signature="method#create_talk#0;class#Activity_serverMain_andEngine#0" expanded="false" />
                 <element signature="method#Create_smile#0;class#Activity_serverMain_andEngine#0" expanded="false" />
@@ -147,23 +95,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Actor_talk.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_talk.java">
+      <file leaf-file-name="Popup_dialogueMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Popup_dialogueMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-              <folding>
-                <element signature="method#onUpdate#0;class#Actor_talk#0" expanded="false" />
-              </folding>
+              <caret line="136" column="42" selection-start-line="136" selection-start-column="42" selection-end-line="136" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/BaseActor.java">
+      <file leaf-file-name="Activity_clientMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+              <caret line="218" column="22" selection-start-line="218" selection-start-column="22" selection-end-line="218" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Activity_photoGallery.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_photoGallery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="136" column="54" selection-start-line="136" selection-start-column="54" selection-end-line="136" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FpNetFacade_client.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.66492146">
+              <caret line="640" column="42" selection-start-line="640" selection-start-column="42" selection-end-line="640" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manager_photoGallery.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_photoGallery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FpNetDataReq_shareImage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataReq_shareImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0333333">
+              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -4549,22 +4535,26 @@
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_honeyBee.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataReq_bubbleMove.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_client.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientReady.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/client/Activity_clientStart.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/res/layout/activity_dialogue_start_client_input_id.xml" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_input_userName.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_actor.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/BaseActor.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_resource.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientReady.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/server/Contents_talk.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_input_userName.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/client/Activity_clientStart.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/JoyStick.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/server/Activity_serverStart.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/server/FpsRoot.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_talk.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_serverMain_andEngine.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/server/Contents_talk.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_resource.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataReq_shareImage.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java" />
       </list>
     </option>
   </component>
@@ -4637,6 +4627,62 @@
               <option name="myItemId" value="j2y" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="network" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyPop" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyPop" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2y" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="network" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyPop" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyPop" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="j2y" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="network" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -4712,7 +4758,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
+              <option name="myItemId" value="lobby" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -4732,22 +4778,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="j2y" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familypop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Manager_resource.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -4761,7 +4791,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="01aa76490358c312 0bb32f0e43e7b324 0d010c9343e62cb5" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="01aa76490358c312 0d010c9343e62cb5 0bb32f0e43e7b324" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_23" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../FamilyPop_j2y_160502/FamilyPop" />
   </component>
@@ -4939,7 +4969,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -4963,7 +4993,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -4988,125 +5018,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java</url>
-          <line>692</line>
+          <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java</url>
+          <line>87</line>
           <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java</url>
-          <line>512</line>
+          <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java</url>
+          <line>590</line>
           <properties />
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java</url>
+          <line>616</line>
+          <properties />
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="21" />
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_good.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/ListView_talkRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/ListViewAdapter_talkHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/test_listView_Adapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/test_listView_User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Popup_historyMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_photoGallery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Popup_dialogueMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="44" selection-start-line="142" selection-start-column="44" selection-end-line="142" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_smile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_attractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_honeyBee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#954#955#0" expanded="false" />
-            <element signature="e#991#992#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/andEngine/src/main/java/org/andengine/opengl/util/BufferUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -5115,26 +5049,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/JoyStick.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="127" column="16" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/FpNetConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="74" column="47" selection-start-line="74" selection-start-column="28" selection-end-line="74" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_contents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="29" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -5163,22 +5081,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/server/FpsRoot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataReq_connectId.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -5203,30 +5105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="17" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientReady.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetData_setUserInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -5235,47 +5113,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.33333334">
-          <caret line="304" column="25" selection-start-line="304" selection-start-column="25" selection-end-line="304" selection-end-column="25" />
-          <folding>
-            <element signature="e#13165#14643#0" expanded="true" />
-            <element signature="e#14642#14643#0" expanded="true" />
-            <element signature="e#20246#20668#0" expanded="true" />
-            <element signature="e#20667#20668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetFacade_server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1666667">
           <caret line="298" column="5" selection-start-line="298" selection-start-column="5" selection-end-line="298" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.566667">
-          <caret line="228" column="66" selection-start-line="228" selection-start-column="66" selection-end-line="228" selection-end-column="66" />
-          <folding>
-            <element signature="e#7948#10814#0" expanded="true" />
-            <element signature="e#10813#10814#0" expanded="true" />
-            <element signature="e#11034#12184#0" expanded="true" />
-            <element signature="e#12183#12184#0" expanded="true" />
-            <element signature="e#12407#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13227#14949#0" expanded="true" />
-            <element signature="e#14948#14949#0" expanded="true" />
-            <element signature="e#15001#15851#0" expanded="true" />
-            <element signature="e#15850#15851#0" expanded="true" />
-            <element signature="e#15911#17412#0" expanded="true" />
-            <element signature="e#17411#17412#0" expanded="true" />
-            <element signature="e#27127#27648#0" expanded="true" />
-            <element signature="e#27647#27648#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -5301,90 +5143,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/client/Activity_clientStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="215" column="77" selection-start-line="215" selection-start-column="77" selection-end-line="215" selection-end-column="77" />
-          <folding>
-            <element signature="e#10150#10550#0" expanded="true" />
-            <element signature="e#10549#10550#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_input_userName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.866667">
-          <caret line="133" column="49" selection-start-line="133" selection-start-column="49" selection-end-line="133" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/server/FpsTalkUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1630" column="0" selection-start-line="1630" selection-start-column="0" selection-end-line="1630" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="46" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/BaseActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_actor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="295" column="27" selection-start-line="295" selection-start-column="27" selection-end-line="295" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_talk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding>
-            <element signature="method#onUpdate#0;class#Actor_talk#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/server/Contents_talk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="49" selection-start-line="115" selection-start-column="49" selection-end-line="115" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -5412,27 +5175,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_serverMain_andEngine.java">
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientReady.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="493" column="63" selection-start-line="493" selection-start-column="63" selection-end-line="493" selection-end-column="63" />
+          <caret line="37" column="85" selection-start-line="37" selection-start-column="85" selection-end-line="37" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/andEngine/src/main/java/org/andengine/engine/handler/UpdateHandlerList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/andEngine/src/main/java/org/andengine/entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="1394" column="0" selection-start-line="1394" selection-start-column="0" selection-end-line="1394" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/server/Contents_talk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="98" selection-start-line="123" selection-start-column="98" selection-end-line="123" selection-end-column="98" />
           <folding>
-            <element signature="method#create_talk#0;class#Activity_serverMain_andEngine#0" expanded="false" />
-            <element signature="method#Create_smile#0;class#Activity_serverMain_andEngine#0" expanded="false" />
-            <element signature="method#Create_good#0;class#Activity_serverMain_andEngine#0" expanded="false" />
-            <element signature="method#get_attractorToClientId#0;class#Activity_serverMain_andEngine#0" expanded="false" />
-            <element signature="method#create_sprite#0;class#Activity_serverMain_andEngine#0" expanded="false" />
-            <element signature="method#OnEvent_smile#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/sdk/android-sdk_r24.4.1-windows/android-sdk-windows/sources/android-21/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3193717">
+          <caret line="1118" column="31" selection-start-line="1118" selection-start-column="19" selection-end-line="1118" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2652705">
+          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_input_userName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4201#6595#0" expanded="true" />
+            <element signature="e#6594#6595#0" expanded="true" />
+            <element signature="e#6879#7754#0" expanded="true" />
+            <element signature="e#7256#7704#0" expanded="true" />
+            <element signature="e#7703#7704#0" expanded="true" />
+            <element signature="e#7753#7754#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/client/Activity_clientStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5082873">
+          <caret line="219" column="22" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_resource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62827224">
-          <caret line="308" column="53" selection-start-line="308" selection-start-column="53" selection-end-line="308" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
-            <element signature="method#init_loadTexture#0;class#Manager_resource#0" expanded="false" />
+            <element signature="class#eType_atlas#0;class#Manager_resource#0" expanded="false" />
+            <element signature="class#eImageIndex_color#0;class#Manager_resource#0" expanded="false" />
+            <element signature="method#IntToImageColor#0;class#eImageIndex_color#0;class#Manager_resource#0" expanded="false" />
+            <element signature="class#eImageIndex_event#0;class#Manager_resource#0" expanded="false" />
+            <element signature="class#eType_petal#0;class#Manager_resource#0" expanded="false" />
             <element signature="method#init_textureNames#0;class#Manager_resource#0" expanded="false" />
             <element signature="method#add_TiledTexture#0;class#Manager_resource#0" expanded="false" />
             <element signature="method#add_spriteTexture#0;class#Manager_resource#0" expanded="false" />
@@ -5444,6 +5270,231 @@
             <element signature="method#Create_sprite#0;class#Manager_resource#0" expanded="false" />
             <element signature="method#ReleaseAll_sprites#0;class#Manager_resource#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033158813">
+          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/andEngine/src/main/java/org/andengine/util/adt/spatial/quadtree/QuadTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="765" column="21" selection-start-line="765" selection-start-column="21" selection-end-line="765" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/JoyStick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3333335">
+          <caret line="522" column="36" selection-start-line="522" selection-start-column="36" selection-end-line="522" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="74" selection-start-line="103" selection-start-column="53" selection-end-line="103" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/sdk/android-sdk_r24.4.1-windows/android-sdk-windows/sources/android-21/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="306" column="28" selection-start-line="306" selection-start-column="28" selection-end-line="306" selection-end-column="28" />
+          <folding>
+            <element signature="e#10822#10852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_contents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="353" column="93" selection-start-line="353" selection-start-column="93" selection-end-line="353" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/BaseActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="618" column="69" selection-start-line="618" selection-start-column="49" selection-end-line="618" selection-end-column="69" />
+          <folding>
+            <element signature="e#24663#26393#0" expanded="true" />
+            <element signature="e#26392#26393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataRes_recordInfoList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="e#740#769#0" expanded="true" />
+            <element signature="e#832#841#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.2">
+          <caret line="202" column="41" selection-start-line="202" selection-start-column="41" selection-end-line="202" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/server/Activity_serverStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/server/FpsRoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="24" selection-start-line="182" selection-start-column="24" selection-end-line="182" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="9" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_actor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="145" column="34" selection-start-line="145" selection-start-column="34" selection-end-line="145" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/actors/Actor_talk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding>
+            <element signature="method#onUpdate#0;class#Actor_talk#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_serverMain_andEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
+          <folding>
+            <element signature="method#create_talk#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="method#Create_smile#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="method#Create_good#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="method#get_attractorToClientId#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="method#create_sprite#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+            <element signature="method#OnEvent_smile#0;class#Activity_serverMain_andEngine#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Popup_dialogueMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="42" selection-start-line="136" selection-start-column="42" selection-end-line="136" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="218" column="22" selection-start-line="218" selection-start-column="22" selection-end-line="218" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_photoGallery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="136" column="54" selection-start-line="136" selection-start-column="54" selection-end-line="136" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataReq_shareImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.0333333">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_photoGallery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66492146">
+          <caret line="640" column="42" selection-start-line="640" selection-start-column="42" selection-end-line="640" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

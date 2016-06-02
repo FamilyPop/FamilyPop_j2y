@@ -231,7 +231,6 @@ public class FpcRoot implements TurnDataListener, DisplayInterface, EventDataLis
 
             //Log.i("[J2Y]", String.format("[NetClient]:%f,%f", bubble._x, bubble._y));
             _selected_talk_record.AddBubble(bubble._start_time, bubble._end_time, bubble._x - data._attractor._x, bubble._y - data._attractor._y, bubble._size, bubble._color);
-
         }
 
         _selected_talk_record._endTime = System.currentTimeMillis();
@@ -306,7 +305,5 @@ public class FpcRoot implements TurnDataListener, DisplayInterface, EventDataLis
             e.printStackTrace();
         }
     }
-
-
 }
 

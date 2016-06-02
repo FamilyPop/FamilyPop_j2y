@@ -52,6 +52,9 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
         // server connect
         _image_servertoConnect = (ImageView)findViewById(R.id.image_connectToServer);
         _image_servertoConnectFail = (ImageView)findViewById(R.id.image_connect_to_server_fail);
+
+        _image_servertoConnect.setVisibility(View.GONE);
+        _image_servertoConnectFail.setVisibility(View.GONE);
     }
     @Override
     public void onDestroy()
@@ -120,6 +123,7 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
     {
         try
         {
+
             new Thread()
             {
                 @Override
@@ -133,6 +137,7 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
                             {
                                 Log.i("[J2Y]", "userPosID" + FpcRoot.Instance._user_posid);
                                 FpNetFacade_client.Instance.SendPacket_setUserInfo(MainActivity.Instance._userName.toString(), FpcRoot.Instance._bubble_color_type, FpcRoot.Instance._user_posid);
+
                                 startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
 
                                 //connectToServer();
@@ -149,7 +154,7 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
                                 //  _image_servertoConnect.setVisibility(View.GONE);
                                 //  _button_connectServer.setVisibility(View.GONE);
 
-                                //finish();
+                                finish();
                                 break;
                             }
                         }

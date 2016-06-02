@@ -357,10 +357,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 
             Manager_contents.Instance.Content_change(Manager_contents.eType_contents.IntToType_contents(data._changeScenario));
 
-
-
             //FpcRoot.Instance._scenarioDirectorProxy.ChangeScenario(data._changeScenario);
-
 //            if( Activity_clientMain.Instance._selectScenario !=  data._changeScenario)
 //            {
 //                FpcRoot.Instance._scenarioDirectorProxy.ChangeScenario(data._changeScenario);
@@ -494,10 +491,9 @@ public class FpNetFacade_client extends FpNetFacade_base
                 FpNetDataNoti_clientUpdate.clientInfo cInfo = clientupdate._clientInfos.get(i);
                 if( FpcRoot.Instance._clientId != cInfo._clientId)
                 {
-                    Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._color), cInfo._clientId,cInfo._posX, cInfo._posY);
+                    Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,cInfo._posX, cInfo._posY);
                 }
             }
-
             Activity_clientMain.Instance.Set_StyleJoyStick(FpcRoot.Instance._clientId);
             //Activity_clientMain.Instance._joystick.AddItem();
         }
@@ -632,7 +628,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 
         for(int i=0; i<photo.Get_countBitmap(); ++i)
         {
-            reqPaket.Add_bitmap(photo.Get_bitmap(i));
+            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), 512, 512, false));
         }
 
         sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);

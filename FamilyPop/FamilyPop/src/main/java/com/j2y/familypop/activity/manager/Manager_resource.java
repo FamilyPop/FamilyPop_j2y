@@ -211,8 +211,8 @@ public class Manager_resource {
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-01.png","FloPop_Server_Resources-06.png", 128, 34);
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-02.png","FloPop_Server_Resources-07.png", 128, 68);
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-03.png","FloPop_Server_Resources-08.png", 128, 102);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-04.png","FloPop_Server_Resources-09.png", 128, 128);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-05.png","FloPop_Server_Resources-10.png", 128, 136);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-04.png","FloPop_Server_Resources-09.png", 128, 136);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-05.png","FloPop_Server_Resources-10.png", 128, 170);
 
         //event
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user_like_01.png","FloPop_Server_Resources-11.png", 162, 50);
@@ -348,8 +348,7 @@ public class Manager_resource {
         }
         return ret;
     }
-    public String Get_userLike(eImageIndex_color color)
-    {
+    public String Get_userLike(eImageIndex_color color) {
         return _userLikeNames.get(color.getValue());
     }
     public String Get_userImage(eImageIndex_color color) {

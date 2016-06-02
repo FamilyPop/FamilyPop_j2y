@@ -113,9 +113,9 @@ public class Contents_talk extends BaseContents
             // 3.2. 새로운 버블 생성
             int speakerId = currentSpeakerId - 2;
             int preSpeaker = previousSpeakerId-2;
-            if( speakerId >= 0 && preSpeaker >=0 )
+            if( preSpeaker < 0){ preSpeaker = speakerId;}
+            if( speakerId >= 0)
             {
-
                     // 발사할 (지금 말하고있는 꽃잎 생성)
                     String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker));
                     String petalImageName;

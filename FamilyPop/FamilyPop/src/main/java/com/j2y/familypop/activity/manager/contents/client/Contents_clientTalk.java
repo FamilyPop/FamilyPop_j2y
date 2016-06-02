@@ -55,7 +55,7 @@ public class Contents_clientTalk extends BaseContents
                 Vector2 v2 = new Vector2(_joystick.getX(),_joystick.getY());
                 Vector2 n = v2.nor();
 
-                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, -n.y,FpcRoot.Instance._clientId);
+                FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, n.y,FpcRoot.Instance._clientId);
             }
         }
         return super.update();

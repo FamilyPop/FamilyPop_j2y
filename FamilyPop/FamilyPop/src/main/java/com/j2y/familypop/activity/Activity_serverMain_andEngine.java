@@ -309,7 +309,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         flower.setPosition( (-flower.getWidth()/2) + (face.getWidth()/2),
                 (-flower.getHeight()/2) + (face.getHeight()/2));
 
-        face.setScale(1f, 1f);
+        face.setScale(0.6f, 0.6f);
         flower.setScale(0, 0);
         flower.setZIndex(-1);
 

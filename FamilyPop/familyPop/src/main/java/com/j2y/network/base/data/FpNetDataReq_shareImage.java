@@ -8,6 +8,7 @@ package com.j2y.network.base.data;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.j2y.network.base.FpNetIncomingMessage;
 import com.j2y.network.base.FpNetOutgoingMessage;
@@ -32,6 +33,7 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     public void Add_bitmap( Bitmap bitmap)
     {
         byte[] item = FpNetUtil.BitmapToByteArray(bitmap);
+
         _bitArrays.add(item);
         ++_count_bitmap;
     }

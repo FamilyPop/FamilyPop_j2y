@@ -47,6 +47,8 @@ import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.j2y.network.client.FpNetFacade_client;
 import com.j2y.network.server.packet.PacketListener_connect;
 
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+
 //import org.jbox2d.common.Vec2;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -590,20 +592,17 @@ public class FpNetServer_packetHandler
             if(client == null)
                 return;
 
-            //if(FpsScenarioDirector.Instance.GetActiveScenarioType() == FpNetConstants.SCENARIO_RECORD)
+            if( Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
             {
                 FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
 
                 // todo: 메인쓰레드, 렌더링쓰레드 충돌남
-                //FpsTalkUser talk_user = Activity_serverMain.Instance.GetTalkUser(client);
-                FpsTalkUser talk_user =  Manager_users.Instance.GetTalkUser(client);// Activity_serverMain.Instance.GetTalkUser(client);
+                FpsTalkUser talk_user =  Manager_users.Instance.GetTalkUser(client);
                 if(null == talk_user)
                     return;
 
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(talk_user._uid_attractor);
 
-//                outMsg._attractor._x = talk_user._attractor.GetPosition().x;
-//                outMsg._attractor._y = talk_user._attractor.GetPosition().y;
                 outMsg._attractor._x = attractor.Get_Body().getPosition().x;
                 outMsg._attractor._y = attractor.Get_Body().getPosition().y;
                 outMsg._attractor._color = client._clientID;
@@ -612,15 +611,8 @@ public class FpNetServer_packetHandler
                 {
                     Actor_talk talk = (Actor_talk)actor;
                     Vector2 pos = talk.Get_Body().getPosition();
-                    outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x, pos.y, talk.Get_Scale(), talk.Get_colorId() );
+                    outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, pos.y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, talk.Get_Scale(), talk.Get_colorId() );
                 }
-
-//                for(FpsBubble bubble : talk_user._bubble)
-//                {
-//                    Vec2 pos = bubble.GetPosition();
-//                    Log.i("[J2Y]", String.format("[NetServer]:%f,%f", pos.x, pos.y));
-//                    outMsg.AddRecordData(bubble._start_time, bubble._end_time, pos.x, pos.y, bubble._rad, bubble._colorId);
-//                }
 
                 outMsg._smile_events.addAll(talk_user._smile_events);
 
