@@ -27,6 +27,8 @@ public class Manager_users {
     }
     //
     public HashMap<FpNetServer_client, FpsTalkUser> Get_talk_users(){return _talk_users;}
+    //===============================================================================================
+    // user add, releaase
     public boolean User_add(FpNetServer_client net_client) {
         boolean ret = false;
         try {
@@ -39,7 +41,16 @@ public class Manager_users {
         }
         return ret;
     }
+    public void User_allRelease()
+    {
+        for( FpsTalkUser u : Get_talk_users().values())
+        {
+            u.User_release();
+        }
+        Get_talk_users().clear();
+    }
 
+    //===============================================================================================
     // find
     public FpsTalkUser FindTalkUser_byId(int clientId)
     {
@@ -95,4 +106,6 @@ public class Manager_users {
         _colorTypeCount++;
         return ret;
     }
+
+
 }

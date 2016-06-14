@@ -27,7 +27,7 @@ public class FpsTalkUser
 
     // Game(FamilyBomb)
     //public ArrayList<FpsBubble> _bubble;
-    public FpsAttractor _attractor;
+    public FpsAttractor _attractor; // 사용 안함.
     public ArrayList<Integer> _smile_events = new ArrayList<Integer>();
     public int _bubble_color_type;
     public int _user_posid;
@@ -178,6 +178,12 @@ public class FpsTalkUser
 
         }
         //Log.i("[J2Y]", "---------------------------------- END CreateAttractor --------------------------------------------------");
+    }
+
+    public void User_release()
+    {
+        _net_client.Disconnect();
+        _smile_events.clear();
     }
 
 }

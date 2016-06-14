@@ -19,7 +19,7 @@ public class Actor_good extends BaseActor
     }
 
     @Override
-    public boolean onUpdate(float pSecondsElapsed)
+    public synchronized boolean onUpdate(float pSecondsElapsed)
     {
         super.onUpdate(pSecondsElapsed);
 

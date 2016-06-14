@@ -87,7 +87,7 @@
             android:layout_alignLeft="@+id/button_role_server"
             android:textSize="15dp"
             android:layout_gravity="left|center_vertical"
-            android:layout_marginLeft="30dp" />
+            android:layout_marginLeft="34dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,7 +101,8 @@
             android:layout_alignLeft="@+id/button_role_client"
             android:textSize="15dp"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="28dp" />
+            android:gravity="center"
+            android:layout_marginRight="35dp" />
     </FrameLayout>
 
     <ImageButton

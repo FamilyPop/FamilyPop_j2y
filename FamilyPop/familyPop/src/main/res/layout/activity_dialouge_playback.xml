@@ -7,13 +7,23 @@
     android:id="@+id/layout_talkhistory_playback"
     >
 
+    <!--back_home-->
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_playback_home"
         android:background="@drawable/button_home"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_playback_topmenu"
+        android:background="@drawable/button_top_menu"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:layout_width="wrap_content"

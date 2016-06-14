@@ -76,6 +76,8 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
 
 
                 //startActivity(new Intent(MainActivity.Instance, Activity_clientMain.class));
+                FpcRoot.Instance.DisconnectServer();
+                _connectFail = true;
                 connectToServer();
 
                 break;

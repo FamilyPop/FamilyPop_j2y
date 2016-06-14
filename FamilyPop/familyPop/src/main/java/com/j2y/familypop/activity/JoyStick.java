@@ -97,6 +97,16 @@ public class JoyStick
     //
     public HashMap<String, userPos> _drawItems = new HashMap<String, userPos>();
 
+    public float Get_centerDistance()
+    {
+//        float ret = 0.0f;
+//
+//        Vector2 center = new Vector2((params.width / 2), (params.height / 2));
+//        ret = center.dist(position_x, position_y);
+//        Log.i("[joystick]", String.valueOf(ret));
+//        return ret;
+        return distance;
+    }
     public void deactive_userPos_all()
     {
         for( userPos u : _drawItems.values())
@@ -132,7 +142,6 @@ public class JoyStick
         stick = drawableToBitmap(drw);
         stick_width = stick.getWidth();
         stick_height = stick.getHeight();
-
     }
 
 
@@ -211,6 +220,8 @@ public class JoyStick
             {
                 //mLayout.removeView(draw);
                 draw.position(params.width / 2, params.height / 2);
+                touch_state = false;
+                draw();
             }
             Log.d("[joy]", "MotionEvent.ACTION_MOVE");
         }
@@ -221,12 +232,15 @@ public class JoyStick
             draw.position(params.width / 2, params.height / 2);
 
             touch_state = false;
+            draw();
         }
         else
         {
             draw.position(params.width / 2, params.height / 2);
             touch_state = false;
+            draw();
         }
+
 
 
         // double touch
@@ -658,7 +672,6 @@ public class JoyStick
     boolean mullti_touch_state = false;
 
 
-
     public int getMullti_angle()
     {
         return mullti_angle;
@@ -694,7 +707,6 @@ public class JoyStick
 
             //draw.setRotation(mullti_angle);
             mLayout.setRotation(mullti_angle);
-
 
 //            switch (action & MotionEvent.ACTION_MASK)
 //            {
@@ -782,8 +794,6 @@ public class JoyStick
 
             if( _select_userPos != null){ FpNetFacade_client.Instance.SendPacket_req_userInteraction(_select_userPos._clientId, FpcRoot.Instance._clientId); }
         }
-
-
     }
 }
 

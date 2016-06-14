@@ -26,7 +26,6 @@ public class Contents_clientReady extends BaseContents
     @Override
     public boolean update()
     {
-
         // joystick
         if( _joystick != null)
         {
@@ -34,11 +33,12 @@ public class Contents_clientReady extends BaseContents
             {
                 Vector2 v2 = new Vector2(_joystick.getX(),_joystick.getY());
                 Vector2 n = v2.nor();
+                n.x *= (Activity_clientMain.Instance._attractorMoveSpeed * (_joystick.Get_centerDistance() * 0.01f));
+                n.y *= (Activity_clientMain.Instance._attractorMoveSpeed * (_joystick.Get_centerDistance() * 0.01f));
 
                 FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, n.y, FpcRoot.Instance._clientId);
             }
         }
-
         return super.update();
     }
     @Override

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -187,6 +188,7 @@ public class Manager_resource {
         _dummyTextureAtlas = new BitmapTextureAtlas(_textureManager, ATLAS_WIDTH, ATLAS_HEGIHT);
         _serverTextureAtlas = new BitmapTextureAtlas(_textureManager, ATLAS_WIDTH, ATLAS_HEGIHT);
         _spriteTextureAtlas = new BitmapTextureAtlas(_textureManager, ATLAS_WIDTH, ATLAS_HEGIHT);
+
 
         //- texture load
         // todo : 문자열 따로 관리 해야함 (문자열 다빼불자)
@@ -407,13 +409,36 @@ public class Manager_resource {
 
         return ret;
     }
-    public void ReleaseAll_sprites(Scene scene)
+    public void ReleaseAll_flash_Sprites(Scene scene)
     {
         for( Sprite sp : _flash_sprites)
         {
             scene.detachChild(sp);
         }
         _flash_sprites.clear();
+    }
+    public void ReleaseAll_sprite()
+    {
+        // box2d  에서 생성한 객체를 고려해서 제거 해줘야할듯.
+        // todo : 만들어야함.
+
+    }
+
+    public void ReleaseAll_tileSprites()
+    {
+        // box2d  에서 생성한 객체를 고려해서 제거 해줘야할듯.
+        for(ITiledTextureRegion tsp : _tiledTextures.values())
+        {
+            _textureManager.unloadTexture(tsp.getTexture());
+        }
+        _tiledTextures.clear();
+    }
+
+    public void ReleaseAll(Scene scene)
+    {
+        ReleaseAll_flash_Sprites(scene);
+        ReleaseAll_sprite();
+        ReleaseAll_tileSprites();
     }
 }
 

@@ -128,8 +128,6 @@ public class MainActivity extends Activity
         //FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
-
-
     @Override
     protected void onDestroy() {
         Log.i("[J2Y]", "MainActivity:onDestroy");
@@ -140,10 +138,10 @@ public class MainActivity extends Activity
 
     private FpcTalkRecord test_recordData() {
         FpcTalkRecord recorddata = new FpcTalkRecord();
-        recorddata._name = "testName1234";
-        recorddata._filename = "testfilename1234";
-        recorddata._startTime = 1;
-        recorddata._endTime = 10;
+        recorddata._name        = "testName1234";
+        recorddata._filename    = "testfilename1234";
+        recorddata._startTime   = 1;
+        recorddata._endTime     = 10;
 
         recorddata.AddBubble(2, 9, 0, 0, 30, R.color.red);
         recorddata.AddBubble(2, 9, 100, 100, 50, R.color.red);

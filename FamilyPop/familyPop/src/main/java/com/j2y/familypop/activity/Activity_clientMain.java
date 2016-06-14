@@ -39,9 +39,10 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.lobby.Activity_talkHistory;
-import com.j2y.familypop.activity.lobby.Popup_dialogueMenu;
+import com.j2y.familypop.activity.popup.Popup_dialogueMenu;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
+import com.j2y.familypop.activity.popup.Popup_settingTalk_regulation;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
@@ -143,6 +144,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     private SeekBar _seekBar_regulation_smileEffect;
     private SeekBar _seekBar_plus_bubble_size;
 
+    // regulation
+    public int _buffer_count = 6;   // 서버로감
+    public int _smile_effect = 10000;   // 서버로감
+    public int _voice_hold = 5000;     // 서버로감
+
+    // tlak mode setting
+    public float _attractorMoveSpeed = 1.0f;
+    public float _flowerPlusSize = 1.1f;   // 서버로감
+    public float _flowerMaxSize = 1.5f;    // 서버로감
+
     private TextView _textView_regulation_0;
     private TextView _textView_regulation_1;
     private TextView _textView_regulation_2;
@@ -204,6 +215,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     // pictures view
     private FrameLayout _layout_photoView;
 
+    private ImageButton   _image_center;
     private ImageButton   _image_leftTop;
     private ImageButton   _image_rightTop;
     private ImageButton   _image_leftBottom;
@@ -371,34 +383,34 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         // 토크 버튼 중복 방지.
         if( FpcScenarioDirectorProxy.Instance._activeScenarioType != FpNetConstants.SCENARIO_RECORD){ _temp_send_talk = false; }
 
-        if(view.getId() == R.id.button_client_featuremenu_sharephotos || view.getId() == R.id.button_client_dialogue_topmenu_sharephotos  )
-        {
-            //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-            intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-            intent.setType("image/*");             									// 모든 이미지
-            //intent.putExtra("crop", "false");    									// Crop기능 활성화
-
-
-            //intent.putExtra(MediaStore.EXTRA_OUTPUT,  getTempUri());     				// 임시파일 생성
-            //intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString()); 	// 포맷방식
-
-            startActivityForResult(intent, 0);
-            active_featureMenu(false);
-
-            /*
-             Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.setType("image/*");             									// 모든 이미지
-            intent.putExtra("crop", "true");        									// Crop기능 활성화
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());     				// 임시파일 생성
-            intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString()); 	// 포맷방식
-
-            startActivityForResult(intent, 0);
-             */
-        }
+//        if(view.getId() == R.id.button_client_featuremenu_sharephotos || view.getId() == R.id.button_client_dialogue_topmenu_sharephotos  )
+//        {
+//            //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//
+//            Intent intent = new Intent(Intent.ACTION_PICK);
+//            intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+//            intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//
+//            intent.setType("image/*");             									// 모든 이미지
+//            //intent.putExtra("crop", "false");    									// Crop기능 활성화
+//
+//
+//            //intent.putExtra(MediaStore.EXTRA_OUTPUT,  getTempUri());     				// 임시파일 생성
+//            //intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString()); 	// 포맷방식
+//
+//            startActivityForResult(intent, 0);
+//            active_featureMenu(false);
+//
+//            /*
+//             Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//            intent.setType("image/*");             									// 모든 이미지
+//            intent.putExtra("crop", "true");        									// Crop기능 활성화
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());     				// 임시파일 생성
+//            intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString()); 	// 포맷방식
+//
+//            startActivityForResult(intent, 0);
+//             */
+//        }
 		//scenario select
 		switch(view.getId())
 		{
@@ -423,14 +435,12 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 active_featureMenu(false);
                 break;
 
-
             case R.id.button_client_dialogue_topmenu_feature:
                 //active_featureMenu(true);
                 View popupview = getLayoutInflater().inflate(R.layout.popup_topmenu_dialog,null);
                 PopupWindow popupWindow = new PopupWindow(popupview);
 
-                popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT);
+                popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 //팝업 터치 가능
                 popupWindow.setTouchable(true);
                 //팝업 외부 터치 가능(외부 터치시 나갈 수 있게)
@@ -440,9 +450,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
                 //팝업 생성
                 popupWindow.showAtLocation(popupview, Gravity.LEFT, 0, 0);
-
                 Popup_dialogueMenu popup_dialogueMenu = new Popup_dialogueMenu(popupview, popupWindow,"ㅠㅠ");
-                //Popup_dialogue_historyMenu popup = new Popup_dialogue_historyMenu(popupview,"aaaa");
 
                 break;
             case R.id.button_client_featuremenu_quitdialogue:
@@ -478,17 +486,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 break;
             case R.id.button_client_mode_regulation_send: // 설정 값을 서버로 보냄
 
-                int s0 =   _seekBar_regulation_0.getProgress();
-                int s1 =   _seekBar_regulation_1.getProgress();
-                int s2 =   _seekBar_regulation_2.getProgress();
-                int s3 =   _seekBar_regulation_3.getProgress();
-                int voice_hold = _seekBar_voice_hold.getProgress();
-                int mode =  _toggleButton_voiceProcessingMode.isChecked() == true ? 1 : 0; // 0 이면 j2y 모드
-                int smileEffect = _seekBar_regulation_smileEffect.getProgress();
-                int plusBubbleSize = _seekBar_plus_bubble_size.getProgress();
-
-                FpNetFacade_client.Instance.SendPacket_req_regulation_info(s0, s1, s2, s3, voice_hold, mode, smileEffect, plusBubbleSize);
-
+//                int s0 =   _seekBar_regulation_0.getProgress();
+//                int s1 =   _seekBar_regulation_1.getProgress();
+//                int s2 =   _seekBar_regulation_2.getProgress();
+//                int s3 =   _seekBar_regulation_3.getProgress();
+//                int voice_hold = _seekBar_voice_hold.getProgress();
+//                int mode =  _toggleButton_voiceProcessingMode.isChecked() == true ? 1 : 0; // 0 이면 j2y 모드
+//                int smileEffect = _seekBar_regulation_smileEffect.getProgress();
+//                int plusBubbleSize = _seekBar_plus_bubble_size.getProgress();
+//
+//                FpNetFacade_client.Instance.SendPacket_req_regulation_info(s0, s1, s2, s3, voice_hold, mode, smileEffect, plusBubbleSize);
 
                 break;
 
@@ -605,11 +612,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 break;
             // end client pos
 
+            // top menu
+            case R.id.button_client_dialogue_topmenu_sharephotos:
+                Activity_clientMain.Instance._photoGallery.Active();
+                break;
             case R.id.button_client_dialogue_topmenu_keyword:
 
                 break;
             case R.id.button_client_dialogue_topmenu_bomb:
-                OnClock_bomb_instruction();
+                //OnClock_bomb_instruction();
+                FpNetFacade_client.Instance.SendPacket_req_startGame();
                 break;
             case R.id.button_connectServer:
                 //connectToServer();
@@ -1211,6 +1223,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             case 2: inButton = _image_leftBottom; break;
             // right buttom
             case 3: inButton = _image_rightBottom; break;
+
+            // center
+            case 4: inButton = _image_center; break;
+
         }
         if(inButton != null )
         {
@@ -1293,6 +1309,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _image_leftBottom.setVisibility(View.GONE);
         // right buttom
         _image_rightBottom.setVisibility(View.GONE);
+        // center
+        _image_center.setVisibility(View.GONE);
     }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1501,6 +1519,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _seekBar_regulation_smileEffect.setProgress(10000);
         _seekBar_plus_bubble_size.setProgress(2);
 
+        // regulation
+        _buffer_count   = 6;
+        _smile_effect   = 10000;
+        _voice_hold     = 5000;
+
+        // tlak mode setting
+        //_attractorMoveSpeed;
+        _flowerPlusSize = 1.1f;
+        _flowerMaxSize = 1.5f;
+
         _seekBar_regulation_0.setOnSeekBarChangeListener(this);
         _seekBar_regulation_1.setOnSeekBarChangeListener(this);
         _seekBar_regulation_2.setOnSeekBarChangeListener(this);
@@ -1585,6 +1613,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _image_rightTop = (ImageButton)findViewById(R.id.imageView_photo_rightTop);
         _image_leftBottom = (ImageButton)findViewById(R.id.imageView_photo_leftBottom);
         _image_rightBottom = (ImageButton)findViewById(R.id.imageView_photo_rightBottom);
+        _image_center = (ImageButton)findViewById(R.id.imageView_photo_center);
 
 
         // user message
@@ -1806,6 +1835,11 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         };
         msgbox.show();
     }
+    @Override
+    public void onBackPressed()
+    {
+        //super.onBackPressed();
+    }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 센서
@@ -1922,13 +1956,17 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     {
         _touchViews.clear();
     }
+    public void create_popupWindow()
+    {
+
+
+    }
+
+
     private int GetCollision_viewID()
     {
         return _collisionView_ID;
     }
-
-
-
     // server 접속
     private boolean _onceClick_connectToServer = false;
     private long _connectedTime;
@@ -2045,6 +2083,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     }
     // end server 접속
     //private void
+
 }
 
 

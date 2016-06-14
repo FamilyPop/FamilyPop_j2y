@@ -2,6 +2,7 @@ package com.j2y.network.client;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -417,21 +418,26 @@ public class FpNetFacade_client extends FpNetFacade_base
             {
                 if( data.Get_count() == 0)
                 {
-                    for (int i = 0; i < 4; ++i) {
+                    for (int i = 0; i < 5; ++i) {
                         Activity_clientMain.Instance.SetupSharedImage(i, null);
                     }
                 }
                 else
                 {
-                    for (int i = 0; i < data.Get_count(); ++i) {
-                        Activity_clientMain.Instance.SetupSharedImage(i, data.Get_bitArray(i));
+                    if( data.Get_count()  > 1){
+                        for (int i = 0; i < data.Get_count(); ++i) {
+                            Activity_clientMain.Instance.SetupSharedImage(i, data.Get_bitArray(i));
+                        }
+                    }
+                    else
+                    {
+                        Activity_clientMain.Instance.SetupSharedImage(4, data.Get_bitArray(0));
                     }
                 }
             }
                 //Activity_clientMain.Instance.SetupSharedImage(data._bitMapByteArray);
         }
     };
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 웃음 이벤트
     FpNetMessageCallBack onNoti_smile_event = new FpNetMessageCallBack()
@@ -476,26 +482,42 @@ public class FpNetFacade_client extends FpNetFacade_base
     };
 
     // 클라이언트 업데이트
+    FpNetDataNoti_clientUpdate _clientupdate = null;
     FpNetMessageCallBack onNoti_clientUpdate = new FpNetMessageCallBack()
     {
         @Override
         public void CallBack(FpNetIncomingMessage inMsg)
         {
-            FpNetDataNoti_clientUpdate clientupdate = new FpNetDataNoti_clientUpdate();
-            clientupdate.Parse(inMsg);
+            if( _clientupdate != null) _clientupdate = null;
 
-            Activity_clientMain.Instance._joystick.Remove_itemAll();
+            //FpNetDataNoti_clientUpdate clientupdate = new FpNetDataNoti_clientUpdate();
+            _clientupdate = new FpNetDataNoti_clientUpdate();
+            _clientupdate.Parse(inMsg);
 
-            for(int i=0; i<clientupdate._clientInfos.size(); i++)
-            {
-                FpNetDataNoti_clientUpdate.clientInfo cInfo = clientupdate._clientInfos.get(i);
-                if( FpcRoot.Instance._clientId != cInfo._clientId)
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run()
                 {
-                    Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,cInfo._posX, cInfo._posY);
+
+                    Activity_clientMain.Instance._joystick.Remove_itemAll();
+
+                    for(int i=0; i<_clientupdate._clientInfos.size(); i++)
+                    {
+                        FpNetDataNoti_clientUpdate.clientInfo cInfo = _clientupdate._clientInfos.get(i);
+                        if( FpcRoot.Instance._clientId != cInfo._clientId)
+                        {
+                            Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,cInfo._posX, cInfo._posY);
+                        }
+                    }
+                    Activity_clientMain.Instance.Set_StyleJoyStick(FpcRoot.Instance._clientId);
+                    //Activity_clientMain.Instance._joystick.AddItem();
+
                 }
-            }
-            Activity_clientMain.Instance.Set_StyleJoyStick(FpcRoot.Instance._clientId);
-            //Activity_clientMain.Instance._joystick.AddItem();
+            }, 1000);
+
+
+
+
         }
     };
 
@@ -628,7 +650,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 
         for(int i=0; i<photo.Get_countBitmap(); ++i)
         {
-            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), 512, 512, false));
+            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), 256, 256, false));
         }
 
         sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
@@ -644,19 +666,31 @@ public class FpNetFacade_client extends FpNetFacade_base
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // regulation 서버로 전송
-    public  void SendPacket_req_regulation_info(int seekBar_0, int seekBar_1, int seekBar_2, int seekBar_3, int seekBar_voice_hold , int voiceProcessingMode, int smileEffect, int plusBubbleSize)
+    //public  void SendPacket_req_regulation_info(int seekBar_0, int seekBar_1, int seekBar_2, int seekBar_3, int seekBar_voice_hold , int voiceProcessingMode, int smileEffect, int plusBubbleSize)
+    public  void SendPacket_req_regulation_info()
     {
         Log.i("[J2Y]", "[C->S] regulation 서버로 전송");
 
+        Activity_clientMain main = Activity_clientMain.Instance;
+
         FpNetDataReq_regulation_info reqPaket = new FpNetDataReq_regulation_info();
-        reqPaket._seekBar_0 = seekBar_0;
-        reqPaket._seekBar_1 = seekBar_1;
-        reqPaket._seekBar_2 = seekBar_2;
-        reqPaket._seekBar_3 = seekBar_3;
-        reqPaket._seekBar_voice_hold = seekBar_voice_hold;
-        reqPaket._voiceProcessingMode = voiceProcessingMode;
-        reqPaket._seekBar_regulation_smileEffect = smileEffect;
-        reqPaket._seekBar_bubble_plusSIze = plusBubbleSize;
+
+        reqPaket._buffer_count = main._buffer_count;
+        reqPaket._smile_effect = main._smile_effect;
+        reqPaket._voice_hold = main._voice_hold;
+
+        reqPaket._flowerPlusSize = main._flowerPlusSize;
+        reqPaket._flowerMaxSize = main._flowerMaxSize;
+
+        // back
+//        reqPaket._seekBar_0 = seekBar_0;
+//        reqPaket._seekBar_1 = seekBar_1;
+//        reqPaket._seekBar_2 = seekBar_2;
+//        reqPaket._seekBar_3 = seekBar_3;
+//        reqPaket._seekBar_voice_hold = seekBar_voice_hold;
+//        reqPaket._voiceProcessingMode = 0;//voiceProcessingMode; // 무조건 j2y 모드
+//        reqPaket._seekBar_regulation_smileEffect = smileEffect;
+//        reqPaket._seekBar_bubble_plusSIze = plusBubbleSize;
 
         sendMessage(FpNetConstants.CSReq_regulation_Info, reqPaket);
     }

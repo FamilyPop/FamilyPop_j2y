@@ -116,31 +116,36 @@ public class Contents_talk extends BaseContents
             if( preSpeaker < 0){ preSpeaker = speakerId;}
             if( speakerId >= 0)
             {
-                    // 발사할 (지금 말하고있는 꽃잎 생성)
-                    String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker));
-                    String petalImageName;
+                // 발사할 (지금 말하고있는 꽃잎 생성)
+                String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker));
+                String petalImageName;
 
-                    Actor_talk bubble = null;
-                    Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
-                    petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
+                Actor_talk bubble = null;
+                Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
+                petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
 
-                    bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
-                    bubble.Set_colorId(preSpeaker);
+                bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
+                bubble.Set_colorId(preSpeaker);
 
-                    if (bubble != null) {
-                        _current_bubble = bubble;
-                    }
+
+
+
+
+                if (bubble != null) {
+                    _current_bubble = bubble;
                 }
             }
+        }
 }
     private void IsBubbleGrowing(boolean isBubbleGrowing) {
         //Log.i("KAIST", "Bubble grows: " + currentSpeakerId + "/" + previousSpeakerId);
 
         if (_current_bubble != null) {
-            float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._plusMoverRadius;
+            //float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._plusMoverRadius;
+            //float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._flowerPlusSize;
             //float elapsed
             //Activity_serverMain_andEngine.Instance.getEngine().getSecondsElapsedTotal()
-            _current_bubble.Set_plusScale(scale * 0.01f, scale * 0.01f);
+            _current_bubble.Set_plusScale();
         }
     }
     private void IsBubbleEnding(boolean isBubbleGrowing) {

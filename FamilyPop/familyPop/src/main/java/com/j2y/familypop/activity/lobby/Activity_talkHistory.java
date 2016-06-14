@@ -1,28 +1,32 @@
 package com.j2y.familypop.activity.lobby;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.j2y.engine.ColumnListView;
 import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.TouchMove;
 import com.j2y.familypop.activity.client.Activity_clientStart;
+import com.j2y.familypop.activity.popup.Popup_historyMenu;
 import com.j2y.familypop.activity.server.Activity_serverStart;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
@@ -327,7 +331,24 @@ public class Activity_talkHistory extends BaseActivity implements View.OnClickLi
                 //rLayout.setVisibility(View.INVISIBLE);
 
                 active_topmenu_setting(false);
-                active_topmenu_role(true);
+                //active_topmenu_role(true);
+                // popupWindow
+                View popupview  = getLayoutInflater().inflate(R.layout.popup_topmenu_history, null);
+                PopupWindow popupWindow = new PopupWindow(popupview );
+
+                popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+                //팝업 터치 가능
+                popupWindow.setTouchable(true);
+                //팝업 외부 터치 가능(외부 터치시 나갈 수 있게)
+                popupWindow.setOutsideTouchable(true);
+                //외부터치 인식을 위한 추가 설정 : 미 설정시 외부는 null로 생각하고 터치 인식 X
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+
+                //팝업 생성
+                popupWindow.showAtLocation(popupview, Gravity.LEFT, 0, 0);
+                Popup_historyMenu popup_historyMenu = new Popup_historyMenu(popupview, "ㅠㅠ");//Popup_dialogueMenu(popupview, popupWindow,"ㅠㅠ");
+
 
                 break;
             case R.id.button_history_topmenu_setting:

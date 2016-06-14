@@ -1,36 +1,36 @@
 package com.j2y.familypop.activity.lobby;
 
 import android.app.Activity;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.BaseActivity;
+import com.j2y.familypop.activity.popup.Popup_dialogue_historyMenu;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.backup.test_CustomSeekBar;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcTalkRecord;
-import com.j2y.network.base.FpNetConstants;
 import com.nclab.familypop.R;
 
 import java.io.File;
@@ -91,9 +91,14 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
         //ui
         _bubbleButtons = new ArrayList<BubbleButton>();
 
+        // back home
         _button_home = (ImageButton) findViewById(R.id.button_playback_home);
         _button_home.setOnClickListener(this);
         ((ImageButton) findViewById(R.id.button_play_record)).setOnClickListener(this);
+
+        // top menu
+        ((ImageButton)findViewById(R.id.button_playback_topmenu)).setOnClickListener(this);
+
 
 
 
@@ -294,6 +299,24 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                     play_talk_record();
                     _imageButton_play.setBackgroundResource(R.drawable.button_pause_over);
                 }
+                break;
+            case R.id.button_playback_topmenu:
+
+                View popupview = getLayoutInflater().inflate(R.layout.popup_topmenu_dialog_history,null);
+                PopupWindow popupWindow = new PopupWindow(popupview);
+
+                popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                //팝업 터치 가능
+                popupWindow.setTouchable(true);
+                //팝업 외부 터치 가능(외부 터치시 나갈 수 있게)
+                popupWindow.setOutsideTouchable(true);
+                //외부터치 인식을 위한 추가 설정 : 미 설정시 외부는 null로 생각하고 터치 인식 X
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+
+                //팝업 생성
+                popupWindow.showAtLocation(popupview, Gravity.LEFT, 0, 0);
+                Popup_dialogue_historyMenu popup = new Popup_dialogue_historyMenu(popupview,"ㅠㅠ");
+
                 break;
 
 

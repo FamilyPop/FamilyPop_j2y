@@ -19,7 +19,7 @@ public class Actor_smile extends BaseActor
         mIsFlower = true;
     }
 
-    public boolean onUpdate(float pSecondsElapsed)
+    public synchronized boolean onUpdate(float pSecondsElapsed)
     {
         super.onUpdate(pSecondsElapsed);
 

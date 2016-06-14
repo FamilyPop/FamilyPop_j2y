@@ -21,6 +21,7 @@ import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
+import com.j2y.familypop.server.FpsRoot;
 import com.j2y.familypop.server.FpsTalkUser;
 import com.j2y.network.base.FpNetUtil;
 import com.j2y.network.server.FpNetFacade_server;
@@ -47,7 +48,10 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -162,35 +166,30 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public  synchronized void onUpdate(float pSecondsElapsed)
     {
         // 컨텐츠 업데이트
-        if( _manager_contents != null) _manager_contents.update();
+        if( _manager_contents == null) return;
+        if( Manager_actor.Instance == null) return;
+
+        _manager_contents.update();
 
         // talk
         ArrayList<BaseActor> talks = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
-        for( BaseActor actor : talks){ actor.onUpdate(pSecondsElapsed); }
+        IteratorUpdate_Actor(talks, pSecondsElapsed);
 
         // update smile
         ArrayList<BaseActor> smiles = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_SMILE);
-        for( BaseActor actor : smiles ){ actor.onUpdate(pSecondsElapsed);}
+        IteratorUpdate_Actor(smiles, pSecondsElapsed);
 
         // attractor
         ArrayList<BaseActor> attractors = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
-        for( BaseActor actor : attractors ){ actor.onUpdate(pSecondsElapsed); }
+        IteratorUpdate_Actor(attractors, pSecondsElapsed);
 
         // good
         ArrayList<BaseActor> goods = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
-        for( BaseActor actor : goods){actor.onUpdate(pSecondsElapsed);}
+        IteratorUpdate_Actor(goods, pSecondsElapsed);
 
         // bee
         ArrayList<BaseActor> bees = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE);
-        for(BaseActor actor : bees){actor.onUpdate(pSecondsElapsed);}
-
-//        // update good
-//        ArrayList<BaseActor> good = mManagerActor.GetActorsList(eType_actor.ACTOR_GOOD);
-//        int count_event = good.size();
-//        for (int i = 0; i < count_event; ++i) {
-//            ((Actor_good) good.get(i)).onUpdate(pSecondsElapsed);
-//        }
-//
+        IteratorUpdate_Actor(bees, pSecondsElapsed);
 
     }
 
@@ -230,15 +229,17 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             //posCount++;
         }
     }
+    //Manager_users 가 살아 있어야함.
     public void release_attractor()
     {
         Manager_users magUsers = Manager_users.Instance;
         Manager_actor magActor = Manager_actor.Instance;
+
+        if( magUsers == null || magActor == null) return;
         for( FpsTalkUser user :  magUsers.Get_talk_users().values() )
         {
             magActor.Destroy_attractor(user._uid_attractor);
         }
-
     }
     // activity exit
     //====================================================================================================
@@ -310,13 +311,16 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
                 (-flower.getHeight()/2) + (face.getHeight()/2));
 
         face.setScale(0.6f, 0.6f);
-        flower.setScale(0, 0);
+        flower.setScale(0.7f, 0.7f);
         flower.setZIndex(-1);
 
 
         ret = Manager_actor.Instance.Create_talk(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
         ret.Set_maxFlowerScale(0.7f);
+
+        ret.Set_addScale(info_regulation._flowerPlusSize);
+        ret.Set_maxScale(info_regulation._flowerMaxSize);
 
         return ret;
     }
@@ -340,7 +344,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
                 (-flower.getHeight()/2) + (face.getHeight()/2));
 
         face.setScale(0.6f, 0.6f);
-        flower.setScale(0, 0);
+        flower.setScale(0.7f, 0.7f);
         flower.setZIndex(-1);
 
         ret = Manager_actor.Instance.Create_smile(_scene, _physicsWorld, face, attractor);
@@ -365,16 +369,16 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         face = create_sprite(x, y, faceName);
         flower = create_sprite(0, 0, flowerName);
-        flower.setPosition( (-flower.getWidth()/2) + (face.getWidth()/2),
-                            (-flower.getHeight()/2) + (face.getHeight()/2));
+        flower.setPosition((-flower.getWidth() / 2) + (face.getWidth() / 2),
+                (-flower.getHeight() / 2) + (face.getHeight() /2));
 
         face.setScale(1f, 1f);
-        flower.setScale(0, 0);
+        flower.setScale(0.7f, 0.7f);
         flower.setZIndex(-1);
 
         ret = Manager_actor.Instance.Create_good(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
-        ret.Set_maxFlowerScale(0.9f);
+        //ret.Set_maxFlowerScale(0.7f);
 
         return ret;
     }
@@ -463,6 +467,23 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         face.setScale(1.5f, 1.5f);
         return face;
     }
+    private void IteratorUpdate_Actor(ArrayList<BaseActor> actors, float pSecondsElapsed)
+    {
+        List<BaseActor> sActor = Collections.synchronizedList(actors);
+        synchronized (sActor)
+        {
+            Iterator<BaseActor> iterator = sActor.listIterator();
+            while (iterator.hasNext())
+            {
+                ((BaseActor)iterator.next()).onUpdate(pSecondsElapsed);
+            }
+        }
+
+//        for( BaseActor a : actors )
+//        {
+//            a.onUpdate(pSecondsElapsed);
+//        }
+    }
     //====================================================================================================
     // event
     //====================================================================================================
@@ -483,10 +504,45 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
     public synchronized void OnEvent_shareimage(int posIndex, Bitmap bitmap)
     {
-        float posx = (CAMERA_WIDTH /2 )- (bitmap.getWidth()/2);
-        float posy = (CAMERA_HEIGHT /2) -(bitmap.getHeight()/2 );
+        // -1 일때 가운데 출력
 
-        Manager_resource.Instance.Create_sprite(posx, posy, _scene, this,bitmap);
+        float centerX = (CAMERA_WIDTH /2 )- (bitmap.getWidth()/2);
+        float centerY = (CAMERA_HEIGHT /2) -(bitmap.getHeight()/2 );
+
+        float centerHalfX = centerX/2;
+        float centerHalfY = centerY/2;
+
+        float leftTopX = centerX - centerHalfX;
+        float leftTopY = centerY - centerHalfY;
+
+        float rightTopX = centerX + centerHalfX;
+        float rightTopY = centerY - centerHalfY;
+
+        float leftBottomX = centerX - centerHalfX;
+        float leftBottomY = centerY + centerHalfY;
+
+        float rightBottomX = centerX + centerHalfX;
+        float rightBottomY = centerY + centerHalfY;
+
+        float posX = 0;
+        float posY = 0;
+
+        if( posIndex == -1)
+        {
+            posX = centerX;
+            posY = centerY;
+        }
+        else
+        {
+            switch (posIndex)
+            {
+                case 0: posX = leftTopX;  posY = leftTopY; break;
+                case 1: posX = rightTopX;  posY = rightTopY; break;
+                case 2: posX = leftBottomX;  posY = leftBottomY; break;
+                case 3: posX = rightBottomX;  posY = rightBottomY; break;
+            }
+        }
+        Manager_resource.Instance.Create_sprite(posX, posY, _scene, this,bitmap);
     }
     //====================================================================================================
     // bubble 컨트롤.
@@ -538,9 +594,33 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
     public void CloseServer()
     {
+
+        //FpsRoot.Instance.CloseServer();
+        //System.exit(0);
+        //MainActivity.Instance.finishFromChild(this);
+        Instance = null;
+        MainActivity.Instance._serverActivityStart = false;
+
+        // 액터를 전부 제거 한다.
+        release_attractor();
+        // 유저를 전부 제거 disconnect 한다.
+        Manager_users.Instance.User_allRelease();
+        Manager_actor.Instance = null;
+
+        // todo : 마저 제거 해버리자.
+        /*
+            private Manager_resource _manager_resource;
+            private Manager_actor _manager_actor;
+            private Manager_contents _manager_contents;
+         */
         finish();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        //super.onBackPressed();
+    }
     //
     //====================================================================================================
     // class s
@@ -552,7 +632,17 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         public int _regulation_seekBar_2;
         public int _regulation_seekBar_3;
         public int _regulation_seekBar_smileEffect;
-        public float _plusMoverRadius;
+        public float _plusMoverRadius; // 사용 안함.
+
+        // regulation
+        public int _buffer_count;
+        public int _smile_effect;
+        public int _voice_hold;
+
+        // flower
+        //public float _attractorMoveSpeed;
+        public float _flowerPlusSize;
+        public float _flowerMaxSize;
 
         public Info_regulation()
         {
@@ -562,6 +652,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _regulation_seekBar_3 = 100;
             _regulation_seekBar_smileEffect = 10000;
             _plusMoverRadius = 0.1f; //0.1f
+
+            _buffer_count = 6;
+            _smile_effect = 10000;
+            _voice_hold = 5000;
+
+            _flowerMaxSize = 1.5f;
+            _flowerPlusSize = 1.1f;
         }
     }
 }

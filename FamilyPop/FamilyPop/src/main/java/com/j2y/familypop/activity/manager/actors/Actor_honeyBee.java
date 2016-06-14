@@ -37,7 +37,7 @@ public class Actor_honeyBee extends BaseActor {
     }
 
     @Override
-    public boolean onUpdate(float pSecondsElapsed)
+    public synchronized boolean onUpdate(float pSecondsElapsed)
     {
 
         if (_target != null) {

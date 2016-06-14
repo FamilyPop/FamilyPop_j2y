@@ -1,5 +1,6 @@
 package com.j2y.familypop.activity.manager.actors;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import org.andengine.entity.IEntity;
@@ -13,8 +14,11 @@ public class BaseActor
     protected Body mBody = null;
     protected Sprite mSprite;
     protected boolean mIsFlower = false;
+    protected boolean mIsBalloon = false;
+    protected Vector2 mOriginalScale;
     private long mActor_unique_number = -1;
     private int mColorId = -1;
+
 
     private float _spriteScale =0.0f; //꽃잎이 커진다~
     private float _maxSpriteScale = 2.3f; // 이만큼 커니다~
@@ -23,6 +27,10 @@ public class BaseActor
         mBody = body;
         mSprite = sprite;
         mActor_unique_number = uniqueNumber;
+        mOriginalScale = new Vector2(mSprite.getScaleX(), mSprite.getScaleY());
+
+        //꽃잎 커지는거 막는담!
+        //mSprite.getChildByIndex(0).setScale(_spriteScale);
     }
 
     public Body Get_Body()
@@ -41,17 +49,28 @@ public class BaseActor
 
     public  boolean onUpdate(float pSecondsElapsed)
     {
-        // 점점 커지는 꽃잎
-        if(mIsFlower)
+
+
+        //if( mIsBalloon )
         {
-            IEntity temp = mSprite.getChildByIndex(0);
-            if (temp != null) {
-                if (_spriteScale <= _maxSpriteScale) {
-                    _spriteScale += pSecondsElapsed * 0.3f;
-                    mSprite.getChildByIndex(0).setScale(_spriteScale);
-                }
-            }
+//            double curTime = ((double) System.currentTimeMillis()) / 1000;
+//            double speed = 1;
+//            float sizeX = (float) (mSprite.getScaleX() + Math.sin(curTime * (speed)) * 0.005f);
+//            float sizeY = (float) (mSprite.getScaleY() + Math.sin(curTime * (speed)) * 0.005f);
+//            mSprite.setScale(sizeX, sizeY);
         }
+
+        // 점점 커지는 꽃잎
+//        if(mIsFlower)
+//        {
+//            IEntity temp = mSprite.getChildByIndex(0);
+//            if (temp != null) {
+//                if (_spriteScale <= _maxSpriteScale) {
+//                    _spriteScale += pSecondsElapsed * 0.3f;
+//                    mSprite.getChildByIndex(0).setScale(_spriteScale);
+//                }
+//            }
+//        }
         return false;
     }
 }

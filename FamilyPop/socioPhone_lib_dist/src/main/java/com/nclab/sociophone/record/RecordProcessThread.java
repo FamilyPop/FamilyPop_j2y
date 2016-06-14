@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class RecordProcessThread
 {
-    private AudioRecord audioRecord;
+    private AudioRecord audioRecord;  //사용 안하는거 같음.
     private int _bufferSize = 0;
     boolean _recording = true;
 

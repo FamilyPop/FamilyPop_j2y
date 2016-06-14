@@ -46,12 +46,14 @@ public class SignalHandler extends Handler
                 if( msg != null)
                 {
                     data = ((String) msg.obj).split(",");
-                    long time = Long.parseLong(data[0]);
-                    double power = Double.parseDouble(data[1]);
-                    VolumeWindow window = new VolumeWindow(time, power);
-                    mSocioPhone.onDataReceived(window, msg.arg1 + 1);
+                    if( data.length >= 2)
+                    {
+                        long time = Long.parseLong(data[0]);
+                        double power = Double.parseDouble(data[1]);
+                        VolumeWindow window = new VolumeWindow(time, power);
+                        mSocioPhone.onDataReceived(window, msg.arg1 + 1);
+                    }
                 }
-
                 break;
             case SocioPhoneConstants.BT_ACCEPT:
                 mNetworkManager.sendToClientsID("11:");

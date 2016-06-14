@@ -36,7 +36,7 @@ import static org.andengine.extension.physics.box2d.util.constants.PhysicsConsta
 // ===========================================================
 // class , enum
 // ===========================================================
-
+// Activity_serverMain_andEngine 에서 생성.
 public class Manager_actor
 {
     public class Info_actor
@@ -70,7 +70,7 @@ public class Manager_actor
             return value;
         }
 
-    };
+    }
 
     public static Manager_actor Instance = null;
     private PhysicsWorld _physicsWorld = null;
@@ -82,6 +82,7 @@ public class Manager_actor
     // ===========================================================
     private HashMap<eType_actor, ArrayList<BaseActor>> mActors = null;
     private long actor_unique_number = 100000;
+    private boolean _isUpdate = true;
 
 
     // ===========================================================
@@ -104,6 +105,21 @@ public class Manager_actor
         mActors.put(eType_actor.ACTOR_SMILE, new ArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_GOOD, new ArrayList<BaseActor>());
     }
+    public void Manager_updateAll(float pSecondsElapsed)
+    {
+        if( Get_isUpdate()) return;
+
+        for( ArrayList<BaseActor> actors : mActors.values())
+        {
+            for( BaseActor actor : actors)
+            {
+                actor.onUpdate(pSecondsElapsed);
+            }
+        }
+    }
+    public void Set_isUpdate(boolean isUpdate){_isUpdate = isUpdate;}
+    public boolean Get_isUpdate(){return _isUpdate;}
+
     private long getUniqueNumber()
     {
         long ret = actor_unique_number;
@@ -122,7 +138,12 @@ public class Manager_actor
     // ===========================================================
     public ArrayList<BaseActor> GetActorsList(eType_actor type)
     {
+        //return (ArrayList<BaseActor>)mActors.get(type).clone();
         return mActors.get(type);
+    }
+    public HashMap<eType_actor, ArrayList<BaseActor>> GetActors()
+    {
+        return mActors;
     }
     // ===========================================================
     // create actor

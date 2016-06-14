@@ -8,14 +8,25 @@ import com.j2y.network.base.FpNetOutgoingMessage;
  */
 public class FpNetDataReq_regulation_info extends FpNetData_base
 {
-    public int _seekBar_0;
-    public int _seekBar_1;
-    public int _seekBar_2;
-    public int _seekBar_3;
-    public int _seekBar_voice_hold;
-    public int _voiceProcessingMode;
-    public int _seekBar_regulation_smileEffect;
-    public int _seekBar_bubble_plusSIze;
+    // back
+//    public int _seekBar_0;
+//    public int _seekBar_1;
+//    public int _seekBar_2;
+//    public int _seekBar_3;
+//    public int _seekBar_voice_hold;
+//    public int _voiceProcessingMode; // 무조건 j2y 모드
+//    public int _seekBar_regulation_smileEffect;
+//    public int _seekBar_bubble_plusSIze;
+
+
+    // regulation
+    public int _buffer_count;
+    public int _smile_effect;
+    public int _voice_hold;
+
+    // tlak mode setting
+    public float _flowerPlusSize;
+    public float _flowerMaxSize;
 
     //----------------------------------------------------------------
     // 메시지 파싱
@@ -24,14 +35,22 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
     {
         super.Parse(inMsg);
 
-        _seekBar_0 = inMsg.ReadInt();
-        _seekBar_1 = inMsg.ReadInt();
-        _seekBar_2 = inMsg.ReadInt();
-        _seekBar_3 = inMsg.ReadInt();
-        _seekBar_voice_hold = inMsg.ReadInt();
-        _voiceProcessingMode = inMsg.ReadInt();
-        _seekBar_regulation_smileEffect = inMsg.ReadInt();
-        _seekBar_bubble_plusSIze = inMsg.ReadInt();
+        _buffer_count   = inMsg.ReadInt();
+        _smile_effect   = inMsg.ReadInt();
+        _voice_hold     = inMsg.ReadInt();
+
+        _flowerPlusSize     = inMsg.ReadFloat();
+        _flowerMaxSize      = inMsg.ReadFloat();
+
+        // back
+//        _seekBar_0 = inMsg.ReadInt();
+//        _seekBar_1 = inMsg.ReadInt();
+//        _seekBar_2 = inMsg.ReadInt();
+//        _seekBar_3 = inMsg.ReadInt();
+//        _seekBar_voice_hold = inMsg.ReadInt();
+//        _voiceProcessingMode = inMsg.ReadInt();
+//        _seekBar_regulation_smileEffect = inMsg.ReadInt();
+//        _seekBar_bubble_plusSIze = inMsg.ReadInt();
 
     }
 
@@ -42,13 +61,21 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
     {
         super.Packing(outMsg);
 
-        outMsg.Write(_seekBar_0);
-        outMsg.Write(_seekBar_1);
-        outMsg.Write(_seekBar_2);
-        outMsg.Write(_seekBar_3);
-        outMsg.Write(_seekBar_voice_hold);
-        outMsg.Write(_voiceProcessingMode);
-        outMsg.Write(_seekBar_regulation_smileEffect);
-        outMsg.Write(_seekBar_bubble_plusSIze);
+        outMsg.Write(_buffer_count);
+        outMsg.Write(_smile_effect);
+        outMsg.Write(_voice_hold);
+
+        outMsg.Write(_flowerPlusSize);
+        outMsg.Write(_flowerMaxSize);
+
+        // back
+//        outMsg.Write(_seekBar_0);
+//        outMsg.Write(_seekBar_1);
+//        outMsg.Write(_seekBar_2);
+//        outMsg.Write(_seekBar_3);
+//        outMsg.Write(_seekBar_voice_hold);
+//        outMsg.Write(_voiceProcessingMode);
+//        outMsg.Write(_seekBar_regulation_smileEffect);
+//        outMsg.Write(_seekBar_bubble_plusSIze);
     }
 }

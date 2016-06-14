@@ -30,13 +30,14 @@ import com.nclab.sociophone.interfaces.MeasurementCallback;
 
 public class Activity_serverStart extends Activity
 {
+    public static Activity_serverStart Instance = null;
     TextView _serverIP;
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
-
+        Instance = this;
         super.onCreate(savedInstanceState);
         Log.i("[J2Y]", "Activity_serverStart:onCreate");
 

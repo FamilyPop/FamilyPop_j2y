@@ -19,6 +19,7 @@ import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.server.Activity_serverCalibration;
 import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
+import com.j2y.familypop.activity.server.Activity_serverStart;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
 //import com.j2y.familypop.server.FpsScenarioDirector;
@@ -145,8 +146,13 @@ public class FpNetServer_packetHandler
 
             FpsRoot.Instance._exitServer = true;
             FpNetServer_client client = (FpNetServer_client)inMsg._obj;
-
             _net_server.RemoveClient(client);
+
+
+            FpsRoot.Instance.CloseServer();
+            Activity_serverStart.Instance.finish();
+            MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));
+
         }
     };
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -164,6 +170,7 @@ public class FpNetServer_packetHandler
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 클라 정보 세팅
+    FpNetData_setUserInfo _setUserInfo_data = null;
     FpNetMessageCallBack onReq_setUserInfo = new FpNetMessageCallBack()
     {
         @Override
@@ -171,33 +178,17 @@ public class FpNetServer_packetHandler
         {
             Log.i("[J2Y]", "[패킷수신] 클라 정보 세팅");
 
+            //FpNetData_setUserInfo setUserInfo_data = new FpNetData_setUserInfo();
+            if( _setUserInfo_data != null) _setUserInfo_data = null;
 
-            //create_attractor(_userStartPos.get(0).x, _userStartPos.get(0).y, "user-01.png").Get_UniqueNumber();
+            _setUserInfo_data = new FpNetData_setUserInfo();
+            _setUserInfo_data.Parse(inMsg);
 
-           // FpNetServer_client client = (FpNetServer_client)inMsg._obj;
-
-            FpNetData_setUserInfo data = new FpNetData_setUserInfo();
-            data.Parse(inMsg);
-
-            //client._user_name = data._userName;
-            //client._bubble_color_type = data._bubbleColorType;
-            //client._user_posid = data._user_posid;
-            //client._clientID = data._clientId;
-
-            //FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);
-
-            //if(talk_user != null) {
-                // 사용안함
-                //talk_user._bubble_color_type = client._bubble_color_type;
-                //talk_user._user_posid = data._user_posid;
-            //}
-
-            //Log.i("[J2Y]", "userPosID:  " + talk_user._user_posid);
 
             if(FpsRoot.Instance._room_user_names == "")
-                FpsRoot.Instance._room_user_names = data._userName;
+                FpsRoot.Instance._room_user_names = _setUserInfo_data._userName;
             else
-                FpsRoot.Instance._room_user_names += (", " + data._userName);
+                FpsRoot.Instance._room_user_names += (", " + _setUserInfo_data._userName);
 
             // 접속한 사용자들의 버블 정보를 만든다, 접속한 클라이언트들의 id 정보를 만든다.
             String bubblesInfo = "";
@@ -210,7 +201,6 @@ public class FpNetServer_packetHandler
                 bubblesInfo += c._bubble_color_type + ",";
                 clientsInfo += c._clientID + ",";
             }
-
 
             // 방정보 전파
             FpNetDataNoti_roomInfo outMsg = new FpNetDataNoti_roomInfo();
@@ -229,11 +219,25 @@ public class FpNetServer_packetHandler
             if( Activity_serverMain_andEngine.Instance != null)
             {
                 Activity_serverMain_andEngine.Instance.release_attractor();
-                Activity_serverMain_andEngine.Instance.Init_attractor();
+
+                //
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        Activity_serverMain_andEngine.Instance.Init_attractor();
+
+                        //클라 정보 업데이트.
+                        FpNetFacade_server.Instance.Send_clientUpdate();
+                    }
+                }, 500);
+
+
             }
 
-            //클라 정보 업데이트.
-            FpNetFacade_server.Instance.Send_clientUpdate();
+
+
+
         }
     };
 
@@ -434,6 +438,18 @@ public class FpNetServer_packetHandler
             FpNetDataReq_regulation_info data = new FpNetDataReq_regulation_info();
             data.Parse(inMsg);
 
+            Activity_serverMain_andEngine.Info_regulation regulation = Activity_serverMain_andEngine.Instance.GetInfo_regulation();
+
+            // regulation
+            regulation._buffer_count = data._buffer_count;
+            regulation._smile_effect = data._smile_effect;
+            regulation._voice_hold = data._voice_hold;
+
+            // flower
+            regulation._flowerPlusSize = data._flowerPlusSize;
+            regulation._flowerMaxSize = data._flowerMaxSize;
+
+
 //            Activity_serverMain.Instance._regulation_seekBar_0 = data._seekBar_0;
 //            Activity_serverMain.Instance._regulation_seekBar_1 = data._seekBar_1;
 //            Activity_serverMain.Instance._regulation_seekBar_2 = data._seekBar_2 > 3 ? data._seekBar_2 : 3;
@@ -473,9 +489,6 @@ public class FpNetServer_packetHandler
             FpsRoot.Instance.onJ2yTurnDataReceived(client._clientID, data._voice);
         }
     };
-
-
-
 
   //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 시나리오 변경
@@ -550,12 +563,21 @@ public class FpNetServer_packetHandler
                     //Manager_resource.Instance.Create_sprite()
                     Bitmap shareImage = FpNetUtil.ByteArrayToBitmap(data.Get_bitArray(i));
 
-                    Activity_serverMain_andEngine.Instance.OnEvent_shareimage(i, shareImage);
+                    if( data.Get_count() == 1)
+                    {
+                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(-1, shareImage);
+                    }
+                    else
+                    {
+                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(i, shareImage);
+                    }
+
                 }
             }
             else
             {
-                Manager_resource.Instance.ReleaseAll_sprites(Activity_serverMain_andEngine.Instance.Get_scene());
+                //Manager_resource.Instance.ReleaseAll_sprites(Activity_serverMain_andEngine.Instance.Get_scene());
+                Manager_resource.Instance.ReleaseAll_flash_Sprites(Activity_serverMain_andEngine.Instance.Get_scene());
             }
 
 

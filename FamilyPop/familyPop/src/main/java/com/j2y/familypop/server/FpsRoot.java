@@ -55,18 +55,22 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
     public FpsRoot()
     {
         Instance = this;
-
+//        Instance = this;
+//        _server = new FpNetFacade_server();
+//        _mobileDeviceManager = new FpsMobileDeviceManager();
+//        _tableDisplayer = new FpsTableDisplyer();
+//        //_scenarioDirector = new FpsScenarioDirector();
+//        _exitServer = true;
+        init();
+    }
+    private void init()
+    {
         _server = new FpNetFacade_server();
-
         _mobileDeviceManager = new FpsMobileDeviceManager();
         _tableDisplayer = new FpsTableDisplyer();
         //_scenarioDirector = new FpsScenarioDirector();
-
         _exitServer = true;
-
-
     }
-
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 서버
@@ -76,18 +80,13 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     public void StartServer()
     {
-
         Log.i("[J2Y]", "FpsRoot:StartServer");
-
+        init();
         _server.StartServer(7778);
-
         InitSocioPhone();
-
         // 제거하기로함.
         //InitLocalization();
-
         MainActivity.Sleep(500);
-
         _exitServer = false;
     }
 
@@ -172,17 +171,12 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
         // 보류
         Log.i("[J2Y]", "FpsRoot:DestroySocioPhone");
 
-//        if (_socioPhone != null)
-//            _socioPhone.stopRecord();
-
         stopRecord();
         MainActivity.Sleep(500);
 
-        if (_socioPhone != null)
-            _socioPhone.stopRecord();
         // 16_02_05 back
-//        if (_socioPhone != null){ _socioPhone.destroy(); }
-//        _socioPhone = null;
+        //if (_socioPhone != null){ _socioPhone.destroy(); _socioPhone = null; }
+
     }
     public void stopRecord(){ if( _socioPhone != null){ _socioPhone.stopRecord(); } }
 
