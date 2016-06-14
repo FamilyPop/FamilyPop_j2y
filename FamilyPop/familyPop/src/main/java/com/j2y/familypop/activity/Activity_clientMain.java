@@ -339,6 +339,9 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
      @Override
     protected void onDestroy()
     {
+        request_exitRoom();
+        FpcRoot.Instance._socioPhone.stopRecord();
+
         Log.i("[J2Y]", "Activity_clientMain:onDestroy");
         if(_task_voiceAmplitude != null)
         {
@@ -625,6 +628,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 break;
             case R.id.button_connectServer:
                 //connectToServer();
+                FpcRoot.Instance._socioPhone.RegisterQuery();
                 Activity_clientMain.Instance._selectScenario = Manager_contents.eType_contents.CONTENTS_TALK.getValue();
                 FpNetFacade_client.Instance.SendPacket_req_changeScenario(Activity_clientMain.Instance._selectScenario);
                 _button_connectServer.setVisibility(View.GONE);

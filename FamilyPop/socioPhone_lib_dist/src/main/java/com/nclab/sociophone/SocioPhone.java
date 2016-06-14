@@ -88,7 +88,7 @@ public class SocioPhone
         }
 
         CAPI = new ContextAPI(mContext);
-        boolean isSucceeded = CAPI.registerQuery("GetVolume 50 50 0");
+
 
         Instance = this;
     }
@@ -157,6 +157,12 @@ public class SocioPhone
      * @param time     Start time of record.
      * @param filename Filename of the recorded file.
      */
+
+//kookm0614
+    public void RegisterQuery(){
+        boolean isSucceeded = CAPI.registerQuery("GetVolume 50 50 0");
+    }
+
     public void startRecord(long time, String filename)
     {
         Log.i("[J2Y]", "[SocioPhone] startRecord ");
@@ -185,16 +191,21 @@ public class SocioPhone
         recordThread = new RecordProcessThread(sHandler, true, filename, mContext);
         recordThread.setCheckPoint(ctime);
         recordThread.start_record(); // get volume
+
+
+        // Start Record  ----------------- 6/9
         _record_start_time = System.currentTimeMillis();
         // FIXME start AudioRecorderService. It registers rec query
         Log.i("JSIM", "start audioRecorderService");
+
         audioRecordIntent = new Intent("com.nclab.sociophone.record.AudioRecorderService");
         _audioRecordService = new AudioRecorderService();
         //audioRecordIntent.setClass(mContext, AudioRecorderService.class);
         audioRecordIntent.setClass(mContext, _audioRecordService.getClass());
         audioRecordIntent.putExtra("sociophone request", "startService");
-        mContext.startService(audioRecordIntent);
+        mContext.startService(audioRecordIntent);   // start audio record
 
+        // ---------------- 6/9
     }
 
     /**
