@@ -636,12 +636,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     {
         //super.onBackPressed();
     }
-    @Override
-    public void onDestroy()
-    {
-        FpsRoot.Instance._socioPhone.destroy();
-        super.onDestroy();
-    }
+    //
+//    @Override
+//    public void onDestroy()
+//    {
+//        //FpsRoot.Instance._socioPhone.destroy();
+//        super.onDestroy();
+//    }
     //
     //====================================================================================================
     // class s

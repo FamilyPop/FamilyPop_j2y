@@ -339,6 +339,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
      @Override
     protected void onDestroy()
     {
+        //kookm0614
         request_exitRoom();
         FpcRoot.Instance._socioPhone.stopRecord();
 
@@ -629,6 +630,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             case R.id.button_connectServer:
                 //connectToServer();
                 //FpcRoot.Instance._socioPhone.RegisterQuery();
+
+                //kookm0614
+                FpcRoot.Instance._socioPhone.RegisterQuery();
+
                 Activity_clientMain.Instance._selectScenario = Manager_contents.eType_contents.CONTENTS_TALK.getValue();
                 FpNetFacade_client.Instance.SendPacket_req_changeScenario(Activity_clientMain.Instance._selectScenario);
                 _button_connectServer.setVisibility(View.GONE);

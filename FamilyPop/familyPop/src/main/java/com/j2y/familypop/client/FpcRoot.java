@@ -70,6 +70,7 @@ public class FpcRoot implements TurnDataListener, DisplayInterface, EventDataLis
         Log.i("[J2Y]", "FpcRoot:ConnectToServer");
 
         _serverIP = ip;
+        //kookm0614
         InitSocioPhone();
         //InitLocalization(ip);
         _client = new FpNetFacade_client();
