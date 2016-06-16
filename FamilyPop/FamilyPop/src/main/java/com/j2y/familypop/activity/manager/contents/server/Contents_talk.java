@@ -43,10 +43,14 @@ public class Contents_talk extends BaseContents
     }
 
     @Override
-    public boolean update() {
+    public boolean update()
+    {
 
         //Log.e("[J2Y]", "talk_update");
-        process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2);
+        if( Activity_serverMain_andEngine.Instance != null)
+        {
+            process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2);
+        }
 
         return super.update();
     }

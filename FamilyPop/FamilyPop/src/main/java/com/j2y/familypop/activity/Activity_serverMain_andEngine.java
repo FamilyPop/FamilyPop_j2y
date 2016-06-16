@@ -168,6 +168,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         // 컨텐츠 업데이트
         if( _manager_contents == null) return;
         if( Manager_actor.Instance == null) return;
+        if( FpsRoot.Instance._exitServer ) return;
 
         _manager_contents.update();
 
@@ -467,22 +468,33 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         face.setScale(1.5f, 1.5f);
         return face;
     }
-    private void IteratorUpdate_Actor(ArrayList<BaseActor> actors, float pSecondsElapsed)
+    private synchronized void IteratorUpdate_Actor(ArrayList<BaseActor> actors, float pSecondsElapsed)
     {
-        List<BaseActor> sActor = Collections.synchronizedList(actors);
-        synchronized (sActor)
-        {
-            Iterator<BaseActor> iterator = sActor.listIterator();
-            while (iterator.hasNext())
-            {
-                ((BaseActor)iterator.next()).onUpdate(pSecondsElapsed);
-            }
-        }
 
-//        for( BaseActor a : actors )
+//        // synchronized update
+//        List<BaseActor> sActor = Collections.synchronizedList(actors);
+//        synchronized (sActor)
 //        {
-//            a.onUpdate(pSecondsElapsed);
+//            Iterator<BaseActor> iterator = sActor.listIterator();
+//            while (iterator.hasNext())
+//            {
+//                ((BaseActor)iterator.next()).onUpdate(pSecondsElapsed);
+//            }
 //        }
+
+
+        // interator update
+//        Iterator<BaseActor> iterator = actors.listIterator();
+//        while(iterator.hasNext())
+//        {
+//            ((BaseActor)iterator.next()).onUpdate(pSecondsElapsed);
+//        }
+
+
+        for( BaseActor a : actors )
+        {
+            a.onUpdate(pSecondsElapsed);
+        }
     }
     //====================================================================================================
     // event
@@ -607,12 +619,15 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         Manager_users.Instance.User_allRelease();
         Manager_actor.Instance = null;
 
+        _manager_contents.Release_All();
+        _manager_contents = null;
         // todo : 마저 제거 해버리자.
         /*
             private Manager_resource _manager_resource;
             private Manager_actor _manager_actor;
             private Manager_contents _manager_contents;
          */
+
         finish();
     }
 

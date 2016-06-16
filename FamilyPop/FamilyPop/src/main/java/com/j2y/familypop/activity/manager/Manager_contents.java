@@ -115,5 +115,8 @@ public class Manager_contents
         }
     }
 
-
+    public void Release_All()
+    {
+        mCurrentContent = eType_contents.CONTENTS_NOT;
+    }
 }

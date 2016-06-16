@@ -182,6 +182,10 @@ public class FpsTalkUser
 
     public void User_release()
     {
+        //FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+        //_net_server.RemoveClient(client);
+
+        FpsRoot.Instance.CloseServer();
         _net_client.Disconnect();
         _smile_events.clear();
     }

@@ -25,7 +25,10 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.Constants;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
@@ -148,7 +151,7 @@ public class Manager_actor
     // ===========================================================
     // create actor
     // ===========================================================
-    public BaseActor Create_actor(Info_actor info)
+    public synchronized BaseActor Create_actor(Info_actor info)
     {
         BaseActor ret = null;
         if( info.actor_unique_number == -1 ){ info.actor_unique_number = getUniqueNumber(); }
@@ -182,7 +185,14 @@ public class Manager_actor
         //info.animatedsprite.getChildByIndex(0).setZIndex();
         //info.animatedsprite.setZIndex();
 
-        mActors.get(info.type_actor).add(ret);
+        List<BaseActor> listActor = Collections.synchronizedList(mActors.get(info.type_actor));
+        synchronized (listActor)
+        {
+            listActor.add(ret);
+        }
+
+        //mActors.get(info.type_actor).add(ret);
+
         return ret;
     }
     // todo : 이벤트와 bee 생성 함수도 만들어야 함 (Create_bee , Create_event)

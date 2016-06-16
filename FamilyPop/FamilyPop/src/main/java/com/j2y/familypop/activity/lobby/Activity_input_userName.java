@@ -21,6 +21,7 @@ import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
 
 import org.andengine.entity.sprite.ButtonSprite;
+import org.andengine.util.math.MathUtils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -47,6 +48,10 @@ public class Activity_input_userName extends BaseActivity implements View.OnClic
 
         SharedPreferences prefs = getSharedPreferences("FamilypopClient", MODE_PRIVATE);
         String text_username = prefs.getString("Username", "UserName");
+
+        int randomInt = MathUtils.random(0, 1000);
+        text_username += String.valueOf(randomInt);
+
         _user_name.setText(text_username);
 
         // server connect

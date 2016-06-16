@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:1-97:12
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:1-110:12
 	xmlns:android
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -17,14 +17,16 @@ ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\F
 		INJECTED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml
 uses-sdk
 ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
 MERGED from [FamilyPop:mmlib:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\mmlib\unspecified\AndroidManifest.xml:5:5-7:41
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:15:5-42
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
 MERGED from [com.android.support:palette-v7:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\palette-v7\21.0.0\AndroidManifest.xml:15:5-42
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [FamilyPop:andEnginePhysicsBox2DExtension:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEnginePhysicsBox2DExtension\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:7:5-9:41
@@ -88,154 +90,162 @@ uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
 ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:30:5-84
 	android:name
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:30:22-81
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:32:5-34:51
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:33:9-54
+	android:value
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:34:9-48
 application
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:33:5-95:19
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:36:5-108:19
+MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:28:5-20
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:11:5-21:19
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [FamilyPop:mmlib:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\mmlib\unspecified\AndroidManifest.xml:9:5-12:19
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:11:5-21:19
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:16:5-19
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:palette-v7:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\palette-v7\21.0.0\AndroidManifest.xml:16:5-17:19
-MERGED from [com.android.support:support-v4:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:5-46
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:5-46
 	android:debuggable
 		ADDED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:18-43
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:36:9-41
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:39:9-41
 	android:allowBackup
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:34:9-35
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:37:9-35
 	android:icon
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:35:9-45
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:38:9-45
 	android:theme
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:37:9-40
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:40:9-40
 activity#com.j2y.familypop.MainActivity
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:38:9-46:20
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:41:9-49:20
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:40:13-45
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:43:13-45
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:39:13-58
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:42:13-58
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:42:13-45:29
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:45:13-48:29
 action#android.intent.action.MAIN
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:43:17-69
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:46:17-69
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:43:25-66
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:46:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:44:17-77
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:47:17-77
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:44:27-74
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:47:27-74
 activity#com.j2y.familypop.activity.Activity_serverMain_andEngine
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:49:9-178
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:60:9-178
 	android:screenOrientation
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:49:91-128
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:60:91-128
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:49:129-166
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:60:129-166
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:49:19-90
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:60:19-90
 activity#com.j2y.familypop.activity.Activity_clientMain
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:50:9-132
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:9-132
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:50:81-120
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:81-120
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:50:19-80
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:19-80
 activity#com.j2y.familypop.activity.lobby.Activity_title
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:55:9-132
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:9-132
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:55:82-120
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:82-120
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:55:19-81
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:19-81
 activity#com.j2y.familypop.backup.Activity_mainRoleBackup
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:57:9-132
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:68:9-132
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:57:83-120
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:68:83-120
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:57:19-82
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:68:19-82
 activity#com.j2y.familypop.activity.client.Activity_clientGame
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:58:9-137
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:69:9-137
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:58:88-125
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:69:88-125
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:58:19-87
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:69:19-87
 activity#com.j2y.familypop.activity.lobby.Activity_talkHistory
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:9-149
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:72:9-149
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:88-137
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:72:88-137
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:61:19-87
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:72:19-87
 activity#com.j2y.familypop.activity.lobby.Activity_talkHistoryPlayback
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:62:9-158
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:9-158
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:62:96-146
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:96-146
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:62:19-95
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:19-95
 activity#com.j2y.familypop.activity.lobby.Activity_mainRole
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:64:9-149
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:75:9-149
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:64:85-137
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:75:85-137
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:64:19-84
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:75:19-84
 activity#com.j2y.familypop.activity.client.Activity_clientStart
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:65:9-155
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:9-155
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:65:89-143
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:89-143
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:65:19-88
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:19-88
 activity#com.j2y.familypop.activity.lobby.Activity_locatorStart
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:9-156
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:9-156
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:89-144
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:89-144
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:66:19-88
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:19-88
 activity#com.j2y.familypop.activity.server.Activity_serverStart
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:67:9-155
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:78:9-155
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:67:89-143
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:78:89-143
 	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:67:19-88
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:78:19-88
 activity#com.j2y.familypop.activity.server.Activity_serverCalibration
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:70:9-151
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:81:9-151
 	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:70:95-139
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:70:19-94
-activity#com.j2y.familypop.activity.server.Activity_serverCalibrationLocation
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:71:9-168
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:71:103-156
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:71:19-102
-activity#com.j2y.familypop.activity.lobby.Activity_topicGallery
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:9-156
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:89-144
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:73:19-88
-activity#com.j2y.familypop.activity.lobby.Activity_locatorWaitingForConnection
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:9-192
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:104-180
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:76:19-103
-activity#com.j2y.familypop.activity.lobby.Activity_locatorNowCalibrating
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:9-180
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:98-168
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:77:19-97
-activity#com.j2y.familypop.activity.lobby.Activity_input_userName
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:80:9-166
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:80:91-154
-	android:name
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:80:19-90
-activity#com.j2y.familypop.activity.lobby.Activity_facebook_connected
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:81:9-170
-	android:label
-		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:81:95-158
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:81:95-139
 	android:name
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:81:19-94
+activity#com.j2y.familypop.activity.server.Activity_serverCalibrationLocation
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:82:9-168
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:82:103-156
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:82:19-102
+activity#com.j2y.familypop.activity.lobby.Activity_topicGallery
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:84:9-156
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:84:89-144
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:84:19-88
+activity#com.j2y.familypop.activity.lobby.Activity_locatorWaitingForConnection
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:87:9-192
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:87:104-180
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:87:19-103
+activity#com.j2y.familypop.activity.lobby.Activity_locatorNowCalibrating
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:88:9-180
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:88:98-168
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:88:19-97
+activity#com.j2y.familypop.activity.lobby.Activity_input_userName
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:91:9-166
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:91:91-154
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:91:19-90
+activity#com.j2y.familypop.activity.lobby.Activity_facebook_connected
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:92:9-170
+	android:label
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:92:95-158
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:92:19-94
 service#com.nclab.sociophone.record.AudioRecorderService
 ADDED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:16:9-20:19
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:16:9-20:19

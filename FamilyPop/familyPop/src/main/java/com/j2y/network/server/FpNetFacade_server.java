@@ -94,7 +94,11 @@ public class FpNetFacade_server extends FpNetFacade_base
 			e.printStackTrace();
 
 			try {
-				_serverSocket.close();
+                if( _serverSocket != null)
+                {
+                    _serverSocket.close();
+                }
+
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}			
@@ -308,12 +312,14 @@ public class FpNetFacade_server extends FpNetFacade_base
         if(Activity_serverMain_andEngine.Instance != null)
             FpNetFacade_server.Instance.Send_talk_record_info();
 
-        // 현재 버전은 서버 종료하기
+//        // 현재 버전은 서버 종료하기
+//        if(Activity_serverMain_andEngine.Instance != null) {
+//            Activity_serverMain_andEngine.Instance.CloseServer();
+//        }
+
         FpsRoot.Instance.CloseServer();
 
-        if(Activity_serverMain_andEngine.Instance != null) {
-            Activity_serverMain_andEngine.Instance.CloseServer();
-        }
+
     }
 
     public FpNetServer_client GetClientByIndex(int index)

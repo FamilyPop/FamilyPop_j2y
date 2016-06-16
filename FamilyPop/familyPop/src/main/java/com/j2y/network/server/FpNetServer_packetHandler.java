@@ -50,6 +50,9 @@ import com.j2y.network.server.packet.PacketListener_connect;
 
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 
+import java.util.Collections;
+import java.util.List;
+
 //import org.jbox2d.common.Vec2;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -144,10 +147,13 @@ public class FpNetServer_packetHandler
         {
             Log.i("[J2Y]", "[패킷수신] 방 나가기");
 
+            if( Activity_serverMain_andEngine.Instance != null) Activity_serverMain_andEngine.Instance.CloseServer();
             FpsRoot.Instance._exitServer = true;
-            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
-            _net_server.RemoveClient(client);
+//            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+//            _net_server.RemoveClient(client);
 
+//            Manager_users.Instance.User_allRelease();
+//            Manager_actor.Instance = null;
 
             FpsRoot.Instance.CloseServer();
             Activity_serverStart.Instance.finish();

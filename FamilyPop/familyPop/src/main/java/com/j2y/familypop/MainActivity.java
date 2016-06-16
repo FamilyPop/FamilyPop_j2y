@@ -38,6 +38,8 @@ import android.view.Window;
 
 import static android.provider.Contacts.Settings.*;
 
+import com.facebook.FacebookSdk;
+
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -83,7 +85,6 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("[J2Y]", "MainActivity:onCreate");
-
 
 //        com.facebook.Settings.getApplicationSignature()
 //        Setting.getApplicationSignature(this);

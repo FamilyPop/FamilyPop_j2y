@@ -19,7 +19,14 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+
     compile project(':socioPhone_lib_dist')
     compile project(':mmlib')
     compile 'com.android.support:support-v4:21.0.0'

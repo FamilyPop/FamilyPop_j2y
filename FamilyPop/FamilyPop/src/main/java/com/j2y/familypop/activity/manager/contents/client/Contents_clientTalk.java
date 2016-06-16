@@ -30,7 +30,7 @@ public class Contents_clientTalk extends BaseContents
         _joystick = Activity_clientMain.Instance._joystick;
       //  _clientId = FpcRoot.Instance._clientId;
         Activity_clientMain.Instance._button_connectServer.setVisibility(View.GONE);
-
+        FpcRoot.Instance._socioPhone.RegisterQuery();
     }
     @Override
     public  synchronized boolean update()
