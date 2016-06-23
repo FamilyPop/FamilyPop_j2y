@@ -173,10 +173,6 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
 
         stopRecord();
         MainActivity.Sleep(500);
-
-        // 16_02_05 back
-        //if (_socioPhone != null){ _socioPhone.destroy(); _socioPhone = null; }
-
     }
     public void stopRecord(){ if( _socioPhone != null){ _socioPhone.stopRecord(); } }
 

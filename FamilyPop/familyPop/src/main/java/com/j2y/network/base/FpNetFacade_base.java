@@ -71,7 +71,11 @@ public class FpNetFacade_base
 
             if(_messageCallbacks.containsKey(msg.what))
             {
-                _messageCallbacks.get(msg.what).CallBack(inMsg);
+                try {
+                    _messageCallbacks.get(msg.what).CallBack(inMsg);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class FpNetDataReq_shareImage extends FpNetData_base
 {
+    public int _clientId = -1;
     private int _count_bitmap;
     private ArrayList<byte[]> _bitArrays;
 
@@ -44,6 +45,7 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     {
         super.Parse(inMsg);
 
+        _clientId = inMsg.ReadInt();
         _count_bitmap = inMsg.ReadInt();
 
         for(int i=0; i<_count_bitmap; ++i)
@@ -60,6 +62,7 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     {
         super.Packing(outMsg);
 
+        outMsg.Write(_clientId);
         outMsg.Write(_count_bitmap);
         for(byte[] data : _bitArrays)
         {

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
@@ -83,7 +84,7 @@ public class Manager_actor
     // ===========================================================
     //
     // ===========================================================
-    private HashMap<eType_actor, ArrayList<BaseActor>> mActors = null;
+    private HashMap<eType_actor, CopyOnWriteArrayList<BaseActor>> mActors = null;
     private long actor_unique_number = 100000;
     private boolean _isUpdate = true;
 
@@ -98,21 +99,21 @@ public class Manager_actor
         _scene = scene;
 
         // 구분자 생성.
-        mActors = new HashMap<eType_actor, ArrayList<BaseActor>>();
+        mActors = new HashMap<eType_actor, CopyOnWriteArrayList<BaseActor>>();
 
         // 각 타입별 액터 저장소 생성.
-        mActors.put(eType_actor.ACTOR_NON, new ArrayList<BaseActor>());
-        mActors.put(eType_actor.ACTOR_ATTRACTOR, new ArrayList<BaseActor>());
-        mActors.put(eType_actor.ACTOR_TALK, new ArrayList<BaseActor>());
-        mActors.put(eType_actor.ACTOR_BEE, new ArrayList<BaseActor>());
-        mActors.put(eType_actor.ACTOR_SMILE, new ArrayList<BaseActor>());
-        mActors.put(eType_actor.ACTOR_GOOD, new ArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_NON, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_ATTRACTOR, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_TALK, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_BEE, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_SMILE, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_GOOD, new CopyOnWriteArrayList<BaseActor>());
     }
     public void Manager_updateAll(float pSecondsElapsed)
     {
         if( Get_isUpdate()) return;
 
-        for( ArrayList<BaseActor> actors : mActors.values())
+        for( CopyOnWriteArrayList<BaseActor> actors : mActors.values())
         {
             for( BaseActor actor : actors)
             {
@@ -139,12 +140,13 @@ public class Manager_actor
     // ===========================================================
     // get
     // ===========================================================
-    public ArrayList<BaseActor> GetActorsList(eType_actor type)
+    //public CopyOnWriteArrayList<BaseActor> GetActorsList(eType_actor type)
+    public CopyOnWriteArrayList<BaseActor> GetActorsList(eType_actor type)
     {
         //return (ArrayList<BaseActor>)mActors.get(type).clone();
         return mActors.get(type);
     }
-    public HashMap<eType_actor, ArrayList<BaseActor>> GetActors()
+    public HashMap<eType_actor, CopyOnWriteArrayList<BaseActor>> GetActors()
     {
         return mActors;
     }
@@ -185,13 +187,13 @@ public class Manager_actor
         //info.animatedsprite.getChildByIndex(0).setZIndex();
         //info.animatedsprite.setZIndex();
 
-        List<BaseActor> listActor = Collections.synchronizedList(mActors.get(info.type_actor));
-        synchronized (listActor)
-        {
-            listActor.add(ret);
-        }
+        //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(info.type_actor));
+        //synchronized (listActor)
+        //{
+         //   listActor.add(ret);
+        //}
 
-        //mActors.get(info.type_actor).add(ret);
+        mActors.get(info.type_actor).add(ret);
 
         return ret;
     }
@@ -328,7 +330,7 @@ public class Manager_actor
     {
         Actor_attractor ret = null;
 
-        ArrayList<BaseActor> attractors = mActors.get(eType_actor.ACTOR_ATTRACTOR);
+        CopyOnWriteArrayList<BaseActor> attractors = mActors.get(eType_actor.ACTOR_ATTRACTOR);
         int count_attractor = attractors.size();
 
         for( int i=0; i<count_attractor; ++i)
@@ -345,6 +347,7 @@ public class Manager_actor
 
     // ===========================================================
     // destroy actor
+    // // TODO: 2016-06-20 함수에 공통된 부분을 합쳐야함.
     // ===========================================================
     public boolean Destroy_attractor(long actor_unique_number)
     {
@@ -376,11 +379,112 @@ public class Manager_actor
             _scene.detachChild(select_sprite);
 
             mActors.get(eType_actor.ACTOR_ATTRACTOR).remove(delect_index);
+            //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_ATTRACTOR));
+            //synchronized (listActor)
+            //{
+            //    listActor.remove(delect_index);
+            //}
             ret = true;
         }
 
         return ret;
     }
+    public boolean Destroy_talk(Actor_talk talk)
+    {
+        boolean ret = false;
+
+        if( talk != null )
+        {
+            final PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(talk.Get_Sprite());
+
+            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+            _physicsWorld.destroyBody(talk.Get_Body());
+            _scene.detachChild(talk.Get_Sprite());
+
+            mActors.get(eType_actor.ACTOR_TALK).remove(talk);
+//            List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_TALK));
+//            synchronized (listActor)
+//            {
+//                listActor.remove(talk);
+//            }
+
+            ret = true;
+
+        }
+
+        return ret;
+    }
+    public boolean Destroy_smile(Actor_smile smile)
+    {
+        boolean ret = false;
+
+        if( smile != null)
+        {
+            final PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(smile.Get_Sprite());
+
+            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+            _physicsWorld.destroyBody(smile.Get_Body());
+
+            mActors.get(eType_actor.ACTOR_SMILE).remove(smile);
+            //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_SMILE));
+//            synchronized (listActor)
+//            {
+//                listActor.remove(smile);
+//            }
+
+            ret = true;
+        }
+
+        return ret;
+    }
+    public boolean Destroy_good(Actor_good good)
+    {
+        boolean ret = false;
+
+        if( good != null)
+        {
+            final  PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(good.Get_Sprite());
+
+            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+            _physicsWorld.destroyBody(good.Get_Body());
+
+            //mActors.get(eType_actor.ACTOR_GOOD).remove(good);
+            List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_GOOD));
+            synchronized (listActor)
+            {
+                listActor.remove(good);
+            }
+
+
+            ret = true;
+        }
+
+        return ret;
+    }
+    public boolean Destroy_honeyBee(Actor_honeyBee bee)
+    {
+        boolean ret = false;
+
+        if( bee != null)
+        {
+            final  PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(bee.Get_Sprite());
+
+            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+            _physicsWorld.destroyBody(bee.Get_Body());
+
+            mActors.get(eType_actor.ACTOR_BEE).remove(bee);
+//            List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_BEE));
+//            synchronized (listActor)
+//            {
+//                listActor.remove(bee);
+//            }
+
+            ret = true;
+        }
+
+        return ret;
+    }
+
     //=========================================================================================================================================
     // add child sprite
     public void AttachChild(BaseActor actor, Sprite attachSprite)

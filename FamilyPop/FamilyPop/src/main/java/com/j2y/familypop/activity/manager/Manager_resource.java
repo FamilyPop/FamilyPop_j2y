@@ -2,10 +2,15 @@ package com.j2y.familypop.activity.manager;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
 
+import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.entity.text.Text;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -25,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by lsh on 2016-04-29.
@@ -164,7 +170,8 @@ public class Manager_resource {
     private ArrayList<String> _likePetalNames = null;
 
 
-    private ArrayList<Sprite> _flash_sprites = null;
+    private CopyOnWriteArrayList<Sprite> _flash_sprites = null;
+
     //====================================================================================================
     // init
     //====================================================================================================
@@ -173,7 +180,7 @@ public class Manager_resource {
         _gameActivity = gameActivity;
         _textureManager = ((BaseGameActivity) gameActivity).getTextureManager();
 
-        _flash_sprites = new ArrayList<>();
+        _flash_sprites = new CopyOnWriteArrayList<>();
 
         init_loadTexture();
         init_textureNames();
@@ -283,6 +290,9 @@ public class Manager_resource {
         _likePetalNames.add("like_petal-04.png");
         _likePetalNames.add("like_petal-05.png");
     }
+    //====================================================================================================
+    //
+    //====================================================================================================
     private void add_TiledTexture(eType_atlas type, String key, String texName, int pTextureX, int pTextureY, int pTileColumns, int pTileRows) {
 
         switch (type) {
@@ -376,8 +386,6 @@ public class Manager_resource {
         });
         bitmapTexture.load();
 
-
-
         TextureRegion textureRegion = TextureRegionFactory.extractFromTexture(bitmapTexture);
         ret = new Sprite(posX, posY, textureRegion, gameActivity.getVertexBufferObjectManager());
 
@@ -409,13 +417,33 @@ public class Manager_resource {
 
         return ret;
     }
-    public void ReleaseAll_flash_Sprites(Scene scene)
+    public static boolean flashSprittRelease = false;
+    public IUpdateHandler ReleaseAll_flash_Sprites(final Scene scene)
     {
-        for( Sprite sp : _flash_sprites)
-        {
-            scene.detachChild(sp);
-        }
-        _flash_sprites.clear();
+
+        return new IUpdateHandler() {
+            @Override
+            public void onUpdate(float pSecondsElapsed)
+            {
+                if(flashSprittRelease == true )
+                {
+                    for( Sprite sp : _flash_sprites)
+                    {
+
+                        scene.detachChild(sp);
+                        _flash_sprites.remove(sp);
+                    }
+                    flashSprittRelease = false;
+                }
+            }
+
+            @Override
+            public void reset() {
+
+            }
+        };
+
+        //_flash_sprites.clear();
     }
     public void ReleaseAll_sprite()
     {

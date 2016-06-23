@@ -66,7 +66,8 @@ public class Actor_talk  extends BaseActor
             mOriginalScale.x += (_addTalkScale * 0.001f);
             mOriginalScale.y += (_addTalkScale * 0.001f);
             mSprite.setScale(mOriginalScale.x, mOriginalScale.y);
-            //mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + x);
+
+           mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale * 0.001f));
         }
     }
     public float Get_Scale(){return mSprite.getScaleX();}

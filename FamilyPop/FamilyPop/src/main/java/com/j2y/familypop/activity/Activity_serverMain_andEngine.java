@@ -37,6 +37,7 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.text.Text;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -44,14 +45,17 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.sensor.acceleration.AccelerationData;
 import org.andengine.input.sensor.acceleration.IAccelerationListener;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.font.Font;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -64,6 +68,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public static Activity_serverMain_andEngine Instance = null;
     public static final int CAMERA_WIDTH = 800;
     public static final int CAMERA_HEIGHT = 480;
+
+    //
 
     // test
     Actor_attractor a1 = null;
@@ -89,6 +95,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     private Info_regulation info_regulation = null;
     public Info_regulation GetInfo_regulation(){return info_regulation;}
     public Scene Get_scene(){return _scene;}
+
+    // font
+    private Font _font;
+    private Text _text;
     //====================================================================================================
     // andengine init
     boolean _scheduleEngineStart;
@@ -161,6 +171,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         return ret;
     }
+    //=====================================================================================================================================
     // andEngine update
     @Override
     public  synchronized void onUpdate(float pSecondsElapsed)
@@ -170,26 +181,27 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         if( Manager_actor.Instance == null) return;
         if( FpsRoot.Instance._exitServer ) return;
 
+
         _manager_contents.update();
 
         // talk
-        ArrayList<BaseActor> talks = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
+        CopyOnWriteArrayList<BaseActor> talks = (CopyOnWriteArrayList<BaseActor>)Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK).clone();
         IteratorUpdate_Actor(talks, pSecondsElapsed);
 
         // update smile
-        ArrayList<BaseActor> smiles = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_SMILE);
+        CopyOnWriteArrayList<BaseActor> smiles = (CopyOnWriteArrayList<BaseActor>)Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_SMILE).clone();
         IteratorUpdate_Actor(smiles, pSecondsElapsed);
 
         // attractor
-        ArrayList<BaseActor> attractors = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
+        CopyOnWriteArrayList<BaseActor> attractors = (CopyOnWriteArrayList<BaseActor>)Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR).clone();
         IteratorUpdate_Actor(attractors, pSecondsElapsed);
 
         // good
-        ArrayList<BaseActor> goods = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
+        CopyOnWriteArrayList<BaseActor> goods = (CopyOnWriteArrayList<BaseActor>)Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD).clone();
         IteratorUpdate_Actor(goods, pSecondsElapsed);
 
         // bee
-        ArrayList<BaseActor> bees = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE);
+        CopyOnWriteArrayList<BaseActor> bees = (CopyOnWriteArrayList<BaseActor>)Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE).clone();
         IteratorUpdate_Actor(bees, pSecondsElapsed);
 
     }
@@ -230,6 +242,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             //posCount++;
         }
     }
+    //===================================================================================================
+    // release actor
+    //ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4);
     //Manager_users 가 살아 있어야함.
     public void release_attractor()
     {
@@ -240,6 +255,67 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         for( FpsTalkUser user :  magUsers.Get_talk_users().values() )
         {
             magActor.Destroy_attractor(user._uid_attractor);
+        }
+    }
+    public void release_talk()
+    {
+        Manager_actor magActor = Manager_actor.Instance;
+
+        if( magActor == null) return;
+
+        CopyOnWriteArrayList<BaseActor> talks = magActor.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
+        int count = talks.size();
+
+        while (count != 0)
+        {
+            magActor.Destroy_talk((Actor_talk) talks.get(0));
+            count--;
+        }
+
+    }
+    public void release_smile()
+    {
+        Manager_actor magActor = Manager_actor.Instance;
+        if( magActor == null) return;
+
+        CopyOnWriteArrayList<BaseActor> smile = magActor.GetActorsList(Manager_actor.eType_actor.ACTOR_SMILE);
+        int count = smile.size();
+
+        while (count != 0)
+        {
+            magActor.Destroy_smile((Actor_smile)smile.get(0));
+            count--;
+        }
+    }
+    public void release_good()
+    {
+        Manager_actor magActor = Manager_actor.Instance;
+        if( magActor == null) return;
+
+        CopyOnWriteArrayList<BaseActor> good = magActor.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
+        int count = good.size();
+
+        while (count != 0)
+        {
+            synchronized(good)
+            {
+                magActor.Destroy_good((Actor_good)good.get(0));
+                count--;
+            }
+        }
+    }
+    public void release_bee()
+    {
+        Manager_actor magActor = Manager_actor.Instance;
+        if( magActor == null) return;
+
+        CopyOnWriteArrayList<BaseActor> bee = magActor.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE);
+        int count = bee.size();
+
+        while(count != 0)
+        {
+            magActor.Destroy_honeyBee((Actor_honeyBee)bee.get(0));
+            count--;
         }
     }
     // activity exit
@@ -338,6 +414,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         Sprite face = null;
         Sprite flower = null;
+
+        x *= PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT;
+        y *= PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT;
 
         face = create_sprite(x, y, "smile_01.png");
         flower = create_sprite(0, 0, flowerName);
@@ -468,7 +547,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         face.setScale(1.5f, 1.5f);
         return face;
     }
-    private synchronized void IteratorUpdate_Actor(ArrayList<BaseActor> actors, float pSecondsElapsed)
+    private synchronized void IteratorUpdate_Actor(CopyOnWriteArrayList<BaseActor> actors, float pSecondsElapsed)
     {
 
 //        // synchronized update
@@ -488,6 +567,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 //        while(iterator.hasNext())
 //        {
 //            ((BaseActor)iterator.next()).onUpdate(pSecondsElapsed);
+//        }
+
+//        Iterator<BaseActor> iterator = actors.listIterator();
+//
+//        for( Iterator<BaseActor> iter = actors.listIterator(); iter.hasNext();)
+//        {
+//            ((BaseActor)iter.next()).onUpdate(pSecondsElapsed);
 //        }
 
 
@@ -571,10 +657,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     @Override
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent)
     {
-        Log.i("[J2Y]","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
         if( this._physicsWorld != null)
         {
-            ArrayList<BaseActor> attractors = _manager_actor.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
+            CopyOnWriteArrayList<BaseActor> attractors = _manager_actor.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
             int count_attractor = attractors.size();
             for( int i=0; i<count_attractor; ++i)
             {
@@ -604,8 +690,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         return false;
     }
-    public void CloseServer()
-    {
+
+    public void CloseServer() throws InterruptedException {
 
         //FpsRoot.Instance.CloseServer();
         //System.exit(0);
@@ -614,7 +700,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         MainActivity.Instance._serverActivityStart = false;
 
         // 액터를 전부 제거 한다.
-        release_attractor();
+//        release_talk();
+//        release_smile();
+//        release_good();
+//        release_bee();
+//        release_attractor();
         // 유저를 전부 제거 disconnect 한다.
         Manager_users.Instance.User_allRelease();
         Manager_actor.Instance = null;
@@ -624,11 +714,16 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         // todo : 마저 제거 해버리자.
         /*
             private Manager_resource _manager_resource;
-            private Manager_actor _manager_actor;
             private Manager_contents _manager_contents;
          */
 
-        finish();
+        Thread.sleep(1000);
+        _scene.detachChildren();
+        _scene.clearEntityModifiers();
+        _scene.clearTouchAreas();
+        _scene.clearUpdateHandlers();
+
+        //finish();
     }
 
     @Override
@@ -636,6 +731,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     {
         //super.onBackPressed();
     }
+
+    //kookm0614
     //
 //    @Override
 //    public void onDestroy()

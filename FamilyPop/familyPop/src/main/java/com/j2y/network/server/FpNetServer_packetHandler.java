@@ -1,7 +1,9 @@
 package com.j2y.network.server;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -48,6 +50,8 @@ import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.j2y.network.client.FpNetFacade_client;
 import com.j2y.network.server.packet.PacketListener_connect;
 
+import org.andengine.engine.handler.IUpdateHandler;
+import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 
 import java.util.Collections;
@@ -143,19 +147,20 @@ public class FpNetServer_packetHandler
     FpNetMessageCallBack onReq_exit_room = new FpNetMessageCallBack()
     {
         @Override
-        public void CallBack(FpNetIncomingMessage inMsg)
-        {
+        public void CallBack(FpNetIncomingMessage inMsg) throws InterruptedException {
             Log.i("[J2Y]", "[패킷수신] 방 나가기");
 
-            if( Activity_serverMain_andEngine.Instance != null) Activity_serverMain_andEngine.Instance.CloseServer();
             FpsRoot.Instance._exitServer = true;
+            FpsRoot.Instance.CloseServer();
+            if( Activity_serverMain_andEngine.Instance != null) Activity_serverMain_andEngine.Instance.CloseServer();
+
 //            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
 //            _net_server.RemoveClient(client);
 
 //            Manager_users.Instance.User_allRelease();
 //            Manager_actor.Instance = null;
 
-            FpsRoot.Instance.CloseServer();
+
             Activity_serverStart.Instance.finish();
             MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));
 
@@ -550,6 +555,7 @@ public class FpNetServer_packetHandler
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 이미지 공유
+    static IUpdateHandler releaseUpdate = null;
     FpNetMessageCallBack onCSC_shareimage = new FpNetMessageCallBack()
     {
         @Override
@@ -560,7 +566,9 @@ public class FpNetServer_packetHandler
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
             data.Parse(inMsg);
 
-            _net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
+            //_net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
+            _net_server.SendPacket(FpNetConstants.CSC_ShareImage, data._clientId, data);
+
 
             if( data.Get_count() != 0)
             {
@@ -583,7 +591,18 @@ public class FpNetServer_packetHandler
             else
             {
                 //Manager_resource.Instance.ReleaseAll_sprites(Activity_serverMain_andEngine.Instance.Get_scene());
-                Manager_resource.Instance.ReleaseAll_flash_Sprites(Activity_serverMain_andEngine.Instance.Get_scene());
+                //Manager_resource.Instance.ReleaseAll_flash_Sprites(Activity_serverMain_andEngine.Instance.Get_scene());
+                if( releaseUpdate == null)
+                {
+                    Scene scene = Activity_serverMain_andEngine.Instance.Get_scene();
+                    releaseUpdate = Manager_resource.Instance.ReleaseAll_flash_Sprites(scene);
+                    scene.registerUpdateHandler(releaseUpdate);
+                    Manager_resource.flashSprittRelease = true;
+                }
+                else
+                {
+                    Manager_resource.flashSprittRelease = true;
+                }
             }
 
 

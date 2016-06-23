@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_next04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_next04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_box_select.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_box_select.png"
     },
@@ -18,6 +22,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_locator.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_locator.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_histroy_tick_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_histroy_tick_104.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_clientmode_topmenu_familybomb.png",
@@ -76,6 +84,14 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\drawable-xxhdpi-v4\\com_facebook_button_like_icon_selected.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_00x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_jog_user_00x4.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_history_play04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_history_play04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background_history_listitem_temp5.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_history_listitem_temp5.png"
     },
@@ -104,6 +120,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_picture.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_elem_menu_profilex4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_elem_menu_profilex4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_facebookconnected.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_facebookconnected.png"
     },
@@ -114,6 +134,14 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_pause_over.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_pause_over.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_histroy_big04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_histroy_big04.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_quitx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_quitx4.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_ttt_youwin.png",
@@ -152,6 +180,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_flower_bomb.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_sel_chk_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_sel_chk_104.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\scroll_background.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\scroll_background.png"
     },
@@ -180,6 +212,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_start_dialogue.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_310x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_jog_user_310x4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_client.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_client.png"
     },
@@ -192,6 +228,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_role_off.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_40x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_jog_user_40x4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bead_6.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bead_6.png"
     },
@@ -200,12 +240,12 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_server.png"
     },
     {
-        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\check_non.png",
-        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\check_non.png"
-    },
-    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_create_history.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_create_history.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\check_non.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\check_non.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\check_pink.png",
@@ -272,16 +312,20 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_color.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_float_204.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_float_204.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bead_5.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bead_5.png"
     },
     {
-        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_down_arrow.png",
-        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_down_arrow.png"
-    },
-    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_topmenu_setting.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topmenu_setting.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_down_arrow.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_down_arrow.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble_pink.png",
@@ -312,6 +356,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_play_non.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_historyview_pause04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_historyview_pause04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\shakephone.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\shakephone.png"
     },
@@ -324,12 +372,24 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_phone.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_elem_profilex4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_elem_profilex4.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_sel_chk_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_sel_chk_104.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_sharing_pictures.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_sharing_pictures.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_client_bubble.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_client_bubble.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_accountx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_accountx4.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_ok.png",
@@ -340,8 +400,16 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_history_listitem_temp0.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_debugx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_debugx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\scroll_point.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\scroll_point.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_histroy_small04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_histroy_small04.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\icon_sharing_pictures.png",
@@ -356,6 +424,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_width_length.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_elem_rimx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_elem_rimx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background0.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background0.png"
     },
@@ -366,6 +438,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_dialoguehistory.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_dialoguehistory.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_popmenu04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_popmenu04.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_calibration_measure_the_height_and_width_length_of_the_projection_screen.png",
@@ -408,8 +484,16 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\drawable-xxhdpi-v4\\messenger_button_send_round_shadow.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_menu_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_menu_104.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_ttt_client_localization.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_ttt_client_localization.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_sel_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_sel_104.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_step_over.png",
@@ -418,6 +502,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_server_dialogue.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_server_dialogue.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_userlike_404.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_userlike_404.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_ttt_o_red.png",
@@ -472,6 +560,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_next_on.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_float_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_float_004.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_pointline_hor.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_pointline_hor.png"
     },
@@ -496,6 +588,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_cancle.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_10x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_jog_user_10x4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background_bottommenu.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_bottommenu.png"
     },
@@ -508,12 +604,28 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\check_blue.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_userlike_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_userlike_104.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_userlike_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_userlike_004.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_topmenu_off.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topmenu_off.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_shrpicx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_shrpicx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background_text1.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_text1.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_sel_chk_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_sel_chk_004.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_state_on.png",
@@ -532,6 +644,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_select_server.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_sel_chk_00.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_sel_chk_00.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble_yellow.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bubble_yellow.png"
     },
@@ -542,6 +658,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_state_off.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_state_off.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_userlike_204.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_userlike_204.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_pos_yellow.png",
@@ -588,6 +708,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topic_week.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_sel_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_sel_004.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_topic_select.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topic_select.png"
     },
@@ -608,6 +732,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_refresh.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_historyview_play04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_historyview_play04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_setting.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_setting.png"
     },
@@ -618,6 +746,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_ip_address.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_ip_address.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_20x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_jog_user_20x4.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_ttt_o.png",
@@ -634,6 +766,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_pos_pink.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_pos_pink.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_userlike_30x4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_userlike_30x4.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_do_you_want_to_quit_this_dialogue.png",
@@ -654,6 +790,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_dialogue_history.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_dialogue_history.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_menu_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_menu_004.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble_type3.png",
@@ -700,8 +840,16 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\_image_bubble_red.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_elem_history_pointx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_elem_history_pointx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_ipaddress.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_ipaddress.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_facebook04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_facebook04.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble1.png",
@@ -728,6 +876,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topic_non.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_settingx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_settingx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_topmenu_role.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topmenu_role.png"
     },
@@ -740,6 +892,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_clientmode_topmenu_quitdialogue.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_shrkeyx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_shrkeyx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\title.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\title.png"
     },
@@ -750,6 +906,14 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\com_facebook_button_icon.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\drawable-xxhdpi-v4\\com_facebook_button_icon.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_float_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_float_104.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_chk_104.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_chk_104.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble_blue.png",
@@ -816,6 +980,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_color_0.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_statusx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_statusx4.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_top_menu.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_top_menu.png"
     },
@@ -852,6 +1020,10 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_history_create.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_bg_appbar04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_bg_appbar04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_clientmode_topmenu_savedialogue.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_clientmode_topmenu_savedialogue.png"
     },
@@ -860,8 +1032,20 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bubble_phthalogreen.png"
     },
     {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_history_like04.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_history_like04.png"
+    },
+    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_topic_day.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_topic_day.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_input_barx4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_input_barx4.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_chk_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_chk_004.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_ttt_client_deactive_x.png",
@@ -882,6 +1066,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble_type2.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bubble_type2.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_ic_menux4.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_ic_menux4.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_color_4.png",
@@ -936,12 +1124,12 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_share_keywords.png"
     },
     {
-        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background_history_listitem_temp3.png",
-        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_history_listitem_temp3.png"
-    },
-    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bead_3.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\image_bead_3.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\background_history_listitem_temp3.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\background_history_listitem_temp3.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\client.png",
@@ -950,6 +1138,10 @@
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_period.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_period.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_btn_histroy_tick_004.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\gui_0621_reso_btn_histroy_tick_004.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\image_bubble0.png",

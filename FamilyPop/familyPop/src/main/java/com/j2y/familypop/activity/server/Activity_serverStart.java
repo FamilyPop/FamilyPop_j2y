@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
+import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
 import com.j2y.familypop.server.FpsTalkUser;
 import com.nclab.familypop.R;
@@ -59,8 +60,10 @@ public class Activity_serverStart extends Activity
         // maanager
 
         // net
+
         FpsRoot.Instance.CloseServer();
         FpsRoot.Instance.StartServer();
+        FpsRoot.Instance._socioPhone.RegisterQuery();
         //
         android.os.Handler handler = new android.os.Handler();
         handler.postDelayed(new Runnable() {

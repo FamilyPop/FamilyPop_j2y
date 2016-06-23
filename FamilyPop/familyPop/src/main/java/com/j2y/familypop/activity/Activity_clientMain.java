@@ -339,6 +339,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
      @Override
     protected void onDestroy()
     {
+        super.onDestroy();
+
         //kookm0614
         request_exitRoom();
         FpcRoot.Instance._socioPhone.stopRecord();
@@ -352,7 +354,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         FpcRoot.Instance.DisconnectServer();
 
         Instance = null;
-        super.onDestroy();
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -632,7 +633,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 //FpcRoot.Instance._socioPhone.RegisterQuery();
 
                 //kookm0614
-                FpcRoot.Instance._socioPhone.RegisterQuery();
+                //FpcRoot.Instance._socioPhone.RegisterQuery();
 
                 Activity_clientMain.Instance._selectScenario = Manager_contents.eType_contents.CONTENTS_TALK.getValue();
                 FpNetFacade_client.Instance.SendPacket_req_changeScenario(Activity_clientMain.Instance._selectScenario);
@@ -1377,48 +1378,46 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
         switch(FpcRoot.Instance._bubble_color_type)
         {
-            // pink
+            // orange
             case 0:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_4);
                 //drawble = res.getDrawable(R.drawable.image_stick_pink);
-                drawble = res.getDrawable(R.drawable.image_stick_pink);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_20x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_pink_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_pink);
-
-
                 break;
             // red
             case 1:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
-                drawble = res.getDrawable(R.drawable.image_stick_red);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_00x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
                 break;
-            // yellow
+            // green
             case 2:
                // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
-                drawble = res.getDrawable(R.drawable.image_stick_yellow);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_40x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
                 break;
-            // green
+            // purple
             case 3:
                // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
-                drawble = res.getDrawable(R.drawable.image_stick_green);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
                 break;
-            // phthalogreen
+            // sky bule
             case 4:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_5);
-                drawble = res.getDrawable(R.drawable.image_stick_phthalogreen);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_phthalogreen);
                 break;
-            // blue
+            // yellow
             case 5:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_3);
-                drawble = res.getDrawable(R.drawable.image_stick_blue);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_blue);
                 break;
@@ -1434,11 +1433,11 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _layout_joystick.setClickable(true);
         _layout_joystick.setBackground(drawbleStickLayout);
         _joystick = new JoyStick(getApplicationContext() , _layout_joystick, drawble);
-        _joystick.setStickSize(250, 250);
+        _joystick.setStickSize(500, 500);
         _joystick.setLayoutSize(800, 800);
         //js.setLayoutAlpha(150);
         //js.setStickAlpha(100);
-        _joystick.setOffset(125);
+        _joystick.setOffset(250);
         //js.setMinimumDistance(50);
 
         _joystick.draw(800 / 2, 800 / 2);
@@ -1669,6 +1668,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _photoGallery = new Activity_photoGallery(this, (GridView)findViewById(R.id.grid_view));
     }
 
+    // todo : 같은 일을 하는 부분가 있음. 분리 해야함.
     public void Set_StyleJoyStick(int clientId)
     {
         // COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1),  COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4);
@@ -1680,42 +1680,60 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
         switch(clientId)
         {
-            // orange // 컬러가 없음
+            // orange
             case 0:
-                drawble = res.getDrawable(R.drawable.image_stick_pink);
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_4);
+                //drawble = res.getDrawable(R.drawable.image_stick_pink);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_20x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_pink_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_pink);
                 break;
-            // yellow green
+            // red
             case 1:
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_00x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
+                break;
+            // green
+            case 2:
+                // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_40x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
+                break;
+            // purple
+            case 3:
+                // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
+                break;
+            // sky bule
+            case 4:
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_5);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_phthalogreen);
+                break;
+            // yellow
+            case 5:
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_3);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_blue);
+                break;
+            case 6:
+                // _button_redbubble.setBackgroundResource(R.drawable.image_bead_6);
                 drawble = res.getDrawable(R.drawable.image_stick_green);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
                 break;
-            // purple // 컬러가 없음.
-            case 2:
-                drawble = res.getDrawable(R.drawable.image_stick_yellow);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
-                break;
-            // sky_blue
-            case 3:
-                drawble = res.getDrawable(R.drawable.image_stick_blue);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_blue);
-                break;
-            // red
-            case 4:
-                drawble = res.getDrawable(R.drawable.image_stick_red);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
-                break;
-
         }
 
         _layout_joystick.setBackground(drawbleStickLayout);
         _joystick.Set_stick(drawble);
-        _joystick.setStickSize(250, 250);
+        _joystick.setStickSize(500, 500);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     private void active_featureMenu(boolean active)

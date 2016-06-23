@@ -284,7 +284,18 @@ public class FpNetFacade_server extends FpNetFacade_base
 
         for(FpNetServer_client client : _clients)
         {
-            client.SendPacket(msgID, outPacket);
+             client.SendPacket(msgID, outPacket);
+        }
+    }
+    public void SendPacket(int msgID, int clientId, FpNetData_base outPacket)
+    {
+        for( FpNetServer_client client : _clients)
+        {
+            if( client._clientID == clientId)
+            {
+                client.SendPacket(msgID, outPacket);
+                break;
+            }
         }
     }
 

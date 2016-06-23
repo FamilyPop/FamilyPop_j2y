@@ -393,6 +393,11 @@ public class FpNetFacade_client extends FpNetFacade_base
 
             Log.i("[J2Y]", "[패킷수신] 방 종료");
 
+            //kookm0616
+            if (FpcRoot.Instance._scenarioDirectorProxy._activeScenario != null)
+                FpcRoot.Instance._scenarioDirectorProxy._activeScenario.OnDeactivated();
+            FpcRoot.Instance._socioPhone.stopRecord();
+
             if(Activity_clientMain.Instance != null)
                 Activity_clientMain.Instance.OnEventSC_exitRoom();
         }
@@ -648,6 +653,7 @@ public class FpNetFacade_client extends FpNetFacade_base
             return;
         }
 
+        reqPaket._clientId =  FpcRoot.Instance._clientId;
         for(int i=0; i<photo.Get_countBitmap(); ++i)
         {
             reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), 256, 256, false));

@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/text_start_dialogue"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="15dp"/>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_start_role_topmenu_home"
-            android:background="@drawable/button_top_menu"
+            android:background="@drawable/gui_0621_reso_ic_menux4"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_gravity="left|center_vertical"
@@ -166,5 +166,18 @@
         android:layout_below="@+id/frameLayout2"
         android:layout_centerHorizontal="true"
         android:textSize="12dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="START A DIALOGUE AS"
+        android:id="@+id/textView17"
+        android:layout_above="@+id/frameLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="#b8d3ed"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

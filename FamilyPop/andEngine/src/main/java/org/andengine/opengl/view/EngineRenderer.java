@@ -94,14 +94,17 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 	}
 
 	@Override
-	public void onDrawFrame(final GL10 pGL) {
-		synchronized(GLState.class) {
+	public void onDrawFrame(final GL10 pGL)
+	{
+		synchronized(GLState.class)
+		{
 			if (this.mMultiSampling && this.mConfigChooser.isCoverageMultiSampling()) {
 				final int GL_COVERAGE_BUFFER_BIT_NV = 0x8000;
 				GLES20.glClear(GL_COVERAGE_BUFFER_BIT_NV);
 			}
 
-			try {
+			try
+			{
 				this.mEngine.onDrawFrame(this.mGLState);
 			} catch (final InterruptedException e) {
 				Debug.e("GLThread interrupted!", e);

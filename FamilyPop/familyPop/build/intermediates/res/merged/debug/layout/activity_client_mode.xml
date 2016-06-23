@@ -575,7 +575,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_client_dialogue_topmenu_feature"
-            android:background="@drawable/button_topmenu_off"
+            android:background="@drawable/gui_0621_reso_ic_menux4"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/button_client_dialogue_topmenu_home"
             android:layout_marginLeft="10dp"
@@ -592,17 +592,17 @@
             android:id="@+id/textView_clientMode_title"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="100dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="70dp"
+             />
 
         <!-- bomb -->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_client_dialogue_topmenu_bomb"
-            android:background="@drawable/icon_flower_bomb"
-            android:layout_marginLeft="30dp"
+            android:background="@drawable/gui_0621_reso_ic_debugx4"
+            android:layout_marginLeft="20dp"
             android:visibility="visible"
             android:layout_alignBottom="@+id/button_client_dialogue_topmenu_feature"
             android:layout_toEndOf="@+id/button_client_dialogue_topmenu_keyword"
@@ -614,7 +614,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_client_dialogue_topmenu_keyword"
-            android:background="@drawable/icon_sharing_keywords"
+            android:background="@drawable/gui_0621_reso_ic_shrkeyx4"
             android:layout_marginLeft="10dp"
             android:visibility="visible"
             android:layout_alignParentTop="true"
@@ -626,7 +626,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_client_dialogue_topmenu_sharephotos"
-            android:background="@drawable/icon_sharing_pictures"
+            android:background="@drawable/gui_0621_reso_ic_shrpicx4"
             android:layout_marginLeft="10dp"
             android:visibility="visible"
             android:layout_below="@+id/layout_client_mode_room_info"
@@ -781,6 +781,8 @@
 
     </RelativeLayout>
 
+
+    <!--//#-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -802,10 +804,10 @@
             android:layout_centerInParent="true" />
 
         <ImageButton
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
             android:id="@+id/button_connectServer"
-            android:background="@drawable/button_talk"
+            android:background="@drawable/gui_0621_reso_btn_float_104"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
 
@@ -968,7 +970,7 @@
         android:layout_marginTop="15dp"
         android:visibility="gone" />
 
-    <!--photo view-->
+    <!-- //# photo view-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

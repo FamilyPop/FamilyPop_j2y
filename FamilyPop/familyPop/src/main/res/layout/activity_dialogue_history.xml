@@ -15,10 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_history_topmenu_role"
-            android:background="@drawable/button_top_menu"
+            android:background="@drawable/gui_0621_reso_ic_menux4"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="30dp" />
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -357,7 +357,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_add_history"
             android:layout_alignBottom="@+id/textView3"
-            android:background="@drawable/button_history_add"
+            android:background="@drawable/gui_0621_reso_btn_float_204"
             android:adjustViewBounds="true"
             android:visibility="visible"/>
     </RelativeLayout>
