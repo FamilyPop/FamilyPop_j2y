@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_good;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeExplosion;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
@@ -30,7 +31,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.PriorityBlockingQueue;
 
 import static org.andengine.extension.physics.box2d.util.constants.PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
 
@@ -62,7 +65,7 @@ public class Manager_actor
 
     public enum eType_actor
     {
-        ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4);
+        ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4), ACTOR_HONEY_BEE_EXPLOSION(5);
 
         private int value;
 
@@ -74,13 +77,13 @@ public class Manager_actor
             return value;
         }
 
+//        PriorityBlockingQueue
+//        BlockingQueue
     }
 
     public static Manager_actor Instance = null;
     private PhysicsWorld _physicsWorld = null;
     private Scene _scene = null;
-
-
     // ===========================================================
     //
     // ===========================================================
@@ -108,16 +111,46 @@ public class Manager_actor
         mActors.put(eType_actor.ACTOR_BEE, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_SMILE, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_GOOD, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_HONEY_BEE_EXPLOSION, new CopyOnWriteArrayList<BaseActor>());
     }
-    public void Manager_updateAll(float pSecondsElapsed)
+    public void Update(float pSecondsElapsed)
     {
-        if( Get_isUpdate()) return;
+        if( !Get_isUpdate()) return;
 
         for( CopyOnWriteArrayList<BaseActor> actors : mActors.values())
         {
             for( BaseActor actor : actors)
             {
-                actor.onUpdate(pSecondsElapsed);
+                if( !actor.Get_InitState())
+                {
+                    actor.init();
+                    actor.Init_scuccess();
+                }
+                else
+                {
+                    if( actor.onUpdate(pSecondsElapsed))
+                    {
+                        //release
+                        actor.release();
+
+//                        Body body = actor.Get_Body();
+//                        if( body != null)
+//                        {
+//                            final  PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(actor.Get_Sprite());
+//                            _physicsWorld.destroyBody(actor.Get_Body());
+//                            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+//                        }
+//
+//                        final   eType_actor type = actor.Get_ActorType();
+//                        _scene.detachChild(actor.Get_Sprite());
+//
+//                        List<BaseActor> listActor = Collections.synchronizedList(mActors.get(type));
+//                        synchronized (listActor)
+//                        {
+//                            listActor.remove(actor);
+//                        }
+                    }
+                }
             }
         }
     }
@@ -168,7 +201,7 @@ public class Manager_actor
             case ACTOR_ATTRACTOR:
                 ret = new Actor_attractor (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
                 break;
-            case ACTOR_TALK:
+            case ACTOR_TALK://1.0f
                 ret = new Actor_talk (createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 1.0f), info.sprite, info.actor_unique_number);
                 break;
             case ACTOR_BEE:
@@ -180,6 +213,9 @@ public class Manager_actor
             case ACTOR_SMILE:
                 ret = new Actor_smile(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 1.0f), info.sprite,info.actor_unique_number);
                 break;
+            case ACTOR_HONEY_BEE_EXPLOSION:
+                ret = new Actor_honeyBeeExplosion(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 1.0f), info.sprite, info.actor_unique_number);
+                break;
         }
 
         //info.sprite.animate(info.animate, 1);
@@ -187,13 +223,13 @@ public class Manager_actor
         //info.animatedsprite.getChildByIndex(0).setZIndex();
         //info.animatedsprite.setZIndex();
 
-        //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(info.type_actor));
-        //synchronized (listActor)
-        //{
-         //   listActor.add(ret);
-        //}
+        List<BaseActor> listActor = Collections.synchronizedList(mActors.get(info.type_actor));
+        synchronized (listActor)
+        {
+            listActor.add(ret);
+        }
 
-        mActors.get(info.type_actor).add(ret);
+        //mActors.get(info.type_actor).add(ret);
 
         return ret;
     }
@@ -219,6 +255,29 @@ public class Manager_actor
             physicsWorld.registerPhysicsConnector(new PhysicsConnector(sprite, ret.Get_Body(), true, true));
         }
 
+
+        return ret;
+    }
+    public Actor_honeyBeeExplosion Create_honeyBeeExplosion(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
+    {
+        Actor_honeyBeeExplosion ret = null;
+
+        Info_actor actorInfo = new Info_actor();
+        actorInfo.type_actor = eType_actor.ACTOR_HONEY_BEE_EXPLOSION;
+        actorInfo.scaleX = 1;
+        actorInfo.scaleY = 1;
+        actorInfo.type_body = BodyDef.BodyType.StaticBody;
+        actorInfo.physicsWorld = physicsWorld;
+        actorInfo.sprite = sprite;
+
+        ret = (Actor_honeyBeeExplosion)Create_actor(actorInfo);
+        ((AnimatedSprite)ret.Get_Sprite()).animate(100, 0);
+
+        if( ret.Get_Body() != null )
+        {
+            scene.attachChild(ret.Get_Sprite());
+            physicsWorld.registerPhysicsConnector(new PhysicsConnector(ret.Get_Sprite(), ret.Get_Body(), true, true));
+        }
 
         return ret;
     }
@@ -378,6 +437,7 @@ public class Manager_actor
             _physicsWorld.destroyBody(select_body);
             _scene.detachChild(select_sprite);
 
+
             mActors.get(eType_actor.ACTOR_ATTRACTOR).remove(delect_index);
             //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_ATTRACTOR));
             //synchronized (listActor)
@@ -414,6 +474,25 @@ public class Manager_actor
 
         return ret;
     }
+    public boolean Destroy_honeyBeeExplosion(Actor_honeyBeeExplosion actor)
+    {
+        boolean ret = false;
+
+        if( actor != null )
+        {
+            final PhysicsConnector physicsConnector = _physicsWorld.getPhysicsConnectorManager().findPhysicsConnectorByShape(actor.Get_Sprite());
+
+            _physicsWorld.unregisterPhysicsConnector(physicsConnector);
+            _physicsWorld.destroyBody(actor.Get_Body());
+            _scene.detachChild(actor.Get_Sprite());
+
+            mActors.get(eType_actor.ACTOR_HONEY_BEE_EXPLOSION).remove(actor);
+
+            return ret;
+        }
+
+        return ret;
+    }
     public boolean Destroy_smile(Actor_smile smile)
     {
         boolean ret = false;
@@ -424,6 +503,7 @@ public class Manager_actor
 
             _physicsWorld.unregisterPhysicsConnector(physicsConnector);
             _physicsWorld.destroyBody(smile.Get_Body());
+            _scene.detachChild(smile.Get_Sprite());
 
             mActors.get(eType_actor.ACTOR_SMILE).remove(smile);
             //List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_SMILE));
@@ -447,6 +527,7 @@ public class Manager_actor
 
             _physicsWorld.unregisterPhysicsConnector(physicsConnector);
             _physicsWorld.destroyBody(good.Get_Body());
+            _scene.detachChild(good.Get_Sprite());
 
             //mActors.get(eType_actor.ACTOR_GOOD).remove(good);
             List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_GOOD));
@@ -471,6 +552,7 @@ public class Manager_actor
 
             _physicsWorld.unregisterPhysicsConnector(physicsConnector);
             _physicsWorld.destroyBody(bee.Get_Body());
+            _scene.detachChild(bee.Get_Sprite());
 
             mActors.get(eType_actor.ACTOR_BEE).remove(bee);
 //            List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_BEE));

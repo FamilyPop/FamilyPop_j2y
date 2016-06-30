@@ -11,6 +11,7 @@ import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.entity.text.Text;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.font.FontManager;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -25,6 +26,7 @@ import org.andengine.opengl.texture.region.TextureRegionFactory;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 import org.andengine.util.adt.io.in.IInputStreamOpener;
+import org.andengine.util.color.Color;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -149,6 +151,8 @@ public class Manager_resource {
     //private SimpleBaseGameActivity _gameActivity = null;
     private Context _gameActivity = null;
     private TextureManager _textureManager = null;
+    private FontManager _fontManager = null;
+
     private BitmapTextureAtlas _dummyTextureAtlas = null;
     private BitmapTextureAtlas _serverTextureAtlas = null;
     private BitmapTextureAtlas _spriteTextureAtlas = null;
@@ -172,6 +176,9 @@ public class Manager_resource {
 
     private CopyOnWriteArrayList<Sprite> _flash_sprites = null;
 
+    private Font _font = null;
+
+
     //====================================================================================================
     // init
     //====================================================================================================
@@ -179,6 +186,7 @@ public class Manager_resource {
         Instance = this;
         _gameActivity = gameActivity;
         _textureManager = ((BaseGameActivity) gameActivity).getTextureManager();
+        _fontManager = ((BaseGameActivity)gameActivity).getFontManager();
 
         _flash_sprites = new CopyOnWriteArrayList<>();
 
@@ -201,6 +209,7 @@ public class Manager_resource {
         // todo : 문자열 따로 관리 해야함 (문자열 다빼불자)
 
         add_TiledTexture(eType_atlas.ATLAS_SERVER, "event_honeyBee", "FloPop_Server_Resources-25.png", 0, 0, 2,1);
+        add_TiledTexture(eType_atlas.ATLAS_SERVER, "event_honeyBee_explosion", "flare_bee.png", 128, 0, 6, 2);
         //꽃잎
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "talk_petal-01.png", "FloPop_Server_Resources-01.png", 0, 128);
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "talk_petal-02.png", "FloPop_Server_Resources-02.png", 0, 256);
@@ -238,6 +247,10 @@ public class Manager_resource {
         //- end texture load
 
 
+        // font
+        FontFactory.setAssetBasePath("font/");
+        _font = FontFactory.createFromAsset(_fontManager, _textureManager, 256, 256, TextureOptions.BILINEAR, _gameActivity.getAssets(), "LCD.ttf", 32f, true, Color.WHITE_ABGR_PACKED_INT);
+        _font.load();
     }
     private void init_textureNames() {
 
@@ -367,6 +380,10 @@ public class Manager_resource {
         String ret = null;
         ret = _userImageNames.get(color.getValue());
         return ret;
+    }
+    public Font Get_font()
+    {
+        return _font;
     }
     //====================================================================================================
     // create

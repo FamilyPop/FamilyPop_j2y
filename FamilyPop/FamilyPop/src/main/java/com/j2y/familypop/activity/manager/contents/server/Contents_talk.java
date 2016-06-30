@@ -14,6 +14,7 @@ import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.contents.BaseContents;
+import com.j2y.familypop.activity.server.event_server.Event_createTalk;
 import com.j2y.familypop.server.FpsRoot;
 import com.j2y.familypop.server.FpsTalkUser;
 
@@ -39,19 +40,22 @@ public class Contents_talk extends BaseContents
     public void init()
     {
         super.init();
+
+        Activity_serverMain_andEngine aMain = Activity_serverMain_andEngine.Instance;
         FpsRoot.Instance._socioPhone.startRecord(0, "temp");
+        aMain.Instance.release_text(aMain._draw_ipAddress);
+        //aMain._draw_ipAddress.setVisible(false);
+        //aMain._draw_ipAddress = null;
     }
 
     @Override
     public boolean update()
     {
-
         //Log.e("[J2Y]", "talk_update");
         if( Activity_serverMain_andEngine.Instance != null)
         {
             process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2);
         }
-
         return super.update();
     }
 
@@ -120,20 +124,18 @@ public class Contents_talk extends BaseContents
             if( preSpeaker < 0){ preSpeaker = speakerId;}
             if( speakerId >= 0)
             {
-                // 발사할 (지금 말하고있는 꽃잎 생성)
-                String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker));
-                String petalImageName;
-
                 Actor_talk bubble = null;
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
-                petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()), Manager_resource.eType_petal.PETAL_TALK);
+                // 발사할 (지금 말하고있는 꽃잎 생성)
+                String userImageName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(attractor.Get_colorId()));
+                String petalImageName;
+
+                petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker), Manager_resource.eType_petal.PETAL_TALK);
 
                 bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
                 bubble.Set_colorId(preSpeaker);
-
-
-
-
+                //
+                //Event_createTalk event = new Event_createTalk(userImageName, petalImageName, preSpeaker, attractor);
 
                 if (bubble != null) {
                     _current_bubble = bubble;

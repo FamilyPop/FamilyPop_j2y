@@ -22,6 +22,8 @@ import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.server.Activity_serverCalibration;
 import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
 import com.j2y.familypop.activity.server.Activity_serverStart;
+import com.j2y.familypop.activity.server.event_server.BaseEvent;
+import com.j2y.familypop.activity.server.event_server.Event_createGood;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
 //import com.j2y.familypop.server.FpsScenarioDirector;
@@ -242,13 +244,7 @@ public class FpNetServer_packetHandler
                         FpNetFacade_server.Instance.Send_clientUpdate();
                     }
                 }, 500);
-
-
             }
-
-
-
-
         }
     };
 
@@ -285,13 +281,6 @@ public class FpNetServer_packetHandler
 //            }
         }
     };
-
-
-
-
-
-
-
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 게임 시작
@@ -459,7 +448,7 @@ public class FpNetServer_packetHandler
             // flower
             regulation._flowerPlusSize = data._flowerPlusSize;
             regulation._flowerMaxSize = data._flowerMaxSize;
-
+            regulation._flowerMinSize = data._flowerMinSize;
 
 //            Activity_serverMain.Instance._regulation_seekBar_0 = data._seekBar_0;
 //            Activity_serverMain.Instance._regulation_seekBar_1 = data._seekBar_1;
@@ -585,7 +574,6 @@ public class FpNetServer_packetHandler
                     {
                         Activity_serverMain_andEngine.Instance.OnEvent_shareimage(i, shareImage);
                     }
-
                 }
             }
             else
@@ -688,12 +676,15 @@ public class FpNetServer_packetHandler
     FpNetMessageCallBack onReq_userInteraction = new FpNetMessageCallBack()
     {
         @Override
-        public void CallBack(FpNetIncomingMessage inMsg)
-        {
+        public void CallBack(FpNetIncomingMessage inMsg) throws InterruptedException {
             FpNetData_userInteraction data = new FpNetData_userInteraction();
             data.Parse(inMsg);
 
-            Activity_serverMain_andEngine.Instance.Create_good(data._send_client_id, data._clientid);
+            // # event test
+            //Activity_serverMain_andEngine.Instance.Create_good(data._send_client_id, data._clientid);
+
+            Event_createGood event = new Event_createGood(data);
+            Activity_serverMain_andEngine.Instance.Add_event(event);
         }
     };
 

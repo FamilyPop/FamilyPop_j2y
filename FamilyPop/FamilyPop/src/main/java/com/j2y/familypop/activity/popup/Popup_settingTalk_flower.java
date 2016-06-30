@@ -26,6 +26,7 @@ public class Popup_settingTalk_flower  implements View.OnClickListener
 
         ((EditText)v.findViewById(R.id.editText_flower_talk_addScale)).setText(String.valueOf(Activity_clientMain.Instance._flowerPlusSize));
         ((EditText)v.findViewById(R.id.editText_flower_talk_maxScale)).setText(String.valueOf(Activity_clientMain.Instance._flowerMaxSize));
+        ((EditText)v.findViewById(R.id.editText_flower_talk_minScale)).setText(String.valueOf(Activity_clientMain.Instance._flowerMinSize));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class Popup_settingTalk_flower  implements View.OnClickListener
 
         main._flowerPlusSize = Float.valueOf(((EditText)_v.findViewById(R.id.editText_flower_talk_addScale)).getText().toString());
         main._flowerMaxSize = Float.valueOf(((EditText)_v.findViewById(R.id.editText_flower_talk_maxScale)).getText().toString());
+        main._flowerMinSize = Float.valueOf(((EditText)_v.findViewById(R.id.editText_flower_talk_minScale)).getText().toString());
 
         FpNetFacade_client.Instance.SendPacket_req_regulation_info();
     }

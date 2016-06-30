@@ -27,6 +27,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
     // tlak mode setting
     public float _flowerPlusSize;
     public float _flowerMaxSize;
+    public float _flowerMinSize;
 
     //----------------------------------------------------------------
     // 메시지 파싱
@@ -41,6 +42,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
 
         _flowerPlusSize     = inMsg.ReadFloat();
         _flowerMaxSize      = inMsg.ReadFloat();
+        _flowerMinSize      = inMsg.ReadFloat();
 
         // back
 //        _seekBar_0 = inMsg.ReadInt();
@@ -67,6 +69,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
 
         outMsg.Write(_flowerPlusSize);
         outMsg.Write(_flowerMaxSize);
+        outMsg.Write(_flowerMinSize);
 
         // back
 //        outMsg.Write(_seekBar_0);

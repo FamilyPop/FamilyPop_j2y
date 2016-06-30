@@ -2,6 +2,8 @@ package com.j2y.familypop;
 
 import android.app.ActivityManager;
 import android.content.Intent;
+
+import com.facebook.share.widget.MessageDialog;
 import com.j2y.familypop.activity.Activity_clientMain;
 
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
@@ -18,6 +20,7 @@ import com.j2y.network.base.FpNetConstants;
 
 import com.nclab.familypop.R;
 import com.nclab.sociophone.SocioPhone;
+import com.nclab.sociophone.handler.SignalHandler;
 import com.nclab.sociophone.interfaces.DisplayInterface;
 import com.nclab.sociophone.interfaces.EventDataListener;
 import com.nclab.sociophone.interfaces.TurnDataListener;
@@ -26,11 +29,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.Contacts;
 import android.text.Editable;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Window;
 //import com.facebook.FacebookSdk;
@@ -39,6 +46,9 @@ import android.view.Window;
 import static android.provider.Contacts.Settings.*;
 
 import com.facebook.FacebookSdk;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -126,7 +136,26 @@ public class MainActivity extends Activity
         //_ready = false;
         _curServerScenario = Manager_contents.eType_contents.CONTENTS_NOT;//FpNetConstants.SCENARIO_NONE;
 
-        //FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
+        try
+        {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    getPackageName(),
+                    PackageManager.GET_SIGNATURES);
+
+            for(Signature signature : info.signatures)
+            {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -41,6 +41,7 @@ public class FpsRoot implements TurnDataListener, DisplayInterface, EventDataLis
     //public FpsScenarioDirector _scenarioDirector;
     public FpsTableDisplyer _tableDisplayer;
     public SocioPhone _socioPhone;
+    public String _serverIP = "0.0.0.0";
 
     // # localization  서버용 선언
     public FpsLocalization_Server _localization;

@@ -412,8 +412,6 @@ public class FpNetFacade_client extends FpNetFacade_base
         @Override
         public void CallBack(FpNetIncomingMessage inMsg)
         {
-
-
             Log.i("[J2Y]", "[패킷수신] 이미지 공유");
 
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
@@ -654,9 +652,21 @@ public class FpNetFacade_client extends FpNetFacade_base
         }
 
         reqPaket._clientId =  FpcRoot.Instance._clientId;
+        int viewHeight = 128;
+        float width = 0.0f;
+        float height = 0.0f;
         for(int i=0; i<photo.Get_countBitmap(); ++i)
         {
-            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), 256, 256, false));
+            if( photo.Get_countBitmap() == 1){viewHeight = 256;}
+            width = photo.Get_bitmap(i).getWidth();
+            height = photo.Get_bitmap(i).getHeight();
+
+            float percente = (float)(height/100);
+            float scale = (float)(viewHeight/percente);
+
+            width *= (scale/100);
+            height *= (scale/100);
+            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), (int)width, (int)height, false));
         }
 
         sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
@@ -687,6 +697,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 
         reqPaket._flowerPlusSize = main._flowerPlusSize;
         reqPaket._flowerMaxSize = main._flowerMaxSize;
+        reqPaket._flowerMinSize = main._flowerMinSize;
 
         // back
 //        reqPaket._seekBar_0 = seekBar_0;

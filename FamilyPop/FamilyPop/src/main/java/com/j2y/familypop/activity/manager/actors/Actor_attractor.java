@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.j2y.familypop.activity.manager.Manager_actor;
 
 
 import org.andengine.entity.scene.IOnSceneTouchListener;
@@ -28,15 +29,28 @@ public class Actor_attractor extends BaseActor
     {
         super(body, sprite, uniqueNumber);
         //body.getUserData()
+        _actor_type = Manager_actor.eType_actor.ACTOR_ATTRACTOR;
     }
 
-
+    //========================================================================================================
+    // override
+    @Override
+    public void init()
+    {
+        super.init();
+    }
+    @Override
+    public void release()
+    {
+        super.release();
+    }
+    @Override
     public boolean onUpdate(float pSecondsElapsed)
     {
-        super.onUpdate(pSecondsElapsed);
+
         //_sprite.setPosition(0, 0);
 
-        return false;
+        return super.onUpdate(pSecondsElapsed);
     }
 
     //=================================================================================================

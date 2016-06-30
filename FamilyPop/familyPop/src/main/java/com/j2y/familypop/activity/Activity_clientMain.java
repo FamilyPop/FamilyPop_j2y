@@ -151,8 +151,9 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
     // tlak mode setting
     public float _attractorMoveSpeed = 1.0f;
-    public float _flowerPlusSize = 1.1f;   // 서버로감
-    public float _flowerMaxSize = 1.5f;    // 서버로감
+    public float _flowerPlusSize = 1.1f;    // 서버로감
+    public float _flowerMaxSize = 1.5f;     // 서버로감
+    public float _flowerMinSize = 0.3f;     // 서버로감
 
     private TextView _textView_regulation_0;
     private TextView _textView_regulation_1;

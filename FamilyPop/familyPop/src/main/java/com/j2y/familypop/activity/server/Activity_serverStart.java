@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
@@ -52,9 +53,10 @@ public class Activity_serverStart extends Activity
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ipAddress = wifiInfo.getIpAddress();
-        String ipAddressStr = String.format("%d.%d.%d.%d",(ipAddress & 0xff),(ipAddress >> 8 & 0xff),(ipAddress >> 16 & 0xff),(ipAddress >> 24 & 0xff));
+        //String ipAddressStr = String.format("%d.%d.%d.%d",(ipAddress & 0xff),(ipAddress >> 8 & 0xff),(ipAddress >> 16 & 0xff),(ipAddress >> 24 & 0xff));
+        FpsRoot.Instance._serverIP = String.format("%d.%d.%d.%d",(ipAddress & 0xff),(ipAddress >> 8 & 0xff),(ipAddress >> 16 & 0xff),(ipAddress >> 24 & 0xff));
         _serverIP = (TextView) findViewById(R.id.ServerIPText);
-        _serverIP.setText(ipAddressStr);
+        _serverIP.setText(FpsRoot.Instance._serverIP);
 
 
         // maanager
@@ -93,6 +95,9 @@ public class Activity_serverStart extends Activity
         if(Build.VERSION.SDK_INT > 10){ StrictMode.enableDefaults();}
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+//        MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_serverMain_andEngine.class));
+//        MainActivity.Instance._serverActivityStart = true;
 
     }
     private void onClick_start()

@@ -2,6 +2,7 @@ package com.j2y.familypop.activity.manager.actors;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.j2y.familypop.activity.manager.Manager_actor;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.sprite.Sprite;
@@ -16,8 +17,12 @@ public class BaseActor
     protected boolean mIsFlower = false;
     protected boolean mIsBalloon = false;
     protected Vector2 mOriginalScale;
+    protected Manager_actor.eType_actor _actor_type = Manager_actor.eType_actor.ACTOR_NON;
+
     private long mActor_unique_number = -1;
     private int mColorId = -1;
+    private boolean mInit;
+    private boolean mEnd;
 
 
     private float _spriteScale =0.0f; //꽃잎이 커진다~
@@ -28,6 +33,9 @@ public class BaseActor
         mSprite = sprite;
         mActor_unique_number = uniqueNumber;
         mOriginalScale = new Vector2(mSprite.getScaleX(), mSprite.getScaleY());
+
+        mInit = false;
+        mEnd = false;
 
         //꽃잎 커지는거 막는담!
         //mSprite.getChildByIndex(0).setScale(_spriteScale);
@@ -46,7 +54,12 @@ public class BaseActor
     public void Set_maxFlowerScale(float maxScale){_maxSpriteScale = maxScale;}
     public int Get_colorId(){return mColorId;}
     public void Set_colorId(int colorId){mColorId = colorId;}
+    public Manager_actor.eType_actor Get_ActorType(){return _actor_type;}
 
+    public void init()
+    {
+
+    }
     public  boolean onUpdate(float pSecondsElapsed)
     {
 
@@ -71,6 +84,15 @@ public class BaseActor
 //                }
 //            }
 //        }
-        return false;
+        return mEnd;
     }
+    public void release()
+    {
+        mInit = false;
+        mEnd = false;
+    }
+
+    public void Actor_end(){ mEnd = true; }
+    public void Init_scuccess(){ mInit = true; }
+    public boolean Get_InitState(){return mInit;}
 }

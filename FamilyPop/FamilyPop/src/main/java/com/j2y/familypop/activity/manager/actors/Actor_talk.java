@@ -5,6 +5,7 @@ import android.os.Build;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.j2y.familypop.activity.manager.Manager_actor;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.LoopEntityModifier;
@@ -31,6 +32,8 @@ public class Actor_talk  extends BaseActor
         super(body, sprite, uniqueNumber);
 
         Effect_balloon(true);
+        mBody.setActive(false);
+        _actor_type = Manager_actor.eType_actor.ACTOR_TALK;
     }
 
     public int GetStart_time(){ return _start_time; }
@@ -41,21 +44,32 @@ public class Actor_talk  extends BaseActor
     public void Set_addScale(float addScale){ _addTalkScale = addScale; }
     public void Set_maxScale(float maxScale){ _maxTalkScale = maxScale; }
 
+    //========================================================================================================
+    // override
+    @Override
+    public void init()
+    {
+        super.init();
+    }
+    @Override
+    public void release()
+    {
+        super.release();
+    }
 
     @Override
     public synchronized boolean onUpdate(float pSecondsElapsed)
     {
-        super.onUpdate(pSecondsElapsed);
-
         // attractor 로 이동.
         if( mIsMover ) {
             if (mAttractor == null) return false;
             Vector2 v = new Vector2((mAttractor.mBody.getPosition().x - mBody.getPosition().x) * _addTalkScale,
                     (mAttractor.mBody.getPosition().y - mBody.getPosition().y) * _addTalkScale);
             mBody.applyForce(v, mBody.getWorldCenter());
+            mBody.applyTorque(0.0001f);
         }
         // end attractor 로 이동
-        return false;
+        return super.onUpdate(pSecondsElapsed);
     }
     public void SetAttractor(Actor_attractor attractor){ mAttractor = attractor; }
     public void Set_plusScale()
@@ -76,6 +90,9 @@ public class Actor_talk  extends BaseActor
         mIsMover = true;
         mIsFlower = true;
         _end_time = record_end_time;
+        mBody.setActive(true);
+        //mBody.getFixtureList().get(0).getShape().setRadius(_addTalkScale);
+//        _radius = 0.0f;
     }
     public void Effect_balloon(boolean act)
     {

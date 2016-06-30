@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:1-110:12
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:1-113:12
 	xmlns:android
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -18,18 +18,21 @@ ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\F
 uses-sdk
 ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:24:5-26:41
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 MERGED from [FamilyPop:mmlib:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\mmlib\unspecified\AndroidManifest.xml:5:5-7:41
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:palette-v7:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\palette-v7\21.0.0\AndroidManifest.xml:15:5-42
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [FamilyPop:andEnginePhysicsBox2DExtension:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEnginePhysicsBox2DExtension\unspecified\AndroidManifest.xml:7:5-9:41
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml
@@ -97,19 +100,22 @@ ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\F
 	android:value
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:34:9-48
 application
-ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:36:5-108:19
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:36:5-111:19
 MERGED from [com.facebook.android:facebook-android-sdk:4.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\AndroidManifest.xml:28:5-20
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:11:5-21:19
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [FamilyPop:mmlib:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\mmlib\unspecified\AndroidManifest.xml:9:5-12:19
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:11:5-21:19
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:palette-v7:21.0.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\palette-v7\21.0.0\AndroidManifest.xml:16:5-17:19
-MERGED from [com.android.support:support-v4:21.0.3] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:5-46
 MERGED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:5-46
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.android.support:support-v4:22.2.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 	android:debuggable
 		ADDED from [FamilyPop:andEngine:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\andEngine\unspecified\AndroidManifest.xml:11:18-43
 	android:label
@@ -246,6 +252,13 @@ ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\F
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:92:95-158
 	android:name
 		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:92:19-94
+meta-data#com.google.android.gms.version
+ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:94:9-96:69
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
+	android:name
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:95:13-58
+	android:value
+		ADDED from D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\src\main\AndroidManifest.xml:96:13-66
 service#com.nclab.sociophone.record.AudioRecorderService
 ADDED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:16:9-20:19
 MERGED from [FamilyPop:socioPhone_lib_dist:unspecified] D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\AndroidManifest.xml:16:9-20:19
