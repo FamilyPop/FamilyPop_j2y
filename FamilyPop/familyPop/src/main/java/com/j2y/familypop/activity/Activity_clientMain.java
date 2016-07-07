@@ -21,6 +21,7 @@ import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +40,7 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.lobby.Activity_talkHistory;
+import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 import com.j2y.familypop.activity.popup.Popup_dialogueMenu;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
@@ -51,6 +53,7 @@ import com.j2y.familypop.client.FpcTalkRecord;
 //import com.j2y.familypop.server.FpsScenarioDirector;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.FpNetUtil;
+import com.j2y.network.base.data.FpNetDataReq_shareImage;
 import com.j2y.network.base.data.FpNetData_base;
 import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
@@ -68,6 +71,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.widget.ToggleButton;
+
+import org.andengine.util.math.MathUtils;
 
 //import org.jbox2d.common.Vec3;
 
@@ -154,6 +159,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     public float _flowerPlusSize = 1.1f;    // 서버로감
     public float _flowerMaxSize = 1.5f;     // 서버로감
     public float _flowerMinSize = 0.3f;     // 서버로감
+    public float _flowerGoodSize = 1.0f;    // 서버로감
+    public float _flowerSmileSize = 1.0f;   // 서버로감
 
     private TextView _textView_regulation_0;
     private TextView _textView_regulation_1;
@@ -987,16 +994,33 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
     public void OnEventSC_bang()
     {
-        _button_redbubble.setVisibility(View.GONE);
-        _image_boomChosen.setVisibility(View.VISIBLE);
+//        _button_redbubble.setVisibility(View.GONE);
+//        _image_boomChosen.setVisibility(View.VISIBLE);
+//
+//        new Handler().postDelayed(new Runnable() {// 1 초 후에 실행
+//            @Override
+//            public void run() {
+//                _button_redbubble.setVisibility(View.GONE);
+//                _image_boomChosen.setVisibility(View.INVISIBLE);
+//            }
+//        }, 5000);
 
-        new Handler().postDelayed(new Runnable() {// 1 초 후에 실행
-            @Override
-            public void run() {
-                _button_redbubble.setVisibility(View.GONE);
-                _image_boomChosen.setVisibility(View.INVISIBLE);
-            }
-        }, 5000);
+
+        // bang
+        Manager_photoGallery mag = Manager_photoGallery.Instance;
+
+        if( mag != null)
+        {
+            ArrayList<ImageInfo> images =  mag.FindMemoryRootImage(this);
+            ArrayList<ImageInfo> arrayList = new ArrayList<>();
+
+            int imageIndex = MathUtils.random(0, images.size());
+            ImageInfo selectImage = images.get(imageIndex);
+            arrayList.add(selectImage);
+
+            mag.SetArrayList(arrayList);
+            FpNetFacade_client.Instance.SendPacket_req_shareImage();
+        }
     }
     public void OnEventSC_win_Tic_Tac_toe()
     {
@@ -1867,6 +1891,16 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     public void onBackPressed()
     {
         //super.onBackPressed();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        //super.onKeyDown(keyCode, event);
+        boolean ret = false;
+        _photoGallery.DeActive();
+
+
+        return ret;
     }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

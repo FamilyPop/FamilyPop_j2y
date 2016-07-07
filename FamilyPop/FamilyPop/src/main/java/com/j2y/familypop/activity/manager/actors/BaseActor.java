@@ -20,7 +20,7 @@ public class BaseActor
     protected Manager_actor.eType_actor _actor_type = Manager_actor.eType_actor.ACTOR_NON;
 
     private long mActor_unique_number = -1;
-    private int mColorId = -1;
+    private int mColorId = -1;  // colorid == clientid
     private boolean mInit;
     private boolean mEnd;
 

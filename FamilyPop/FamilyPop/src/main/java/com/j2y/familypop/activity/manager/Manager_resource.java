@@ -226,11 +226,11 @@ public class Manager_resource {
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "smile_petal.png","FloPop_Server_Resources-22.png", 0, 1408);
 
         // user
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-01.png","FloPop_Server_Resources-06.png", 128, 34);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-02.png","FloPop_Server_Resources-07.png", 128, 68);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-03.png","FloPop_Server_Resources-08.png", 128, 102);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-04.png","FloPop_Server_Resources-09.png", 128, 136);
-        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-05.png","FloPop_Server_Resources-10.png", 128, 170);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-01.png","FloPop_Server_Resources-06.png", 128, 34);   // 노랑
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-02.png","FloPop_Server_Resources-07.png", 128, 68);   // 녹색
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-03.png","FloPop_Server_Resources-08.png", 128, 102);  // 보라색
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-04.png","FloPop_Server_Resources-09.png", 128, 136);  // 파랑색
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user-05.png","FloPop_Server_Resources-10.png", 128, 170);  // 빨간색
 
         //event
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user_like_01.png","FloPop_Server_Resources-11.png", 162, 50);
@@ -437,7 +437,6 @@ public class Manager_resource {
     public static boolean flashSprittRelease = false;
     public IUpdateHandler ReleaseAll_flash_Sprites(final Scene scene)
     {
-
         return new IUpdateHandler() {
             @Override
             public void onUpdate(float pSecondsElapsed)

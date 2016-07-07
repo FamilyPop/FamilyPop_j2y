@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.j2y.familypop.activity.BaseActivity;
+import com.j2y.familypop.activity.Vector2;
 import com.j2y.familypop.activity.popup.Popup_dialogue_historyMenu;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.backup.test_CustomSeekBar;
@@ -99,12 +100,8 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
         // top menu
         ((ImageButton)findViewById(R.id.button_playback_topmenu)).setOnClickListener(this);
 
-
-
-
-
         // buttons test (bubbles)
-        _layout_bubbles = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles);
+        _layout_bubbles = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles); //frame_talkhistory_playback_bubbles
 
         FpcTalkRecord talk_record = FpcRoot.Instance._selected_talk_record;
         if(talk_record != null)
@@ -113,22 +110,22 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             ((TextView) findViewById(R.id.textView_name)).setText(talk_record._name);
             ((TextView) findViewById(R.id.textView_day)).setText(Activity_talkHistory.CalculateDate(talk_record));
 
-
+            //Vector2 center = new Vector2(_layout_bubbles.getWidth()/2, _layout_bubbles.getHeight()/2);
             for (int i = 0; i < talk_record._bubbles.size(); i++)
             {
                 FpcTalkRecord.Bubble item = talk_record._bubbles.get(i);
                 //item._radius = 100; // 임시
                 //int bubble_size = (int)(item._radius * 1.8f);
-                int bubble_size = (int)(item._radius * 1.8f);
+                int bubble_size = (int)(item._radius * 100.8f);
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size);
-
                 Button bbt = bubbleButtons_Create(item);
 
                 FrameLayout lay = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles);
 
                 //params.setMargins(500 - (int) item._y, 500 - (int) item._x, 0, 0);
                 //params.setMargins(410 + (int) item._x, 320 + (int) item._y, 0, 0);
-                params.setMargins(500 + (int) item._x, 360 + (int) item._y, 0, 0);
+              //  params.setMargins((int)center.x + (int) item._x, (int)center.y + (int) item._y, 0, 0);
+                  params.setMargins( 360 + (int) item._x, 260 + (int) item._y, 0, 0);
                 //params.setMargins((int)lay.getWidth()/2 + (int) item._x, (int)lay.getWidth()/2 + (int) item._y, 0, 0);
 
                 // todo: 버블 컬러 변경
@@ -146,15 +143,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
 //                    case 4: bbt.setBackgroundResource(R.drawable.image_bubble_phthalogreen); break;
 //                    case 5: bbt.setBackgroundResource(R.drawable.image_bubble_blue); break;
 
-                    case 0:  bbt.setBackgroundResource (R.drawable.image_bead_4); break;
-                    case 1: bbt.setBackgroundResource(R.drawable.image_bead_0); break; // 녹색으로
+                    case 0: bbt.setBackgroundResource (R.drawable.image_bead_4); break;
+                    case 1: bbt.setBackgroundResource(R.drawable.image_bead_0);  break; // 녹색으로
                     case 2: bbt.setBackgroundResource (R.drawable.image_bead_2); break;
-                    case 3: bbt.setBackgroundResource(R.drawable.image_bead_1); break;
-                    case 4: bbt.setBackgroundResource(R.drawable.image_bead_5); break;
-                    case 5: bbt.setBackgroundResource(R.drawable.image_bead_3); break;
-
-
-
+                    case 3: bbt.setBackgroundResource(R.drawable.image_bead_1);  break;
+                    case 4: bbt.setBackgroundResource(R.drawable.image_bead_5);  break;
+                    case 5: bbt.setBackgroundResource(R.drawable.image_bead_3);  break;
 
                     //case 100: bbt.setBackgroundResource(R.drawable.image_bubble_red_smile); break; // smile
                     case 100: bbt.setBackgroundResource(R.drawable.image_bubble_orange_smile);
@@ -166,7 +160,6 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 Log.i("[J2Y]", String.format("[Playback][Bubble]:%f,%f", item._x, item._y));
 
 //
-
                 //params.setMargins(0, 0, 0, 0);
                 bbt.setLayoutParams(params);
                 bbt.requestLayout();
@@ -176,12 +169,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             _imageview_center_bubble = (ImageView) findViewById(R.id.imageView_center_bubble);
             switch (talk_record._bubble_color_type)
             {
-                case 0: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_4);   break;      // pink
-                case 1: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_0);   break;      // red
-                case 2: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_2);   break;      // yellow
-                case 3: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_1);   break;      // green
-                case 4: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_5);   break;      // phthalogreen
-                case 5: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_3);   break;      // blue
+                case 0: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_06);   break;   // 노랑
+                case 1: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_07);   break;   // 녹색
+                case 2: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_08);   break;   // 보라색
+                case 3: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_09);   break;   // 파랑색
+                case 4: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_10);   break;   // 빨간색
+                case 5: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_3);   break;
                 case 6: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_6);   break;
             }
 
@@ -292,12 +285,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 if(_media_player.isPlaying())
                 {
                     _media_player.pause();
-                    _imageButton_play.setBackgroundResource(R.drawable.button_play_over);
+                    _imageButton_play.setBackgroundResource(R.drawable.gui_0621_reso_btn_historyview_play04);
                 }
                 else
                 {
                     play_talk_record();
-                    _imageButton_play.setBackgroundResource(R.drawable.button_pause_over);
+                    _imageButton_play.setBackgroundResource(R.drawable.gui_0621_reso_btn_historyview_pause04);
                 }
                 break;
             case R.id.button_playback_topmenu:

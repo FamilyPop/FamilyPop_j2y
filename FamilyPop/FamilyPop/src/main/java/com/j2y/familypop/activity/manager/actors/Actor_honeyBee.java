@@ -7,7 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.manager.Manager_actor;
+import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.client.FpcRoot;
+import com.j2y.familypop.server.FpsTalkUser;
+import com.j2y.network.client.FpNetFacade_client;
+import com.j2y.network.server.FpNetFacade_server;
 
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.math.MathUtils;
@@ -95,6 +99,9 @@ public class Actor_honeyBee extends BaseActor {
                     Activity_serverMain_andEngine main = Activity_serverMain_andEngine.Instance;
                     main.OnEvent_deleteHoneybee(this); // 벌을 제거.
                     main.OnEvent_createBeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion"); // 폭파 이벤트 생성.
+
+                    FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_target.Get_colorId());
+                    FpNetFacade_server.Instance.Send_UserBang(user);
 
                     Actor_end();
                     //Activity_serverMain_andEngine.Instance.Create_honeybeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion");

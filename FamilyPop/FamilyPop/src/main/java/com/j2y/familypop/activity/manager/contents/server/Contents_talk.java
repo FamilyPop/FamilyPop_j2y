@@ -134,6 +134,7 @@ public class Contents_talk extends BaseContents
 
                 bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
                 bubble.Set_colorId(preSpeaker);
+                bubble.SetStart_time((int)FpsRoot.Instance._socioPhone.GetRecordTime());
                 //
                 //Event_createTalk event = new Event_createTalk(userImageName, petalImageName, preSpeaker, attractor);
 

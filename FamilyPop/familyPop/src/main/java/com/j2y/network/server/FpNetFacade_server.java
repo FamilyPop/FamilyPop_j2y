@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.j2y.familypop.activity.Activity_clientMain;
 //import com.j2y.familypop.activity.Activity_serverMain;
@@ -16,6 +17,10 @@ import com.j2y.familypop.activity.manager.Manager_actor;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
+import com.j2y.familypop.activity.manager.actors.Actor_good;
+import com.j2y.familypop.activity.manager.actors.Actor_smile;
+import com.j2y.familypop.activity.manager.actors.Actor_talk;
+import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.server.FpsRoot;
 //import com.j2y.familypop.server.FpsScenarioDirector;
 import com.j2y.familypop.server.FpsTalkUser;
@@ -197,22 +202,53 @@ public class FpNetFacade_server extends FpNetFacade_base
                 FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
 
                 // todo: 메인쓰레드, 렌더링쓰레드 충돌남
-                //FpsTalkUser talk_user = Activity_serverMain.Instance.GetTalkUser(client);
-               // if(null == talk_user)
-                //    continue;
+                FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);// Activity_serverMain.Instance.GetTalkUser(client);
+                if(null == talk_user)      continue;
 
-//                outMsg._attractor._x = talk_user._attractor.GetPosition().x;
-//                outMsg._attractor._y = talk_user._attractor.GetPosition().y;
-//                outMsg._attractor._color = client._clientID;
-//
-//                for(FpsBubble bubble : talk_user._bubble)
-//                {
-//                    Vec2 pos = bubble.GetPosition();
-//                    //Log.i("[J2Y]", String.format("[NetServer]:%f,%f", pos.x, pos.y));
-//                    outMsg.AddRecordData(bubble._start_time, bubble._end_time, pos.x, pos.y, bubble._rad, bubble._colorId);
-//                }
 
-               // outMsg._smile_events.addAll(talk_user._smile_events);
+                outMsg._attractor._x = talk_user._attractor.GetAttractorPos().x;//GetPosition().x;
+                outMsg._attractor._y = talk_user._attractor.GetAttractorPos().y;//GetPosition().y;
+                outMsg._attractor._color = client._clientID;
+
+
+                com.badlogic.gdx.math.Vector2 pos;
+                for( CopyOnWriteArrayList<BaseActor> actors : Manager_actor.Instance.GetActors().values())
+                {
+                    for( BaseActor actor : actors)
+                    {
+
+                        //ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4), ACTOR_HONEY_BEE_EXPLOSION(5);
+                        switch (actor.Get_ActorType())
+                        {
+                            case ACTOR_TALK:
+                                Actor_talk talk = (Actor_talk)actor;
+                                pos = talk.Get_Body().getPosition();
+                                outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x, pos.y, talk.Get_Scale(), talk.Get_colorId());
+                                break;
+                            case ACTOR_SMILE:
+                                // smile time
+                                Actor_smile smile = (Actor_smile)actor;
+                                pos = smile.Get_Body().getPosition();
+                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, smile.Get_Sprite().getScaleCenterX(), smile.Get_colorId());
+
+                                break;
+                            case ACTOR_GOOD:
+                                Actor_good good = (Actor_good)actor;
+                                pos = good.Get_Body().getPosition();
+                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, good.Get_Sprite().getScaleX(), good.Get_colorId());
+                                break;
+                        }
+
+                        if( actor.Get_ActorType() == Manager_actor.eType_actor.ACTOR_ATTRACTOR)
+                        {
+
+                        }
+
+
+                    }
+                }
+
+                outMsg._smile_events.addAll(talk_user._smile_events);
 
                 client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
             }

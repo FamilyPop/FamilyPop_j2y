@@ -156,11 +156,11 @@ public class FpNetServer_packetHandler
             FpsRoot.Instance.CloseServer();
             if( Activity_serverMain_andEngine.Instance != null) Activity_serverMain_andEngine.Instance.CloseServer();
 
-//            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
-//            _net_server.RemoveClient(client);
+            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+            _net_server.RemoveClient(client);
 
-//            Manager_users.Instance.User_allRelease();
-//            Manager_actor.Instance = null;
+            Manager_users.Instance.User_allRelease();
+            Manager_actor.Instance = null;
 
 
             Activity_serverStart.Instance.finish();
@@ -290,7 +290,14 @@ public class FpNetServer_packetHandler
         public void CallBack(FpNetIncomingMessage inMsg)
         {
 
-            Activity_serverMain_andEngine.Instance.OnEvent_honeybee();
+
+            if( Manager_actor.Instance != null)
+            {
+                if( Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE).size() == 0 )
+                {
+                    Activity_serverMain_andEngine.Instance.OnEvent_honeybee();
+                }
+            }
 
 //            Log.i("[J2Y]", "[패킷수신] 게임 시작");
 //
@@ -315,7 +322,6 @@ public class FpNetServer_packetHandler
         public void CallBack(FpNetIncomingMessage inMsg)
         {
             Log.i("[J2Y]", "[패킷수신] tic tac toe 게임 시작");
-
 //            Activity_serverMain.Instance._isNotLocatorDevice = FpsRoot.Instance._localization._server.getLocator() == null ? true : false;
 //
 //            //로케이터 서버가 있을때.
@@ -449,6 +455,8 @@ public class FpNetServer_packetHandler
             regulation._flowerPlusSize = data._flowerPlusSize;
             regulation._flowerMaxSize = data._flowerMaxSize;
             regulation._flowerMinSize = data._flowerMinSize;
+            regulation._flowerGoodSize = data._flowerGoodSize;
+            regulation._flowerSmileSize = data._flowerSmileSize;
 
 //            Activity_serverMain.Instance._regulation_seekBar_0 = data._seekBar_0;
 //            Activity_serverMain.Instance._regulation_seekBar_1 = data._seekBar_1;
@@ -555,7 +563,16 @@ public class FpNetServer_packetHandler
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
             data.Parse(inMsg);
 
+            //FpNetDataReq_shareImage release = new FpNetDataReq_shareImage();
+
             //_net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
+
+            //for( int i=0; i<Manager_users.Instance.Get_talk_users().size(); i++)
+//            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values())
+//            {
+//                _net_server.SendPacket(FpNetConstants.CSC_ShareImage, user._net_client._clientID, release);
+//            }
+
             _net_server.SendPacket(FpNetConstants.CSC_ShareImage, data._clientId, data);
 
 
@@ -649,7 +666,7 @@ public class FpNetServer_packetHandler
                     outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, pos.y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, talk.Get_Scale(), talk.Get_colorId() );
                 }
 
-                outMsg._smile_events.addAll(talk_user._smile_events);
+                //outMsg._smile_events.addAll(talk_user._smile_events);
 
                 client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
             }

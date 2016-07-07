@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
+        "outputFile": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 187
                 },
                 "from": {
-                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\values-v11\\styles.xml",
+                    "file": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\src\\main\\res\\values-v11\\styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,

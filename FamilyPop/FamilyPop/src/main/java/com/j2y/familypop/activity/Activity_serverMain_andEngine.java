@@ -480,12 +480,19 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         flower.setPosition((-flower.getWidth() / 2) + (face.getWidth() / 2),
                 (-flower.getHeight() / 2) + (face.getHeight() / 2));
 
-        face.setScale(0.6f, 0.6f);
-        flower.setScale(0.7f, 0.7f);
+        //face.setScale(0.6f, 0.6f);
+        float faceScale = 0.6f;
+        float flowerScale = 0.7f;
+
+        face.setScale(faceScale);
+        //flower.setScale(0.7f, 0.7f);
+        flower.setScale(flowerScale);
         flower.setZIndex(-1);
 
         ret = Manager_actor.Instance.Create_smile(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
+
+        ret.Get_Sprite().setScale(faceScale * info_regulation._flowerSmileSize);
 
         return ret;
     }
@@ -508,12 +515,17 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         flower.setPosition((-flower.getWidth() / 2) + (face.getWidth() / 2),
                 (-flower.getHeight() / 2) + (face.getHeight() / 2));
 
-        face.setScale(1f, 1f);
-        flower.setScale(0.7f, 0.7f);
+        //face.setScale(1f, 1f);
+        float faceScale = 1.0f;
+        float flowerScale = 0.7f;
+        face.setScale(faceScale);
+        //flower.setScale(0.7f, 0.7f);
+        flower.setScale(flowerScale);
         flower.setZIndex(-1);
 
         ret = Manager_actor.Instance.Create_good(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
+        ret.Get_Sprite().setScale(faceScale * GetInfo_regulation()._flowerGoodSize );
         //ret.Set_maxFlowerScale(0.7f);
 
         return ret;
@@ -562,7 +574,6 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         String goodName = Manager_resource.Instance.Get_userLike(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID));
         String petalName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(fromUser._net_client._clientID), Manager_resource.eType_petal.PETAL_GOOD);
         ret = Create_good(f.x, f.y, goodName, petalName, to);
-        //ret.Set_maxFlowerScale(0.5f);
 
         return ret;
     }
@@ -975,6 +986,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         public float _flowerPlusSize;
         public float _flowerMaxSize;
         public float _flowerMinSize;
+        public float _flowerGoodSize;
+        public float _flowerSmileSize;
 
         public Info_regulation() {
             _regulation_seekBar_0 = 100000;
@@ -991,6 +1004,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _flowerMinSize = 0.3f;
             _flowerMaxSize = 1.5f;
             _flowerPlusSize = 1.1f;
+            _flowerGoodSize = 1.0f;
+            _flowerSmileSize =1.0f;
         }
     }
 }

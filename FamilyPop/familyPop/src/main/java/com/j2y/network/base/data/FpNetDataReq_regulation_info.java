@@ -28,6 +28,8 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
     public float _flowerPlusSize;
     public float _flowerMaxSize;
     public float _flowerMinSize;
+    public float _flowerGoodSize;
+    public float _flowerSmileSize;
 
     //----------------------------------------------------------------
     // 메시지 파싱
@@ -43,6 +45,8 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
         _flowerPlusSize     = inMsg.ReadFloat();
         _flowerMaxSize      = inMsg.ReadFloat();
         _flowerMinSize      = inMsg.ReadFloat();
+        _flowerGoodSize     = inMsg.ReadFloat();
+        _flowerSmileSize    = inMsg.ReadFloat();
 
         // back
 //        _seekBar_0 = inMsg.ReadInt();
@@ -70,6 +74,8 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
         outMsg.Write(_flowerPlusSize);
         outMsg.Write(_flowerMaxSize);
         outMsg.Write(_flowerMinSize);
+        outMsg.Write(_flowerGoodSize);
+        outMsg.Write(_flowerSmileSize);
 
         // back
 //        outMsg.Write(_seekBar_0);

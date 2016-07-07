@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/button_play_over" android:state_pressed="true"></item>
-    <item android:drawable="@drawable/button_play_over" android:state_focused="true"></item>
-    <item android:drawable="@drawable/button_play_non"/>
-
+    <item android:state_pressed="true" android:drawable="@drawable/button_play_over" />
+    <item android:state_focused="true" android:drawable="@drawable/button_play_over" />
+    <item android:drawable="@drawable/gui_0621_reso_btn_history_play04" />
 </selector>

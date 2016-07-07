@@ -8,7 +8,7 @@ package com.j2ysoft.gmpguru.mobilemaestro;
 
 public final class R {
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200b0;
+		public static final int ic_launcher = 0x7f0200b5;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f04002a;

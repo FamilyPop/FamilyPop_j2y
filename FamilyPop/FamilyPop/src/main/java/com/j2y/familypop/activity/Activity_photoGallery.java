@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.View;
 
 import android.widget.AbsListView;
@@ -105,7 +106,6 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
             //이름 추가
             int imageNameCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
 
-
             //커서에서 이미지의 ID와 경로명을 가져와서 Thumb이미지 모델 클래스를 생성하여 리스트에 더해줌
             while(imageCursor.moveToNext())
             {
@@ -123,9 +123,6 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
         imageCursor.close();
         _photoGallery.SetImageList(_thumb_imageList);
     }
-
-
-
     @Override
     public void onClick(View v)
     {
@@ -140,7 +137,6 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
 
         DeActive();
     }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -152,7 +148,9 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
     }
 
     @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+    {
 
     }
+
 }

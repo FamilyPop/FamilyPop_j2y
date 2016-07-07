@@ -79,21 +79,21 @@
 
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/imageView_center_bubble"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/image_bubble_red" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button_play_record"
-            android:background="@drawable/style_button_play"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+        <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/button_play_record"-->
+            <!--android:background="@drawable/style_button_play"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_centerHorizontal="true" />-->
 
     </RelativeLayout>
 
@@ -134,7 +134,8 @@
             android:layout_below="@+id/imageView6"
             android:layout_centerHorizontal="true"
             android:thumb="@drawable/scroll_point"
-            android:progressDrawable="@android:color/transparent" />
+            android:progressDrawable="@android:color/transparent"
+            android:layout_alignParentTop="true" />
         <!--<com.j2y.familypop.backup.test_CustomSeekBar-->
             <!--android:layout_width="300dp"-->
             <!--android:layout_height="wrap_content"-->
@@ -169,6 +170,16 @@
             android:textColor="@color/color_default_string"
             android:layout_alignTop="@+id/textView_seekbar"
             android:layout_alignRight="@+id/seekBar_history_voice_playstate" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_play_record"
+            android:background="@drawable/gui_0621_reso_btn_historyview_play04"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/textView_max_playtime"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

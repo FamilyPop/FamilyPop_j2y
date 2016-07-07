@@ -99,7 +99,6 @@ public class Manager_users {
             _lock_user.unlock();
         }
     }
-
     public int GetColor_UniqueNumber()
     {
         int ret = _colorTypeCount;

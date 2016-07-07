@@ -650,8 +650,10 @@ public class FpNetFacade_client extends FpNetFacade_base
             sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
             return;
         }
-
         reqPaket._clientId =  FpcRoot.Instance._clientId;
+
+        FpNetFacade_client.Instance.SendPacket_req_shareImage();
+
         int viewHeight = 128;
         float width = 0.0f;
         float height = 0.0f;
@@ -698,6 +700,8 @@ public class FpNetFacade_client extends FpNetFacade_base
         reqPaket._flowerPlusSize = main._flowerPlusSize;
         reqPaket._flowerMaxSize = main._flowerMaxSize;
         reqPaket._flowerMinSize = main._flowerMinSize;
+        reqPaket._flowerGoodSize = main._flowerGoodSize;
+        reqPaket._flowerSmileSize = main._flowerSmileSize;
 
         // back
 //        reqPaket._seekBar_0 = seekBar_0;

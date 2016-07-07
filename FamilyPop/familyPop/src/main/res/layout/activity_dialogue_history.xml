@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/listview_header_play"
                         android:layout_gravity="bottom|right"
-                        android:layout_marginRight="50dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/style_button_play"
                         android:layout_alignBottom="@+id/listview_header_playtime"
                         android:layout_alignParentRight="true" />
