@@ -643,17 +643,20 @@ public class FpNetFacade_client extends FpNetFacade_base
 //
 //        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
 
+
+
+
         FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
         Manager_photoGallery photo = Manager_photoGallery.Instance;
+
+        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
 
         if(photo.Get_countBitmap() == 0 ) {
             sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
             return;
         }
+
         reqPaket._clientId =  FpcRoot.Instance._clientId;
-
-        FpNetFacade_client.Instance.SendPacket_req_shareImage();
-
         int viewHeight = 128;
         float width = 0.0f;
         float height = 0.0f;
@@ -701,7 +704,6 @@ public class FpNetFacade_client extends FpNetFacade_base
         reqPaket._flowerMaxSize = main._flowerMaxSize;
         reqPaket._flowerMinSize = main._flowerMinSize;
         reqPaket._flowerGoodSize = main._flowerGoodSize;
-        reqPaket._flowerSmileSize = main._flowerSmileSize;
 
         // back
 //        reqPaket._seekBar_0 = seekBar_0;

@@ -176,12 +176,12 @@
         "source": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable\\image_stick_green.png"
     },
     {
-        "merged": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable\\image_sticklayout_phthalogreen.xml",
-        "source": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable\\image_sticklayout_phthalogreen.xml"
-    },
-    {
         "merged": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable\\image_clientpos_pink_top.xml",
         "source": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable\\image_clientpos_pink_top.xml"
+    },
+    {
+        "merged": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable\\image_sticklayout_phthalogreen.xml",
+        "source": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable\\image_sticklayout_phthalogreen.xml"
     },
     {
         "merged": "F:\\j2ysoft\\j2ysoft_hermit\\project\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable\\seekbar_historyplayback_voiceplay.xml",

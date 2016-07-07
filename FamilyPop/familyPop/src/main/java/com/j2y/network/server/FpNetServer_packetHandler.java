@@ -563,15 +563,15 @@ public class FpNetServer_packetHandler
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
             data.Parse(inMsg);
 
-            //FpNetDataReq_shareImage release = new FpNetDataReq_shareImage();
+            FpNetDataReq_shareImage release = new FpNetDataReq_shareImage();
 
             //_net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
 
             //for( int i=0; i<Manager_users.Instance.Get_talk_users().size(); i++)
-//            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values())
-//            {
-//                _net_server.SendPacket(FpNetConstants.CSC_ShareImage, user._net_client._clientID, release);
-//            }
+            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values())
+            {
+                _net_server.SendPacket(FpNetConstants.CSC_ShareImage, user._net_client._clientID, release);
+            }
 
             _net_server.SendPacket(FpNetConstants.CSC_ShareImage, data._clientId, data);
 
