@@ -421,12 +421,15 @@ public class FpNetFacade_client extends FpNetFacade_base
             {
                 if( data.Get_count() == 0)
                 {
+
                     for (int i = 0; i < 5; ++i) {
                         Activity_clientMain.Instance.SetupSharedImage(i, null);
                     }
                 }
                 else
                 {
+
+
                     if( data.Get_count()  > 1){
                         for (int i = 0; i < data.Get_count(); ++i) {
                             Activity_clientMain.Instance.SetupSharedImage(i, data.Get_bitArray(i));

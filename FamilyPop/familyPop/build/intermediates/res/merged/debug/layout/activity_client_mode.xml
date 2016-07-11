@@ -975,7 +975,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layout_photoView"
-        android:visibility="visible">
+        android:visibility="invisible"
+        android:background="#DA000000"
+        android:clickable="true">
 
         <ImageButton
             android:layout_width="295dp"

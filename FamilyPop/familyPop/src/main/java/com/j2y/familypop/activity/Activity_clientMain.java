@@ -1264,10 +1264,12 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         {
             if(null == image)
             {
+                //Activity_clientMain.Instance._photoView.setVisibility(View.INVISIBLE);
                 SetupSharedImage(inButton,(Bitmap)null);
             }
             else
             {
+                //Activity_clientMain.Instance._photoView.setVisibility(View.VISIBLE);
                 Bitmap selectedImage = FpNetUtil.ByteArrayToBitmap(image);
                 SetupSharedImage(inButton,selectedImage);
             }
@@ -1279,6 +1281,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         if(null == selectedImage)
         {
             //_shared_image.setVisibility(View.INVISIBLE);
+            _layout_photoView.setVisibility(View.INVISIBLE);
             imageButton.setVisibility(View.GONE);
         }
         else
@@ -1288,6 +1291,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 //            _shared_image.setImageBitmap(selectedImage);
 //            _shared_image.setOnClickListener(new OnClickListener();
 
+            _layout_photoView.setVisibility(View.VISIBLE);
             imageButton.setVisibility(View.VISIBLE);
             imageButton.setImageBitmap(selectedImage);
             imageButton.setOnClickListener(new OnClickListener()
