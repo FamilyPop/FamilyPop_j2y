@@ -649,20 +649,24 @@ public class FpNetFacade_client extends FpNetFacade_base
         FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
         Manager_photoGallery photo = Manager_photoGallery.Instance;
 
-        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
+        // 서버에 빈 데이터를 보내 화면에 출력한 사진을 제가 한다.
+        //sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
 
-        if(photo.Get_countBitmap() == 0 ) {
+        if(photo.Get_countBitmap() == 0 )
+        {
+            reqPaket._clientId =  FpcRoot.Instance._clientId;
             sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
             return;
         }
 
         reqPaket._clientId =  FpcRoot.Instance._clientId;
-        int viewHeight = 128;
+        int viewHeight = 256;
         float width = 0.0f;
         float height = 0.0f;
         for(int i=0; i<photo.Get_countBitmap(); ++i)
         {
-            if( photo.Get_countBitmap() == 1){viewHeight = 256;}
+            //if( photo.Get_countBitmap() == 1){viewHeight = 256;} // 한장전송할때.
+
             width = photo.Get_bitmap(i).getWidth();
             height = photo.Get_bitmap(i).getHeight();
 

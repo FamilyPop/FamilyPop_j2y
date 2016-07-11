@@ -54,6 +54,7 @@ import com.j2y.network.server.packet.PacketListener_connect;
 
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 
 import java.util.Collections;
@@ -563,18 +564,20 @@ public class FpNetServer_packetHandler
             FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
             data.Parse(inMsg);
 
-            FpNetDataReq_shareImage release = new FpNetDataReq_shareImage();
+            // 이미지 전송을 강제 취소 시킨다.
+//            FpNetDataReq_shareImage release = new FpNetDataReq_shareImage();
+//            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values())
+//            {
+//                _net_server.SendPacket(FpNetConstants.CSC_ShareImage, user._net_client._clientID, release);
+//            }
+            //
 
             //_net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
 
             //for( int i=0; i<Manager_users.Instance.Get_talk_users().size(); i++)
-            for( FpsTalkUser user : Manager_users.Instance.Get_talk_users().values())
-            {
-                _net_server.SendPacket(FpNetConstants.CSC_ShareImage, user._net_client._clientID, release);
-            }
+
 
             _net_server.SendPacket(FpNetConstants.CSC_ShareImage, data._clientId, data);
-
 
             if( data.Get_count() != 0)
             {
@@ -585,13 +588,14 @@ public class FpNetServer_packetHandler
 
                     if( data.Get_count() == 1)
                     {
-                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(-1, shareImage);
+                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(data._clientId, -1, shareImage);
                     }
                     else
                     {
-                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(i, shareImage);
+                        Activity_serverMain_andEngine.Instance.OnEvent_shareimage(data._clientId, i, shareImage);
                     }
                 }
+                setReposition();
             }
             else
             {
@@ -603,13 +607,14 @@ public class FpNetServer_packetHandler
                     releaseUpdate = Manager_resource.Instance.ReleaseAll_flash_Sprites(scene);
                     scene.registerUpdateHandler(releaseUpdate);
                     Manager_resource.flashSprittRelease = true;
+                    Manager_resource.deleteFlashSprite_clientId = data._clientId;
                 }
                 else
                 {
                     Manager_resource.flashSprittRelease = true;
+                    Manager_resource.deleteFlashSprite_clientId = data._clientId;
                 }
             }
-
 
 //            //FpNetServer_client client = (FpNetServer_client)inMsg._obj;
 //            FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
@@ -631,10 +636,15 @@ public class FpNetServer_packetHandler
         }
     };
 
+    private void setReposition()
+    {
+        Activity_serverMain_andEngine.Instance.ShareImage_reposition();
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 대화 정보(버블, 웃음 이벤트 목록) 요청
     FpNetMessageCallBack onReq_talk_record_info = new FpNetMessageCallBack()
     {
+        //# 버블 데이터 만들어 보내는 함수.
         @Override
         public void CallBack(FpNetIncomingMessage inMsg)
         {
@@ -650,25 +660,24 @@ public class FpNetServer_packetHandler
 
                 // todo: 메인쓰레드, 렌더링쓰레드 충돌남
                 FpsTalkUser talk_user =  Manager_users.Instance.GetTalkUser(client);
-                if(null == talk_user)
-                    return;
 
-                Actor_attractor attractor = Manager_actor.Instance.Get_attractor(talk_user._uid_attractor);
+                    if (null == talk_user)
+                        return;
 
-                outMsg._attractor._x = attractor.Get_Body().getPosition().x;
-                outMsg._attractor._y = attractor.Get_Body().getPosition().y;
-                outMsg._attractor._color = client._clientID;
+                    Actor_attractor attractor = Manager_actor.Instance.Get_attractor(talk_user._uid_attractor);
 
-                for(BaseActor actor : Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK))
-                {
-                    Actor_talk talk = (Actor_talk)actor;
-                    Vector2 pos = talk.Get_Body().getPosition();
-                    outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, pos.y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, talk.Get_Scale(), talk.Get_colorId() );
-                }
+                    outMsg._attractor._x = attractor.Get_Body().getPosition().x;
+                    outMsg._attractor._y = attractor.Get_Body().getPosition().y;
+                    outMsg._attractor._color = client._clientID;
 
-                //outMsg._smile_events.addAll(talk_user._smile_events);
+                    for (BaseActor actor : Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK)) {
+                        Actor_talk talk = (Actor_talk) actor;
+                        Vector2 pos = talk.Get_Body().getPosition();
+                        outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, pos.y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, talk.Get_Scale(), talk.Get_colorId());
+                    }
 
-                client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
+                    //outMsg._smile_events.addAll(talk_user._smile_events);
+                    client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
             }
         }
     };

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
+
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -70,8 +72,29 @@ class BitmapTextureAtlasSource extends BaseTextureAtlasSource implements IBitmap
         return Bitmap.createBitmap(mColors, mTextureWidth, mTextureHeight, Bitmap.Config.ARGB_8888);
     }
 }
+//_flash_sprites
+class Sprite_flash
+{
+    private int _clientId = -1;
+    private Sprite _sprite = null;
 
-public class Manager_resource {
+    public Sprite_flash(int clientId, Sprite sprite)
+    {
+        _clientId = clientId;
+        _sprite = sprite;
+    }
+
+    public Sprite Get_sprite(){return _sprite;}
+    public int Get_clientID(){return _clientId;}
+    public  void Release( Scene scene)
+    {
+        scene.detachChild(_sprite);
+    }
+
+}
+
+public class Manager_resource
+{
     //====================================================================================================
     // enum
     //====================================================================================================
@@ -174,7 +197,8 @@ public class Manager_resource {
     private ArrayList<String> _likePetalNames = null;
 
 
-    private CopyOnWriteArrayList<Sprite> _flash_sprites = null;
+    //private CopyOnWriteArrayList<Sprite> _flash_sprites = null;
+    private CopyOnWriteArrayList<Sprite_flash> _flash_sprites = null;
 
     private Font _font = null;
 
@@ -332,6 +356,10 @@ public class Manager_resource {
     //====================================================================================================
     // get texture
     //====================================================================================================
+    public CopyOnWriteArrayList<Sprite_flash> GetSprite_flash()
+    {
+        return _flash_sprites;
+    }
     public ITiledTextureRegion GetTiledTexture(String key) {
         ITiledTextureRegion ret = null;
 
@@ -416,7 +444,7 @@ public class Manager_resource {
 
         return ret;
     }
-    public synchronized Sprite Create_sprite(float posX, float posY, Scene scene, SimpleBaseGameActivity gameActivity,Bitmap bitmap)
+    public synchronized Sprite Create_flashSprite(int clientId,  float posX, float posY, Scene scene, SimpleBaseGameActivity gameActivity,Bitmap bitmap)
     {
         Sprite ret = null;
 
@@ -430,11 +458,16 @@ public class Manager_resource {
         ret.setZIndex(-100);
         scene.attachChild(ret);
 
-        _flash_sprites.add(ret);
+        Sprite_flash sprite_flash = new Sprite_flash(clientId, ret);
+        _flash_sprites.add(sprite_flash);
 
         return ret;
     }
+    //====================================================================================================
+    // release
+    //====================================================================================================
     public static boolean flashSprittRelease = false;
+    public static int deleteFlashSprite_clientId = -1; // -1 이면 전부 제거 한다.
     public IUpdateHandler ReleaseAll_flash_Sprites(final Scene scene)
     {
         return new IUpdateHandler() {
@@ -443,16 +476,29 @@ public class Manager_resource {
             {
                 if(flashSprittRelease == true )
                 {
-                    for( Sprite sp : _flash_sprites)
+                    //for( Sprite sp : _flash_sprites)
+                    for(Sprite_flash sp : _flash_sprites)
                     {
-
-                        scene.detachChild(sp);
-                        _flash_sprites.remove(sp);
+                        if( deleteFlashSprite_clientId == -1)
+                        {
+                            //scene.detachChild(sp);
+                            sp.Release(scene);
+                            _flash_sprites.remove(sp);
+                        }
+                        else
+                        {
+                            if( sp.Get_clientID() == deleteFlashSprite_clientId)
+                            {
+                                sp.Release(scene);
+                                _flash_sprites.remove(sp);
+                            }
+                        }
                     }
+                    ShareImage_reposition();
+                    deleteFlashSprite_clientId = -1;
                     flashSprittRelease = false;
                 }
             }
-
             @Override
             public void reset() {
 
@@ -483,6 +529,118 @@ public class Manager_resource {
         ReleaseAll_flash_Sprites(scene);
         ReleaseAll_sprite();
         ReleaseAll_tileSprites();
+    }
+    //====================================================================================================
+    // util
+    //====================================================================================================
+    private void setResize_height(Sprite sprite, int heightSize)
+    {
+        int viewHeight = heightSize;
+        float width = 0.0f;
+        float height = 0.0f;
+
+        width = sprite.getWidth();
+        height = sprite.getHeight();
+
+        float percente = (float)(height/100);
+        float scale = (float)(viewHeight/percente);
+
+        width *= (scale/100);
+        height *= (scale/100);
+
+        sprite.setWidth(width);
+        sprite.setHeight(height);
+    }
+    public void ShareImage_reposition()
+    {
+        int imageCount = Manager_resource.Instance.GetSprite_flash().size();
+        int cameraWidth = Activity_serverMain_andEngine.CAMERA_WIDTH;
+        int cameraHeight = Activity_serverMain_andEngine.CAMERA_HEIGHT;
+        float centerX = (cameraWidth / 2);
+        float centerY = (cameraHeight / 2);
+
+        float centerHalfX = centerX / 2;
+        float centerHalfY = centerY / 2;
+
+        float posX = 0.0f;
+        float posY = 0.0f;
+
+        //imageCount %= 9;
+
+        if( imageCount == 1 )
+        {
+            Sprite_flash centerSprite = ((Sprite_flash) Manager_resource.Instance.GetSprite_flash().get(0));
+            setResize_height(centerSprite.Get_sprite(), 256);
+            posX = (cameraWidth / 2) - (centerSprite.Get_sprite().getWidth()/2);
+            posY = (cameraHeight / 2) - (centerSprite.Get_sprite().getHeight()/2);
+            centerSprite.Get_sprite().setPosition(posX, posY);
+        }
+        else if( imageCount <= 4)
+        {
+
+            float leftTopX = centerX - centerHalfX;
+            float leftTopY = centerY - centerHalfY;
+
+            float rightTopX = centerX + centerHalfX;
+            float rightTopY = centerY - centerHalfY;
+
+            float leftBottomX = centerX - centerHalfX;
+            float leftBottomY = centerY + centerHalfY;
+
+            float rightBottomX = centerX + centerHalfX;
+            float rightBottomY = centerY + centerHalfY;
+
+            int index = 0;
+            for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            {
+                setResize_height(sprite_flash.Get_sprite(), 120);
+
+                switch (index) {
+                    case 0:
+                        posX = leftTopX - (sprite_flash.Get_sprite().getWidth()/ 2);
+                        posY = leftTopY - (sprite_flash.Get_sprite().getHeight()/ 2);
+                        break;
+                    case 1:
+                        posX = rightTopX - (sprite_flash.Get_sprite().getWidth()/ 2);
+                        posY = rightTopY - (sprite_flash.Get_sprite().getHeight()/ 2);
+                        break;
+                    case 2:
+                        posX = leftBottomX - (sprite_flash.Get_sprite().getWidth()/ 2);
+                        posY = leftBottomY - (sprite_flash.Get_sprite().getHeight()/ 2);
+                        break;
+                    case 3:
+                        posX = rightBottomX - (sprite_flash.Get_sprite().getWidth()/ 2);
+                        posY = rightBottomY - (sprite_flash.Get_sprite().getHeight()/ 2);
+                        break;
+                }
+                sprite_flash.Get_sprite().setPosition(posX, posY);
+                index ++;
+            }
+        }
+        else
+        {
+            int count_index = 0;
+            final int count_tileX = 3;
+            final int count_tileY = 3;
+            for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            {
+                count_index %= 9;
+                setResize_height(sprite_flash.Get_sprite(), 95);
+
+                float tileX = (cameraWidth/count_tileX);
+                float tileY = (cameraHeight/count_tileY);
+
+                posX = (count_index % count_tileX) * tileX;
+                posY = ( count_index / count_tileX ) * tileY;
+
+             //   posX += (sprite_flash.Get_sprite().getWidth()/4);
+             //   posY += (sprite_flash.Get_sprite().getHeight()/4);
+
+                sprite_flash.Get_sprite().setPosition(posX, posY);
+                ++count_index;
+            }
+        }
+
     }
 }
 

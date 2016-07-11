@@ -1246,7 +1246,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     // 공유 이미지를 설정한다.
     public void SetupSharedImage(int index , byte[] image)
     {
-
         ImageButton inButton = null;
         switch(index)
         {
@@ -1258,10 +1257,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             case 2: inButton = _image_leftBottom; break;
             // right buttom
             case 3: inButton = _image_rightBottom; break;
-
             // center
             case 4: inButton = _image_center; break;
-
         }
         if(inButton != null )
         {

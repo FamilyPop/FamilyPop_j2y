@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.manager.Manager_actor;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_resource;
@@ -78,8 +77,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public static final int event_shareImage            = 8;
     public static final int event_shareImage_end        = 9;
 
-    public static final int event_createBeeExplosion = 10;
-    public static final int event_deleteBeeExplosion = 11;
+    public static final int event_createBeeExplosion    = 10;
+    public static final int event_deleteBeeExplosion    = 11;
+
+    //ShareImage
+    public static final int event_deleteShareImage      = 12;
 
     public static final int event_serverClose = 99;
 
@@ -708,54 +710,88 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             e.printStackTrace();
         }
     }
-    public synchronized void OnEvent_shareimage(int posIndex, Bitmap bitmap) {
-        // -1 일때 가운데 출력
+    public synchronized void OnEvent_shareimage(int clientId, int posIndex, Bitmap bitmap) // posIndex 사용 안함.
+    {
+//        // -1 일때 가운데 출력
+//        float centerX = (CAMERA_WIDTH / 2) - (bitmap.getWidth() / 2);
+//        float centerY = (CAMERA_HEIGHT / 2) - (bitmap.getHeight() / 2);
+//
+//        float centerHalfX = centerX / 2;
+//        float centerHalfY = centerY / 2;
+//
+//        float leftTopX = centerX - centerHalfX;
+//        float leftTopY = centerY - centerHalfY;
+//
+//        float rightTopX = centerX + centerHalfX;
+//        float rightTopY = centerY - centerHalfY;
+//
+//        float leftBottomX = centerX - centerHalfX;
+//        float leftBottomY = centerY + centerHalfY;
+//
+//        float rightBottomX = centerX + centerHalfX;
+//        float rightBottomY = centerY + centerHalfY;
+//
+//        float posX = 0;
+//        float posY = 0;
+//
+//        if (posIndex == -1)
+//        {
+//            posX = centerX;
+//            posY = centerY;
+//        }
+//        else
+//        {
+//            switch (posIndex)
+//            {
+//                case 0:
+//                    posX = leftTopX;
+//                    posY = leftTopY;
+//                    break;
+//                case 1:
+//                    posX = rightTopX;
+//                    posY = rightTopY;
+//                    break;
+//                case 2:
+//                    posX = leftBottomX;
+//                    posY = leftBottomY;
+//                    break;
+//                case 3:
+//                    posX = rightBottomX;
+//                    posY = rightBottomY;
+//                    break;
+//            }
+//        }
+//        Manager_resource.Instance.Create_flashSprite(clientId, posX, posY, _scene, this, bitmap);
 
+
+        // 화면을 쪼개서 적당히 배치 하자.
         float centerX = (CAMERA_WIDTH / 2) - (bitmap.getWidth() / 2);
         float centerY = (CAMERA_HEIGHT / 2) - (bitmap.getHeight() / 2);
 
-        float centerHalfX = centerX / 2;
-        float centerHalfY = centerY / 2;
+        int countX = 5;
+        int countY = 5;
 
-        float leftTopX = centerX - centerHalfX;
-        float leftTopY = centerY - centerHalfY;
+        int tileX = CAMERA_WIDTH / countX;
+        int tileY = CAMERA_HEIGHT / countY;
 
-        float rightTopX = centerX + centerHalfX;
-        float rightTopY = centerY - centerHalfY;
+        int tileCenterX = tileX/2;
+        int tileCenterY = tileY/2;
 
-        float leftBottomX = centerX - centerHalfX;
-        float leftBottomY = centerY + centerHalfY;
+        int posX = 0;
+        int posY = 0;
 
-        float rightBottomX = centerX + centerHalfX;
-        float rightBottomY = centerY + centerHalfY;
-
-        float posX = 0;
-        float posY = 0;
-
-        if (posIndex == -1) {
-            posX = centerX;
-            posY = centerY;
-        } else {
-            switch (posIndex) {
-                case 0:
-                    posX = leftTopX;
-                    posY = leftTopY;
-                    break;
-                case 1:
-                    posX = rightTopX;
-                    posY = rightTopY;
-                    break;
-                case 2:
-                    posX = leftBottomX;
-                    posY = leftBottomY;
-                    break;
-                case 3:
-                    posX = rightBottomX;
-                    posY = rightBottomY;
-                    break;
-            }
+         int index = Manager_resource.Instance.GetSprite_flash().size() + (posIndex%1);
+//        if (posIndex == -1)
+//        {
+//            posX = (int)centerX;
+//            posY = (int)centerY;
+//        }
+//        else
+        {
+            posX = (index % countX) * tileX;
+            posY = ( index / countX ) * tileY;
         }
-        Manager_resource.Instance.Create_sprite(posX, posY, _scene, this, bitmap);
+        Manager_resource.Instance.Create_flashSprite(clientId,  posX, posY, _scene, this, bitmap);
     }
 
 
@@ -966,6 +1002,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         }
     }
     //====================================================================================================
+    // ShareImage_reposition
+    //====================================================================================================
+    public void ShareImage_reposition()
+    {
+        Manager_resource.Instance.ShareImage_reposition();
+    }
+    //====================================================================================================
     // class s
     //====================================================================================================
     public class Info_regulation {
@@ -1009,3 +1052,4 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         }
     }
 }
+

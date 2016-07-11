@@ -92,7 +92,6 @@ public class FpNetFacade_server extends FpNetFacade_base
 			
 			_accepter = new FpTCPAccepter(_serverSocket, _messageHandler);
 			_accepter.start();
-			
 		}
         catch (IOException e)
         {
@@ -197,26 +196,27 @@ public class FpNetFacade_server extends FpNetFacade_base
 
         //if(FpsScenarioDirector.Instance.GetActiveScenarioType() == FpNetConstants.SCENARIO_RECORD)
         {
+            //for(FpNetServer_client client : _clients)
+            //for( FpNetServer_client client : Manager_users.Instance.Get_talk_users().values())
+            int count = 0;
             for(FpNetServer_client client : _clients)
             {
+                count++;
+
                 FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
 
-                // todo: 메인쓰레드, 렌더링쓰레드 충돌남
                 FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);// Activity_serverMain.Instance.GetTalkUser(client);
                 if(null == talk_user)      continue;
-
 
                 outMsg._attractor._x = talk_user._attractor.GetAttractorPos().x;//GetPosition().x;
                 outMsg._attractor._y = talk_user._attractor.GetAttractorPos().y;//GetPosition().y;
                 outMsg._attractor._color = client._clientID;
-
 
                 com.badlogic.gdx.math.Vector2 pos;
                 for( CopyOnWriteArrayList<BaseActor> actors : Manager_actor.Instance.GetActors().values())
                 {
                     for( BaseActor actor : actors)
                     {
-
                         //ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4), ACTOR_HONEY_BEE_EXPLOSION(5);
                         switch (actor.Get_ActorType())
                         {
@@ -230,7 +230,6 @@ public class FpNetFacade_server extends FpNetFacade_base
                                 Actor_smile smile = (Actor_smile)actor;
                                 pos = smile.Get_Body().getPosition();
                                 outMsg.AddRecordData(-1, -1, pos.x, pos.y, smile.Get_Sprite().getScaleCenterX(), smile.Get_colorId());
-
                                 break;
                             case ACTOR_GOOD:
                                 Actor_good good = (Actor_good)actor;
@@ -253,6 +252,7 @@ public class FpNetFacade_server extends FpNetFacade_base
                 client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
             }
         }
+
         SystemClock.sleep(50); // 기다려야 하나??
     }
 
