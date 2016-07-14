@@ -110,6 +110,9 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             ((TextView) findViewById(R.id.textView_name)).setText(talk_record._name);
             ((TextView) findViewById(R.id.textView_day)).setText(Activity_talkHistory.CalculateDate(talk_record));
 
+            // att
+            //float _testX = talk_record._x;
+            //float _testY = talk_record._y;
             //Vector2 center = new Vector2(_layout_bubbles.getWidth()/2, _layout_bubbles.getHeight()/2);
             for (int i = 0; i < talk_record._bubbles.size(); i++)
             {
@@ -125,7 +128,7 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 //params.setMargins(500 - (int) item._y, 500 - (int) item._x, 0, 0);
                 //params.setMargins(410 + (int) item._x, 320 + (int) item._y, 0, 0);
               //  params.setMargins((int)center.x + (int) item._x, (int)center.y + (int) item._y, 0, 0);
-                  params.setMargins( 360 + (int) item._x, 260 + (int) item._y, 0, 0);
+                  params.setMargins((int) item._x,(int) item._y, 0, 0);
                 //params.setMargins((int)lay.getWidth()/2 + (int) item._x, (int)lay.getWidth()/2 + (int) item._y, 0, 0);
 
                 // todo: 버블 컬러 변경

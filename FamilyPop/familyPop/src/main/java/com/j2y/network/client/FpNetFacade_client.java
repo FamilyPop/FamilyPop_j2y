@@ -15,6 +15,7 @@ import com.j2y.familypop.activity.Interaction_Target;
 import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
+import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
 import com.j2y.familypop.server.FpsRoot;
@@ -380,6 +381,16 @@ public class FpNetFacade_client extends FpNetFacade_base
             data.Parse(inMsg);
 
             FpcRoot.Instance.RecordTalkBubbles(data);
+
+            // 데이터 저장.
+            Manager_contents magContents = Manager_contents.Instance;
+
+            if( magContents.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+            {
+                ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( "BIRTHDAY DINNER",
+                                                                                                              FpcRoot.Instance._socioPhone.GetWavFileName(),
+                                                                                                              FpcRoot.Instance._bubble_color_type );
+            }
         }
     };
 
@@ -392,6 +403,20 @@ public class FpNetFacade_client extends FpNetFacade_base
         {
 
             Log.i("[J2Y]", "[패킷수신] 방 종료");
+
+//            Manager_contents magContents = Manager_contents.Instance;
+//
+//            if( magContents != null)
+//            {
+//                if( magContents.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+//                {
+//
+//
+//                    ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( "test",
+//                            FpcRoot.Instance._socioPhone.GetWavFileName(),
+//                            FpcRoot.Instance._bubble_color_type );
+//                }
+//            }
 
             //kookm0616
             if (FpcRoot.Instance._scenarioDirectorProxy._activeScenario != null)

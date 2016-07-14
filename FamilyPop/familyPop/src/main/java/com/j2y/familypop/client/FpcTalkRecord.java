@@ -21,8 +21,13 @@ public class FpcTalkRecord implements Serializable
     public long _endTime;
     public boolean _list_added;
 
+    public float _x;
+    public float _y;
+
     public ArrayList<Bubble> _bubbles = new ArrayList<Bubble>();
     public ArrayList<SmileEvent> _smiles = new ArrayList<SmileEvent>();
+
+
 
     public class  Bubble implements Serializable
     {

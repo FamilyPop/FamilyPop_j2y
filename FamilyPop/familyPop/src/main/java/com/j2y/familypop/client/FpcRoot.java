@@ -228,6 +228,9 @@ public class FpcRoot implements TurnDataListener, DisplayInterface, EventDataLis
 
         _selected_talk_record._bubbles.clear();
 
+        _selected_talk_record._x = data._attractor._x;
+        _selected_talk_record._y = data._attractor._y;
+
         for(FpNetDataRes_recordInfoList.FpNetDataRes_recordInfoData bubble : data._bubbles) {
 
             //Log.i("[J2Y]", String.format("[NetClient]:%f,%f", bubble._x, bubble._y));

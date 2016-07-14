@@ -40,6 +40,8 @@ import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.lobby.Activity_talkHistory;
+import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
+import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 import com.j2y.familypop.activity.popup.Popup_dialogueMenu;
 import com.j2y.familypop.activity.manager.Manager_contents;
@@ -1649,7 +1651,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         _image_rightBottom = (ImageButton)findViewById(R.id.imageView_photo_rightBottom);
         _image_center = (ImageButton)findViewById(R.id.imageView_photo_center);
 
-
         // user message
         _button_userLike = (ImageView) findViewById(R.id.imageview_user_interaction_like);
         //_button_userLike.setOnClickListener(this);
@@ -1687,7 +1688,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
         _image_servertoConnect = (ImageView)findViewById(R.id.image_connectServer);
         _image_servertoConnectFail = (ImageView)findViewById(R.id.image_connectFail);
-
 
         // photo view
         //_photoView = (RelativeLayout)findViewById(R.id.llImageList);
@@ -1826,67 +1826,74 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     public void onClick_Quitdialogue(final boolean force_exit, final boolean exit_talk, final boolean net_request)
     {
         _net_quit_request = net_request;
-        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(this)
+        FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
+//        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(this)
+//        {
+//            @Override
+//            protected void onCreate(Bundle savedInstanceState)
+//            {
+//                super.onCreate(savedInstanceState);
+//                //_content.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//                //String str  = _editText.getText().toString();
+//            }
+//            @Override
+//            public void onClick(View v)
+//            {
+//                super.onClick(v);
+//                switch (v.getId())
+//                {
+//                    case R.id.button_custom_dialog_ok:
+//                    {
+//                        FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
+//
+//                        SaveTalkRecord();
+//
+//                        ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( _editText.getText().toString(),
+//                                                                                                              FpcRoot.Instance._socioPhone.GetWavFileName(),
+//                                                                                                              FpcRoot.Instance._bubble_color_type );
+
+//                        if(exit_talk)
+//                        {
+//                            if(net_request)
+//                                request_exitRoom();
+//                            else
+//                                ExitRoom();
+//
+//                            finish();
+//                        }
+//                        else
+//                        {
+//                            cancel();
+//                        }
+//                    }
+//                        break;
+//                    case R.id.button_custom_dialog_cancel:
+//                        if(force_exit) {
+//
+//                            startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
+//                            finish();
+//                        }
+//                        else
+//                            cancel();
+//                        break;
+//                }
+//            }
+//        };
+//        msgbox.show();
+        if(exit_talk)
         {
-            @Override
-            protected void onCreate(Bundle savedInstanceState)
-            {
-                super.onCreate(savedInstanceState);
-                //_content.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                //String str  = _editText.getText().toString();
-            }
-            @Override
-            public void onClick(View v)
-            {
-                super.onClick(v);
-                switch (v.getId())
-                {
-                    case R.id.button_custom_dialog_ok:
-                    {
-                        FpcTalkRecord talk_record = FpcRoot.Instance._selected_talk_record;
-                        if(talk_record != null)
-                        {
-                            talk_record._name = _editText.getText().toString();
-                            talk_record._filename = FpcRoot.Instance._socioPhone.GetWavFileName();
-                            talk_record._bubble_color_type = FpcRoot.Instance._bubble_color_type;
-                            //debug
-                           //Toast.makeText(Activity_clientMain.Instance, FpcRoot.Instance._socioPhone.GetWavFileName(), Toast.LENGTH_SHORT).show();
-                           Log.i("[J2Y]", String.format("[from][to]:%s , %s", talk_record._filename, FpcRoot.Instance._socioPhone.GetWavFileName()));
-                        }
+            if(net_request)
+                request_exitRoom();
+            else
+                ExitRoom();
 
-                        FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
+            finish();
+        }
+        else
+        {
+            //cancel();
+        }
 
-                        SaveTalkRecord();
-
-                        if(exit_talk)
-                        {
-                            if(net_request)
-                                request_exitRoom();
-                            else
-                                ExitRoom();
-
-                            finish();
-                        }
-                        else
-                        {
-
-                            cancel();
-                        }
-                    }
-                        break;
-                    case R.id.button_custom_dialog_cancel:
-                        if(force_exit) {
-
-                            startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
-                            finish();
-                        }
-                        else
-                            cancel();
-                        break;
-                }
-            }
-        };
-        msgbox.show();
     }
     @Override
     public void onBackPressed()
@@ -1899,7 +1906,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         //super.onKeyDown(keyCode, event);
         boolean ret = false;
         _photoGallery.DeActive();
-
 
         return ret;
     }
@@ -1991,7 +1997,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         Interaction_Target ret =null;
         for( Interaction_Target v : _touchViews)
         {
-
             Rect rect = new Rect();
             v._targetImage.getGlobalVisibleRect(rect);
 

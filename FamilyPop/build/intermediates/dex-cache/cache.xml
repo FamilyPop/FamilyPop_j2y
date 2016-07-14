@@ -1,3 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\palette-v7\21.0.0\jars\classes.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="b65c2fede61220ed2b6a063f11ca13160910089e">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-21.0.0_77ccb5a66139d5da1b3a5937a9cb6e586e05e853\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.1.0_e08718beef513cd2b07b9f01e13ce422934147fb\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\lsh\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-android-1.2.0_8d4d9fe2576bcc4649712ecfe09f661d04b58d30\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_d3edd35abb52861011f938d71fb2661472755f10\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.0_896d8a11235beaf94fb4b5d843c96f722a899263\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="5b1d0bf197881e7af71a84ad104b8b530db02060">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_e86f928718612cc88e53870f329a58c9bb5d6a28\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\mmlib\unspecified\jars\libs\Jama-1.0.3.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="7138db8646d7ba132a5d2458723793b5c8c6ec68">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\8\Jama-1.0.3_2b60758ae96e2a91152454c6a20a53e463e2083a\classes.dex" />
+    </item>
+    <item
+        jar="F:\sdk\android-sdk_r24.4.1-windows\android-sdk-windows\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.0_84f2c14bb84c2113672b1b5b2069d727bf83831d\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="f18fdf383063dc7dc5b9cff8d354dd5642050c1f">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_73674d7b1fd31deba273f586a3be31fe13dd0d57\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="a78bfd2ec508b123ee7c03f4006ba7996ef9a8dc">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.android-facebook-android-sdk-4.1.0_f65c4d97409756543a89709a0e23f953f9650cf3\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.1.0_40c49af2bf8c32506a852aeded0dbf371ff36d5e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\lsh\.gradle\caches\modules-2\files-2.1\org.jbundle.util.osgi.wrapped\org.jbundle.util.osgi.wrapped.org.apache.http.client\4.1.2\98c86e42679fe7ac066f6c242e0d14f0bce0bb7c\org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="98c86e42679fe7ac066f6c242e0d14f0bce0bb7c">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\10\org.jbundle.util.osgi.wrapped.org.apache.http.client-4.1.2_55757ae3df5efc30bdae151070a0ff8b3fca0641\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\exploded-aar\FamilyPop\socioPhone_lib_dist\unspecified\jars\libs\jtransforms-2.4.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="9379b7480594ff324a9e0044373b7f16efe3c3e8">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\8\jtransforms-2.4_c060ba45dc76498bd5f094af587045f2ae4ff9a5\classes.dex" />
+    </item>
+    <item
+        jar="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\libs\android-core.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="01b3b809db8f2b25d717c5c1b9d166547dea3fa9">
+        <dex dex="D:\J2YSoft\familypop_16_02_04\FamilyPop_j2y\FamilyPop_j2y\FamilyPop\FamilyPop\build\intermediates\transforms\dex\debug\folders\1000\2\android-core_b4f13ca43ae8a5baa8f829ce7d3f5c91bb5b6a30\classes.dex" />
+    </item>
+
+</items>

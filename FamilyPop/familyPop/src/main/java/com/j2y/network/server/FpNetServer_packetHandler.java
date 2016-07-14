@@ -646,38 +646,47 @@ public class FpNetServer_packetHandler
     {
         //# 버블 데이터 만들어 보내는 함수.
         @Override
-        public void CallBack(FpNetIncomingMessage inMsg)
-        {
+        public void CallBack(FpNetIncomingMessage inMsg) {
             Log.i("[J2Y]", "[패킷수신] 대화 정보(버블, 웃음 이벤트 목록) 요청");
 
-            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
-            if(client == null)
-                return;
 
-            if( Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+            //FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+            for (FpNetServer_client client : Manager_users.Instance.Get_talk_users().keySet())
             {
-                FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
+                if (client == null)
+                    break;
 
-                // todo: 메인쓰레드, 렌더링쓰레드 충돌남
-                FpsTalkUser talk_user =  Manager_users.Instance.GetTalkUser(client);
+                if (Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+                {
+                    FpNetDataRes_recordInfoList outMsg = new FpNetDataRes_recordInfoList();
+
+                    // todo: 메인쓰레드, 렌더링쓰레드 충돌남
+                    FpsTalkUser talk_user = Manager_users.Instance.GetTalkUser(client);
 
                     if (null == talk_user)
-                        return;
+                        break;
 
                     Actor_attractor attractor = Manager_actor.Instance.Get_attractor(talk_user._uid_attractor);
 
-                    outMsg._attractor._x = attractor.Get_Body().getPosition().x;
-                    outMsg._attractor._y = attractor.Get_Body().getPosition().y;
+                    outMsg._attractor._x = attractor.Get_Body().getPosition().x;// * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT;
+                    outMsg._attractor._y = attractor.Get_Body().getPosition().y;// * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT;
                     outMsg._attractor._color = client._clientID;
 
-                    for (BaseActor actor : Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK)) {
+                    for (BaseActor actor : Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK))
+                    {
                         Actor_talk talk = (Actor_talk) actor;
-                        Vector2 pos = talk.Get_Body().getPosition();
-                        outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, pos.y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT, talk.Get_Scale(), talk.Get_colorId());
+                        if( talk.Get_colorId() == client._clientID)
+                        {
+                            Vector2 pos = talk.Get_Body().getPosition();
+                            outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(),
+                                    (outMsg._attractor._x - pos.x )* PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT,
+                                    (outMsg._attractor._y - pos.y) * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT,
+                                    talk.Get_Scale(), talk.Get_colorId());
+                        }
                     }
-
                     //outMsg._smile_events.addAll(talk_user._smile_events);
                     client.SendPacket(FpNetConstants.SCRes_TalkRecordInfo, outMsg);
+                }
             }
         }
     };
