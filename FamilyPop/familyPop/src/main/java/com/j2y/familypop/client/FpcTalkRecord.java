@@ -28,6 +28,27 @@ public class FpcTalkRecord implements Serializable
     public ArrayList<SmileEvent> _smiles = new ArrayList<SmileEvent>();
 
 
+    public ArrayList<Bubble> CopyBubbles()
+    {
+        ArrayList<Bubble> ret = new ArrayList<>();
+
+        for( Bubble b : _bubbles)
+        {
+            Bubble bubble = new Bubble();
+            bubble._startTime = b._startTime;
+            bubble._endTime = b._endTime;
+            bubble._radius = b._radius;
+            bubble._x = b._x;
+            bubble._y = b._y;
+            bubble._color = b._color;
+
+            ret.add(bubble);
+        }
+
+        return ret;
+    }
+
+
 
     public class  Bubble implements Serializable
     {

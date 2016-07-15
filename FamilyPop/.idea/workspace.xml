@@ -12,6 +12,11 @@
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/FamilyPop/src/main/res/layout/activity_dialouge_playback.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AndroidLogFilters">
@@ -38,31 +43,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Activity_clientMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1828" column="49" selection-start-line="1828" selection-start-column="49" selection-end-line="1828" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#76254#76338#0" expanded="false" />
-                <element signature="e#82844#82845#0" expanded="true" />
-                <element signature="e#82878#82879#0" expanded="true" />
-                <element signature="e#82924#82925#0" expanded="true" />
-                <element signature="e#82959#82960#0" expanded="true" />
-                <element signature="e#83056#83057#0" expanded="true" />
-                <element signature="e#83096#83097#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Contents_clientTalk.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,7 +70,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,8 +81,10 @@
         <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-              <folding />
+              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+              <folding>
+                <element signature="e#623#631#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,8 +92,44 @@
       <file leaf-file-name="Activity_talkHistoryPlayback.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7364747">
-              <caret line="146" column="93" selection-start-line="146" selection-start-column="93" selection-end-line="146" selection-end-column="93" />
+            <state vertical-scroll-proportion="0.4548803">
+              <caret line="172" column="79" selection-start-line="172" selection-start-column="79" selection-end-line="172" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vector2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Vector2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Instrumentation.java" pinned="false" current-in-tab="false">
+        <entry file="file://F:/sdk/android-sdk_r24.4.1-windows/android-sdk-windows/sources/android-21/android/app/Instrumentation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.9736843">
+              <caret line="160" column="53" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="53" />
+              <folding>
+                <element signature="e#6335#6336#0" expanded="true" />
+                <element signature="e#6363#6364#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_dialouge_playback.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/res/layout/activity_dialouge_playback.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.785714">
+              <caret line="73" column="8" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -112,7 +140,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -122,27 +152,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="674" column="78" selection-start-line="674" selection-start-column="78" selection-end-line="674" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Body.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/andEnginePhysicsBox2DExtension/src/main/java/com/badlogic/gdx/physics/box2d/Body.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager_users.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#27655#27656#0" expanded="false" />
+                <element signature="e#27733#27734#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -4729,10 +4743,10 @@
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java" />
-        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java" />
         <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java" />
+        <option value="$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java" />
       </list>
     </option>
   </component>
@@ -4767,9 +4781,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -4828,71 +4841,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyPop" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyPop" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="j2y" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familypop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyPop" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyPop" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="j2y" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familypop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lobby" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="emulator-5608" />
+    <property name="device.picker.selection" value="056b3f27002e22a1" />
   </component>
   <component name="RunManager" selected="Android Application.familyPop">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -5176,12 +5134,13 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39977476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -5199,10 +5158,9 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -5222,14 +5180,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java</url>
-          <line>130</line>
+          <line>175</line>
           <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="familyPop">
+        <watch expression="(int) item._x + lay.getWidth()/2" language="JAVA" custom="" />
+        <watch expression="(int)item._y  + lay.getHeight()/2" language="JAVA" custom="" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
@@ -5253,7 +5216,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5269,7 +5234,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5293,7 +5260,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5301,7 +5270,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="674" column="78" selection-start-line="674" selection-start-column="78" selection-end-line="674" selection-end-column="78" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#27655#27656#0" expanded="false" />
+            <element signature="e#27733#27734#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5309,7 +5282,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#0#756#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#4952#4953#0" expanded="false" />
+            <element signature="e#4993#4994#0" expanded="false" />
+            <element signature="e#5858#5859#0" expanded="false" />
+            <element signature="e#5889#5890#0" expanded="false" />
+            <element signature="e#6710#6711#0" expanded="false" />
+            <element signature="e#6753#6754#0" expanded="false" />
+            <element signature="e#6870#6871#0" expanded="false" />
+            <element signature="e#6911#6912#0" expanded="false" />
+            <element signature="e#7435#7436#0" expanded="false" />
+            <element signature="e#7476#7477#0" expanded="false" />
+            <element signature="e#7625#7626#0" expanded="false" />
+            <element signature="e#7666#7667#0" expanded="false" />
+            <element signature="e#9142#9143#0" expanded="false" />
+            <element signature="e#9177#9178#0" expanded="false" />
+            <element signature="e#10718#10719#0" expanded="false" />
+            <element signature="e#10762#10763#0" expanded="false" />
+            <element signature="e#10958#10959#0" expanded="false" />
+            <element signature="e#10988#10989#0" expanded="false" />
+            <element signature="e#11198#11199#0" expanded="false" />
+            <element signature="e#11231#11232#0" expanded="false" />
+            <element signature="e#12502#12503#0" expanded="false" />
+            <element signature="e#12531#12532#0" expanded="false" />
+            <element signature="e#16019#16020#0" expanded="false" />
+            <element signature="e#16058#16059#0" expanded="false" />
+            <element signature="e#16218#16219#0" expanded="false" />
+            <element signature="e#16265#16266#0" expanded="false" />
+            <element signature="e#16430#16431#0" expanded="false" />
+            <element signature="e#16470#16471#0" expanded="false" />
+            <element signature="e#16881#16882#0" expanded="false" />
+            <element signature="e#16921#16922#0" expanded="false" />
+            <element signature="e#17430#17431#0" expanded="false" />
+            <element signature="e#17461#17462#0" expanded="false" />
+            <element signature="e#17639#17640#0" expanded="false" />
+            <element signature="e#17670#17671#0" expanded="false" />
+            <element signature="e#17852#17853#0" expanded="false" />
+            <element signature="e#17892#17893#0" expanded="false" />
+            <element signature="e#18047#18048#0" expanded="false" />
+            <element signature="e#18087#18088#0" expanded="false" />
+            <element signature="e#18340#18341#0" expanded="false" />
+            <element signature="e#18370#18371#0" expanded="false" />
+            <element signature="e#18554#18555#0" expanded="false" />
+            <element signature="e#18584#18585#0" expanded="false" />
+            <element signature="e#19388#19389#0" expanded="false" />
+            <element signature="e#19419#19420#0" expanded="false" />
+            <element signature="e#19560#19561#0" expanded="false" />
+            <element signature="e#19591#19592#0" expanded="false" />
+            <element signature="e#19775#19776#0" expanded="false" />
+            <element signature="e#19813#19814#0" expanded="false" />
+            <element signature="e#19970#19971#0" expanded="false" />
+            <element signature="e#20008#20009#0" expanded="false" />
+            <element signature="e#20203#20204#0" expanded="false" />
+            <element signature="e#20225#20226#0" expanded="false" />
+            <element signature="e#20361#20362#0" expanded="false" />
+            <element signature="e#20381#20382#0" expanded="false" />
+            <element signature="e#20766#20767#0" expanded="false" />
+            <element signature="e#20785#20786#0" expanded="false" />
+            <element signature="e#20850#20851#0" expanded="false" />
+            <element signature="e#20872#20873#0" expanded="false" />
+            <element signature="e#20950#20951#0" expanded="false" />
+            <element signature="e#20981#20982#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5317,7 +5353,173 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Activity_clientMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1828" column="49" selection-start-line="1828" selection-start-column="49" selection-end-line="1828" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#76254#76338#0" expanded="false" />
+            <element signature="e#82844#82845#0" expanded="true" />
+            <element signature="e#82878#82879#0" expanded="true" />
+            <element signature="e#82924#82925#0" expanded="true" />
+            <element signature="e#82959#82960#0" expanded="true" />
+            <element signature="e#83056#83057#0" expanded="true" />
+            <element signature="e#83096#83097#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/contents/client/Contents_clientTalk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcRoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/base/data/FpNetDataRes_recordInfoList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/client/FpNetFacade_client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/network/server/FpNetServer_packetHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="674" column="78" selection-start-line="674" selection-start-column="78" selection-end-line="674" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#27655#27656#0" expanded="false" />
+            <element signature="e#27733#27734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/andEnginePhysicsBox2DExtension/src/main/java/com/badlogic/gdx/physics/box2d/Body.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#756#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#4952#4953#0" expanded="false" />
+            <element signature="e#4993#4994#0" expanded="false" />
+            <element signature="e#5858#5859#0" expanded="false" />
+            <element signature="e#5889#5890#0" expanded="false" />
+            <element signature="e#6710#6711#0" expanded="false" />
+            <element signature="e#6753#6754#0" expanded="false" />
+            <element signature="e#6870#6871#0" expanded="false" />
+            <element signature="e#6911#6912#0" expanded="false" />
+            <element signature="e#7435#7436#0" expanded="false" />
+            <element signature="e#7476#7477#0" expanded="false" />
+            <element signature="e#7625#7626#0" expanded="false" />
+            <element signature="e#7666#7667#0" expanded="false" />
+            <element signature="e#9142#9143#0" expanded="false" />
+            <element signature="e#9177#9178#0" expanded="false" />
+            <element signature="e#10718#10719#0" expanded="false" />
+            <element signature="e#10762#10763#0" expanded="false" />
+            <element signature="e#10958#10959#0" expanded="false" />
+            <element signature="e#10988#10989#0" expanded="false" />
+            <element signature="e#11198#11199#0" expanded="false" />
+            <element signature="e#11231#11232#0" expanded="false" />
+            <element signature="e#12502#12503#0" expanded="false" />
+            <element signature="e#12531#12532#0" expanded="false" />
+            <element signature="e#16019#16020#0" expanded="false" />
+            <element signature="e#16058#16059#0" expanded="false" />
+            <element signature="e#16218#16219#0" expanded="false" />
+            <element signature="e#16265#16266#0" expanded="false" />
+            <element signature="e#16430#16431#0" expanded="false" />
+            <element signature="e#16470#16471#0" expanded="false" />
+            <element signature="e#16881#16882#0" expanded="false" />
+            <element signature="e#16921#16922#0" expanded="false" />
+            <element signature="e#17430#17431#0" expanded="false" />
+            <element signature="e#17461#17462#0" expanded="false" />
+            <element signature="e#17639#17640#0" expanded="false" />
+            <element signature="e#17670#17671#0" expanded="false" />
+            <element signature="e#17852#17853#0" expanded="false" />
+            <element signature="e#17892#17893#0" expanded="false" />
+            <element signature="e#18047#18048#0" expanded="false" />
+            <element signature="e#18087#18088#0" expanded="false" />
+            <element signature="e#18340#18341#0" expanded="false" />
+            <element signature="e#18370#18371#0" expanded="false" />
+            <element signature="e#18554#18555#0" expanded="false" />
+            <element signature="e#18584#18585#0" expanded="false" />
+            <element signature="e#19388#19389#0" expanded="false" />
+            <element signature="e#19419#19420#0" expanded="false" />
+            <element signature="e#19560#19561#0" expanded="false" />
+            <element signature="e#19591#19592#0" expanded="false" />
+            <element signature="e#19775#19776#0" expanded="false" />
+            <element signature="e#19813#19814#0" expanded="false" />
+            <element signature="e#19970#19971#0" expanded="false" />
+            <element signature="e#20008#20009#0" expanded="false" />
+            <element signature="e#20203#20204#0" expanded="false" />
+            <element signature="e#20225#20226#0" expanded="false" />
+            <element signature="e#20361#20362#0" expanded="false" />
+            <element signature="e#20381#20382#0" expanded="false" />
+            <element signature="e#20766#20767#0" expanded="false" />
+            <element signature="e#20785#20786#0" expanded="false" />
+            <element signature="e#20850#20851#0" expanded="false" />
+            <element signature="e#20872#20873#0" expanded="false" />
+            <element signature="e#20950#20951#0" expanded="false" />
+            <element signature="e#20981#20982#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/manager/Manager_users.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5329,14 +5531,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/res/layout/activity_client_mode.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.448277">
           <caret line="1022" column="24" selection-start-line="1022" selection-start-column="24" selection-end-line="1022" selection-end-column="24" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/backup/Dialog_MessageBox_ok_cancel.java">
@@ -5365,7 +5567,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="37" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5373,15 +5577,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="148" column="19" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#0#756#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#4952#4953#0" expanded="false" />
+            <element signature="e#4993#4994#0" expanded="false" />
+            <element signature="e#5858#5859#0" expanded="false" />
+            <element signature="e#5889#5890#0" expanded="false" />
+            <element signature="e#6710#6711#0" expanded="false" />
+            <element signature="e#6753#6754#0" expanded="false" />
+            <element signature="e#6870#6871#0" expanded="false" />
+            <element signature="e#6911#6912#0" expanded="false" />
+            <element signature="e#7435#7436#0" expanded="false" />
+            <element signature="e#7476#7477#0" expanded="false" />
+            <element signature="e#7625#7626#0" expanded="false" />
+            <element signature="e#7666#7667#0" expanded="false" />
+            <element signature="e#9142#9143#0" expanded="false" />
+            <element signature="e#9177#9178#0" expanded="false" />
+            <element signature="e#10718#10719#0" expanded="false" />
+            <element signature="e#10762#10763#0" expanded="false" />
+            <element signature="e#10958#10959#0" expanded="false" />
+            <element signature="e#10988#10989#0" expanded="false" />
+            <element signature="e#11198#11199#0" expanded="false" />
+            <element signature="e#11231#11232#0" expanded="false" />
+            <element signature="e#12502#12503#0" expanded="false" />
+            <element signature="e#12531#12532#0" expanded="false" />
+            <element signature="e#16019#16020#0" expanded="false" />
+            <element signature="e#16058#16059#0" expanded="false" />
+            <element signature="e#16218#16219#0" expanded="false" />
+            <element signature="e#16265#16266#0" expanded="false" />
+            <element signature="e#16430#16431#0" expanded="false" />
+            <element signature="e#16470#16471#0" expanded="false" />
+            <element signature="e#16881#16882#0" expanded="false" />
+            <element signature="e#16921#16922#0" expanded="false" />
+            <element signature="e#17430#17431#0" expanded="false" />
+            <element signature="e#17461#17462#0" expanded="false" />
+            <element signature="e#17639#17640#0" expanded="false" />
+            <element signature="e#17670#17671#0" expanded="false" />
+            <element signature="e#17852#17853#0" expanded="false" />
+            <element signature="e#17892#17893#0" expanded="false" />
+            <element signature="e#18047#18048#0" expanded="false" />
+            <element signature="e#18087#18088#0" expanded="false" />
+            <element signature="e#18340#18341#0" expanded="false" />
+            <element signature="e#18370#18371#0" expanded="false" />
+            <element signature="e#18554#18555#0" expanded="false" />
+            <element signature="e#18584#18585#0" expanded="false" />
+            <element signature="e#19388#19389#0" expanded="false" />
+            <element signature="e#19419#19420#0" expanded="false" />
+            <element signature="e#19560#19561#0" expanded="false" />
+            <element signature="e#19591#19592#0" expanded="false" />
+            <element signature="e#19775#19776#0" expanded="false" />
+            <element signature="e#19813#19814#0" expanded="false" />
+            <element signature="e#19970#19971#0" expanded="false" />
+            <element signature="e#20008#20009#0" expanded="false" />
+            <element signature="e#20203#20204#0" expanded="false" />
+            <element signature="e#20225#20226#0" expanded="false" />
+            <element signature="e#20361#20362#0" expanded="false" />
+            <element signature="e#20381#20382#0" expanded="false" />
+            <element signature="e#20766#20767#0" expanded="false" />
+            <element signature="e#20785#20786#0" expanded="false" />
+            <element signature="e#20850#20851#0" expanded="false" />
+            <element signature="e#20872#20873#0" expanded="false" />
+            <element signature="e#20950#20951#0" expanded="false" />
+            <element signature="e#20981#20982#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5406,7 +5665,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5414,7 +5675,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5430,7 +5693,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5438,14 +5703,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="674" column="78" selection-start-line="674" selection-start-column="78" selection-end-line="674" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#27655#27656#0" expanded="false" />
+            <element signature="e#27733#27734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/sdk/android-sdk_r24.4.1-windows/android-sdk-windows/sources/android-21/android/app/Instrumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.9736843">
+          <caret line="160" column="53" selection-start-line="160" selection-start-column="53" selection-end-line="160" selection-end-column="53" />
+          <folding>
+            <element signature="e#6335#6336#0" expanded="true" />
+            <element signature="e#6363#6364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/res/layout/activity_dialouge_playback.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.785714">
+          <caret line="73" column="8" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="63" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/Vector2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/client/FpcTalkRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+          <folding>
+            <element signature="e#623#631#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FamilyPop/src/main/java/com/j2y/familypop/activity/lobby/Activity_talkHistoryPlayback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7364747">
-          <caret line="146" column="93" selection-start-line="146" selection-start-column="93" selection-end-line="146" selection-end-column="93" />
+        <state vertical-scroll-proportion="0.4548803">
+          <caret line="172" column="79" selection-start-line="172" selection-start-column="79" selection-end-line="172" selection-end-column="79" />
           <folding />
         </state>
       </provider>

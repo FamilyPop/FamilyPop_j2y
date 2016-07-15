@@ -1,6 +1,8 @@
 package com.j2y.familypop.activity.lobby;
 
 import android.app.Activity;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -77,6 +79,51 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
     //
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    private int getRelativeTop(View myView)
+    {
+        if( myView.getParent() == myView.getRootView()) return myView.getTop();
+        else
+            return myView.getTop() + getRelativeTop((View)myView.getParent());
+    }
+    private Point getBubblesCenter(ArrayList<FpcTalkRecord.Bubble> bubbles)
+    {
+        Point ret = new Point(-1, -1);
+
+        if( bubbles.size() == 0) return ret;
+        int totalX = 0;
+        int totalY = 0;
+        for( FpcTalkRecord.Bubble b : bubbles)
+        {
+            totalX += b._x;
+            totalY += b._y;
+        }
+
+        totalX /= bubbles.size();
+        totalY /= bubbles.size();
+
+        ret.x = totalX;
+        ret.y = totalY;
+
+        return ret;
+    }
+    private ArrayList<FpcTalkRecord.Bubble> setBubblesDistance(Point centerPos, ArrayList<FpcTalkRecord.Bubble> bubbles, float addDistance)
+    {
+
+        Vector2 temp = new Vector2();
+        for( FpcTalkRecord.Bubble b :  bubbles)
+        {
+            temp.x =  b._x - centerPos.x;
+            temp.y =  b._y - centerPos.y;
+
+            temp.nor();
+
+
+            b._x += temp.x * addDistance;
+            b._y += temp.y * addDistance;
+        }
+
+        return bubbles;
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -114,11 +161,26 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             //float _testX = talk_record._x;
             //float _testY = talk_record._y;
             //Vector2 center = new Vector2(_layout_bubbles.getWidth()/2, _layout_bubbles.getHeight()/2);
-            for (int i = 0; i < talk_record._bubbles.size(); i++)
+            ImageView centerBubble = (ImageView)findViewById(R.id.imageView_center_bubble);
+
+
+//            Rect rt = centerBubble.getDrawable().getBounds();
+            //int[] imageCordinates = new int[2];
+            //centerBubble.getLocationOnScreen(imageCordinates);
+            //centerBubble.getLocationInWindow(imageCordinates);
+
+
+            float centerX = 510; //centerBubble.getRight() - centerBubble.getLeft();
+            float centerY = 370; //centerBubble.getBottom() - centerBubble.getTop();
+
+            ArrayList<FpcTalkRecord.Bubble> bubbles = setBubblesDistance( getBubblesCenter( talk_record._bubbles), talk_record.CopyBubbles(), 40 );
+
+            //for (int i = 0; i < talk_record._bubbles.size(); i++)
+            for (int i = 0; i < bubbles.size(); i++)
             {
-                FpcTalkRecord.Bubble item = talk_record._bubbles.get(i);
-                //item._radius = 100; // 임시
-                //int bubble_size = (int)(item._radius * 1.8f);
+                //FpcTalkRecord.Bubble item = talk_record._bubbles.get(i);
+                FpcTalkRecord.Bubble item = bubbles.get(i);
+
                 int bubble_size = (int)(item._radius * 100.8f);
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size);
                 Button bbt = bubbleButtons_Create(item);
@@ -128,7 +190,7 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 //params.setMargins(500 - (int) item._y, 500 - (int) item._x, 0, 0);
                 //params.setMargins(410 + (int) item._x, 320 + (int) item._y, 0, 0);
               //  params.setMargins((int)center.x + (int) item._x, (int)center.y + (int) item._y, 0, 0);
-                  params.setMargins((int) item._x,(int) item._y, 0, 0);
+                  params.setMargins( (int)centerX + (int) item._x, (int)centerY + (int) item._y, 0, 0);
                 //params.setMargins((int)lay.getWidth()/2 + (int) item._x, (int)lay.getWidth()/2 + (int) item._y, 0, 0);
 
                 // todo: 버블 컬러 변경
