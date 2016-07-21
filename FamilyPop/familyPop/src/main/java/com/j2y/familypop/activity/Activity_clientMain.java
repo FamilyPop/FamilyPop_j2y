@@ -164,6 +164,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     public float _flowerGoodSize = 1.0f;    // 서버로감
     public float _flowerSmileSize = 1.0f;   // 서버로감
 
+    public float _colliderTalkSize  = 1.0f; // 서버로감
+    public float _colliderSmileSize = 1.0f; // 서버로감
+    public float _colliderGoodSize  = 1.0f; // 서버로감
+
     private TextView _textView_regulation_0;
     private TextView _textView_regulation_1;
     private TextView _textView_regulation_2;
@@ -1397,6 +1401,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
         // joystick
         _layout_joystick = (RelativeLayout) findViewById(R.id.image_sticklayout);
+
         Resources res = getResources();
         Drawable drawble = null;
         Drawable drawbleRotation = null;
@@ -1459,16 +1464,17 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
 
         _layout_joystick.setClickable(true);
-        _layout_joystick.setBackground(drawbleStickLayout);
+        //_layout_joystick.setBackground(drawbleStickLayout);
+        findViewById(R.id.imageView_stickRound).setBackground(drawbleStickLayout);
         _joystick = new JoyStick(getApplicationContext() , _layout_joystick, drawble);
         _joystick.setStickSize(500, 500);
-        _joystick.setLayoutSize(800, 800);
+        _joystick.setLayoutSize(900, 900);
         //js.setLayoutAlpha(150);
         //js.setStickAlpha(100);
         _joystick.setOffset(250);
         //js.setMinimumDistance(50);
 
-        _joystick.draw(800 / 2, 800 / 2);
+        _joystick.draw(900 / 2, 900 / 2);
         // touch event
         _layout_joystick.setOnTouchListener(new View.OnTouchListener()
         {
@@ -1757,7 +1763,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 break;
         }
 
-        _layout_joystick.setBackground(drawbleStickLayout);
+        //_layout_joystick.setBackground(drawbleStickLayout);
+        findViewById(R.id.imageView_stickRound).setBackground(drawbleStickLayout);
         _joystick.Set_stick(drawble);
         _joystick.setStickSize(500, 500);
     }
@@ -1836,7 +1843,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 //                //_content.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 //                //String str  = _editText.getText().toString();
 //            }
-//            @Override
+//            @Overridess
 //            public void onClick(View v)
 //            {
 //                super.onClick(v);

@@ -23,6 +23,7 @@ public class Popup_settingTalk implements View.OnClickListener
         _popupWindow = popupWindow;
         ((Button)(v.findViewById(R.id.button_talkModeSetting_flower))).setOnClickListener(this);
         ((Button)(v.findViewById(R.id.button_talkModeSetting_regulation))).setOnClickListener(this);
+        ((Button)(v.findViewById(R.id.button_talkModeSetting_flowerCollider))).setOnClickListener(this);
     }
 
 
@@ -31,13 +32,14 @@ public class Popup_settingTalk implements View.OnClickListener
     {
         switch (v.getId())
         {
-            case R.id.button_talkModeSetting_flower: onSettingFloser(); break;
+            case R.id.button_talkModeSetting_flower: onSettingFlower(); break;
             case R.id.button_talkModeSetting_regulation: onSettingRegulation(); break;
+            case R.id.button_talkModeSetting_flowerCollider: onSettingFlowerCollider(); break;
         }
         _popupWindow.dismiss();
     }
 
-    private void onSettingFloser()
+    private void onSettingFlower()
     {
         Activity_clientMain main = Activity_clientMain.Instance;
         if( main != null)
@@ -54,6 +56,25 @@ public class Popup_settingTalk implements View.OnClickListener
             popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
             //Popup_settingTalk popupSetting = new Popup_settingTalk(popupView, popupWindow);
             Popup_settingTalk_flower popup_settingTalk_flower = new Popup_settingTalk_flower(popupView, popupWindow);
+        }
+    }
+    private void onSettingFlowerCollider()
+    {
+        Activity_clientMain main = Activity_clientMain.Instance;
+
+        if( main !=  null )
+        {
+            View popupView = main.getLayoutInflater().inflate(R.layout.popup_setting_flowercollider, null);
+            PopupWindow popupWindow = new PopupWindow(popupView);
+
+            popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            popupWindow.setTouchable(true);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setFocusable(true);
+
+            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+            Popup_settingTalk_flowerCollider popup_settingTalk_flowerCollider = new Popup_settingTalk_flowerCollider(popupView, popupWindow);
         }
     }
     private void onSettingRegulation()

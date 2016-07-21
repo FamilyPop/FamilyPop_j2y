@@ -40,10 +40,11 @@ public class Event_serverClose extends BaseEvent
             private Manager_resource _manager_resource;
             private Manager_contents _manager_contents;
          */
+
+
         Activity_serverMain_andEngine.Instance.Get_scene().detachChildren();
         Activity_serverMain_andEngine.Instance.Get_scene().clearEntityModifiers();
         Activity_serverMain_andEngine.Instance.Get_scene().clearTouchAreas();
         Activity_serverMain_andEngine.Instance.Get_scene().clearUpdateHandlers();
-
     }
 }

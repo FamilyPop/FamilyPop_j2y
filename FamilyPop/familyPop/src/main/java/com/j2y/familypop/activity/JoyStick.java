@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.j2y.familypop.MainActivity;
@@ -577,16 +578,29 @@ public class JoyStick
 
 
         //item._button.setImageDrawable(drawble);
+
         mLayout.addView(item._button);
         item.setDeactive();
 
-        float x = (float) (Math.cos(Math.toRadians(cal_angle(pos_x, pos_y))) * ((params.width / 2) - 70));
-        float y = (float) (Math.sin(Math.toRadians(cal_angle(pos_x, pos_y))) * ((params.height / 2) - 70));
-        x += ((params.width / 2));
-        y += ((params.height / 2));
 
-        item._button.setX(x-70);
-        item._button.setY(y-70);
+        Vector2 nor = new Vector2(pos_x, pos_y);
+        nor.nor();
+
+        nor.x *= 100;
+        nor.y *= 100;
+
+        float x = (float) (Math.cos(Math.toRadians(cal_angle(nor.x, nor.y))) * ((mLayout.getWidth()  / 2) - 85));
+        float y = (float) (Math.sin(Math.toRadians(cal_angle(nor.x, nor.y))) * ((mLayout.getHeight() / 2) - 85));
+
+        x += ( mLayout.getWidth() / 2);
+        y += ( mLayout.getHeight() / 2);
+
+        x -= 75;
+        y -= 75;
+
+
+        item._button.setX(x);
+        item._button.setY(y);
 
         _drawItems.put( key, item);
     }

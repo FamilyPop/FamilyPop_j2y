@@ -163,10 +163,8 @@ public class FpNetServer_packetHandler
             Manager_users.Instance.User_allRelease();
             Manager_actor.Instance = null;
 
-
             Activity_serverStart.Instance.finish();
             MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_serverStart.class));
-
         }
     };
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -458,6 +456,14 @@ public class FpNetServer_packetHandler
             regulation._flowerMinSize = data._flowerMinSize;
             regulation._flowerGoodSize = data._flowerGoodSize;
             regulation._flowerSmileSize = data._flowerSmileSize;
+
+            regulation._colliderGoodSize = data._colliderGoodSize;
+            regulation._colliderSmileSize = data._colliderSmileSize;
+            regulation._colliderTalkSize = data._colliderTalkSize;
+
+            Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_TALK, regulation._colliderTalkSize);
+            Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_SMILE, regulation._colliderSmileSize);
+            Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_GOOD, regulation._colliderGoodSize);
 
 //            Activity_serverMain.Instance._regulation_seekBar_0 = data._seekBar_0;
 //            Activity_serverMain.Instance._regulation_seekBar_1 = data._seekBar_1;

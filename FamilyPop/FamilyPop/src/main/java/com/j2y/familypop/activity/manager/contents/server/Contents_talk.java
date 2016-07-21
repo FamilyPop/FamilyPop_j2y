@@ -96,7 +96,6 @@ public class Contents_talk extends BaseContents
 
                 Log.i("KAIST", "Test: " + (getMaxCountValue(testList) == 3));
                 */
-
             }
         }
     }
@@ -110,7 +109,9 @@ public class Contents_talk extends BaseContents
         if (_current_bubble != null) {
             int end_time = (int) FpsRoot.Instance._socioPhone.GetRecordTime();
             _current_bubble.StartMover(end_time);
+            _current_bubble.Mul_collider(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._colliderTalkSize); // 발사 할대 현재 설정을 넣어준다.
             _current_bubble = null;
+
         }
 
         AtomicReference<FpsTalkUser> userRef = new AtomicReference<>();
@@ -124,6 +125,9 @@ public class Contents_talk extends BaseContents
             if( preSpeaker < 0){ preSpeaker = speakerId;}
             if( speakerId >= 0)
             {
+                if( preSpeaker < 0){userRef.get()._answerCount++;}
+                if( speakerId >= 0){userRef.get()._startTalkCount++;}
+
                 Actor_talk bubble = null;
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
                 // 발사할 (지금 말하고있는 꽃잎 생성)
@@ -155,13 +159,15 @@ public class Contents_talk extends BaseContents
             _current_bubble.Set_plusScale();
         }
     }
-    private void IsBubbleEnding(boolean isBubbleGrowing) {
+    private void IsBubbleEnding(boolean isBubbleGrowing)
+    {
         // Log.i("KAIST", "-----Bubble ends: " + currentSpeakerId + "/" + previousSpeakerId);
 
         // 3.1. 이전 버블 발사
         if (_current_bubble != null) {
             int end_time = (int) FpsRoot.Instance._socioPhone.GetRecordTime();
             _current_bubble.StartMover(end_time);
+            _current_bubble.Mul_collider(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._colliderTalkSize); // 발사 할대 현재 설정을 넣어준다.
             _current_bubble = null;
         }
     }

@@ -268,27 +268,27 @@ public class FpNetFacade_server extends FpNetFacade_base
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(user._uid_attractor);
 
                 com.badlogic.gdx.math.Vector2 vec2 = new com.badlogic.gdx.math.Vector2( attractor.Get_Body().getPosition().x * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT,
-                                                                                        attractor.Get_Body().getPosition().y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT);
+                                                                                        attractor.Get_Body().getPosition().y * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT );
 
-                float width     = Activity_serverMain_andEngine.CAMERA_WIDTH;
-                float height    = Activity_serverMain_andEngine.CAMERA_HEIGHT;
+//                float width     = Activity_serverMain_andEngine.CAMERA_WIDTH;
+//                float height    = Activity_serverMain_andEngine.CAMERA_HEIGHT;
+//
+//                float x = vec2.x - ((width/2));
+//                float y = vec2.y - ((height/2));
+//
+//                double dv = Math.sqrt(x * x + y * y );
+//
+//                x /= dv;
+//                y /= dv;
+//
+//                outMsg.AddClientData(x, y, user._bubble_color_type, user._net_client._clientID);
 
-                float x = vec2.x - ((width/2));
-                float y = vec2.y - ((height/2));
-
-                double dv = Math.sqrt(x * x + y * y );
-
-                x /= dv;
-                y /= dv;
-
-                outMsg.AddClientData(x, y, user._bubble_color_type, user._net_client._clientID);
-
-                Log.i("[POS]", "x: " + x + "_y: "+y);
+                outMsg.AddClientData(vec2.x, vec2.y, user._bubble_color_type, user._net_client._clientID);
+                //Log.i("[POS]", "x: " + x + "_y: "+y);
             }
 
             BroadcastPacket(FpNetConstants.SCNoti_clientUpdate, outMsg);
         }
-
     }
     public void Send_connect_clientId(FpsTalkUser user)
     {

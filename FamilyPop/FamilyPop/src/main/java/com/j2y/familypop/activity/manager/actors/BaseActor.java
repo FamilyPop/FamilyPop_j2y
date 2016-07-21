@@ -12,6 +12,7 @@ import org.andengine.entity.sprite.Sprite;
  */
 public class BaseActor
 {
+    protected float mOriginalRadius = 0.0f;
     protected Body mBody = null;
     protected Sprite mSprite;
     protected boolean mIsFlower = false;
@@ -23,7 +24,6 @@ public class BaseActor
     private int mColorId = -1;  // colorid == clientid
     private boolean mInit;
     private boolean mEnd;
-
 
     private float _spriteScale =0.0f; //꽃잎이 커진다~
     private float _maxSpriteScale = 2.3f; // 이만큼 커니다~
@@ -95,4 +95,22 @@ public class BaseActor
     public void Actor_end(){ mEnd = true; }
     public void Init_scuccess(){ mInit = true; }
     public boolean Get_InitState(){return mInit;}
+
+    //mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale * 0.001f));
+    public void Set_collider(float radius)
+    {
+        if( mBody == null) return;
+        mBody.getFixtureList().get(0).getShape().setRadius(radius);
+    }
+
+    public void Mul_collider(float radius)
+    {
+        if( mBody == null) return;
+        if( mOriginalRadius <= 0.0f){ mOriginalRadius = mBody.getFixtureList().get(0).getShape().getRadius(); }
+
+        float r = mOriginalRadius;
+        r = radius * mOriginalRadius;
+
+        mBody.getFixtureList().get(0).getShape().setRadius(r);
+    }
 }

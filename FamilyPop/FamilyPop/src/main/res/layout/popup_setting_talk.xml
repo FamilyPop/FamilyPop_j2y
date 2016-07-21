@@ -23,6 +23,13 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="flower_collider"
+        android:id="@+id/button_talkModeSetting_flowerCollider"
+        android:textColor="#ffffffff" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="regulation"
         android:id="@+id/button_talkModeSetting_regulation"
         android:textColor="#ffffff" />

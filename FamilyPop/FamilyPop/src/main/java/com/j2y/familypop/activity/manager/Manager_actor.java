@@ -573,4 +573,15 @@ public class Manager_actor
     {
         actor.Get_Sprite().attachChild(attachSprite);
     }
+    //=========================================================================================================================================
+    // Mul_collider
+    public void Mul_collider( eType_actor type, float radius)
+    {
+        CopyOnWriteArrayList<BaseActor> actors = GetActorsList(type);
+
+        for( BaseActor actor : actors)
+        {
+            actor.Mul_collider(radius);
+        }
+    }
 }

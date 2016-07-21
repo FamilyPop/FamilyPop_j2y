@@ -13,6 +13,7 @@ import com.j2y.familypop.activity.Activity_clientMain;
 //import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.activity.Interaction_Target;
 import com.j2y.familypop.activity.JoyStick;
+import com.j2y.familypop.activity.Vector2;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
 import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
@@ -46,6 +47,8 @@ import com.j2y.network.base.data.FpNetData_setUserInfo;
 import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.nclab.familypop.R;
+
+import java.util.Vector;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -532,23 +535,48 @@ public class FpNetFacade_client extends FpNetFacade_base
 
                     Activity_clientMain.Instance._joystick.Remove_itemAll();
 
+                    // 자신의 위치를 가져온다.
+                    Vector2 center = new Vector2();
+                    for( int i=0; i<_clientupdate._clientInfos.size(); ++i)
+                    {
+                        FpNetDataNoti_clientUpdate.clientInfo cInfo = _clientupdate._clientInfos.get(i);
+                        if( FpcRoot.Instance._clientId == cInfo._clientId)
+                        {
+                            center.x = cInfo._posX;
+                            center.y = cInfo._posY;
+                            break;
+                        }
+                    }
+                    // 자신의 위치를 기준으로 다른 어트렉터의 방향을 가져온다.
                     for(int i=0; i<_clientupdate._clientInfos.size(); i++)
                     {
                         FpNetDataNoti_clientUpdate.clientInfo cInfo = _clientupdate._clientInfos.get(i);
                         if( FpcRoot.Instance._clientId != cInfo._clientId)
                         {
-                            Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,cInfo._posX, cInfo._posY);
+                            float x = cInfo._posX - center.x;
+                            float y = cInfo._posY - center.y;
+
+                            double dv = Math.sqrt(x * x + y * y );
+
+                            x /= dv;
+                            y /= dv;
+
+                            Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,x, y);
                         }
                     }
+//                    for(int i=0; i<_clientupdate._clientInfos.size(); i++)
+//                    {
+//                        FpNetDataNoti_clientUpdate.clientInfo cInfo = _clientupdate._clientInfos.get(i);
+//                        if( FpcRoot.Instance._clientId != cInfo._clientId)
+//                        {
+//                            Activity_clientMain.Instance._joystick.AddItem(Integer.toString(cInfo._clientId), cInfo._clientId,cInfo._posX, cInfo._posY);
+//                        }
+//                    }
                     Activity_clientMain.Instance.Set_StyleJoyStick(FpcRoot.Instance._clientId);
                     //Activity_clientMain.Instance._joystick.AddItem();
 
                 }
             }, 1000);
-
-
-
-
         }
     };
 
@@ -736,6 +764,10 @@ public class FpNetFacade_client extends FpNetFacade_base
         reqPaket._flowerMaxSize = main._flowerMaxSize;
         reqPaket._flowerMinSize = main._flowerMinSize;
         reqPaket._flowerGoodSize = main._flowerGoodSize;
+
+        reqPaket._colliderGoodSize = main._colliderGoodSize;
+        reqPaket._colliderSmileSize = main._colliderSmileSize;
+        reqPaket._colliderTalkSize = main._colliderTalkSize;
 
         // back
 //        reqPaket._seekBar_0 = seekBar_0;

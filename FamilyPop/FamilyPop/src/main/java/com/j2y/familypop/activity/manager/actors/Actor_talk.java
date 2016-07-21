@@ -61,7 +61,8 @@ public class Actor_talk  extends BaseActor
     public synchronized boolean onUpdate(float pSecondsElapsed)
     {
         // attractor 로 이동.
-        if( mIsMover ) {
+        if( mIsMover )
+        {
             if (mAttractor == null) return false;
             Vector2 v = new Vector2((mAttractor.mBody.getPosition().x - mBody.getPosition().x) * _addTalkScale,
                     (mAttractor.mBody.getPosition().y - mBody.getPosition().y) * _addTalkScale);
@@ -81,7 +82,8 @@ public class Actor_talk  extends BaseActor
             mOriginalScale.y += (_addTalkScale * 0.001f);
             mSprite.setScale(mOriginalScale.x, mOriginalScale.y);
 
-           mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale * 0.001f));
+            mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale * 0.001f));
+            mOriginalRadius = mBody.getFixtureList().get(0).getShape().getRadius();
         }
     }
     public float Get_Scale(){return mSprite.getScaleX();}

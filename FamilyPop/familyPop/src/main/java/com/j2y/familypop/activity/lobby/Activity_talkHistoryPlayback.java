@@ -183,15 +183,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
 
                 int bubble_size = (int)(item._radius * 100.8f);
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size);
-                Button bbt = bubbleButtons_Create(item);
+                BubbleButton bubbleButton = bubbleButtons_Create(item);
+                Button bbt = bubbleButton._button;
+                //ImageView flwor
 
                 FrameLayout lay = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles);
-
-                //params.setMargins(500 - (int) item._y, 500 - (int) item._x, 0, 0);
-                //params.setMargins(410 + (int) item._x, 320 + (int) item._y, 0, 0);
-              //  params.setMargins((int)center.x + (int) item._x, (int)center.y + (int) item._y, 0, 0);
-                  params.setMargins( (int)centerX + (int) item._x, (int)centerY + (int) item._y, 0, 0);
-                //params.setMargins((int)lay.getWidth()/2 + (int) item._x, (int)lay.getWidth()/2 + (int) item._y, 0, 0);
+                params.setMargins( (int)centerX + (int) item._x, (int)centerY + (int) item._y, 0, 0);
 
                 // todo: 버블 컬러 변경
                 switch (item._color)
@@ -221,10 +218,8 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                         params.setMargins(400 + (int) item._x, 260 + (int) item._y, 0, 0);
                         break; // smile
                 }
-
                 Log.i("[J2Y]", String.format("[Playback][Bubble]:%f,%f", item._x, item._y));
 
-//
                 //params.setMargins(0, 0, 0, 0);
                 bbt.setLayoutParams(params);
                 bbt.requestLayout();
@@ -634,12 +629,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
-    private Button bubbleButtons_Create(FpcTalkRecord.Bubble bubble)
+    private BubbleButton bubbleButtons_Create(FpcTalkRecord.Bubble bubble)
     {
         BubbleButton bb = new BubbleButton(generateViewId(), _layout_bubbles,this);
         bb._bubble = bubble;
         _bubbleButtons.add(bb);
-        return bb._button;
+        return bb;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -661,7 +656,8 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     public class  BubbleButton
     {
-        Button _button;
+        public Button _button;
+        public ImageView _imageView;
         int _id;
 
         Activity _parents;
@@ -669,6 +665,8 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
 
         public BubbleButton(int id, ViewGroup layout, Activity_talkHistoryPlayback parents )
         {
+            //_button.addChildren
+
             // init
             _id = id;
             _parents = parents;
@@ -678,11 +676,16 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             _button.setOnClickListener(parents);
             _button.setId(_id);
             layout.addView(_button);
+
+            //create imageView
+            _imageView = new ImageView(parents);
+            _imageView.setId(generateViewId());
+            layout.addView(_imageView);
         }
 
         public void onClick(View v)
         {
-            if(_media_player == null            )
+            if(_media_player == null)
             return;
 
             _media_player.seekTo((int)_bubble._startTime);
@@ -690,14 +693,12 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             int progress = _media_player.getCurrentPosition() * 100 / _media_player.getDuration();
             _testseekbar.setProgress(progress);
 
-            //_button.setText("hit!! :" + _id);
         }
 
     }
 
     public class ProgressItem
     {
-
         public int color;
         public double progressItemPercentage;
     }

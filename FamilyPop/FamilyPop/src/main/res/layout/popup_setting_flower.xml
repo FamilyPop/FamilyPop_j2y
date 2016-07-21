@@ -96,7 +96,7 @@
         android:id="@+id/linearLayout_talk_goodScale"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/linearLayout_talk_maxScale"
         android:layout_alignParentStart="true">
 
         <TextView
@@ -124,8 +124,8 @@
         android:id="@+id/linearLayout_talk_smileScale"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="290dp">
+        android:layout_below="@+id/linearLayout_talk_goodScale"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"

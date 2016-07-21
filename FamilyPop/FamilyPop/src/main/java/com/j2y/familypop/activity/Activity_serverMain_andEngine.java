@@ -26,6 +26,7 @@ import com.j2y.familypop.activity.server.event_server.Event_createGood;
 import com.j2y.familypop.activity.server.event_server.Event_createSmile;
 import com.j2y.familypop.activity.server.event_server.Event_deleteBee;
 import com.j2y.familypop.activity.server.event_server.Event_deleteBeeExplosion;
+import com.j2y.familypop.activity.server.event_server.Event_mulCollider;
 import com.j2y.familypop.activity.server.event_server.Event_serverClose;
 import com.j2y.familypop.server.FpsRoot;
 import com.j2y.familypop.server.FpsTalkUser;
@@ -83,6 +84,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     //ShareImage
     public static final int event_deleteShareImage      = 12;
 
+    public static final int event_mulCollider = 98;
     public static final int event_serverClose = 99;
 
     // test
@@ -461,6 +463,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         ret.Set_addScale(info_regulation._flowerPlusSize);
         ret.Set_maxScale(info_regulation._flowerMaxSize);
 
+
         return ret;
     }
 
@@ -496,11 +499,14 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         ret.Get_Sprite().setScale(faceScale * info_regulation._flowerSmileSize);
 
+        ret.Mul_collider(info_regulation._colliderSmileSize);
+
         return ret;
     }
 
     // good
-    public Actor_good Create_good(float x, float y, String faceName, String flowerName, Actor_attractor attractor) {
+    public Actor_good Create_good(float x, float y, String faceName, String flowerName, Actor_attractor attractor)
+    {
         Actor_good ret = null;
 
 //        AnimatedSprite face = null;
@@ -529,6 +535,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         ret.Get_Sprite().attachChild(flower);
         ret.Get_Sprite().setScale(faceScale * GetInfo_regulation()._flowerGoodSize );
         //ret.Set_maxFlowerScale(0.7f);
+
+        ret.Mul_collider(GetInfo_regulation()._colliderGoodSize);
 
         return ret;
     }
@@ -794,6 +802,30 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         Manager_resource.Instance.Create_flashSprite(clientId,  posX, posY, _scene, this, bitmap);
     }
 
+    public void OnEvent_mulCollider(Manager_actor.eType_actor type, float radius)
+    {
+//        //return create_honeybee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+//        Event_createBee event = new Event_createBee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+//        try {
+//            Add_event(event);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        Event_mulCollider event = new Event_mulCollider();
+        event._type_actor = type;
+        event._mulRadius = radius;
+
+        try
+        {
+            Add_event(event);
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
 // todo: map 에다가 다 넣어버리자.
     private void event_surveillant() {
@@ -833,7 +865,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
                 case event_shareImage_end: break;
 
                 // system
-                case event_serverClose: break;
+                case event_serverClose: ((Event_serverClose)data).CloseToServer();  break;
+                case event_mulCollider: ((Event_mulCollider)data).MulCollider();    break;
             }
 
             _eventQueue.remove(0);
@@ -885,6 +918,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             Actor_attractor attractor = Manager_actor.Instance.Get_attractor(user._uid_attractor);
             testbubble = Activity_serverMain_andEngine.Instance.Create_talk("user-01.png", "talk_petal-01.png", attractor);
             testbubble.StartMover(0);
+
         }
 
         return false;
@@ -925,7 +959,6 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         Event_serverClose event = new Event_serverClose();
         //_eventQueue.add(event);
         Add_event(event);
-
     }
 
     @Override
@@ -1031,6 +1064,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         public float _flowerMinSize;
         public float _flowerGoodSize;
         public float _flowerSmileSize;
+        // flower collider
+        public float _colliderTalkSize;
+        public float _colliderSmileSize;
+        public float _colliderGoodSize;
+
 
         public Info_regulation() {
             _regulation_seekBar_0 = 100000;
@@ -1049,6 +1087,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _flowerPlusSize = 1.1f;
             _flowerGoodSize = 1.0f;
             _flowerSmileSize =1.0f;
+
+            _colliderTalkSize = 1.0f;
+            _colliderSmileSize = 1.0f;
+            _colliderGoodSize = 1.0f;
         }
     }
 }

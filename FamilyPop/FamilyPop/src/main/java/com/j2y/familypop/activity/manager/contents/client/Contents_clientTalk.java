@@ -17,10 +17,8 @@ import com.j2y.network.client.FpNetFacade_client;
  */
 public class Contents_clientTalk extends BaseContents
 {
-
     private int _voiceAvgCount;
     private float _voiceAmpAvg;
-    //private int _clientId;
     private JoyStick _joystick = null;
 
     @Override

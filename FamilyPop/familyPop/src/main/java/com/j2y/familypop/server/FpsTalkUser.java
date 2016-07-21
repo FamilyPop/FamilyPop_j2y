@@ -38,6 +38,10 @@ public class FpsTalkUser
     public float _calibrationY;
     public boolean _isSetCalibration;
 
+    //
+    public int _startTalkCount = 0;
+    public int _answerCount = 0;
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
 	public FpsTalkUser(FpNetServer_client net_client)
