@@ -3,9 +3,11 @@ package com.j2y.familypop.activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.KeyEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.facebook.internal.Utility;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.j2y.familypop.activity.manager.Manager_actor;
@@ -15,12 +17,19 @@ import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_good;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClam;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClamPair;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeExplosion;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
+import com.j2y.familypop.activity.manager.states.State_ActorMove;
+import com.j2y.familypop.activity.manager.states.State_ActorRotationAxis;
+import com.j2y.familypop.activity.manager.states.State_machine;
 import com.j2y.familypop.activity.server.event_server.BaseEvent;
 import com.j2y.familypop.activity.server.event_server.Event_createBee;
+import com.j2y.familypop.activity.server.event_server.Event_createBeeClam;
+import com.j2y.familypop.activity.server.event_server.Event_createBeeClamPair;
 import com.j2y.familypop.activity.server.event_server.Event_createBeeExplosion;
 import com.j2y.familypop.activity.server.event_server.Event_createGood;
 import com.j2y.familypop.activity.server.event_server.Event_createSmile;
@@ -38,6 +47,11 @@ import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.RotationAtModifier;
+import org.andengine.entity.modifier.RotationByModifier;
+import org.andengine.entity.modifier.RotationModifier;
+import org.andengine.entity.modifier.ScaleModifier;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
@@ -53,8 +67,10 @@ import org.andengine.opengl.font.Font;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+import org.andengine.util.math.MathUtils;
 
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -67,31 +83,39 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public static final int CAMERA_HEIGHT = 480;
 
     // 서버 이벤트.
-    public static final int event_createTalk            = 0;
-    public static final int event_deleteTalk            = 1;
-    public static final int event_createSmile           = 2;
-    public static final int event_deleteSmile           = 3;
-    public static final int event_createGood            = 4;
-    public static final int event_deleteGood            = 5;
-    public static final int event_createBee             = 6;
-    public static final int event_deleteBee             = 7;
-    public static final int event_shareImage            = 8;
-    public static final int event_shareImage_end        = 9;
+    public static final int event_createTalk = 0;
+    public static final int event_deleteTalk = 1;
+    public static final int event_createSmile = 2;
+    public static final int event_deleteSmile = 3;
+    public static final int event_createGood = 4;
+    public static final int event_deleteGood = 5;
+    public static final int event_createBee = 6;
+    public static final int event_deleteBee = 7;
+    public static final int event_shareImage = 8;
+    public static final int event_shareImage_end = 9;
 
-    public static final int event_createBeeExplosion    = 10;
-    public static final int event_deleteBeeExplosion    = 11;
+    public static final int event_createBeeExplosion = 10;
+    public static final int event_deleteBeeExplosion = 11;
+
+    public static final int event_createBeeClam = 12;
+    public static final int event_deleteBeeClam = 13;
+
+    public static final int event_createBeeClamPair = 14;
+    public static final int event_deletebeeClamPair = 15;
 
     //ShareImage
-    public static final int event_deleteShareImage      = 12;
+    public static final int event_deleteShareImage = 97;
 
     public static final int event_mulCollider = 98;
     public static final int event_serverClose = 99;
 
     // test
-    Actor_attractor a1 = null;
-    Actor_attractor a2 = null;
-    Actor_attractor a3 = null;
-    Actor_attractor a4 = null;
+//    Actor_attractor a1 = null;
+//    Actor_attractor a2 = null;
+//    Actor_attractor a3 = null;
+//    Actor_attractor a4 = null;
+
+    State_machine _testStateMachine = null;
 
     // andengine
     private PhysicsWorld _physicsWorld = null;
@@ -121,7 +145,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public Scene Get_scene() {
         return _scene;
     }
-    public PhysicsWorld Get_physicsWorld(){ return _physicsWorld; }
+
+    public PhysicsWorld Get_physicsWorld() {
+        return _physicsWorld;
+    }
 
     // message queue
     //PriorityBlockingQueue<BaseEvent> _eventQueue = null;
@@ -180,13 +207,41 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         _manager_contents = new Manager_contents(true);
         _manager_contents.Instance.Content_change(Manager_contents.eType_contents.CONTENTS_READY);
 
-        // andEngein_test
-        //a1 = create_attractor(_userStartPos.get(0).x, _userStartPos.get(0).y, "user-01.png");
-        //a2 = create_attractor(_userStartPos.get(1).x, _userStartPos.get(1).y, "user-02.png");
-        //a3 = create_attractor(_userStartPos.get(2).x, _userStartPos.get(2).y, "user-03.png");
-        //a4 = create_attractor(_userStartPos.get(3).x, _userStartPos.get(3).y, "user-04.png");
+//        // andEngein_test
+//        //a1 = create_attractor(CAMERA_WIDTH/2 - 100, CAMERA_HEIGHT/2 - 100, "talk_petal-01.png");
+//        a1 = create_attractor(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "talk_petal-01.png");
+//        //a2 = create_attractor(_userStartPos.get(1).x, _userStartPos.get(1).y, "user-02.png");
+//        a3 = create_attractor(_userStartPos.get(2).x, _userStartPos.get(2).y, "user-03.png");
+//        a4 = create_attractor(_userStartPos.get(3).x, _userStartPos.get(3).y, "user-04.png");
 
         Activity_serverMain_andEngine.Instance.Init_attractor();
+
+
+//        final RotationAtModifier rotMod = new RotationAtModifier(30,0,180,CAMERA_WIDTH/2,CAMERA_HEIGHT/2);
+//        a1.Get_Sprite().registerEntityModifier(rotMod);
+
+//        final RotationByModifier rotMod = new RotationByModifier(1, 360);
+//        a1.Get_Sprite().registerEntityModifier(rotMod);
+
+        //RotationModifier rotMod = new RotationModifier(1, 0, -360);
+        //a1.Get_Sprite().registerEntityModifier(rotMod);
+
+//        _testStateMachine = new State_machine();
+//
+//
+//        _testStateMachine.Add_State(new State_ActorRotationAxis(a1, a3, a4,  2, true));
+        //back
+//        //_testStateMachine.Add_State(new State_ActorMove(a1, a3, 0.1f, 3));
+//        _testStateMachine.Add_State(new State_ActorRotationAxis(a1, a3.Get_Body().getPosition(), 5, true));
+//
+//        //_testStateMachine.Add_State(new State_ActorMove(a1, a4, 0.1f, 3));
+//        _testStateMachine.Add_State(new State_ActorRotationAxis(a1, a4.Get_Body().getPosition(), 5, false));
+//
+//        //_testStateMachine.Add_State(new State_ActorMove(a1, a3, 0.1f, 3));
+//        _testStateMachine.Add_State(new State_ActorRotationAxis(a1, a3.Get_Body().getPosition(), 5, true));
+//
+//        //_testStateMachine.Add_State(new State_ActorMove(a1, a4, 0.1f, 3));
+//        _testStateMachine.Add_State(new State_ActorRotationAxis(a1, a4.Get_Body().getPosition(), 5, false));
 
         return _scene;
     }
@@ -210,48 +265,117 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
     //=====================================================================================================================================
     // andEngine update
+//    float _test_sin = 0.0f;
+//    private final int a1move= 0;
+//    private final int a1curve= 1;
+//    private boolean testboolean = true;
+//    private int _testState = a1move;
+//    private double _testUpdateCount = 1;
+
+
+
     @Override
     public synchronized void onUpdate(float pSecondsElapsed) {
         // 컨텐츠 업데이트
-        if (_manager_contents == null) return;
-        if (Manager_actor.Instance == null) return;
-        if (FpsRoot.Instance._exitServer) return;
+//        if (_manager_contents == null) return;
+//        if (Manager_actor.Instance == null) return;
+//        if (FpsRoot.Instance._exitServer) return;
 
         event_surveillant();
 
         _manager_contents.update();
 
-        if( _manager_actor != null ) _manager_actor.Update(pSecondsElapsed);
+        if (_manager_actor != null) _manager_actor.Update(pSecondsElapsed);
+
+        // test
+        //_testStateMachine.Update(pSecondsElapsed);
+
+        //public boolean rotation_axis(float pSecondsElapsed, Vector2 target, float radius, float rotationSpeed)
+        // test
+        //a3, a4;
+        //a1.moveTo_target(pSecondsElapsed, a3.Get_Body().getPosition(), 5f);
+
+//        a1.rotation_axis(pSecondsElapsed, a4.Get_Body().getPosition(), 5f, 5f, false);
+
+//        _test_sin += Math.sin(System.currentTimeMillis()/100);
+//        Log.i("[rotation]", ""+_test_sin);
+//        if( _test_sin <= 0 )
+//        {
+//            a1.rotation_axis(pSecondsElapsed, a4.Get_Body().getPosition(), 5f, 5f, false);
+//        }
+//        else
+//        {
+//            a1.rotation_axis(pSecondsElapsed, a4.Get_Body().getPosition(), 5f, 5f, true);
+//        }
+
+//        BaseActor[] actors = new BaseActor[2];
+//        actors[0] = a3;
+//        actors[1] = a4;
 //
-//        // talk
-//        CopyOnWriteArrayList<BaseActor> talks = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
-//        IteratorUpdate_Actor(talks, pSecondsElapsed);
-//
-//        // update smile
-//        CopyOnWriteArrayList<BaseActor> smiles = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_SMILE);
-//        IteratorUpdate_Actor(smiles, pSecondsElapsed);
-//
-//        // attractor
-//        CopyOnWriteArrayList<BaseActor> attractors = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
-//        IteratorUpdate_Actor(attractors, pSecondsElapsed);
-//
-//        // good
-//        CopyOnWriteArrayList<BaseActor> goods = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_GOOD);
-//        IteratorUpdate_Actor(goods, pSecondsElapsed);
-//
-//        // bee
-//        CopyOnWriteArrayList<BaseActor> bees = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_BEE);
-//        IteratorUpdate_Actor(bees, pSecondsElapsed);
-//
-//        // beeExplosion
-//        CopyOnWriteArrayList<BaseActor> beeExplosion = (CopyOnWriteArrayList<BaseActor>) Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_HONEY_BEE_EXPLOSION);
-//        IteratorUpdate_Actor(beeExplosion, pSecondsElapsed);
+//        switch (_testState)
+//        {
+//            case a1move:
+//                if( test_a1move(pSecondsElapsed, actors[(int)_testUpdateCount%2].Get_Body().getPosition()) )
+//                {
+//                    //++_testUpdateCount;
+//                }
+//                break;
+//            case a1curve:
+//                if(test_a1curve(pSecondsElapsed, actors[(int)_testUpdateCount%2].Get_Body().getPosition(), testboolean))
+//                {
+//                    //_testUpdateCount+=2;
+//                }
+//                break;
+//        }
     }
 
+//    private boolean test_a1move(float time, Vector2 target)
+//    {
+//        boolean ret = false;
+//
+//        ret = a1.moveTo_target(time, target, 5f);
+//
+//        if( ret )
+//        {
+//            ret = true;
+//            _testState = a1curve;
+//        }
+//        return ret;
+//    }
+//    //flase 왼쪽 true 오른쪽
+//    private boolean test_a1curve(float time, Vector2 axis, boolean rotationDis)
+//    {
+//        boolean ret = false;
+//
+////public boolean rotation_axis(float pSecondsElapsed, Vector2 target, float radius, float rotationSpeed, boolean rotationDirection)
+//        if( rotationDis) //오른쪽
+//        {
+//            if( a1._rotation_axis_angle > 3)
+//            {
+//                _testState = a1move;
+//                testboolean = false;
+//                return true;
+//            }
+//            a1.rotation_axis(time, axis, 5, 5, rotationDis);
+//        }
+//        else // 왼쪽
+//        {
+//            if( a1._rotation_axis_angle < -3)
+//            {
+//                testboolean = true;
+//                _testState = a1curve;
+//                return false;
+//            }
+//            a1.rotation_axis(time, axis, 5, 5, rotationDis);
+//        }
+//        //_testState = a1move;
+//        return ret;
+//    }
     @Override
     public void reset() {
 
     }
+
     //====================================================================================================
     // activity init
     @Override
@@ -362,8 +486,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     // create actor
     //====================================================================================================
     // Actor_honeyBee
-    private Actor_honeyBee create_honeybee(float x, float y, String tileImageName)
-    {
+    private Actor_honeyBee create_honeybee(float x, float y, String tileImageName) {
         Actor_honeyBee ret = null;
 
         AnimatedSprite face;
@@ -375,13 +498,44 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         return ret;
     }
-    public Actor_honeyBee Create_honeybee(float x, float y, String tileImageName)
+    private Actor_honeyBeeClam create_honeybeeClam(float x, float y, String tileImageName)
     {
+        Actor_honeyBeeClam ret = null;
+
+        AnimatedSprite face;
+        Manager_resource manager_resource = Manager_resource.Instance;
+        Manager_actor manager_actor = Manager_actor.Instance;
+
+        face = new AnimatedSprite(x, y, manager_resource.GetTiledTexture(tileImageName), this.getVertexBufferObjectManager());
+        ret = manager_actor.Create_honeyBeeClam(_scene, _physicsWorld, face);
+
+        return ret;
+    }
+    private Actor_honeyBeeClamPair create_honeybeeClamPair(float x, float y, String tileImageName)
+    {
+        Actor_honeyBeeClamPair ret = null;
+
+        AnimatedSprite face;
+        Manager_resource manager_resource = Manager_resource.Instance;
+        Manager_actor manager_actor = Manager_actor.Instance;
+
+        face = new AnimatedSprite(x, y, manager_resource.GetTiledTexture(tileImageName), this.getVertexBufferObjectManager());
+        ret = manager_actor.Create_honeyBeeClamPair(_scene, _physicsWorld, face);
+
+        return ret;
+    }
+
+    public Actor_honeyBee Create_honeybee(float x, float y, String tileImageName) {
         return create_honeybee(x, y, tileImageName);
     }
+    public Actor_honeyBeeClam Create_honeybeeClam(float x, float y, String tileImageName)
+    {return create_honeybeeClam(x, y, tileImageName) ;}
+    public Actor_honeyBeeClamPair Create_honeybeeClamPair(float x, float y, String tileImageName)
+    {return create_honeybeeClamPair(x, y, tileImageName); }
+
+
     // Actor_honeyBeeExplosion
-    private Actor_honeyBeeExplosion create_honeybeeExplosion(float x, float y, String tileImageName)
-    {
+    private Actor_honeyBeeExplosion create_honeybeeExplosion(float x, float y, String tileImageName) {
         Actor_honeyBeeExplosion ret = null;
 
         AnimatedSprite face;
@@ -389,16 +543,17 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         Manager_actor manager_actor = Manager_actor.Instance;
 
         ITiledTextureRegion textureRegion = manager_resource.GetTiledTexture(tileImageName);
-        face = new AnimatedSprite(x - (textureRegion.getWidth()/2) + 27, y - (textureRegion.getHeight()/2) + 27, textureRegion, this.getVertexBufferObjectManager());
+        face = new AnimatedSprite(x - (textureRegion.getWidth() / 2) + 27, y - (textureRegion.getHeight() / 2) + 27, textureRegion, this.getVertexBufferObjectManager());
         face.setScale(1.0f);
         ret = manager_actor.Create_honeyBeeExplosion(_scene, _physicsWorld, face);
 
         return ret;
     }
-    public Actor_honeyBeeExplosion Create_honeybeeExplosion(float x, float y, String tileImageName)
-    {
+
+    public Actor_honeyBeeExplosion Create_honeybeeExplosion(float x, float y, String tileImageName) {
         return create_honeybeeExplosion(x, y, tileImageName);
     }
+
     // attarctor
     private Actor_attractor create_attractor(float x, float y, String imageName) {
         //AnimatedSprite face;
@@ -489,6 +644,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         float faceScale = 0.6f;
         float flowerScale = 0.7f;
 
+
         face.setScale(faceScale);
         //flower.setScale(0.7f, 0.7f);
         flower.setScale(flowerScale);
@@ -505,8 +661,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
 
     // good
-    public Actor_good Create_good(float x, float y, String faceName, String flowerName, Actor_attractor attractor)
-    {
+    public Actor_good Create_good(float x, float y, String faceName, String flowerName, Actor_attractor attractor) {
         Actor_good ret = null;
 
 //        AnimatedSprite face = null;
@@ -533,7 +688,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         ret = Manager_actor.Instance.Create_good(_scene, _physicsWorld, face, attractor);
         ret.Get_Sprite().attachChild(flower);
-        ret.Get_Sprite().setScale(faceScale * GetInfo_regulation()._flowerGoodSize );
+        ret.Get_Sprite().setScale(faceScale * GetInfo_regulation()._flowerGoodSize);
         //ret.Set_maxFlowerScale(0.7f);
 
         ret.Mul_collider(GetInfo_regulation()._colliderGoodSize);
@@ -662,8 +817,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         _eventQueue.add(event);
     }
 
-    public void OnEvent_smile()
-    {
+    public void OnEvent_smile() {
 //        for (FpsTalkUser user : Manager_users.Instance.Get_talk_users().values()) {
 //            //String fileName = Manager_resource.Instance.Get_userImage(Manager_resource.eImageIndex_color.IntToImageColor(user._net_client._clientID));
 //            String fileName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(user._net_client._clientID), Manager_resource.eType_petal.PETAL_SMILE);
@@ -681,8 +835,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
 
     //public Actor_honeyBee OnEvent_honeybee()
-    public void OnEvent_honeybee()
-    {
+    public void OnEvent_honeybee() {
         //return create_honeybee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
         Event_createBee event = new Event_createBee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
         try {
@@ -691,8 +844,25 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             e.printStackTrace();
         }
     }
-    public void OnEvent_deleteHoneybee(BaseActor actor)
+    public void OnEvent_honeybeeClam()
     {
+        Event_createBeeClam event = new Event_createBeeClam(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+        try {
+            Add_event(event);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void OnEvent_honeybeeClamPair()
+    {
+        Event_createBeeClamPair event = new Event_createBeeClamPair(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+        try {
+            Add_event(event);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void OnEvent_deleteHoneybee(BaseActor actor) {
         Event_deleteBee event = new Event_deleteBee(actor);
         try {
             Add_event(event);
@@ -700,8 +870,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             e.printStackTrace();
         }
     }
-    public void OnEvent_createBeeExplosion(float x, float y, String tileName)
-    {
+
+    public void OnEvent_createBeeExplosion(float x, float y, String tileName) {
         Event_createBeeExplosion event = new Event_createBeeExplosion(x, y, tileName);
         try {
             Add_event(event);
@@ -709,8 +879,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             e.printStackTrace();
         }
     }
-    public void OnEvent_deleteBeeExplosion(BaseActor actor)
-    {
+
+    public void OnEvent_deleteBeeExplosion(BaseActor actor) {
         Event_deleteBeeExplosion event = new Event_deleteBeeExplosion(actor);
         try {
             Add_event(event);
@@ -718,6 +888,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             e.printStackTrace();
         }
     }
+
     public synchronized void OnEvent_shareimage(int clientId, int posIndex, Bitmap bitmap) // posIndex 사용 안함.
     {
 //        // -1 일때 가운데 출력
@@ -782,13 +953,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         int tileX = CAMERA_WIDTH / countX;
         int tileY = CAMERA_HEIGHT / countY;
 
-        int tileCenterX = tileX/2;
-        int tileCenterY = tileY/2;
+        int tileCenterX = tileX / 2;
+        int tileCenterY = tileY / 2;
 
         int posX = 0;
         int posY = 0;
 
-         int index = Manager_resource.Instance.GetSprite_flash().size() + (posIndex%1);
+        int index = Manager_resource.Instance.GetSprite_flash().size() + (posIndex % 1);
 //        if (posIndex == -1)
 //        {
 //            posX = (int)centerX;
@@ -797,13 +968,12 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 //        else
         {
             posX = (index % countX) * tileX;
-            posY = ( index / countX ) * tileY;
+            posY = (index / countX) * tileY;
         }
-        Manager_resource.Instance.Create_flashSprite(clientId,  posX, posY, _scene, this, bitmap);
+        Manager_resource.Instance.Create_flashSprite(clientId, posX, posY, _scene, this, bitmap);
     }
 
-    public void OnEvent_mulCollider(Manager_actor.eType_actor type, float radius)
-    {
+    public void OnEvent_mulCollider(Manager_actor.eType_actor type, float radius) {
 //        //return create_honeybee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
 //        Event_createBee event = new Event_createBee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
 //        try {
@@ -816,18 +986,15 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         event._type_actor = type;
         event._mulRadius = radius;
 
-        try
-        {
+        try {
             Add_event(event);
-        }
-        catch(InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
 
-// todo: map 에다가 다 넣어버리자.
+    // todo: map 에다가 다 넣어버리자.
     private void event_surveillant() {
         if (_eventQueue.size() == 0) return;
 
@@ -835,38 +1002,73 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             //BaseEvent data = _eventQueue.take();
             BaseEvent data = _eventQueue.get(0);
 
-            switch (data.Get_eventType())
-            {
+            switch (data.Get_eventType()) {
                 // talk
                 case event_createTalk:
                     // 사용안함. Contents_talk 에서 직접 생성중.
                     // engine update 주기에서 생성해서 안전하다고 생각 됨.
                     break;
-                case event_deleteTalk: break;
+                case event_deleteTalk:
+                    break;
 
                 // smile
-                case event_createSmile: ((Event_createSmile)data).CreateSmile(); break;
-                case event_deleteSmile: break;
+                case event_createSmile:
+                    ((Event_createSmile) data).CreateSmile();
+                    break;
+                case event_deleteSmile:
+                    break;
 
                 // good
-                case event_createGood: Create_good(((Event_createGood)data).Get_data()._send_client_id, ((Event_createGood)data).Get_data()._clientid); break;
-                case event_deleteGood: break;
+                case event_createGood:
+                    Create_good(((Event_createGood) data).Get_data()._send_client_id, ((Event_createGood) data).Get_data()._clientid);
+                    break;
+                case event_deleteGood:
+                    break;
 
                 // bee
-                case event_createBee:  create_honeybee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee"); break;
-                case event_deleteBee: ((Event_deleteBee)data).Delete(); break;
+                case event_createBee:
+                    create_honeybee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+                    break;
+                case event_deleteBee:
+                    ((Event_deleteBee) data).Delete();
+                    break;
+
+                case event_createBeeClam:
+                    create_honeybeeClam(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+                    break;
+                case event_deleteBeeClam:
+                    ((Event_deleteBee) data).Delete();
+                    break;
+
+                case event_createBeeClamPair:
+                    create_honeybeeClamPair(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+                    break;
+                case event_deletebeeClamPair:
+                    ((Event_deleteBee) data).Delete();
+                    break;
+
 
                 // beeExplosion
-                case event_createBeeExplosion: ((Event_createBeeExplosion)data).Create();break;
-                case event_deleteBeeExplosion: ((Event_deleteBeeExplosion)data).Delete();break;
+                case event_createBeeExplosion:
+                    ((Event_createBeeExplosion) data).Create();
+                    break;
+                case event_deleteBeeExplosion:
+                    ((Event_deleteBeeExplosion) data).Delete();
+                    break;
 
                 // shareImage
-                case event_shareImage: break;
-                case event_shareImage_end: break;
+                case event_shareImage:
+                    break;
+                case event_shareImage_end:
+                    break;
 
                 // system
-                case event_serverClose: ((Event_serverClose)data).CloseToServer();  break;
-                case event_mulCollider: ((Event_mulCollider)data).MulCollider();    break;
+                case event_serverClose:
+                    ((Event_serverClose) data).CloseToServer();
+                    break;
+                case event_mulCollider:
+                    ((Event_mulCollider) data).MulCollider();
+                    break;
             }
 
             _eventQueue.remove(0);
@@ -1019,28 +1221,51 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     // text draw -andengine 흐름상에서만 사용해야한다.-
     //====================================================================================================
     public Text _draw_ipAddress = null;
-    public void draw_ipAddress(String text)
-    {
+
+    public void draw_ipAddress(String text) {
         release_text(_draw_ipAddress);
-        _draw_ipAddress = new Text((CAMERA_WIDTH/2) - (text.length()*2), CAMERA_HEIGHT/2, _manager_resource.Get_font(), text, getVertexBufferObjectManager());
+        _draw_ipAddress = new Text((CAMERA_WIDTH / 2) - (text.length() * 2), CAMERA_HEIGHT / 2, _manager_resource.Get_font(), text, getVertexBufferObjectManager());
         _scene.attachChild(_draw_ipAddress);
     }
-    public void release_text(Text text)
-    {
-        if( text != null)
-        {
+
+    public void release_text(Text text) {
+        if (text != null) {
             _scene.detachChild(text);
             _scene.unregisterTouchArea(text);
             text = null;
         }
     }
+
     //====================================================================================================
     // ShareImage_reposition
     //====================================================================================================
-    public void ShareImage_reposition()
-    {
+    public void ShareImage_reposition() {
         Manager_resource.Instance.ShareImage_reposition();
     }
+
+    //====================================================================================================
+    // test
+    //====================================================================================================
+    public float getTargetAngle(float startX, float startY, float startAngle, float targetX, float targetY) {
+
+        float angleRad = 0.0f;
+
+        float dX = targetX - startX;
+        float dY = targetY - startY;
+
+        float cos = (float) Math.cos(Math.toRadians(-startAngle));
+        float sin = (float) Math.sin(Math.toRadians(-startAngle));
+
+        float RotateddX = ((dX * cos) - (dY * sin));
+        float RotateddY = ((dX * sin) + (dY * cos));
+
+        angleRad = (float) Math.atan2(RotateddY, RotateddX);
+
+        float angleDeg = (float) Math.toDegrees(angleRad);
+
+        return angleDeg;
+    }
+
     //====================================================================================================
     // class s
     //====================================================================================================
@@ -1086,7 +1311,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _flowerMaxSize = 1.5f;
             _flowerPlusSize = 1.1f;
             _flowerGoodSize = 1.0f;
-            _flowerSmileSize =1.0f;
+            _flowerSmileSize = 1.0f;
 
             _colliderTalkSize = 1.0f;
             _colliderSmileSize = 1.0f;

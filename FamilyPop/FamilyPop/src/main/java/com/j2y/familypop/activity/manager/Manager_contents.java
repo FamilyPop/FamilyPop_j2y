@@ -6,6 +6,7 @@ import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
 import com.j2y.familypop.activity.manager.contents.server.Contents_ready;
 import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -17,6 +18,7 @@ public class Manager_contents
 {
     public static Manager_contents Instance = null;
     public static boolean IsServer = false;
+
     public enum eType_contents
     {
         CONTENTS_NOT(-1), CONTENTS_READY(0), CONTENTS_TALK(1);
@@ -47,6 +49,7 @@ public class Manager_contents
     public eType_contents GetCurrentContent(){ return mCurrentContent; }
     public BaseContents GetCurrentContents()
     {
+
         BaseContents ret = null;
         if( GetCurrentContent() == eType_contents.CONTENTS_NOT) return ret;
         return mContents.get(GetCurrentContent());

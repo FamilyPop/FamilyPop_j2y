@@ -26,6 +26,9 @@ public class Actor_talk  extends BaseActor
     private float _addTalkScale = 1.1f;
     private float _maxTalkScale = 1.5f;
 
+    public int _startTalkID = -1;   // 자신의 스피커 아이디.
+    public int _answerID = -1;      // 자신의 앞전에 말한 사람.
+
 
     public Actor_talk(Body body, Sprite sprite, long uniqueNumber)
     {

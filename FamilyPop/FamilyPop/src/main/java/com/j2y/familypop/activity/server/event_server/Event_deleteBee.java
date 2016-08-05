@@ -9,6 +9,7 @@ import com.j2y.familypop.activity.manager.actors.BaseActor;
 /**
  * Created by lsh on 2016-06-29.
  */
+//todo : 모든 액터가 사용할수 있다.. 클레스 이름을 변경 해서 사용하도록.
 public class Event_deleteBee extends BaseEvent
 {
     BaseActor _actor;
@@ -23,7 +24,7 @@ public class Event_deleteBee extends BaseEvent
     public void Delete()
     {
         //Manager_actor.Instance.Destroy_honeyBee(this);
-        Manager_actor.Instance.Destroy_honeyBee((Actor_honeyBee) _actor);
+        Manager_actor.Instance.Destroy_honeyBee(_actor);
     }
 
 }

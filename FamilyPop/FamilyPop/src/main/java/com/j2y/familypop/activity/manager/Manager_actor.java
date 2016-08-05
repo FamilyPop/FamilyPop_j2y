@@ -7,6 +7,8 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_good;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBee;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClam;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClamPair;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeExplosion;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
@@ -65,7 +67,7 @@ public class Manager_actor
 
     public enum eType_actor
     {
-        ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4), ACTOR_HONEY_BEE_EXPLOSION(5);
+        ACTOR_NON(-1), ACTOR_ATTRACTOR(0), ACTOR_TALK(1), ACTOR_BEE(2), ACTOR_SMILE(3), ACTOR_GOOD(4), ACTOR_HONEY_BEE_EXPLOSION(5), ACTOR_BEECLAM(6), ACTOR_BEECLAMPAIR(7);
 
         private int value;
 
@@ -109,6 +111,8 @@ public class Manager_actor
         mActors.put(eType_actor.ACTOR_ATTRACTOR, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_TALK, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_BEE, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_BEECLAM, new CopyOnWriteArrayList<BaseActor>());
+        mActors.put(eType_actor.ACTOR_BEECLAMPAIR, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_SMILE, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_GOOD, new CopyOnWriteArrayList<BaseActor>());
         mActors.put(eType_actor.ACTOR_HONEY_BEE_EXPLOSION, new CopyOnWriteArrayList<BaseActor>());
@@ -207,6 +211,12 @@ public class Manager_actor
             case ACTOR_BEE:
                 ret = new Actor_honeyBee(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
                 break;
+            case ACTOR_BEECLAM:
+                ret = new Actor_honeyBeeClam(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
+                break;
+            case ACTOR_BEECLAMPAIR:
+                ret = new Actor_honeyBeeClamPair(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.5f), info.sprite, info.actor_unique_number);
+                break;
             case ACTOR_GOOD:
                 ret = new Actor_good(createCircleBody(info.physicsWorld, info.sprite, info.type_body, objectFixtureDef, 0.8f), info.sprite,info.actor_unique_number);
                 break;
@@ -258,6 +268,55 @@ public class Manager_actor
 
         return ret;
     }
+    public Actor_honeyBeeClam Create_honeyBeeClam(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
+    {
+        Actor_honeyBeeClam ret = null;
+
+        Info_actor actorInfo = new Info_actor();
+        actorInfo.type_actor = eType_actor.ACTOR_BEECLAM;
+        actorInfo.scaleX = 1;
+        actorInfo.scaleY = 1;
+        actorInfo.type_body = BodyDef.BodyType.StaticBody;
+        actorInfo.physicsWorld = physicsWorld;
+        actorInfo.sprite = sprite;
+
+        ret = (Actor_honeyBeeClam)Create_actor(actorInfo);
+
+        ((AnimatedSprite)ret.Get_Sprite()).animate(100, true);
+        if( ret.Get_Body() != null)
+        {
+            scene.attachChild(sprite);
+            physicsWorld.registerPhysicsConnector(new PhysicsConnector(sprite, ret.Get_Body(), true, true));
+        }
+
+
+        return ret;
+    }
+    public Actor_honeyBeeClamPair Create_honeyBeeClamPair(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
+    {
+        Actor_honeyBeeClamPair ret = null;
+
+        Info_actor actorInfo = new Info_actor();
+        actorInfo.type_actor = eType_actor.ACTOR_BEECLAMPAIR;
+        actorInfo.scaleX = 1;
+        actorInfo.scaleY = 1;
+        actorInfo.type_body = BodyDef.BodyType.StaticBody;
+        actorInfo.physicsWorld = physicsWorld;
+        actorInfo.sprite = sprite;
+
+        ret = (Actor_honeyBeeClamPair) Create_actor(actorInfo);
+
+        ((AnimatedSprite)ret.Get_Sprite()).animate(100, true);
+        if( ret.Get_Body() != null)
+        {
+            scene.attachChild(sprite);
+            physicsWorld.registerPhysicsConnector(new PhysicsConnector(sprite, ret.Get_Body(), true, true));
+        }
+
+        return ret;
+    }
+
+
     public Actor_honeyBeeExplosion Create_honeyBeeExplosion(Scene scene, PhysicsWorld physicsWorld, AnimatedSprite sprite)
     {
         Actor_honeyBeeExplosion ret = null;
@@ -376,6 +435,29 @@ public class Manager_actor
 
         return ret;
     }
+
+    //=============================================================================================================================
+    // get attractor
+
+    public Actor_attractor Get_clamAttractor()
+    {
+        // todo : 서로 대화가 적은 사람을 가져온다.
+        // 지금은 그냥 0 번만 가져온다.
+
+        return (Actor_attractor)mActors.get(eType_actor.ACTOR_ATTRACTOR).get(0);
+    }
+    public ArrayList<Actor_attractor> Get_clamPairAttractor()
+    {
+        ArrayList<Actor_attractor> ret = new ArrayList<>();
+
+        // todo : 서로 대화가 적은 대상 둘을 가져온다.
+        // 지금은 그냥 0번 1번 대화 상대를 가져온다.
+
+        ret.add((Actor_attractor)mActors.get(eType_actor.ACTOR_ATTRACTOR).get(0));
+        ret.add((Actor_attractor)mActors.get(eType_actor.ACTOR_ATTRACTOR).get(1));
+
+        return ret;
+    }
     // random get attractor
     public Actor_attractor Get_randomAttractor()
     {
@@ -400,7 +482,6 @@ public class Manager_actor
                 break;
             }
         }
-
         return ret;
     }
 
@@ -542,7 +623,7 @@ public class Manager_actor
 
         return ret;
     }
-    public boolean Destroy_honeyBee(Actor_honeyBee bee)
+    public boolean Destroy_honeyBee( BaseActor bee)
     {
         boolean ret = false;
 
@@ -554,7 +635,7 @@ public class Manager_actor
             _physicsWorld.destroyBody(bee.Get_Body());
             _scene.detachChild(bee.Get_Sprite());
 
-            mActors.get(eType_actor.ACTOR_BEE).remove(bee);
+            mActors.get(bee.Get_ActorType()).remove(bee);
 //            List<BaseActor> listActor = Collections.synchronizedList(mActors.get(eType_actor.ACTOR_BEE));
 //            synchronized (listActor)
 //            {

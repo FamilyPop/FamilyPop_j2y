@@ -1,15 +1,24 @@
 package com.j2y.familypop.activity.manager.actors;
 
+import android.util.Log;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.facebook.internal.Utility;
 import com.j2y.familypop.activity.manager.Manager_actor;
 
 import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.debug.Debug;
+import org.andengine.util.math.MathUtils;
+
+import java.util.Vector;
 
 /**
  * Created by lsh on 2016-04-30.
  */
+
 public class BaseActor
 {
     protected float mOriginalRadius = 0.0f;
@@ -27,6 +36,7 @@ public class BaseActor
 
     private float _spriteScale =0.0f; //꽃잎이 커진다~
     private float _maxSpriteScale = 2.3f; // 이만큼 커니다~
+
     public BaseActor(Body body, Sprite sprite, long uniqueNumber)
     {
         mBody = body;
@@ -62,17 +72,14 @@ public class BaseActor
     }
     public  boolean onUpdate(float pSecondsElapsed)
     {
-
-
         //if( mIsBalloon )
-        {
+//        {
 //            double curTime = ((double) System.currentTimeMillis()) / 1000;
 //            double speed = 1;
 //            float sizeX = (float) (mSprite.getScaleX() + Math.sin(curTime * (speed)) * 0.005f);
 //            float sizeY = (float) (mSprite.getScaleY() + Math.sin(curTime * (speed)) * 0.005f);
 //            mSprite.setScale(sizeX, sizeY);
-        }
-
+//        }
         // 점점 커지는 꽃잎
 //        if(mIsFlower)
 //        {
@@ -84,6 +91,7 @@ public class BaseActor
 //                }
 //            }
 //        }
+
         return mEnd;
     }
     public void release()
@@ -108,9 +116,108 @@ public class BaseActor
         if( mBody == null) return;
         if( mOriginalRadius <= 0.0f){ mOriginalRadius = mBody.getFixtureList().get(0).getShape().getRadius(); }
 
-        float r = mOriginalRadius;
+        float r;
         r = radius * mOriginalRadius;
 
         mBody.getFixtureList().get(0).getShape().setRadius(r);
+    }
+
+//    org.andengine.entity.modifier.RotationModifier
+//    org.andengine.entity.modifier.RotationAtModifier
+//    org.andengine.entity.modifier.RotationByModifier
+    //
+
+    //===================================================================================================================================
+    // movement
+//    protected boolean lookAt(float duration, float pSecondsElapsed, Vector2 target)
+//    {
+//        boolean ret = false;
+//
+//        float angleDeg = getTargetAngle(
+//                mSprite.getX(),
+//                mSprite.getY(),
+//                mSprite.getRotation(), target.x, target.y);
+//
+//        RotationModifier rotMod = new RotationModifier( duration,   mSprite.getRotation(),
+//                                                                    mSprite.getRotation() + angleDeg);
+//        mSprite.registerEntityModifier(rotMod);
+//        ret = true;
+//
+//        return ret;
+//    }
+    //protected boolean moveTo_target(float pSecondsElapsed , float moveSpeed, Vector2 target)
+    public boolean moveTo_target(float pSecondsElapsed , Vector2 target, float distance,  float moveSpeed)
+    {
+        boolean ret = false;
+
+        // look ak
+        Vector2 vStart = mBody.getPosition();
+        float bugAngle = (float) Math.atan2((target.x - vStart.x), - (target.y - vStart.y));
+
+        Vector2 mover = mBody.getPosition();
+
+        ret = MathUtils.distance(target.x, target.y, mover.x, mover.y) <= distance;
+
+        // move
+        Vector2 v = new Vector2((target.x - mBody.getPosition().x), (target.y - mBody.getPosition().y));
+        v.nor();
+        v.x *= (pSecondsElapsed *  moveSpeed);
+        v.y *= (pSecondsElapsed *  moveSpeed);
+
+        v.x += mBody.getPosition().x;
+        v.y += mBody.getPosition().y;
+
+        mBody.setTransform(v, bugAngle);
+
+        //ret = true;
+        return ret;
+    }
+    // 이름이 미묘 하네..
+    // false 왼쪽, true 오른쪽
+    public float _rotation_axis_angle = 0.0f;
+    public boolean rotation_axis(float pSecondsElapsed, Vector2 target, float radius, float rotationSpeed, boolean rotationDirection)
+    {
+        boolean ret = false;
+
+        if( rotationDirection)
+        {
+            _rotation_axis_angle += ((2.0f * Math.PI / 10) * pSecondsElapsed * (rotationSpeed));
+            if( _rotation_axis_angle >= (2.0f*Math.PI)) _rotation_axis_angle -= (2.0f*Math.PI);
+        }
+        else
+        {
+            _rotation_axis_angle -= ((2.0f * Math.PI / 10) * pSecondsElapsed * (rotationSpeed));
+            if( _rotation_axis_angle <= (2.0f*Math.PI) *-1) _rotation_axis_angle += (2.0f*Math.PI);
+        }
+
+        float x = (float)Math.cos( _rotation_axis_angle) * ((1) - radius);
+        float y = (float)Math.sin( _rotation_axis_angle) * ((1) - radius);
+
+        x += target.x;
+        y += target.y;
+
+        mBody.setTransform( x , y , 0);
+
+        return ret;
+    }
+
+    private float getTargetAngle(float startX, float startY, float startAngle, float targetX, float targetY) {
+
+        float angleRad = 0.0f;
+
+        float dX = targetX - startX;
+        float dY = targetY - startY;
+
+        float cos = (float) Math.cos(Math.toRadians(-startAngle));
+        float sin = (float) Math.sin(Math.toRadians(-startAngle));
+
+        float RotateddX = ((dX * cos) - (dY * sin));
+        float RotateddY = ((dX * sin) + (dY * cos));
+
+        angleRad = (float) Math.atan2(RotateddY, RotateddX);
+
+        float angleDeg = (float) Math.toDegrees(angleRad);
+
+        return angleDeg;
     }
 }

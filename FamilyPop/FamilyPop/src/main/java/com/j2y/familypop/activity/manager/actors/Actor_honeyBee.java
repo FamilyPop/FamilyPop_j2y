@@ -66,9 +66,9 @@ public class Actor_honeyBee extends BaseActor {
         if (_target != null)
         {
             // look ak
-            Vector2 vTarget = _target.Get_Body().getPosition();
-            Vector2 vStart = mBody.getPosition();
-            float bugAngle = (float) Math.atan2((vTarget.x - vStart.x), -(vTarget.y - vStart.y));
+//            Vector2 vTarget = _target.Get_Body().getPosition();
+//            Vector2 vStart = mBody.getPosition();
+//            float bugAngle = (float) Math.atan2((vTarget.x - vStart.x), -(vTarget.y - vStart.y));
 
             Vector2 target = _target.mBody.getPosition();
             Vector2 mover = mBody.getPosition();
@@ -78,15 +78,17 @@ public class Actor_honeyBee extends BaseActor {
             if(isMove)
             {
                 // move
-                Vector2 v = new Vector2((_target.mBody.getPosition().x - mBody.getPosition().x), (_target.mBody.getPosition().y - mBody.getPosition().y));
-                v.nor();
-                v.x *= (pSecondsElapsed *  10f);
-                v.y *= (pSecondsElapsed *  10f);
+                moveTo_target(pSecondsElapsed, target, 0.1f, 10 );
+//                Vector2 v = new Vector2((_target.mBody.getPosition().x - mBody.getPosition().x), (_target.mBody.getPosition().y - mBody.getPosition().y));
+//                v.nor();
+//                v.x *= (pSecondsElapsed *  10f);
+//                v.y *= (pSecondsElapsed *  10f);
+//
+//                v.x += mBody.getPosition().x;
+//                v.y += mBody.getPosition().y;
+//
+//                mBody.setTransform(v, bugAngle);
 
-                v.x += mBody.getPosition().x;
-                v.y += mBody.getPosition().y;
-
-                mBody.setTransform(v, bugAngle);
                 // end move
             }
             else
@@ -94,7 +96,6 @@ public class Actor_honeyBee extends BaseActor {
                 // explosion 조건이 만족하면 폭발 한다.
                 if (_count_explosion == 0)
                 {
-
                     // event
                     Activity_serverMain_andEngine main = Activity_serverMain_andEngine.Instance;
                     main.OnEvent_deleteHoneybee(this); // 벌을 제거.
@@ -107,7 +108,6 @@ public class Actor_honeyBee extends BaseActor {
                     //Activity_serverMain_andEngine.Instance.Create_honeybeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion");
                     //Manager_actor.Instance.Destroy_honeyBee(this);
                 }
-
             }
 
 

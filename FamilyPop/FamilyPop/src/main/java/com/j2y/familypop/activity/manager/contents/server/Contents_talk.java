@@ -12,8 +12,12 @@ import com.j2y.familypop.activity.manager.Manager_actor;
 import com.j2y.familypop.activity.manager.Manager_resource;
 import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClam;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
+import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.manager.contents.BaseContents;
+import com.j2y.familypop.activity.manager.states.BaseState;
+import com.j2y.familypop.activity.manager.states.State_machine;
 import com.j2y.familypop.activity.server.event_server.Event_createTalk;
 import com.j2y.familypop.server.FpsRoot;
 import com.j2y.familypop.server.FpsTalkUser;
@@ -21,19 +25,126 @@ import com.j2y.familypop.server.FpsTalkUser;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.scene.Scene;
+import org.andengine.util.TimeUtils;
+import org.andengine.util.math.MathUtils;
+import org.andengine.util.system.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+//===================================================================================================
+//state
+class State_clam extends BaseState
+{
 
+    // [액터 아이디] 이야기한 비율
+    public float[] _actorRatios= null;
+    public State_clam()
+    {}
+
+    @Override
+    public void init()
+    {
+        super.init();
+
+        CopyOnWriteArrayList<BaseActor> talks =  Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
+        CopyOnWriteArrayList<BaseActor> attractors =  Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
+        _actorRatios = new float[attractors.size()];
+
+        if(attractors.size()== 0)   return;
+        if(talks.size()== 0)        return;
+
+        int totalCount = talks.size();
+
+
+        //-------------------------------------------------------------------------------------------------
+        // 다시 만들어야겟네.;;
+
+        // 액터들의 각 대화 비율을 구한다.
+        for( int j=0; j<attractors.size(); j++)
+        {
+            int talkCount = 0;
+            Actor_attractor attractor = (Actor_attractor)attractors.get(j);
+            for( int i=0; i<talks.size(); ++i)
+            {
+                if( attractor.Get_colorId() == talks.get(i).Get_colorId() )
+                {
+                    talkCount++;
+                }
+            }
+            if(talks.size() !=0 ) _actorRatios[attractor.Get_colorId()] = talkCount / totalCount * 100;
+        }
+
+        // 대화가 제일 적은 사람에게 벌을 생성한다.
+        // Event_createBee event = new Event_createBee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
+        Actor_honeyBeeClam bee = Activity_serverMain_andEngine.Instance.Create_honeybeeClam(Activity_serverMain_andEngine.CAMERA_WIDTH / 2, Activity_serverMain_andEngine.CAMERA_HEIGHT / 2, "event_honeyBee");
+
+        int targetId = -1;
+        float ratio = _actorRatios[0];
+        BaseActor targetAttractor = attractors.get(0);
+        for( int i=0; i<_actorRatios.length; i++)
+        {
+            if( _actorRatios[i] < ratio)
+            {
+                ratio = _actorRatios[i];
+                targetId = i;
+                targetAttractor = attractors.get(i);
+            }
+        }
+        //Manager_actor.Instance
+        bee.Set_target(targetAttractor);
+    }
+    @Override
+    public boolean onUpdate(float pSecondsElapsed)
+    {
+        State_end();
+        return super.onUpdate(pSecondsElapsed);
+    }
+    public void release()
+    {
+        super.release();
+    }
+}
+class State_clamPair extends BaseState
+{
+    public State_clamPair()
+    {}
+
+    @Override
+    public void init()
+    {
+        super.init();
+
+    }
+    @Override
+    public boolean onUpdate(float pSecondsElapsed)
+    {
+        State_end();
+        return super.onUpdate(pSecondsElapsed);
+    }
+    public void release()
+    {
+        super.release();
+    }
+}
 /**
  * Created by lsh on 2016-05-17.
  */
 public class Contents_talk extends BaseContents
 {
+    State_machine _stateMachine = null;
+
+    long _startTime = 0;
+    long _curTime = 0;
     public Contents_talk()
     {
+        _stateMachine = new State_machine();
+
+        _startTime = System.currentTimeMillis();
+        _curTime = System.currentTimeMillis();
     }
 
     @Override
@@ -48,13 +159,18 @@ public class Contents_talk extends BaseContents
         //aMain._draw_ipAddress = null;
     }
 
+    // todo update 의 pSecondsElapsed 받아 오자.
     @Override
     public boolean update()
     {
         //Log.e("[J2Y]", "talk_update");
         if( Activity_serverMain_andEngine.Instance != null)
         {
+
             process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2);
+
+            talkState();
+            _stateMachine.Update(0);
         }
         return super.update();
     }
@@ -125,8 +241,16 @@ public class Contents_talk extends BaseContents
             if( preSpeaker < 0){ preSpeaker = speakerId;}
             if( speakerId >= 0)
             {
-                if( preSpeaker < 0){userRef.get()._answerCount++;}
-                if( speakerId >= 0){userRef.get()._startTalkCount++;}
+                // 대화 상황 저장 꽃잎 정보가 있으니 그걸로 판단하면 될듯하다.
+                if( preSpeaker < 0)
+                {
+                    userRef.get()._answerCount++;
+                    userRef.get()._answerIDs.add(speakerId);
+                }
+                if( speakerId >= 0)
+                {
+                    userRef.get()._startTalkCount++;
+                }
 
                 Actor_talk bubble = null;
                 Actor_attractor attractor = Manager_actor.Instance.Get_attractor(userRef.get()._uid_attractor);
@@ -139,6 +263,11 @@ public class Contents_talk extends BaseContents
                 bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
                 bubble.Set_colorId(preSpeaker);
                 bubble.SetStart_time((int)FpsRoot.Instance._socioPhone.GetRecordTime());
+                bubble._startTalkID = speakerId;
+                bubble._answerID = preSpeaker;
+
+
+
                 //
                 //Event_createTalk event = new Event_createTalk(userImageName, petalImageName, preSpeaker, attractor);
 
@@ -172,6 +301,7 @@ public class Contents_talk extends BaseContents
         }
     }
 
+
     public synchronized void process_turn_data_average(int avg_count) {
         //int IGNORED_VALUE = avg_count;
         int IGNORED_VALUE = avg_count;
@@ -184,12 +314,37 @@ public class Contents_talk extends BaseContents
         isBubbleEnding |= (previousSpeakerId >= 2) && (previousSpeakerId != currentSpeakerId); // Condition #2
         isBubbleEnding |= (previousSpeakerId >= 2) && (_bubbleSize >= Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_3); // Condition #3
 
-        if (isBubbleStarting) {
+        if (isBubbleStarting)
+        {
             IsBubbleStarting(isBubbleStarting);
-        } else if (isBubbleGrowing) {
+            _stateDelay = _stateDelayInit;
+        }
+        else if (isBubbleGrowing)
+        {
             IsBubbleGrowing(isBubbleGrowing);
-        } else if (isBubbleEnding) {
+            _stateDelay = _stateDelayInit;
+        }
+        else if (isBubbleEnding)
+        {
             IsBubbleEnding(isBubbleEnding);
+            _stateDelay = _stateDelayInit;
+        }
+        else
+        {
+            if( _startTime == 0) _startTime = System.currentTimeMillis();
+
+            _stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
+
+            if( _stateDelay <= 0 )
+            {
+                _eventtrigger = true;
+                _startTime = 0;
+
+                if( _stateDelayInit < 60)
+                    _stateDelayInit += 60; // 한번 3초 작동후 1분 정도 더 추가.
+
+                _stateDelay = _stateDelayInit;
+            }
         }
         previousSpeakerId = currentSpeakerId;
     }
@@ -229,4 +384,35 @@ public class Contents_talk extends BaseContents
         return keyOfMaxValue;
         //return maximum;
     }
+    //==================================================================================================
+    // 대화 상태.
+    long _stateDelay = 3;
+    long _stateDelayInit = 3;
+    public boolean _eventtrigger = false;
+
+
+
+    private void talkState()
+    {
+        if( _eventtrigger)
+        {
+
+            int eventIndex = 0;//(int)(Math.random() * 2);
+
+            switch( eventIndex )
+            {
+                case 0:
+                    _stateMachine.Add_State(new State_clam());
+                    break;
+                case 1:
+                    _stateMachine.Add_State(new State_clamPair());
+                    break;
+            }
+
+            _eventtrigger = false;
+        }
+
+
+    }
+
 }
