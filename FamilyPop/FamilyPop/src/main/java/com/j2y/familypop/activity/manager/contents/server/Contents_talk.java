@@ -9,10 +9,12 @@ import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.lobby.Activity_locatorNowCalibrating;
 import com.j2y.familypop.activity.manager.Manager_actor;
+import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_resource;
 import com.j2y.familypop.activity.manager.Manager_users;
 import com.j2y.familypop.activity.manager.actors.Actor_attractor;
 import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClam;
+import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeClamPair;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.manager.contents.BaseContents;
@@ -26,6 +28,7 @@ import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.util.TimeUtils;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.math.MathUtils;
 import org.andengine.util.system.SystemUtils;
 
@@ -50,52 +53,12 @@ class State_clam extends BaseState
     {
         super.init();
 
-        CopyOnWriteArrayList<BaseActor> talks =  Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_TALK);
-        CopyOnWriteArrayList<BaseActor> attractors =  Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
-        _actorRatios = new float[attractors.size()];
-
-        if(attractors.size()== 0)   return;
-        if(talks.size()== 0)        return;
-
-        int totalCount = talks.size();
-
-
-        //-------------------------------------------------------------------------------------------------
-        // 다시 만들어야겟네.;;
-
-        // 액터들의 각 대화 비율을 구한다.
-        for( int j=0; j<attractors.size(); j++)
-        {
-            int talkCount = 0;
-            Actor_attractor attractor = (Actor_attractor)attractors.get(j);
-            for( int i=0; i<talks.size(); ++i)
-            {
-                if( attractor.Get_colorId() == talks.get(i).Get_colorId() )
-                {
-                    talkCount++;
-                }
-            }
-            if(talks.size() !=0 ) _actorRatios[attractor.Get_colorId()] = talkCount / totalCount * 100;
+        Actor_attractor targetAttractor = Manager_contents.Instance.Get_talkClam();
+        if( targetAttractor != null) {
+            Actor_honeyBeeClam bee = Activity_serverMain_andEngine.Instance.Create_honeybeeClam(Activity_serverMain_andEngine.CAMERA_WIDTH / 2, Activity_serverMain_andEngine.CAMERA_HEIGHT / 2, "event_honeyBee");
+            bee.Set_target(targetAttractor);
         }
 
-        // 대화가 제일 적은 사람에게 벌을 생성한다.
-        // Event_createBee event = new Event_createBee(CAMERA_WIDTH / 2, CAMERA_HEIGHT / 2, "event_honeyBee");
-        Actor_honeyBeeClam bee = Activity_serverMain_andEngine.Instance.Create_honeybeeClam(Activity_serverMain_andEngine.CAMERA_WIDTH / 2, Activity_serverMain_andEngine.CAMERA_HEIGHT / 2, "event_honeyBee");
-
-        int targetId = -1;
-        float ratio = _actorRatios[0];
-        BaseActor targetAttractor = attractors.get(0);
-        for( int i=0; i<_actorRatios.length; i++)
-        {
-            if( _actorRatios[i] < ratio)
-            {
-                ratio = _actorRatios[i];
-                targetId = i;
-                targetAttractor = attractors.get(i);
-            }
-        }
-        //Manager_actor.Instance
-        bee.Set_target(targetAttractor);
     }
     @Override
     public boolean onUpdate(float pSecondsElapsed)
@@ -118,6 +81,25 @@ class State_clamPair extends BaseState
     {
         super.init();
 
+        CopyOnWriteArrayList<BaseActor> attractors = Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
+        Manager_contents mag = Manager_contents.Instance;
+
+        Actor_attractor targetAttractor = mag.Get_talkClam();
+        if( targetAttractor != null)
+        {
+            Actor_attractor targetAttractor2 = mag.Get_talkClamPair(targetAttractor);
+            if( targetAttractor2 != null)
+            {
+                if( targetAttractor.equals(targetAttractor2)) return;
+
+                Log.i("[clamPair]","equals");
+
+                Actor_honeyBeeClamPair bee = Activity_serverMain_andEngine.Instance.Create_honeybeeClamPair(Activity_serverMain_andEngine.CAMERA_WIDTH / 2, Activity_serverMain_andEngine.CAMERA_HEIGHT / 2, "event_honeyBee");
+                bee.Set_target1(targetAttractor);
+                bee.Set_target2(targetAttractor2);
+            }
+        }
+
     }
     @Override
     public boolean onUpdate(float pSecondsElapsed)
@@ -130,6 +112,30 @@ class State_clamPair extends BaseState
         super.release();
     }
 }
+//class State_talkAnalysis extends BaseState
+//{
+//    long _startTime;
+//    long _deleteTime;
+//
+//
+//    @Override
+//    public void init()
+//    {
+//        super.init();
+//
+//    }
+//    @Override
+//    public boolean onUpdate(float pSecondsElapsed)
+//    {
+//        State_end();
+//        return super.onUpdate(pSecondsElapsed);
+//    }
+//    public void release()
+//    {
+//        super.release();
+//    }
+//}
+
 /**
  * Created by lsh on 2016-05-17.
  */
@@ -138,13 +144,13 @@ public class Contents_talk extends BaseContents
     State_machine _stateMachine = null;
 
     long _startTime = 0;
-    long _curTime = 0;
+    long _connectedTime = 0;
     public Contents_talk()
     {
         _stateMachine = new State_machine();
 
         _startTime = System.currentTimeMillis();
-        _curTime = System.currentTimeMillis();
+        _connectedTime = System.currentTimeMillis();
     }
 
     @Override
@@ -157,6 +163,7 @@ public class Contents_talk extends BaseContents
         aMain.Instance.release_text(aMain._draw_ipAddress);
         //aMain._draw_ipAddress.setVisible(false);
         //aMain._draw_ipAddress = null;
+        //if( _startTime == 0) _startTime = System.currentTimeMillis();
     }
 
     // todo update 의 pSecondsElapsed 받아 오자.
@@ -265,9 +272,6 @@ public class Contents_talk extends BaseContents
                 bubble.SetStart_time((int)FpsRoot.Instance._socioPhone.GetRecordTime());
                 bubble._startTalkID = speakerId;
                 bubble._answerID = preSpeaker;
-
-
-
                 //
                 //Event_createTalk event = new Event_createTalk(userImageName, petalImageName, preSpeaker, attractor);
 
@@ -317,33 +321,33 @@ public class Contents_talk extends BaseContents
         if (isBubbleStarting)
         {
             IsBubbleStarting(isBubbleStarting);
-            _stateDelay = _stateDelayInit;
+            _connectedTime = System.currentTimeMillis();
         }
         else if (isBubbleGrowing)
         {
             IsBubbleGrowing(isBubbleGrowing);
-            _stateDelay = _stateDelayInit;
+            _connectedTime = System.currentTimeMillis();
         }
         else if (isBubbleEnding)
         {
             IsBubbleEnding(isBubbleEnding);
-            _stateDelay = _stateDelayInit;
+            _connectedTime = System.currentTimeMillis();
         }
         else
         {
             if( _startTime == 0) _startTime = System.currentTimeMillis();
-
-            _stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
-
-            if( _stateDelay <= 0 )
+            else
             {
-                _eventtrigger = true;
-                _startTime = 0;
+                //_stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
+                long deltaTime = System.currentTimeMillis() - _connectedTime;
 
-                if( _stateDelayInit < 60)
-                    _stateDelayInit += 60; // 한번 3초 작동후 1분 정도 더 추가.
+                Log.i("[talkDelay]","" + deltaTime);
 
-                _stateDelay = _stateDelayInit;
+                if( deltaTime > _delayTime )
+                {
+                    _connectedTime = System.currentTimeMillis();
+                    _eventtrigger = true;
+                }
             }
         }
         previousSpeakerId = currentSpeakerId;
@@ -386,18 +390,14 @@ public class Contents_talk extends BaseContents
     }
     //==================================================================================================
     // 대화 상태.
-    long _stateDelay = 3;
-    long _stateDelayInit = 3;
+    long _delayTime = 6000; // 6초
     public boolean _eventtrigger = false;
-
-
 
     private void talkState()
     {
         if( _eventtrigger)
         {
-
-            int eventIndex = 0;//(int)(Math.random() * 2);
+            int eventIndex = 1;//(int)(Math.random() * 2);
 
             switch( eventIndex )
             {
@@ -408,11 +408,7 @@ public class Contents_talk extends BaseContents
                     _stateMachine.Add_State(new State_clamPair());
                     break;
             }
-
             _eventtrigger = false;
         }
-
-
     }
-
 }

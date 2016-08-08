@@ -22,7 +22,7 @@ public class Actor_honeyBeeClam extends BaseActor
 {
     BaseActor _targetActor = null;
     float _distance = 0.0f;
-    float _deleteTimeSec = 3;
+    float _deleteTimeSec = 10;
 
     private boolean _rotDir = false;
 
@@ -65,11 +65,8 @@ public class Actor_honeyBeeClam extends BaseActor
     public synchronized boolean onUpdate(float pSecondsElapsed)
     {
         //public boolean rotation_axis(float pSecondsElapsed, Vector2 target, float radius, float rotationSpeed, boolean rotationDirection)
-
-
         if( _distance > 5){ _distance -= (pSecondsElapsed * 2f); }
         rotation_axis(pSecondsElapsed, _targetActor.Get_Body().getPosition(), _distance, 5, _rotDir);
-
 
         _deleteTimeSec -= pSecondsElapsed;
         Log.i("[SecondsElapsed]", ""+_deleteTimeSec);
@@ -79,14 +76,11 @@ public class Actor_honeyBeeClam extends BaseActor
             main.OnEvent_deleteHoneybee(this); // 벌을 제거.
             main.OnEvent_createBeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion"); // 폭파 이벤트 생성.
 
-
             // 그냥 랜덤 사진 가져오기.
             FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_targetActor.Get_colorId());
             FpNetFacade_server.Instance.Send_UserBang(user);
             //
-
             Actor_end();
-
         }
 
         return  super.onUpdate(pSecondsElapsed);

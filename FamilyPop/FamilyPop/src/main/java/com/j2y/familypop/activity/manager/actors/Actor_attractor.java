@@ -23,8 +23,6 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class Actor_attractor extends BaseActor
 {
-
-
     public Actor_attractor(Body body, Sprite sprite, long uniqueNumber)
     {
         super(body, sprite, uniqueNumber);

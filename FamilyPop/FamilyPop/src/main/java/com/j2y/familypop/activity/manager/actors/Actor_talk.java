@@ -27,8 +27,7 @@ public class Actor_talk  extends BaseActor
     private float _maxTalkScale = 1.5f;
 
     public int _startTalkID = -1;   // 자신의 스피커 아이디.
-    public int _answerID = -1;      // 자신의 앞전에 말한 사람.
-
+    public int _answerID = -1;      // 자신의 앞전에 말한 사람. // 꽃잎 색.(자신과 이야기한 사람의 색)
 
     public Actor_talk(Body body, Sprite sprite, long uniqueNumber)
     {

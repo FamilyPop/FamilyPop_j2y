@@ -16,6 +16,7 @@ import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by J2YSoft_Programer on 2016-05-02.
@@ -25,17 +26,18 @@ public class Manager_photoGallery
     public static Manager_photoGallery Instance;
 
     private ArrayList<ImageInfo> _imageList;
-    private ArrayList<Bitmap> _bitmap_file;
+    private CopyOnWriteArrayList<Bitmap> _bitmap_file;
 
 
     //================================================================================================
     // get
+    public CopyOnWriteArrayList<Bitmap> Get_bitmaps(){return _bitmap_file;}
     public int Get_countImageList(){ return  _imageList.size(); }
     public int Get_countBitmap(){return _bitmap_file.size();}
     public void Release_lists()
     {
         _imageList = new ArrayList<>();
-        _bitmap_file = new ArrayList<>();
+        _bitmap_file = new CopyOnWriteArrayList<>();
     }
     public Bitmap Get_bitmap(int index)
     {
@@ -59,7 +61,7 @@ public class Manager_photoGallery
     {
         Instance = this;
         _imageList = new ArrayList<ImageInfo>();
-        _bitmap_file = new ArrayList<Bitmap>();
+        _bitmap_file = new CopyOnWriteArrayList<Bitmap>();
     }
     public void SetArrayList(ArrayList<ImageInfo> imageList)
     {
@@ -82,9 +84,9 @@ public class Manager_photoGallery
         return list;
     }
 
-    private ArrayList<Bitmap> ChangeToBitmapList(ArrayList<ImageInfo> imageList)
+    private CopyOnWriteArrayList<Bitmap> ChangeToBitmapList(ArrayList<ImageInfo> imageList)
     {
-        ArrayList<Bitmap> bitmapList = new ArrayList<Bitmap>();
+        CopyOnWriteArrayList<Bitmap> bitmapList = new CopyOnWriteArrayList<Bitmap>();
 
         for(int i = 0; i < imageList.size(); i++)
         {

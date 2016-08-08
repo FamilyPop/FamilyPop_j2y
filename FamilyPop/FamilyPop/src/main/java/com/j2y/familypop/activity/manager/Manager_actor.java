@@ -641,7 +641,6 @@ public class Manager_actor
 //            {
 //                listActor.remove(bee);
 //            }
-
             ret = true;
         }
 
@@ -665,4 +664,6 @@ public class Manager_actor
             actor.Mul_collider(radius);
         }
     }
+
+    //
 }
