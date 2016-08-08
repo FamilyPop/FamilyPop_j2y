@@ -23,6 +23,7 @@ import com.j2y.familypop.activity.manager.actors.Actor_honeyBeeExplosion;
 import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
+import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 import com.j2y.familypop.activity.manager.states.State_ActorMove;
 import com.j2y.familypop.activity.manager.states.State_ActorRotationAxis;
 import com.j2y.familypop.activity.manager.states.State_machine;
@@ -1021,6 +1022,13 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             FpNetFacade_server.Instance.Send_clientUpdate();
         }
 
+        // test
+        if( Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+        {
+            Contents_talk contents = (Contents_talk) Manager_contents.Instance.GetCurrentContents();
+            contents.testClamPair();
+        }
+
         return true;
     }
 
@@ -1199,6 +1207,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         public int _buffer_count;
         public int _smile_effect;
         public int _voice_hold;
+        public float _talkDelayTime;
 
         // flower
         //public float _attractorMoveSpeed;
@@ -1224,6 +1233,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _buffer_count = 6;
             _smile_effect = 10000;
             _voice_hold = 5000;
+            _talkDelayTime = 10;
 
             _flowerMinSize = 0.3f;
             _flowerMaxSize = 1.5f;

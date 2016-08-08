@@ -317,7 +317,7 @@ public class Contents_talk extends BaseContents
         boolean isBubbleGrowing = (previousSpeakerId >= 2) && (previousSpeakerId == currentSpeakerId);
         boolean isBubbleEnding = (previousSpeakerId >= 2) && (previousSpeakerId == 0 && previousSpeakerId == 1); // Condition #1
         isBubbleEnding |= (previousSpeakerId >= 2) && (previousSpeakerId != currentSpeakerId); // Condition #2
-        isBubbleEnding |= (previousSpeakerId >= 2) && (_bubbleSize >= Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_3); // Condition #3
+        isBubbleEnding |= (previousSpeakerId >= 2) && (_bubbleSize >= Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_3); // Condition #3 // 버블 크기.?
 
         if (isBubbleStarting)
         {
@@ -344,7 +344,7 @@ public class Contents_talk extends BaseContents
 
                 Log.i("[talkDelay]","" + deltaTime);
 
-                if( deltaTime > _delayTime )
+                if( (deltaTime/1000) > Activity_serverMain_andEngine.Instance.GetInfo_regulation()._talkDelayTime )
                 {
                     _connectedTime = System.currentTimeMillis();
                     _eventtrigger = true;
@@ -392,7 +392,7 @@ public class Contents_talk extends BaseContents
     //==================================================================================================
     // 대화 상태.
     //long _delayTime = 6000; // 6초
-    long _delayTime = 2000; // 3초
+    //public long _delayTime = 10000; // 10초
     public boolean _eventtrigger = false;
 
     private void talkState()

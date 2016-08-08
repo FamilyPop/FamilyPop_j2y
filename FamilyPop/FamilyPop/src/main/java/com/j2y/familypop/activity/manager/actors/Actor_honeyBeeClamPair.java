@@ -94,7 +94,7 @@ public class Actor_honeyBeeClamPair extends BaseActor
                 }
 
                 long deltaTime = System.currentTimeMillis() - _connectedTime;
-                if(deltaTime > 3000) // 3초간 대기.
+                if(deltaTime > 1000) // 1초간 대기.
                 {
                     FpcRoot.Instance.DisconnectServer();
 

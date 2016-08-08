@@ -9,6 +9,8 @@ import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
 import com.j2y.familypop.activity.manager.contents.server.Contents_ready;
 import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 
+import org.andengine.util.math.MathUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -170,6 +172,7 @@ public class Manager_contents
         Actor_attractor ret = null;
 
         float ratio = _talkRatios[0];
+        ret = (Actor_attractor)attractors.get(0);
         //BaseActor targetAttractor = attractors.get(0);
         for( int i=0; i<_talkRatios.length; i++)
         {
@@ -233,12 +236,12 @@ public class Manager_contents
 
         // 가장 이야기를 안한 페어를 찾는다.
         CopyOnWriteArrayList<BaseActor> attractors =  Manager_actor.Instance.GetActorsList(Manager_actor.eType_actor.ACTOR_ATTRACTOR);
-        int selectIndex = 0;
+        int selectIndex = MathUtils.random(0, attractors.size()-1);
         float tempbuffer = _chatRate.get(targetActor)[selectIndex];
 
         for( int i=0; i< attractors.size(); ++i )
         {
-            if( tempbuffer > _chatRate.get(targetActor)[i] )
+            if( tempbuffer < _chatRate.get(targetActor)[i] )
             {
                 tempbuffer = _chatRate.get(targetActor)[i];
                 selectIndex = i;

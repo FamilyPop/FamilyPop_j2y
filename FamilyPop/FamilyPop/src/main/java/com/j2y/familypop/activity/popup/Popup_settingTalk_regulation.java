@@ -30,6 +30,7 @@ public class Popup_settingTalk_regulation implements View.OnClickListener
         ((EditText)v.findViewById(R.id.editText_regulation_smile_effect)).setText(String.valueOf(Activity_clientMain.Instance._smile_effect));
         ((EditText)v.findViewById(R.id.editText_regulation_voice_hold)).setText(String.valueOf(Activity_clientMain.Instance._voice_hold));
         ((EditText)v.findViewById(R.id.editText_regulation_attractorSpeed)).setText(String.valueOf(Activity_clientMain.Instance._attractorMoveSpeed));
+        ((EditText)v.findViewById(R.id.editText_regulation_talkDelayTime)).setText(String.valueOf(Activity_clientMain.Instance._talkDelayTime));
     }
 
     @Override
@@ -53,6 +54,7 @@ public class Popup_settingTalk_regulation implements View.OnClickListener
         main._smile_effect  = Integer.parseInt(((EditText)_v.findViewById(R.id.editText_regulation_smile_effect)).getText().toString());
         main._voice_hold    = Integer.parseInt(((EditText)_v.findViewById(R.id.editText_regulation_voice_hold)).getText().toString());
         main._attractorMoveSpeed = Float.valueOf(((EditText)_v.findViewById(R.id.editText_regulation_attractorSpeed)).getText().toString());
+        main._talkDelayTime = Float.valueOf(((EditText)_v.findViewById(R.id.editText_regulation_talkDelayTime)).getText().toString());
 
 
         FpNetFacade_client.Instance.SendPacket_req_regulation_info();
