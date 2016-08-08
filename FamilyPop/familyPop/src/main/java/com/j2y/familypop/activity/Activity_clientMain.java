@@ -85,7 +85,7 @@ import org.andengine.util.math.MathUtils;
 //
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+//upload Test by kookm 0808
 public class Activity_clientMain extends BaseActivity implements OnClickListener , SensorEventListener, SeekBar.OnSeekBarChangeListener//, RadioGroup.OnCheckedChangeListener
 {
 
