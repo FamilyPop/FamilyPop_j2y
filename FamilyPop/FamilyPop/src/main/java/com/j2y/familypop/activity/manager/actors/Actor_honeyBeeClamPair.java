@@ -33,7 +33,7 @@ public class Actor_honeyBeeClamPair extends BaseActor
         //Set_target(Manager_actor.Instance.Get_randomAttractor());
         _connectedTime = System.currentTimeMillis();
 
-        _count_explosion = MathUtils.random(3,5);
+        _count_explosion = MathUtils.random(2,4);
 
         _actor_type = Manager_actor.eType_actor.ACTOR_BEECLAMPAIR;
     }
@@ -85,16 +85,16 @@ public class Actor_honeyBeeClamPair extends BaseActor
                     main.OnEvent_deleteHoneybee(this); // 벌을 제거.
                     //main.OnEvent_createBeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion"); // 폭파 이벤트 생성.
 
-                    FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_target1.Get_colorId());
+                    FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_targets[_targetsIndex].Get_colorId());
                     FpNetFacade_server.Instance.Send_UserBang(user);
-                    FpsTalkUser user2 = Manager_users.Instance.FindTalkUser_byId(_target2.Get_colorId());
-                    FpNetFacade_server.Instance.Send_UserBang(user2);
+//                    FpsTalkUser user2 = Manager_users.Instance.FindTalkUser_byId(_target2.Get_colorId());
+//                    FpNetFacade_server.Instance.Send_UserBang(user2);
 
                     Actor_end();
                 }
 
                 long deltaTime = System.currentTimeMillis() - _connectedTime;
-                if(deltaTime > 1000) // 1초간 대기.
+                if(deltaTime > 500) // 0.5 초간 대기.
                 {
                     FpcRoot.Instance.DisconnectServer();
 
