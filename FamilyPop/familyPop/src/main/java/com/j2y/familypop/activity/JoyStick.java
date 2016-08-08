@@ -575,8 +575,6 @@ public class JoyStick
                 item.deactive = res.getDrawable(R.drawable.gui_0621_reso_btn_userlike_30x4);
                 break;
         }
-
-
         //item._button.setImageDrawable(drawble);
 
         mLayout.addView(item._button);
@@ -597,7 +595,6 @@ public class JoyStick
 
         x -= 75;
         y -= 75;
-
 
         item._button.setX(x);
         item._button.setY(y);

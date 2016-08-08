@@ -449,6 +449,7 @@ public class FpNetServer_packetHandler
             regulation._buffer_count = data._buffer_count;
             regulation._smile_effect = data._smile_effect;
             regulation._voice_hold = data._voice_hold;
+            regulation._talkDelayTime = data._talkDelayTime;
 
             // flower
             regulation._flowerPlusSize = data._flowerPlusSize;
@@ -464,6 +465,10 @@ public class FpNetServer_packetHandler
             Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_TALK, regulation._colliderTalkSize);
             Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_SMILE, regulation._colliderSmileSize);
             Activity_serverMain_andEngine.Instance.OnEvent_mulCollider(Manager_actor.eType_actor.ACTOR_GOOD, regulation._colliderGoodSize);
+
+            FpsRoot.Instance._socioPhone.setSilenceVolThreshold((double)regulation._regulation_seekBar_0);
+            FpsRoot.Instance._socioPhone.setSilenceVolVarThreshold((double)regulation._regulation_seekBar_1);
+            FpsRoot.Instance._voice_threadhold = regulation._voice_hold;
 
 //            Activity_serverMain.Instance._regulation_seekBar_0 = data._seekBar_0;
 //            Activity_serverMain.Instance._regulation_seekBar_1 = data._seekBar_1;

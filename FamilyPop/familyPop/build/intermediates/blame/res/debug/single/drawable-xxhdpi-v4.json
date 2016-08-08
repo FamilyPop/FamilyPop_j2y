@@ -748,12 +748,12 @@
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_setting.png"
     },
     {
-        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_ip_address.png",
-        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_ip_address.png"
-    },
-    {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\button_ttt_exit.png",
         "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\button_ttt_exit.png"
+    },
+    {
+        "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\text_ip_address.png",
+        "source": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\src\\main\\res\\drawable-xxhdpi\\text_ip_address.png"
     },
     {
         "merged": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\gui_0621_reso_jog_user_20x4.png",

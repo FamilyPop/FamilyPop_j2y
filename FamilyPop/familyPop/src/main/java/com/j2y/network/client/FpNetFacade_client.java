@@ -48,7 +48,9 @@ import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.nclab.familypop.R;
 
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -698,10 +700,6 @@ public class FpNetFacade_client extends FpNetFacade_base
 //            reqPaket._bitMapByteArray = null;
 //
 //        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
-
-
-
-
         FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
         Manager_photoGallery photo = Manager_photoGallery.Instance;
 
@@ -719,12 +717,19 @@ public class FpNetFacade_client extends FpNetFacade_base
         int viewHeight = 256;
         float width = 0.0f;
         float height = 0.0f;
-        for(int i=0; i<photo.Get_countBitmap(); ++i)
+
+        CopyOnWriteArrayList<Bitmap> bitmaps = photo.Get_bitmaps();
+        //for(int i=0; i<photo.Get_countBitmap(); ++i)
+        for(int i=0; i<bitmaps.size(); ++i)
         {
             //if( photo.Get_countBitmap() == 1){viewHeight = 256;} // 한장전송할때.
 
-            width = photo.Get_bitmap(i).getWidth();
-            height = photo.Get_bitmap(i).getHeight();
+//            width = photo.Get_bitmap(i).getWidth();
+//            height = photo.Get_bitmap(i).getHeight();
+            if( bitmaps == null) break;
+            if( bitmaps.get(i) == null) break;
+            width = bitmaps.get(i).getWidth();
+            height = bitmaps.get(i).getHeight();
 
             float percente = (float)(height/100);
             float scale = (float)(viewHeight/percente);
@@ -759,6 +764,7 @@ public class FpNetFacade_client extends FpNetFacade_base
         reqPaket._buffer_count = main._buffer_count;
         reqPaket._smile_effect = main._smile_effect;
         reqPaket._voice_hold = main._voice_hold;
+        reqPaket._talkDelayTime = main._talkDelayTime;
 
         reqPaket._flowerPlusSize = main._flowerPlusSize;
         reqPaket._flowerMaxSize = main._flowerMaxSize;

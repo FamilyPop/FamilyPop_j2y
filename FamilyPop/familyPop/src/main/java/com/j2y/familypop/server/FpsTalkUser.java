@@ -41,7 +41,7 @@ public class FpsTalkUser
     //
     public int _startTalkCount = 0;
     public int _answerCount = 0;
-
+    public ArrayList<Integer> _answerIDs = null;
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
 	public FpsTalkUser(FpNetServer_client net_client)
@@ -53,7 +53,7 @@ public class FpsTalkUser
         _isSetCalibration = false;
 
         _user_posid = -1;
-
+        _answerIDs = new ArrayList<>();
     }
 
 

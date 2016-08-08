@@ -23,6 +23,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
     public int _buffer_count;
     public int _smile_effect;
     public int _voice_hold;
+    public float _talkDelayTime;
 
     // tlak mode setting
     public float _flowerPlusSize;
@@ -45,6 +46,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
         _buffer_count   = inMsg.ReadInt();
         _smile_effect   = inMsg.ReadInt();
         _voice_hold     = inMsg.ReadInt();
+        _talkDelayTime = inMsg.ReadFloat();
 
         _flowerPlusSize     = inMsg.ReadFloat();
         _flowerMaxSize      = inMsg.ReadFloat();
@@ -78,6 +80,7 @@ public class FpNetDataReq_regulation_info extends FpNetData_base
         outMsg.Write(_buffer_count);
         outMsg.Write(_smile_effect);
         outMsg.Write(_voice_hold);
+        outMsg.Write(_talkDelayTime);
 
         outMsg.Write(_flowerPlusSize);
         outMsg.Write(_flowerMaxSize);

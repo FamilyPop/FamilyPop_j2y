@@ -163,6 +163,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     public float _flowerMinSize = 0.3f;     // 서버로감
     public float _flowerGoodSize = 1.0f;    // 서버로감
     public float _flowerSmileSize = 1.0f;   // 서버로감
+    public float _talkDelayTime = 10.0f;     // 서버로감
 
     public float _colliderTalkSize  = 1.0f; // 서버로감
     public float _colliderSmileSize = 1.0f; // 서버로감
@@ -1020,7 +1021,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             ArrayList<ImageInfo> images =  mag.FindMemoryRootImage(this);
             ArrayList<ImageInfo> arrayList = new ArrayList<>();
 
-            int imageIndex = MathUtils.random(0, images.size());
+            int imageIndex = MathUtils.random(0, images.size()-1);
             ImageInfo selectImage = images.get(imageIndex);
             arrayList.add(selectImage);
 
