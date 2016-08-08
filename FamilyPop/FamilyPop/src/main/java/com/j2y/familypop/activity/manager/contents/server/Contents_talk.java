@@ -90,7 +90,7 @@ class State_clamPair extends BaseState
             Actor_attractor targetAttractor2 = mag.Get_talkClamPair(targetAttractor);
             if( targetAttractor2 != null)
             {
-                if( targetAttractor.equals(targetAttractor2)) return;
+                //if( targetAttractor.equals(targetAttractor2)) return;
 
                 Log.i("[clamPair]","equals");
 
@@ -142,6 +142,7 @@ class State_clamPair extends BaseState
 public class Contents_talk extends BaseContents
 {
     State_machine _stateMachine = null;
+
 
     long _startTime = 0;
     long _connectedTime = 0;
@@ -390,7 +391,8 @@ public class Contents_talk extends BaseContents
     }
     //==================================================================================================
     // 대화 상태.
-    long _delayTime = 6000; // 6초
+    //long _delayTime = 6000; // 6초
+    long _delayTime = 2000; // 3초
     public boolean _eventtrigger = false;
 
     private void talkState()
@@ -410,5 +412,9 @@ public class Contents_talk extends BaseContents
             }
             _eventtrigger = false;
         }
+    }
+    public void testClamPair()
+    {
+        _stateMachine.Add_State(new State_clamPair());
     }
 }
