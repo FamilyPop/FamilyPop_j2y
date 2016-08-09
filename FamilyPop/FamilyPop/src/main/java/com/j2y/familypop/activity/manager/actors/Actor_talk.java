@@ -75,16 +75,16 @@ public class Actor_talk  extends BaseActor
         return super.onUpdate(pSecondsElapsed);
     }
     public void SetAttractor(Actor_attractor attractor){ mAttractor = attractor; }
-    public void Set_plusScale()
+    public void Set_plusScale(float pSecondsElapsed)
     {
         // TODO: 2016-06-09 충돌 박스 사이즈 조절
         if( mSprite.getScaleX() < _maxTalkScale && mSprite.getScaleY() < _maxTalkScale)
         {
-            mOriginalScale.x += (_addTalkScale * 0.001f);
-            mOriginalScale.y += (_addTalkScale * 0.001f);
+            mOriginalScale.x += (_addTalkScale * (0.1f * pSecondsElapsed));
+            mOriginalScale.y += (_addTalkScale * (0.1f * pSecondsElapsed));
             mSprite.setScale(mOriginalScale.x, mOriginalScale.y);
 
-            mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale * 0.001f));
+            mBody.getFixtureList().get(0).getShape().setRadius(mBody.getFixtureList().get(0).getShape().getRadius() + (_addTalkScale *  (0.1f * pSecondsElapsed)));
             mOriginalRadius = mBody.getFixtureList().get(0).getShape().getRadius();
         }
     }

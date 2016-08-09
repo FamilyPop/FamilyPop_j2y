@@ -169,18 +169,18 @@ public class Contents_talk extends BaseContents
 
     // todo update 의 pSecondsElapsed 받아 오자.
     @Override
-    public boolean update()
+    public boolean update(float pSecondsElapsed)
     {
         //Log.e("[J2Y]", "talk_update");
         if( Activity_serverMain_andEngine.Instance != null)
         {
 
-            process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2);
+            process_turn_data_average(Activity_serverMain_andEngine.Instance.GetInfo_regulation()._regulation_seekBar_2, pSecondsElapsed);
 
             talkState();
             _stateMachine.Update(0);
         }
-        return super.update();
+        return super.update(pSecondsElapsed);
     }
 
     @Override
@@ -282,7 +282,8 @@ public class Contents_talk extends BaseContents
             }
         }
 }
-    private void IsBubbleGrowing(boolean isBubbleGrowing) {
+    private void IsBubbleGrowing(boolean isBubbleGrowing , float pSecondsElapsed)
+    {
         //Log.i("KAIST", "Bubble grows: " + currentSpeakerId + "/" + previousSpeakerId);
 
         if (_current_bubble != null) {
@@ -290,7 +291,7 @@ public class Contents_talk extends BaseContents
             //float scale = Activity_serverMain_andEngine.Instance.GetInfo_regulation()._flowerPlusSize;
             //float elapsed
             //Activity_serverMain_andEngine.Instance.getEngine().getSecondsElapsedTotal()
-            _current_bubble.Set_plusScale();
+            _current_bubble.Set_plusScale(pSecondsElapsed);
         }
     }
     private void IsBubbleEnding(boolean isBubbleGrowing)
@@ -307,7 +308,7 @@ public class Contents_talk extends BaseContents
     }
 
 
-    public synchronized void process_turn_data_average(int avg_count) {
+    public synchronized void process_turn_data_average(int avg_count, float pSecondsElapsed) {
         //int IGNORED_VALUE = avg_count;
         int IGNORED_VALUE = avg_count;
 
@@ -326,7 +327,7 @@ public class Contents_talk extends BaseContents
         }
         else if (isBubbleGrowing)
         {
-            IsBubbleGrowing(isBubbleGrowing);
+            IsBubbleGrowing(isBubbleGrowing, pSecondsElapsed);
             _connectedTime = System.currentTimeMillis();
         }
         else if (isBubbleEnding)

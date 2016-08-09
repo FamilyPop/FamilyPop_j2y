@@ -1107,7 +1107,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             if(FpcRoot.Instance._socioPhone != null && Manager_contents.Instance != null)
             {
                 // add 160517
-                Manager_contents.Instance.update();
+                Manager_contents.Instance.update(0.0f); // todo: 사이클 타임 구해서 넣어주자.
 
 //                // 버블이동 패킷 을 서버로 보낸다.
 //                if( _touchMove._actionDown )

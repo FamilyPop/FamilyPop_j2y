@@ -77,20 +77,23 @@ class Sprite_flash
 {
     private int _clientId = -1;
     private Sprite _sprite = null;
+    private Sprite _photoFrame = null;
 
-    public Sprite_flash(int clientId, Sprite sprite)
+    public Sprite_flash(int clientId, Sprite sprite, Sprite photoFrame)
     {
         _clientId = clientId;
         _sprite = sprite;
+        _photoFrame = photoFrame;
     }
 
     public Sprite Get_sprite(){return _sprite;}
+    public Sprite Get_photoFrame(){return _photoFrame;}
     public int Get_clientID(){return _clientId;}
     public  void Release( Scene scene)
     {
-        scene.detachChild(_sprite);
+        if( _sprite != null)    scene.detachChild(_sprite);
+        if( _photoFrame != null )   scene.detachChild(_photoFrame);
     }
-
 }
 
 public class Manager_resource
@@ -264,6 +267,13 @@ public class Manager_resource
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "user_like_05.png","FloPop_Server_Resources-15.png", 162, 250);
 
         add_spriteTexture(eType_atlas.ATLAS_SPRITE, "smile_01.png","FloPop_Server_Resources-21.png", 162, 300);
+
+        // photoframe
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "photoframe_0.png","photoframe_0.png", 418, 0);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "photoframe_1.png","photoframe_1.png", 418, 256);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "photoframe_2.png","photoframe_2.png", 418, 512);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "photoframe_3.png","photoframe_3.png", 418, 768);
+        add_spriteTexture(eType_atlas.ATLAS_SPRITE, "photoframe_4.png","photoframe_4.png", 418, 1024);
 
 
         _serverTextureAtlas.load();
@@ -444,10 +454,30 @@ public class Manager_resource
 
         return ret;
     }
+    //todo: 이미지를 잠간 뿌리기 용으로 만들어야함 ( frame 그리는 기능은 빼는걸로 )
     public synchronized Sprite Create_flashSprite(int clientId,  float posX, float posY, Scene scene, SimpleBaseGameActivity gameActivity,Bitmap bitmap)
     {
         Sprite ret = null;
 
+        // photo frame
+
+        // COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4); // 뭔가 엉킴.망.
+        ITextureRegion photoFrame = null;
+        switch(clientId)
+        {
+            case 0: photoFrame = GetSpriteTexture("photoframe_4.png"); break; // orange
+            case 1: photoFrame = GetSpriteTexture("photoframe_0.png"); break; // red
+            case 2: photoFrame = GetSpriteTexture("photoframe_1.png"); break; // green
+            case 3: photoFrame = GetSpriteTexture("photoframe_2.png"); break; // purple
+            case 4: photoFrame = GetSpriteTexture("photoframe_3.png"); break; // skybule
+        }
+        //ITextureRegion photoFrame = GetSpriteTexture("photoframe_0.png");
+        Sprite photoFrameSprite = new Sprite(posX, posY, photoFrame, gameActivity.getVertexBufferObjectManager());
+        photoFrameSprite.setZIndex(-110);
+        scene.attachChild(photoFrameSprite);
+
+
+        // photo
         BitmapTextureAtlasSource source = new BitmapTextureAtlasSource(bitmap);
         BitmapTextureAtlas texture = new BitmapTextureAtlas(gameActivity.getTextureManager(), 1024, 1024);
         texture.addTextureAtlasSource(source, 0, 0);
@@ -458,7 +488,10 @@ public class Manager_resource
         ret.setZIndex(-100);
         scene.attachChild(ret);
 
-        Sprite_flash sprite_flash = new Sprite_flash(clientId, ret);
+
+
+        // todo : Sprite_flash 를 리턴 하는 쪽으로.
+        Sprite_flash sprite_flash = new Sprite_flash(clientId, ret, photoFrameSprite);
         _flash_sprites.add(sprite_flash);
 
         return ret;
@@ -574,6 +607,11 @@ public class Manager_resource
             posX = (cameraWidth / 2) - (centerSprite.Get_sprite().getWidth()/2);
             posY = (cameraHeight / 2) - (centerSprite.Get_sprite().getHeight()/2);
             centerSprite.Get_sprite().setPosition(posX, posY);
+
+
+            centerSprite.Get_photoFrame().setWidth(centerSprite.Get_sprite().getWidth()+20);
+            centerSprite.Get_photoFrame().setHeight(centerSprite.Get_sprite().getHeight()+20);
+            centerSprite.Get_photoFrame().setPosition(posX-10, posY-10);
         }
         else if( imageCount <= 4)
         {
@@ -614,6 +652,12 @@ public class Manager_resource
                         break;
                 }
                 sprite_flash.Get_sprite().setPosition(posX, posY);
+                sprite_flash.Get_photoFrame().setPosition(posX, posY);
+
+                sprite_flash.Get_photoFrame().setWidth(sprite_flash.Get_sprite().getWidth()+20);
+                sprite_flash.Get_photoFrame().setHeight(sprite_flash.Get_sprite().getHeight()+20);
+                sprite_flash.Get_photoFrame().setPosition(posX-10, posY-10);
+
                 index ++;
             }
         }
@@ -637,6 +681,12 @@ public class Manager_resource
              //   posY += (sprite_flash.Get_sprite().getHeight()/4);
 
                 sprite_flash.Get_sprite().setPosition(posX, posY);
+                sprite_flash.Get_photoFrame().setPosition(posX, posY);
+
+                sprite_flash.Get_photoFrame().setWidth(sprite_flash.Get_sprite().getWidth()+20);
+                sprite_flash.Get_photoFrame().setHeight(sprite_flash.Get_sprite().getHeight()+20);
+                sprite_flash.Get_photoFrame().setPosition(posX-10, posY-10);
+
                 ++count_index;
             }
         }

@@ -35,7 +35,7 @@ public class Contents_clientTalk extends BaseContents
 
     }
     @Override
-    public  synchronized boolean update()
+    public  synchronized boolean update(float pSecondsElapsed)
     {
         //Log.e("[J2Y]", "talk_clientUpdate");
         double amplitude = FpcRoot.Instance._socioPhone.GetSoundAmplitue();
@@ -62,7 +62,7 @@ public class Contents_clientTalk extends BaseContents
                 FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, n.y,FpcRoot.Instance._clientId);
             }
         }
-        return super.update();
+        return super.update(pSecondsElapsed);
     }
     @Override
     public void release()

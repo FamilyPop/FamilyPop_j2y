@@ -100,7 +100,7 @@ public class Manager_contents
 
 
     }
-    public synchronized void update()
+    public synchronized void update(float pSecondsElapsed)
     {
         if( mCurrentContent == eType_contents.CONTENTS_NOT) return;
 
@@ -115,7 +115,7 @@ public class Manager_contents
         else
         {
             // update
-            if(contents.update())
+            if(contents.update(pSecondsElapsed))
             {
                 //release
                 contents.release();

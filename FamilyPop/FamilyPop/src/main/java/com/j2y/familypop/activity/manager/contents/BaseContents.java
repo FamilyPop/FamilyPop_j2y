@@ -16,7 +16,7 @@ public class BaseContents
     public void init()
     {
     }
-    public boolean update()
+    public boolean update(float pSecondsElapsed)
     {
         return mEnd;
     }

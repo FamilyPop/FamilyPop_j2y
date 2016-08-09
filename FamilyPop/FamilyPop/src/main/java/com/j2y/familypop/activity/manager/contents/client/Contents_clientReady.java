@@ -24,7 +24,7 @@ public class Contents_clientReady extends BaseContents
 
     }
     @Override
-    public boolean update()
+    public boolean update(float pSecondsElapsed)
     {
         // joystick
         if( _joystick != null)
@@ -39,7 +39,7 @@ public class Contents_clientReady extends BaseContents
                 FpNetFacade_client.Instance.SendPacket_req_userInput_bubbleMove(n.x, n.y, FpcRoot.Instance._clientId);
             }
         }
-        return super.update();
+        return super.update(pSecondsElapsed);
     }
     @Override
     public void release()

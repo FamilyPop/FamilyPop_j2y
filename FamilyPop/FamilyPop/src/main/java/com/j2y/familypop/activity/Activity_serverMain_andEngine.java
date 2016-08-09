@@ -284,11 +284,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         event_surveillant();
 
-        _manager_contents.update();
+        _manager_contents.update(pSecondsElapsed);
 
         if (_manager_actor != null) _manager_actor.Update(pSecondsElapsed);
-
-
     }
     @Override
     public void reset() {

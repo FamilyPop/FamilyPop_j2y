@@ -15,12 +15,12 @@ public class Contents_ready extends BaseContents
         super.init();
     }
     @Override
-    public boolean update()
+    public boolean update(float pSecondsElapsed)
     {
 
         //Log.e("[J2Y]", "ready_update");
 
-        return super.update();
+        return super.update(pSecondsElapsed);
     }
     @Override
     public void release()
