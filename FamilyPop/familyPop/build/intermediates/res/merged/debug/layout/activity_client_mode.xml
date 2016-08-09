@@ -29,6 +29,8 @@
         <!--android:layout_below="@+id/button_client_talk"-->
         <!--android:layout_alignRight="@+id/button_client_talk" />-->
 
+    <!-- 보이스 정보-->
+
     <!-- 룸정보 -->
     <LinearLayout
         android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
             android:textStyle="bold"
             android:visibility="gone"/>
 
-        <!-- 보이스 정보-->
+        <!--&lt;!&ndash; 보이스 정보&ndash;&gt;-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,17 +102,17 @@
 
 
         <!-- 보이스 정보2-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Voice"
-            android:id="@+id/text_voice_amplitude_average"
-            android:layout_below="@+id/text_voice_amplitude"
-            android:layout_alignParentLeft="true"
-            android:textStyle="bold"
-            android:textColor="#ffffff"
-            android:visibility="gone"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:text="Voice"-->
+            <!--android:id="@+id/text_voice_amplitude_average"-->
+            <!--android:layout_below="@+id/text_voice_amplitude"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:visibility="gone"/>-->
         <!-- 버블 클리어 버튼 , 화자간 interaction 진입 버튼,디바이스 회전 -->
         <LinearLayout
             android:orientation="horizontal"
@@ -808,6 +810,18 @@
                 android:id="@+id/imageView_stickRound"
                 android:background="@drawable/image_bubble_pink"
                 android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Voice"
+                android:id="@+id/text_voice_amplitude_average"
+                android:textColor="@color/color_default_string"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:layout_below="@+id/imageView_stickRound"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 

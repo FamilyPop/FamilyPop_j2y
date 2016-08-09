@@ -45,7 +45,7 @@ public class Contents_clientTalk extends BaseContents
         if(_voiceAvgCount >= 5) {
 
             _voiceAmpAvg /= (float)_voiceAvgCount;
-            //_text_voiceAmplitudeAverage.setText("Voice:" + (int)_voiceAmpAvg);
+            Activity_clientMain.Instance._text_voiceAmplitudeAverage.setText("Voice:" + (int)_voiceAmpAvg);
             _voiceAvgCount = 0;
             FpNetFacade_client.Instance.SendPacket_familyTalk_voice(_voiceAmpAvg);
         }

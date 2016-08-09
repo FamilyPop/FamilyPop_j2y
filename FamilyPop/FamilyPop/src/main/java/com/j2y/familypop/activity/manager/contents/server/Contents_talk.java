@@ -273,6 +273,7 @@ public class Contents_talk extends BaseContents
                 bubble.SetStart_time((int)FpsRoot.Instance._socioPhone.GetRecordTime());
                 bubble._startTalkID = speakerId;
                 bubble._answerID = preSpeaker;
+                _stateStart = true; // 대화 꽃이 하나 생성후 부터
                 //
                 //Event_createTalk event = new Event_createTalk(userImageName, petalImageName, preSpeaker, attractor);
 
@@ -308,6 +309,7 @@ public class Contents_talk extends BaseContents
     }
 
 
+    boolean _stateStart = false;
     public synchronized void process_turn_data_average(int avg_count, float pSecondsElapsed) {
         //int IGNORED_VALUE = avg_count;
         int IGNORED_VALUE = avg_count;
@@ -337,20 +339,24 @@ public class Contents_talk extends BaseContents
         }
         else
         {
-            if( _startTime == 0) _startTime = System.currentTimeMillis();
-            else
+            if( _stateStart )
             {
-                //_stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
-                long deltaTime = System.currentTimeMillis() - _connectedTime;
-
-                Log.i("[talkDelay]","" + deltaTime);
-
-                if( (deltaTime/1000) > Activity_serverMain_andEngine.Instance.GetInfo_regulation()._talkDelayTime )
+                if( _startTime == 0) _startTime = System.currentTimeMillis();
+                else
                 {
-                    _connectedTime = System.currentTimeMillis();
-                    _eventtrigger = true;
+                    //_stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
+                    long deltaTime = System.currentTimeMillis() - _connectedTime;
+
+                    Log.i("[talkDelay]","" + deltaTime);
+
+                    if( (deltaTime/1000) > Activity_serverMain_andEngine.Instance.GetInfo_regulation()._talkDelayTime )
+                    {
+                        _connectedTime = System.currentTimeMillis();
+                        _eventtrigger = true;
+                    }
                 }
             }
+
         }
         previousSpeakerId = currentSpeakerId;
     }
@@ -400,7 +406,7 @@ public class Contents_talk extends BaseContents
     {
         if( _eventtrigger)
         {
-            int eventIndex = 1;//(int)(Math.random() * 2);
+            int eventIndex = (int)(Math.random() * 2);
 
             switch( eventIndex )
             {

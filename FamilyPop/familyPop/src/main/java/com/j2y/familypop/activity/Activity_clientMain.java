@@ -115,7 +115,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     private TouchMove _touchMove;
 
     private TextView _text_voiceAmplitude;
-    private TextView _text_voiceAmplitudeAverage;
+    public TextView _text_voiceAmplitudeAverage;
     private ImageButton _shared_image;
 
     private ImageView _image_smilebubble;

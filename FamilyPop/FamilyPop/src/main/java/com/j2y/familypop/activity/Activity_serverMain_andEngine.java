@@ -1020,12 +1020,12 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             FpNetFacade_server.Instance.Send_clientUpdate();
         }
 
-        // test
-        if( Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
-        {
-            Contents_talk contents = (Contents_talk) Manager_contents.Instance.GetCurrentContents();
-            contents.testClamPair();
-        }
+//        // test 벌생성 테스트
+//        if( Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+//        {
+//            Contents_talk contents = (Contents_talk) Manager_contents.Instance.GetCurrentContents();
+//            contents.testClamPair();
+//        }
 
         return true;
     }
