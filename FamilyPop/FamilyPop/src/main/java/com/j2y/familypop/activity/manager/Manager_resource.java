@@ -677,6 +677,17 @@ public class Manager_resource
                 posX = (count_index % count_tileX) * tileX;
                 posY = ( count_index / count_tileX ) * tileY;
 
+
+                posX += (tileX/2);
+                posY += (tileY/2);
+                posX -= (sprite_flash.Get_sprite().getWidth()/2);
+                posY -= (sprite_flash.Get_sprite().getHeight()/2);
+
+                //posX += (sprite_flash.Get_sprite().getWidth()/2);
+                //posY += (sprite_flash.Get_sprite().getHeight()/2);
+                //posX += (tileX/2);
+                //posY += (tileY/2);
+
              //   posX += (sprite_flash.Get_sprite().getWidth()/4);
              //   posY += (sprite_flash.Get_sprite().getHeight()/4);
 

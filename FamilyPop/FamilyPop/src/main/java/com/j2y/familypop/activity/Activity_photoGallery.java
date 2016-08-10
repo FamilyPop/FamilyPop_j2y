@@ -41,6 +41,11 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
 
     public void Active()
     {
+//        for( int i=0; i<_thumb_imageList.size(); ++i)
+//        {
+//            ImageInfo d = (ImageInfo)_thumb_imageList.get(i);
+//            d.SetCheckedState(false);
+//        }
         ((BaseActivity)_context).findViewById(R.id.llImageList).setVisibility(View.VISIBLE);
         _gridView.setVisibility(View.VISIBLE);
     }

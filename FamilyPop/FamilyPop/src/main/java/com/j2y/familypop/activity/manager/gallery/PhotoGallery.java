@@ -127,6 +127,7 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     {
         ImageAdapter adapter = (ImageAdapter) parent.getAdapter();
         ImageInfo rowData = (ImageInfo)adapter.getItem(position);
+
         boolean curCheckState = rowData.GetCheckedState();
 
         if( curCheckState )

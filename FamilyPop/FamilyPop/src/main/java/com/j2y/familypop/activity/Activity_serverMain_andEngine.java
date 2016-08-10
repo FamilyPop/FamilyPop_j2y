@@ -47,6 +47,7 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.RotationAtModifier;
@@ -82,6 +83,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public static Activity_serverMain_andEngine Instance = null;
     public static final int CAMERA_WIDTH = 800;
     public static final int CAMERA_HEIGHT = 480;
+    //public static final int CAMERA_HEIGHT = 486;
 
     // 서버 이벤트.
     public static final int event_createTalk = 0;
@@ -259,7 +261,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         EngineOptions ret = null;
 
         _camera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        ret = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), _camera);
+        //ret = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), _camera);
+        ret = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), _camera);
 
         return ret;
     }
