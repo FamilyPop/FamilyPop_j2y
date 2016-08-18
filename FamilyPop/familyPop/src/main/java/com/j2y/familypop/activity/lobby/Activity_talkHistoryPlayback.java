@@ -170,8 +170,11 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             //centerBubble.getLocationInWindow(imageCordinates);
 
 
-            float centerX = 510; //centerBubble.getRight() - centerBubble.getLeft();
-            float centerY = 370; //centerBubble.getBottom() - centerBubble.getTop();
+            //float centerX = 510; //centerBubble.getRight() - centerBubble.getLeft();
+            //float centerY = 370; //centerBubble.getBottom() - centerBubble.getTop();
+
+            float centerX = 510;
+            float centerY = 370;
 
             ArrayList<FpcTalkRecord.Bubble> bubbles = setBubblesDistance( getBubblesCenter( talk_record._bubbles), talk_record.CopyBubbles(), 40 );
 

@@ -279,7 +279,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
 
     @Override
-    public synchronized void onUpdate(float pSecondsElapsed) {
+    public synchronized void onUpdate(float pSecondsElapsed)
+    {
         // 컨텐츠 업데이트
 //        if (_manager_contents == null) return;
 //        if (Manager_actor.Instance == null) return;
@@ -287,12 +288,12 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         event_surveillant();
 
-        _manager_contents.update(pSecondsElapsed);
-
-        if (_manager_actor != null) _manager_actor.Update(pSecondsElapsed);
+        if( _manager_contents != null ) _manager_contents.update(pSecondsElapsed);
+        if ( _manager_actor != null )   _manager_actor.Update(pSecondsElapsed);
     }
     @Override
-    public void reset() {
+    public void reset()
+    {
 
     }
 
@@ -915,7 +916,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
 
     // todo: map 에다가 다 넣어버리자.
-    private void event_surveillant() {
+    private void event_surveillant()
+    {
+        if ( FpsRoot.Instance._exitServer) return;
         if (_eventQueue.size() == 0) return;
 
         try {
@@ -1053,7 +1056,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         return false;
     }
 
-    public void CloseServer() throws InterruptedException {
+    public void CloseServer() throws InterruptedException
+    {
 
 //        //FpsRoot.Instance.CloseServer();
 //        //System.exit(0);
@@ -1091,7 +1095,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         //super.onBackPressed();
     }
 

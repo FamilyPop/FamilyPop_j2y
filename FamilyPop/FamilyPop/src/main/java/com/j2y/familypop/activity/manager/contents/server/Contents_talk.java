@@ -269,7 +269,7 @@ public class Contents_talk extends BaseContents
                 petalImageName = Manager_resource.Instance.Get_petalNames(Manager_resource.eImageIndex_color.IntToImageColor(preSpeaker), Manager_resource.eType_petal.PETAL_TALK);
 
                 bubble = Activity_serverMain_andEngine.Instance.Create_talk(userImageName, petalImageName, attractor);
-                bubble.Set_colorId(preSpeaker);
+                bubble.Set_colorId(speakerId);
                 bubble.SetStart_time((int)FpsRoot.Instance._socioPhone.GetRecordTime());
                 bubble._startTalkID = speakerId;
                 bubble._answerID = preSpeaker;

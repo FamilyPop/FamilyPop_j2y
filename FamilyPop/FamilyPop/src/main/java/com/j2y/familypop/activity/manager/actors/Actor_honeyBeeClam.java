@@ -78,7 +78,7 @@ public class Actor_honeyBeeClam extends BaseActor
 
             // 그냥 랜덤 사진 가져오기.
             FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_targetActor.Get_colorId());
-            FpNetFacade_server.Instance.Send_UserBang(user);
+            FpNetFacade_server.Instance.Send_UserBang(user,true);
             //
             Actor_end();
         }

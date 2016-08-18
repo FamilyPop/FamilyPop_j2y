@@ -141,10 +141,14 @@ public class FpNetFacade_server extends FpNetFacade_base
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 게임 상태
-    public void Send_UserBang(FpsTalkUser user)
+    public void Send_UserBang(FpsTalkUser user, boolean askShareImage)
     {
         Log.i("[J2Y]", "FpNetFacade_server:Send_UserBang");
-        user._net_client.SendPacket(FpNetConstants.SCReq_userBang, new FpNetData_base());
+
+        FpNetDataNoti_userBang data = new FpNetDataNoti_userBang();
+        data.Ask_ShareImage(askShareImage);
+        //user._net_client.SendPacket(FpNetConstants.SCReq_userBang, new FpNetData_base());
+        user._net_client.SendPacket(FpNetConstants.SCReq_userBang, data);
     }
     public void Send_BombRunning()
     {

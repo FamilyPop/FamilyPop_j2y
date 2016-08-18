@@ -30,8 +30,8 @@ public class Event_serverClose extends BaseEvent
         Activity_serverMain_andEngine.Instance.release_bee();
         Activity_serverMain_andEngine.Instance.release_attractor();
         // 유저를 전부 제거 disconnect 한다.
-        Manager_users.Instance.User_allRelease();
-        Manager_actor.Instance = null;
+        //Manager_users.Instance.User_allRelease();
+        //Manager_actor.Instance = null;
 
         Manager_contents.Instance.Release_All();
         Manager_contents.Instance = null;

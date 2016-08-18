@@ -86,7 +86,7 @@ public class Actor_honeyBeeClamPair extends BaseActor
                     //main.OnEvent_createBeeExplosion(mSprite.getX(), mSprite.getY(), "event_honeyBee_explosion"); // 폭파 이벤트 생성.
 
                     FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_targets[_targetsIndex].Get_colorId());
-                    FpNetFacade_server.Instance.Send_UserBang(user);
+                    FpNetFacade_server.Instance.Send_UserBang(user, true);
 //                    FpsTalkUser user2 = Manager_users.Instance.FindTalkUser_byId(_target2.Get_colorId());
 //                    FpNetFacade_server.Instance.Send_UserBang(user2);
 

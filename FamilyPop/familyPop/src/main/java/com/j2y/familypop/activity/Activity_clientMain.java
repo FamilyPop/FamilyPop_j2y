@@ -1238,7 +1238,41 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         {
                             Bitmap image_bitmap 	= MediaStore.Images.Media.getBitmap(getContentResolver(), imageData.getData());
                             //FpNetFacade_client.Instance.SendPacket_req_shareImage(image_bitmap);
-                            FpNetFacade_client.Instance.SendPacket_req_shareImage();
+                            //FpNetFacade_client.Instance.SendPacket_req_shareImage();
+
+                            Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance)
+                            {
+                                @Override
+                                protected void onCreate(Bundle savedInstanceState)
+                                {
+                                    super.onCreate(savedInstanceState);
+
+                                    // "Do you want to share a ramdom picture?"
+                                    _content.setText("Do you want to share a picture?");
+                                    _editText.setVisibility(View.GONE);
+
+                                }
+                                @Override
+                                public void onClick(View v)
+                                {
+                                    super.onClick(v);
+                                    switch (v.getId())
+                                    {
+                                        case R.id.button_custom_dialog_ok:
+                                            FpNetFacade_client.Instance.SendPacket_req_shareImage();
+                                            cancel();
+                                            break;
+                                        case R.id.button_custom_dialog_cancel:
+                                            cancel();
+                                            break;
+                                    }
+                                }
+                            };
+                            msgbox.show();
+
+
+
+
                         }
                         catch (IOException e)
                         {
@@ -1835,72 +1869,74 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
     {
         _net_quit_request = net_request;
         FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
-//        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(this)
+        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(this)
+        {
+            @Override
+            protected void onCreate(Bundle savedInstanceState)
+            {
+                super.onCreate(savedInstanceState);
+                //_content.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                //String str  = _editText.getText().toString();
+            }
+            @Override
+            public void onClick(View v)
+            {
+                super.onClick(v);
+                switch (v.getId())
+                {
+                    case R.id.button_custom_dialog_ok:
+                    {
+                        // 위에서 이미 진행.( 정보를 받아옴 )
+                        //FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
+
+                        SaveTalkRecord();
+
+                        ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( _editText.getText().toString(),
+                                                                                                              FpcRoot.Instance._socioPhone.GetWavFileName(),
+                                                                                                              FpcRoot.Instance._bubble_color_type );
+                        if(exit_talk)
+                        {
+                            if(net_request)
+                                request_exitRoom();
+                            else
+                                ExitRoom();
+
+                            finish();
+                        }
+                        else
+                        {
+                            cancel();
+                        }
+                    }
+                        break;
+                    case R.id.button_custom_dialog_cancel:
+                        if(force_exit) {
+
+                            startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
+                            finish();
+                        }
+                        else
+                            cancel();
+                        break;
+                }
+            }
+        };
+        msgbox.show();
+
+        // back
+//        if(exit_talk)
 //        {
-//            @Override
-//            protected void onCreate(Bundle savedInstanceState)
-//            {
-//                super.onCreate(savedInstanceState);
-//                //_content.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//                //String str  = _editText.getText().toString();
-//            }
-//            @Overridess
-//            public void onClick(View v)
-//            {
-//                super.onClick(v);
-//                switch (v.getId())
-//                {
-//                    case R.id.button_custom_dialog_ok:
-//                    {
-//                        FpNetFacade_client.Instance.SendPacket_req_talk_record_info();
+//            if(net_request)
+//                request_exitRoom();
+//            else
+//                ExitRoom();
 //
-//                        SaveTalkRecord();
-//
-//                        ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( _editText.getText().toString(),
-//                                                                                                              FpcRoot.Instance._socioPhone.GetWavFileName(),
-//                                                                                                              FpcRoot.Instance._bubble_color_type );
-
-//                        if(exit_talk)
-//                        {
-//                            if(net_request)
-//                                request_exitRoom();
-//                            else
-//                                ExitRoom();
-//
-//                            finish();
-//                        }
-//                        else
-//                        {
-//                            cancel();
-//                        }
-//                    }
-//                        break;
-//                    case R.id.button_custom_dialog_cancel:
-//                        if(force_exit) {
-//
-//                            startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
-//                            finish();
-//                        }
-//                        else
-//                            cancel();
-//                        break;
-//                }
-//            }
-//        };
-//        msgbox.show();
-        if(exit_talk)
-        {
-            if(net_request)
-                request_exitRoom();
-            else
-                ExitRoom();
-
-            finish();
-        }
-        else
-        {
-            //cancel();
-        }
+//            finish();
+//        }
+//        else
+//        {
+//            //cancel();
+//        }
 
     }
     @Override

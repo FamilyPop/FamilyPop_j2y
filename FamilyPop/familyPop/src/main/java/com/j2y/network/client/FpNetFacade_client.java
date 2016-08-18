@@ -1,7 +1,9 @@
 package com.j2y.network.client;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -14,9 +16,11 @@ import com.j2y.familypop.activity.Activity_clientMain;
 import com.j2y.familypop.activity.Interaction_Target;
 import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.Vector2;
+import com.j2y.familypop.activity.lobby.Activity_talkHistory;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
 import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
+import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
 import com.j2y.familypop.server.FpsRoot;
@@ -33,6 +37,7 @@ import com.j2y.network.base.data.FpNetDataNoti_changeScenario;
 import com.j2y.network.base.data.FpNetDataNoti_clientUpdate;
 import com.j2y.network.base.data.FpNetDataNoti_roomInfo;
 import com.j2y.network.base.data.FpNetDataNoti_serverInfo;
+import com.j2y.network.base.data.FpNetDataNoti_userBang;
 import com.j2y.network.base.data.FpNetDataReq_TicTacToe_Start;
 import com.j2y.network.base.data.FpNetDataReq_TicTacToe_index;
 import com.j2y.network.base.data.FpNetDataReq_bubbleMove;
@@ -490,14 +495,47 @@ public class FpNetFacade_client extends FpNetFacade_base
         }
     };
 
-    FpNetMessageCallBack onReq_userBang = new FpNetMessageCallBack()
-    {
+    FpNetMessageCallBack onReq_userBang = new FpNetMessageCallBack() {
         @Override
-        public void CallBack(FpNetIncomingMessage inMsg)
-        {
+        public void CallBack(FpNetIncomingMessage inMsg) {
+            FpNetDataNoti_userBang data = new FpNetDataNoti_userBang();
+            data.Parse(inMsg);
 
-            Activity_clientMain.Instance.OnEventSC_bang();
+            if (Activity_clientMain.Instance != null) {
 
+                if (data.GetAsk_ShareImage()) {
+                    Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance) {
+                        @Override
+                        protected void onCreate(Bundle savedInstanceState) {
+                            super.onCreate(savedInstanceState);
+
+                            // "Do you want to share a ramdom picture?"
+                            _content.setText("Do you want to share a ramdom picture?");
+                            _editText.setVisibility(View.GONE);
+
+                        }
+
+                        @Override
+                        public void onClick(View v) {
+                            super.onClick(v);
+                            switch (v.getId()) {
+                                case R.id.button_custom_dialog_ok:
+                                    Activity_clientMain.Instance.OnEventSC_bang();
+                                    cancel();
+                                    break;
+                                case R.id.button_custom_dialog_cancel:
+                                    cancel();
+                                    break;
+                            }
+                        }
+                    };
+                    msgbox.show();
+
+
+                } else {
+                    Activity_clientMain.Instance.OnEventSC_bang();
+                }
+            }
         }
     };
     FpNetMessageCallBack onNoti_bombRunning = new FpNetMessageCallBack()
@@ -689,8 +727,38 @@ public class FpNetFacade_client extends FpNetFacade_base
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 이미지 공유 요청
     //public void SendPacket_req_shareImage(Bitmap shareBitmap)
-    public void SendPacket_req_shareImage()
+        public void SendPacket_req_shareImage()
     {
+//        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance)
+//        {
+//            @Override
+//            protected void onCreate(Bundle savedInstanceState)
+//            {
+//                super.onCreate(savedInstanceState);
+//
+//                // "Do you want to share a ramdom picture?"
+//                _content.setText("Do you want to share a picture?");
+//                _editText.setVisibility(View.GONE);
+//
+//            }
+//            @Override
+//            public void onClick(View v)
+//            {
+//                super.onClick(v);
+//                switch (v.getId())
+//                {
+//                    case R.id.button_custom_dialog_ok:
+//                        cancel();
+//
+//                        break;
+//                    case R.id.button_custom_dialog_cancel:
+//                        cancel();
+//                        break;
+//                }
+//            }
+//        };
+//        msgbox.show();
+
         //
 //        Log.i("[J2Y]", "[C->S] 이미지 공유 요청");
 //        FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();

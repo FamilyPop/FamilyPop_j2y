@@ -160,6 +160,7 @@ public class FpNetServer_packetHandler
             FpNetServer_client client = (FpNetServer_client)inMsg._obj;
             _net_server.RemoveClient(client);
 
+            // 유저를 전부 제거 disconnect 한다.
             Manager_users.Instance.User_allRelease();
             Manager_actor.Instance = null;
 
@@ -195,7 +196,6 @@ public class FpNetServer_packetHandler
 
             _setUserInfo_data = new FpNetData_setUserInfo();
             _setUserInfo_data.Parse(inMsg);
-
 
             if(FpsRoot.Instance._room_user_names == "")
                 FpsRoot.Instance._room_user_names = _setUserInfo_data._userName;
