@@ -65,7 +65,7 @@ public class Actor_honeyBeeClam extends BaseActor
     public synchronized boolean onUpdate(float pSecondsElapsed)
     {
         //public boolean rotation_axis(float pSecondsElapsed, Vector2 target, float radius, float rotationSpeed, boolean rotationDirection)
-        if( _distance > 5){ _distance -= (pSecondsElapsed * 2f); }
+        if( _distance > 3){ _distance -= (pSecondsElapsed * 2f); }
         rotation_axis(pSecondsElapsed, _targetActor.Get_Body().getPosition(), _distance, 5, _rotDir);
 
         _deleteTimeSec -= pSecondsElapsed;

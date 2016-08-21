@@ -24,6 +24,7 @@ public class Popup_settingTalk implements View.OnClickListener
         ((Button)(v.findViewById(R.id.button_talkModeSetting_flower))).setOnClickListener(this);
         ((Button)(v.findViewById(R.id.button_talkModeSetting_regulation))).setOnClickListener(this);
         ((Button)(v.findViewById(R.id.button_talkModeSetting_flowerCollider))).setOnClickListener(this);
+        ((Button)(v.findViewById(R.id.button_monitoring_dialogue))).setOnClickListener(this);
     }
 
 
@@ -35,6 +36,7 @@ public class Popup_settingTalk implements View.OnClickListener
             case R.id.button_talkModeSetting_flower: onSettingFlower(); break;
             case R.id.button_talkModeSetting_regulation: onSettingRegulation(); break;
             case R.id.button_talkModeSetting_flowerCollider: onSettingFlowerCollider(); break;
+            case R.id.button_monitoring_dialogue: onSettingMonitoring_dialogue(); break;
         }
         _popupWindow.dismiss();
     }
@@ -95,5 +97,26 @@ public class Popup_settingTalk implements View.OnClickListener
             //Popup_settingTalk popupSetting = new Popup_settingTalk(popupView, popupWindow);
             Popup_settingTalk_regulation popup_settingTalk_regulation = new Popup_settingTalk_regulation(popupView, popupWindow);
         }
+    }
+    private void onSettingMonitoring_dialogue()
+    {
+
+        Activity_clientMain main = Activity_clientMain.Instance;
+        if( main != null)
+        {
+            View popupView = main.getLayoutInflater().inflate(R.layout.popup_setting_monitoring_dialogue, null);
+            PopupWindow popupWindow = new PopupWindow(popupView);
+
+            popupWindow.setWindowLayoutMode(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            popupWindow.setTouchable(true);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.setFocusable(true);
+
+            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+            //Popup_settingTalk popupSetting = new Popup_settingTalk(popupView, popupWindow);
+            Popup_systemEvent popup_systemEvent = new Popup_systemEvent(popupView, popupWindow);
+        }
+
     }
 }

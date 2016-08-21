@@ -33,4 +33,12 @@
         android:text="regulation"
         android:id="@+id/button_talkModeSetting_regulation"
         android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="monitoring_dialogue"
+        android:id="@+id/button_monitoring_dialogue"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

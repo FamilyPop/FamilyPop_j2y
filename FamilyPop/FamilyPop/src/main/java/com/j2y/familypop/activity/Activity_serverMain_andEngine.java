@@ -1202,6 +1202,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     // class s
     //====================================================================================================
     public class Info_regulation {
+
         public int _regulation_seekBar_0;
         public int _regulation_seekBar_1;
         public int _regulation_seekBar_2;
@@ -1228,6 +1229,11 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         public float _colliderGoodSize;
 
 
+        //====================================================================================================
+        // event 실행 여부.
+        public boolean _systemEvent_clam = true;
+        public boolean _systemEvent_pair = true;
+
         public Info_regulation() {
             _regulation_seekBar_0 = 100000;
             _regulation_seekBar_1 = 1000000000;
@@ -1250,6 +1256,9 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
             _colliderTalkSize = 1.0f;
             _colliderSmileSize = 1.0f;
             _colliderGoodSize = 1.0f;
+
+            _systemEvent_clam = true;
+            _systemEvent_pair = true;
         }
     }
 }

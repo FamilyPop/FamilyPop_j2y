@@ -179,7 +179,9 @@ public class Manager_contents
             if( _talkRatios[i] < ratio)
             {
                 ratio = _talkRatios[i];
-                ret = (Actor_attractor)attractors.get(i);
+
+                //ret = (Actor_attractor)attractors.get(i);
+                ret = Manager_actor.Instance.Get_findToClientID(i);
             }
         }
         // null 예외처리.
@@ -247,7 +249,8 @@ public class Manager_contents
                 selectIndex = i;
             }
         }
-        ret = (Actor_attractor) attractors.get(selectIndex);
+        //ret = (Actor_attractor) attractors.get(selectIndex);
+        ret = Manager_actor.Instance.Get_findToClientID(selectIndex);
         return ret;
     }
 }

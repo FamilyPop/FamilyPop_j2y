@@ -187,6 +187,23 @@ public class Manager_actor
     {
         return mActors;
     }
+
+    public Actor_attractor Get_findToClientID(int clientID)
+    {
+        Actor_attractor ret = null;
+        CopyOnWriteArrayList<BaseActor> attractors =  GetActorsList(eType_actor.ACTOR_ATTRACTOR);
+
+        for( int i=0; i<attractors.size(); ++i )
+        {
+            if( attractors.get(i).Get_colorId() == clientID)
+            {
+                ret = (Actor_attractor)attractors.get(i);
+            }
+        }
+
+        return ret;
+    }
+
     // ===========================================================
     // create actor
     // ===========================================================

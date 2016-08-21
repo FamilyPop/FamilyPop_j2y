@@ -142,10 +142,9 @@ class State_clamPair extends BaseState
 public class Contents_talk extends BaseContents
 {
     State_machine _stateMachine = null;
-
-
     long _startTime = 0;
     long _connectedTime = 0;
+
     public Contents_talk()
     {
         _stateMachine = new State_machine();
@@ -392,7 +391,6 @@ public class Contents_talk extends BaseContents
                 keyOfMaxValue = key;
             }
         }
-
         return keyOfMaxValue;
         //return maximum;
     }
@@ -407,13 +405,16 @@ public class Contents_talk extends BaseContents
         if( _eventtrigger)
         {
             int eventIndex = (int)(Math.random() * 2);
+            Activity_serverMain_andEngine.Info_regulation regulation =  Activity_serverMain_andEngine.Instance.GetInfo_regulation();
 
             switch( eventIndex )
             {
                 case 0:
+                    if( regulation._systemEvent_clam == false ) break;
                     _stateMachine.Add_State(new State_clam());
                     break;
                 case 1:
+                    if( regulation._systemEvent_pair == false ) break;
                     _stateMachine.Add_State(new State_clamPair());
                     break;
             }
