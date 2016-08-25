@@ -31,10 +31,11 @@ public class Popup_messageBox_shareImage extends Dialog implements android.view.
 
     public Popup_messageBox_shareImage(Activity activity)
     {
+        //Do you want to share a      ramdom picture?
         super(activity,R.style.Theme_Dialog);
 
-        _okTXT = new String("ok");
-        _cancelTXT = new String("cancel");
+        _okTXT = new String("YES");
+        _cancelTXT = new String("NO");
 
         _activity = activity;
     }

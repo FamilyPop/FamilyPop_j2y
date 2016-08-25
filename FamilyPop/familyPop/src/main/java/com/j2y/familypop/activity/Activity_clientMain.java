@@ -41,12 +41,11 @@ import android.widget.TextView;
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.lobby.Activity_talkHistory;
 import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
-import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 import com.j2y.familypop.activity.popup.Popup_dialogueMenu;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
-import com.j2y.familypop.activity.popup.Popup_settingTalk_regulation;
+import com.j2y.familypop.activity.popup.Popup_messageBox_shareImage;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
@@ -55,7 +54,6 @@ import com.j2y.familypop.client.FpcTalkRecord;
 //import com.j2y.familypop.server.FpsScenarioDirector;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.FpNetUtil;
-import com.j2y.network.base.data.FpNetDataReq_shareImage;
 import com.j2y.network.base.data.FpNetData_base;
 import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
@@ -634,7 +632,10 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
             // top menu
             case R.id.button_client_dialogue_topmenu_sharephotos:
-                Activity_clientMain.Instance._photoGallery.Active();
+                _photoGallery = new Activity_photoGallery(this, (GridView)findViewById(R.id.grid_view));
+                _photoGallery.Active();
+
+                //Activity_clientMain.Instance._photoGallery.Active();
                 break;
             case R.id.button_client_dialogue_topmenu_keyword:
 
@@ -736,7 +737,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         //setContentView(R.layout.activity_game);
                         cancel();
                         break;
-                    case R.id.button_custom_dialog_cancel:
+                    case R.id.button_popupmessagebox_cancel:
                         cancel();
                         break;
                 }
@@ -769,7 +770,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
                         cancel();
                         break;
-                    case R.id.button_custom_dialog_cancel:
+                    case R.id.button_popupmessagebox_cancel:
 
                         cancel();
                         break;
@@ -999,7 +1000,8 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
     }
 
-    public void OnEventSC_bang()
+    private  ImageInfo _bang_selectImage;
+    public void OnEventSC_bang(boolean ask_ShareImage)
     {
 //        _button_redbubble.setVisibility(View.GONE);
 //        _image_boomChosen.setVisibility(View.VISIBLE);
@@ -1013,21 +1015,83 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 //        }, 5000);
 
 
-        // bang
         Manager_photoGallery mag = Manager_photoGallery.Instance;
 
+        _bang_selectImage = null;
         if( mag != null)
         {
             ArrayList<ImageInfo> images =  mag.FindMemoryRootImage(this);
             ArrayList<ImageInfo> arrayList = new ArrayList<>();
 
             int imageIndex = MathUtils.random(0, images.size()-1);
-            ImageInfo selectImage = images.get(imageIndex);
-            arrayList.add(selectImage);
-
+            _bang_selectImage = images.get(imageIndex);
+            arrayList.add(_bang_selectImage);
             mag.SetArrayList(arrayList);
+        }
+
+
+
+        if( ask_ShareImage )
+        {
+
+            Popup_messageBox_shareImage test = new Popup_messageBox_shareImage(this)
+            {
+                @Override
+                protected void onCreate(Bundle savedInstanceState)
+                {
+                    super.onCreate(savedInstanceState);
+                    this._imageView.setImageBitmap(_bang_selectImage.GetBitmap());
+
+                    //_content.setText("share image?");
+
+                }
+                @Override
+                public void onClick(View v)
+                {
+                    super.onClick(v);
+
+                    switch(v.getId())
+                    {
+                        case R.id.button_popupmessagebox_ok:
+                            FpNetFacade_client.Instance.SendPacket_req_shareImage();
+                            cancel();
+
+                            break;
+                        case R.id.button_popupmessagebox_cancel:
+
+                            cancel();
+                            break;
+
+                    }
+
+
+                }
+            };
+
+            test.show();
+
+        }
+        else
+        {
             FpNetFacade_client.Instance.SendPacket_req_shareImage();
         }
+
+        // back
+//        // bang
+//        Manager_photoGallery mag = Manager_photoGallery.Instance;
+//
+//        if( mag != null)
+//        {
+//            ArrayList<ImageInfo> images =  mag.FindMemoryRootImage(this);
+//            ArrayList<ImageInfo> arrayList = new ArrayList<>();
+//
+//            int imageIndex = MathUtils.random(0, images.size()-1);
+//            ImageInfo selectImage = images.get(imageIndex);
+//            arrayList.add(selectImage);
+//
+//            mag.SetArrayList(arrayList);
+//            FpNetFacade_client.Instance.SendPacket_req_shareImage();
+//        }
     }
     public void OnEventSC_win_Tic_Tac_toe()
     {
@@ -1262,7 +1326,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                                             FpNetFacade_client.Instance.SendPacket_req_shareImage();
                                             cancel();
                                             break;
-                                        case R.id.button_custom_dialog_cancel:
+                                        case R.id.button_popupmessagebox_cancel:
                                             cancel();
                                             break;
                                     }
@@ -1365,7 +1429,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                                     FpNetFacade_client.Instance.SendPacket_req_shareImage();
                                     cancel();
                                     break;
-                                case R.id.button_custom_dialog_cancel: //skip
+                                case R.id.button_popupmessagebox_cancel: //skip
                                     cancel();
                                     break;
                             }
@@ -1755,33 +1819,33 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_pink_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_pink);
                 break;
-            // red
-            case 1:
-                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
-                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_00x4);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
-                break;
             // green
-            case 2:
+            case 1:
                 // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_40x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
                 break;
             // purple
-            case 3:
+            case 2:
                 // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
                 break;
             // sky bule
-            case 4:
+            case 3:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_5);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_phthalogreen);
+                break;
+            // red
+            case 4:
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_00x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
                 break;
             // yellow
             case 5:
@@ -1909,7 +1973,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         }
                     }
                         break;
-                    case R.id.button_custom_dialog_cancel:
+                    case R.id.button_popupmessagebox_cancel:
                         if(force_exit) {
 
                             startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
@@ -1950,6 +2014,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         //super.onKeyDown(keyCode, event);
         boolean ret = false;
         _photoGallery.DeActive();
+        _photoGallery = null;
 
         return ret;
     }

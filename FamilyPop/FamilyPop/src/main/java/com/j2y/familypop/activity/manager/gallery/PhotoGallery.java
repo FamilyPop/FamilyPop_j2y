@@ -42,22 +42,23 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     Context _context;
     Activity _activity;
 
+    private int _list_itemID;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
     //
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public PhotoGallery(Activity activity, GridView gridview)
+    public PhotoGallery(Activity activity, GridView gridview, int list_itemID)
     {
         _context = _activity = activity;
         _thumb_imageList = new ArrayList<ImageInfo>();
         _gridView = gridview;
+        _list_itemID = list_itemID;
 
         //Listener SetUp
         _gridView.setOnScrollListener(this);
         _gridView.setOnItemClickListener(this);
     }
-
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // Set, Get
@@ -110,7 +111,8 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     //이미지 화면 출력
     private void ImagePrinting()
     {
-        _imageAdapter = new ImageAdapter(_context, R.layout.gridview_item_image, _thumb_imageList);
+        //_imageAdapter = new ImageAdapter(_context, R.layout.gridview_item_image, _thumb_imageList);
+        _imageAdapter = new ImageAdapter(_context, _list_itemID, _thumb_imageList);
         _gridView.setAdapter(_imageAdapter);
     }
 

@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 import com.j2y.familypop.activity.BaseActivity;
@@ -45,6 +46,10 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
 
     ImageButton[] _imageButtons;
 
+    // topic keyword
+    TextView _textview_keyword_top;
+    TextView _textview_keyword_bottom;
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
     //
@@ -60,7 +65,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _context = this;
         _thumb_imageList = new ArrayList<ImageInfo>();
         _gridView = (GridView) findViewById(R.id.grid_view);
-        _photoGallery = new PhotoGallery(this, _gridView);
+        _photoGallery = new PhotoGallery(this, _gridView, R.layout.gridview_item_topicimage);
         _photoGallery.SetTopic(true);
 
         _imageButtons = new ImageButton[eTopicButtons.MAX.getValue()];
@@ -76,6 +81,10 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
 
 
         FindMemoryRootImage();
+
+        // keyword
+        _textview_keyword_top = (TextView)findViewById(R.id.textView_topic_keyword_top);
+        _textview_keyword_bottom = (TextView)findViewById(R.id.textView_topic_keyword_bottom);
 
 //        ImageButton button = (ImageButton)findViewById(R.id.button_photo_select);
 //        button.setOnClickListener(this);

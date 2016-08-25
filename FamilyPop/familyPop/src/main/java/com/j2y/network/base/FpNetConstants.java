@@ -54,6 +54,8 @@ public class FpNetConstants
 
 	public final static int CSReq_clearBubble = 3501;
 
+	public final static int CSReq_systemEvent = 3502;
+
 	// 틱텍토
 	public final static int CSReq_OnStart_Tic_Tac_Toe = 4000;
 	public final static int CSReq_OnEnd_Tic_Tac_Toe = 4001;

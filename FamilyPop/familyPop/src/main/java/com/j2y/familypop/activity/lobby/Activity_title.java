@@ -3,6 +3,7 @@ package com.j2y.familypop.activity.lobby;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.j2y.familypop.activity.Activity_clientMain;
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.activity.BaseActivity;
+import com.j2y.familypop.activity.popup.Popup_messageBox_shareImage;
 import com.nclab.familypop.R;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -176,7 +179,6 @@ public class Activity_title extends BaseActivity implements View.OnClickListener
             //StartActivity(this, Activity_talkHistory.class);
 
         }
-
         return super.onTouchEvent(e);
     }
 

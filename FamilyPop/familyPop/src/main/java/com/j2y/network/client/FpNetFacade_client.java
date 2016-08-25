@@ -1,36 +1,29 @@
 package com.j2y.network.client;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
 //import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.activity.Interaction_Target;
-import com.j2y.familypop.activity.JoyStick;
 import com.j2y.familypop.activity.Vector2;
-import com.j2y.familypop.activity.lobby.Activity_talkHistory;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.familypop.activity.manager.Manager_photoGallery;
 import com.j2y.familypop.activity.manager.contents.client.Contents_clientTalk;
+import com.j2y.familypop.activity.popup.Popup_messageBox_shareImage;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.client.FpcScenarioDirectorProxy;
-import com.j2y.familypop.server.FpsRoot;
 import com.j2y.network.base.FpNetConstants;
 import com.j2y.network.base.FpNetFacade_base;
 import com.j2y.network.base.FpNetIOStream;
 import com.j2y.network.base.FpNetIncomingMessage;
 import com.j2y.network.base.FpNetMessageCallBack;
 import com.j2y.network.base.FpNetOutgoingMessage;
-import com.j2y.network.base.FpNetUtil;
 import com.j2y.network.base.FpPacketData;
 import com.j2y.network.base.FpPacketHeader;
 import com.j2y.network.base.data.FpNetDataNoti_changeScenario;
@@ -53,8 +46,6 @@ import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.nclab.familypop.R;
 
-import java.util.ArrayList;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -503,38 +494,41 @@ public class FpNetFacade_client extends FpNetFacade_base
 
             if (Activity_clientMain.Instance != null) {
 
-                if (data.GetAsk_ShareImage()) {
-                    Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance) {
-                        @Override
-                        protected void onCreate(Bundle savedInstanceState) {
-                            super.onCreate(savedInstanceState);
-
-                            // "Do you want to share a ramdom picture?"
-                            _content.setText("Do you want to share a ramdom picture?");
-                            _editText.setVisibility(View.GONE);
-
-                        }
-
-                        @Override
-                        public void onClick(View v) {
-                            super.onClick(v);
-                            switch (v.getId()) {
-                                case R.id.button_custom_dialog_ok:
-                                    Activity_clientMain.Instance.OnEventSC_bang();
-                                    cancel();
-                                    break;
-                                case R.id.button_custom_dialog_cancel:
-                                    cancel();
-                                    break;
-                            }
-                        }
-                    };
-                    msgbox.show();
-
-
-                } else {
-                    Activity_clientMain.Instance.OnEventSC_bang();
-                }
+//                if (data.GetAsk_ShareImage())
+//                {
+//                    Popup_messageBox_shareImage msgbox = new Popup_messageBox_shareImage(Activity_clientMain.Instance)
+//                    {
+//                        @Override
+//                        protected void onCreate(Bundle savedInstanceState) {
+//                            super.onCreate(savedInstanceState);
+//
+//                            // "Do you want to share a ramdom picture?"
+//                            _content.setText("Do you want to share a ramdom picture?");
+//                            //_editText.setVisibility(View.GONE);
+//
+//                        }
+//
+//                        @Override
+//                        public void onClick(View v) {
+//                            super.onClick(v);
+//                            switch (v.getId()) {
+//                                case R.id.button_custom_dialog_ok:
+//                                    Activity_clientMain.Instance.OnEventSC_bang();
+//                                    cancel();
+//                                    break;
+//                                case R.id.button_popupmessagebox_cancel:
+//                                    cancel();
+//                                    break;
+//                            }
+//                        }
+//                    };
+//                    msgbox.show();
+//
+//
+//                } else {
+//                    Activity_clientMain.Instance.OnEventSC_bang(data.GetAsk_ShareImage());
+//                }
+                Activity_clientMain.Instance.OnEventSC_bang(data.GetAsk_ShareImage());
             }
         }
     };
@@ -729,7 +723,7 @@ public class FpNetFacade_client extends FpNetFacade_base
     //public void SendPacket_req_shareImage(Bitmap shareBitmap)
         public void SendPacket_req_shareImage()
     {
-//        Dialog_MessageBox_ok_cancel msgbox = new Dialog_MessageBox_ok_cancel(Activity_clientMain.Instance)
+//        Popup_messageBox_shareImage  msgbox = new Popup_messageBox_shareImage (Activity_clientMain.Instance)
 //        {
 //            @Override
 //            protected void onCreate(Bundle savedInstanceState)
@@ -738,7 +732,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 //
 //                // "Do you want to share a ramdom picture?"
 //                _content.setText("Do you want to share a picture?");
-//                _editText.setVisibility(View.GONE);
+//                //_editText.setVisibility(View.GONE);
 //
 //            }
 //            @Override
@@ -751,7 +745,7 @@ public class FpNetFacade_client extends FpNetFacade_base
 //                        cancel();
 //
 //                        break;
-//                    case R.id.button_custom_dialog_cancel:
+//                    case R.id.button_popupmessagebox_cancel:
 //                        cancel();
 //                        break;
 //                }

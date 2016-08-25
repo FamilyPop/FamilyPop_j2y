@@ -41,6 +41,7 @@ public class FpcTalkRecord implements Serializable
             bubble._x = b._x;
             bubble._y = b._y;
             bubble._color = b._color;
+            bubble._flowerColor = b._flowerColor;
 
             ret.add(bubble);
         }
@@ -61,6 +62,7 @@ public class FpcTalkRecord implements Serializable
         public float _x;
         public float _y;
         public int _color;
+        public int _flowerColor = -2;
     }
 
     public class  SmileEvent implements Serializable
@@ -75,7 +77,7 @@ public class FpcTalkRecord implements Serializable
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------
-    public void AddBubble(long startTime, long endTime, float x, float y, float rad, int color)
+    public void AddBubble(long startTime, long endTime, float x, float y, float rad, int color, int flowerColor)
     {
         Bubble bubble = new Bubble();
         bubble._startTime = startTime;
@@ -84,6 +86,7 @@ public class FpcTalkRecord implements Serializable
         bubble._y = y;
         bubble._radius = rad;
         bubble._color = color;
+        bubble._flowerColor = flowerColor;
         _bubbles.add(bubble);
     }
     public void AddSmileEvent(long startTiem, int color, int drawableImage)

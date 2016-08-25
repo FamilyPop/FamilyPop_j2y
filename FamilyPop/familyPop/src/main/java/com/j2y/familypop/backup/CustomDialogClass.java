@@ -43,7 +43,7 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog);
         _yes = (Button) findViewById(R.id.button_custom_dialog_ok);
-        _no = (Button) findViewById(R.id.button_custom_dialog_cancel);
+        _no = (Button) findViewById(R.id.button_popupmessagebox_cancel);
         _yes.setOnClickListener(this);
         _no.setOnClickListener(this);
 
@@ -59,7 +59,7 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
                 //_activity.finish();
                 cancel();
                 break;
-            case R.id.button_custom_dialog_cancel:
+            case R.id.button_popupmessagebox_cancel:
                 //dismiss();
                 cancel();
                 break;

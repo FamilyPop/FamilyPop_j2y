@@ -104,4 +104,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="36dp" />
 
+    <!--<FrameLayout-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@color/color_default_string">-->
+
+        <!--<Button-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:text="New Button"-->
+            <!--android:id="@+id/button"-->
+            <!--android:background="@color/blue"-->
+            <!--android:allowUndo="false"-->
+            <!--android:layout_gravity="center" />-->
+    <!--</FrameLayout>-->
+
 </RelativeLayout>

@@ -43,6 +43,7 @@ import com.j2y.network.base.data.FpNetDataReq_TicTacToe_index;
 import com.j2y.network.base.data.FpNetDataReq_bubbleMove;
 import com.j2y.network.base.data.FpNetDataReq_changeScenario;
 import com.j2y.network.base.data.FpNetDataReq_regulation_info;
+import com.j2y.network.base.data.FpNetDataReq_setting_systemEvent;
 import com.j2y.network.base.data.FpNetDataReq_shareImage;
 import com.j2y.network.base.data.FpNetDataRes_recordInfoList;
 import com.j2y.network.base.data.FpNetData_familyTalk;
@@ -125,6 +126,9 @@ public class FpNetServer_packetHandler
         // user message
         _net_server.RegisterMessageCallBack(FpNetConstants.CSReq_userInput_bubbleMove, onReq_userInput_bubbleMove);
         _net_server.RegisterMessageCallBack(FpNetConstants.CSReq_userInteraction, onReq_userInteraction);
+
+        // system event setting
+        _net_server.RegisterMessageCallBack(FpNetConstants.CSReq_systemEvent, onReq_systemEventSetting);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 클라 연결
@@ -510,6 +514,29 @@ public class FpNetServer_packetHandler
         }
     };
 
+    // system event setting
+    FpNetMessageCallBack onReq_systemEventSetting = new FpNetMessageCallBack()
+    {
+        @Override
+        public void CallBack(FpNetIncomingMessage inMsg)
+        {
+
+            FpNetDataReq_setting_systemEvent data = new FpNetDataReq_setting_systemEvent();
+            data.Parse(inMsg);
+
+            Activity_serverMain_andEngine.Instance.GetInfo_regulation()._systemEvent_clam = data.Get_clam();
+            Activity_serverMain_andEngine.Instance.GetInfo_regulation()._systemEvent_pair = data.Get_pair();
+
+//            FpNetServer_client client = (FpNetServer_client)inMsg._obj;
+//            FpNetData_familyTalk data = new FpNetData_familyTalk();
+//            data.Parse(inMsg);
+//
+//            FpsRoot.Instance.onJ2yTurnDataReceived(client._clientID, data._voice);
+        }
+    };
+
+
+
   //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 시나리오 변경
     FpNetMessageCallBack onReq_changeScenario = new FpNetMessageCallBack()
@@ -692,7 +719,7 @@ public class FpNetServer_packetHandler
                             outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(),
                                     (outMsg._attractor._x - pos.x )* PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT,
                                     (outMsg._attractor._y - pos.y) * PhysicsConnector.PIXEL_TO_METER_RATIO_DEFAULT,
-                                    talk.Get_Scale(), talk.Get_colorId());
+                                    talk.Get_Scale(), talk.Get_colorId(), talk._answerID);
                         }
                     }
                     //outMsg._smile_events.addAll(talk_user._smile_events);

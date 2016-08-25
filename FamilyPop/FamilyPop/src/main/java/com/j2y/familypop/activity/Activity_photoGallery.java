@@ -46,8 +46,14 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
 //            ImageInfo d = (ImageInfo)_thumb_imageList.get(i);
 //            d.SetCheckedState(false);
 //        }
+
+
+        //init_imageList()_photoGallery.Init_check();
+        //init_imageList();
+        //_thumb_imageList.get(0).SetCheckedState();
         ((BaseActivity)_context).findViewById(R.id.llImageList).setVisibility(View.VISIBLE);
         _gridView.setVisibility(View.VISIBLE);
+
     }
     public void DeActive()
     {
@@ -65,7 +71,7 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
         _thumb_imageList = new ArrayList<ImageInfo>();
         _gridView = gridView;
                 //(GridView) context.findViewById(R.id.grid_view);
-        _photoGallery = new PhotoGallery(context, _gridView);
+        _photoGallery = new PhotoGallery(context, _gridView, R.layout.gridview_item_image);
 
         FindMemoryRootImage();
 

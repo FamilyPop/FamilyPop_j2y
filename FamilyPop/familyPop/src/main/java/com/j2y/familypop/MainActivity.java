@@ -173,10 +173,10 @@ public class MainActivity extends Activity
         recorddata._startTime   = 1;
         recorddata._endTime     = 10;
 
-        recorddata.AddBubble(2, 9, 0, 0, 30, R.color.red);
-        recorddata.AddBubble(2, 9, 100, 100, 50, R.color.red);
-        recorddata.AddBubble(2, 9, 150, 200, 100, R.color.red);
-        recorddata.AddBubble(2, 9, 200, 150, 130, R.color.red);
+        recorddata.AddBubble(2, 9, 0, 0, 30, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 100, 100, 50, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 150, 200, 100, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 200, 150, 130, R.color.red, R.color.red);
 
         recorddata.AddSmileEvent(2, 0, R.drawable.scroll_smilepoint1);
         recorddata.AddSmileEvent(5, 0, R.drawable.scroll_smilepoint1);
@@ -190,11 +190,11 @@ public class MainActivity extends Activity
         recorddata._startTime = 1;
         recorddata._endTime = 10;
 
-        recorddata.AddBubble(2, 9, 0, 150, 30, R.color.red);
-        recorddata.AddBubble(2, 9, 150, 150, 60, R.color.red);
-        recorddata.AddBubble(2, 9, 200, 150, 120, R.color.red);
-        recorddata.AddBubble(2, 9, 250, 150, 150, R.color.red);
-        recorddata.AddBubble(2, 9, 300, 150, 200, R.color.red);
+        recorddata.AddBubble(2, 9, 0, 150, 30, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 150, 150, 60, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 200, 150, 120, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 250, 150, 150, R.color.red, R.color.red);
+        recorddata.AddBubble(2, 9, 300, 150, 200, R.color.red, R.color.red);
 
         _fpcRoot._talk_records.add(recorddata);
         //
@@ -204,7 +204,7 @@ public class MainActivity extends Activity
         recorddata._startTime = 1;
         recorddata._endTime = 10;
 
-        recorddata.AddBubble(2, 9, 200, 0, 300, R.color.red);
+        recorddata.AddBubble(2, 9, 200, 0, 300, R.color.red, R.color.red);
         return recorddata;
     }
 

@@ -1,12 +1,10 @@
 package com.j2y.familypop.activity.server;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -15,7 +13,6 @@ import android.widget.SeekBar;
 import com.j2y.familypop.MainActivity;
 //import com.j2y.familypop.activity.Activity_serverMain;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
-import com.j2y.familypop.client.FpcLocalization_Client;
 import com.nclab.familypop.R;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -171,7 +168,7 @@ public class Activity_serverCalibration extends Activity implements View.OnClick
 //                                    main.familypopSettingValue("_calibration_width_length", Integer.parseInt(_editText_width_length.getText().toString()));
                                     cancel();
                                     break;
-                                case R.id.button_custom_dialog_cancel:
+                                case R.id.button_popupmessagebox_cancel:
                                     _layout_calibration_0.setVisibility(View.GONE);
                                     _layout_pointline.setVisibility(View.VISIBLE);
                                     cancel();

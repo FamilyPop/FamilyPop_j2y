@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="#00000000"
     android:orientation="vertical">
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:background="@drawable/dialog_messagebox_ok_cancel">
 
         <Button
-            android:id="@+id/button_custom_dialog_cancel"
+            android:id="@+id/button_popupmessagebox_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -23,7 +23,7 @@
             android:background="#00000000"
             android:layout_marginRight="41dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/txt_custom_dialog_content"
+            android:layout_alignRight="@+id/txt_popupmessagebox_content"
             android:padding="10dp" />
 
         <Button
@@ -38,11 +38,11 @@
             android:background="#00000000"
             android:layout_marginLeft="39dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/txt_custom_dialog_content"
+            android:layout_alignLeft="@+id/txt_popupmessagebox_content"
             android:padding="10dp" />
 
         <TextView
-            android:id="@+id/txt_custom_dialog_content"
+            android:id="@+id/txt_popupmessagebox_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -66,9 +66,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText_messageBox_ok_cancel"
-            android:layout_alignLeft="@+id/txt_custom_dialog_content"
-            android:layout_alignRight="@+id/txt_custom_dialog_content"
-            android:layout_above="@+id/button_custom_dialog_cancel"
+            android:layout_alignLeft="@+id/txt_popupmessagebox_content"
+            android:layout_alignRight="@+id/txt_popupmessagebox_content"
+            android:layout_above="@+id/button_popupmessagebox_cancel"
             android:text="BIRTHDAY DINNER"
             android:textColor="#000000" />
     </RelativeLayout>

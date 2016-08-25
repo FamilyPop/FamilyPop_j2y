@@ -2,7 +2,6 @@ package com.j2y.familypop.activity.lobby;
 
 import android.app.Activity;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -10,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -150,6 +150,7 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
         // buttons test (bubbles)
         _layout_bubbles = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles); //frame_talkhistory_playback_bubbles
 
+        // 정리 하기 귀찬.;ㅁ;
         FpcTalkRecord talk_record = FpcRoot.Instance._selected_talk_record;
         if(talk_record != null)
         {
@@ -164,17 +165,8 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             ImageView centerBubble = (ImageView)findViewById(R.id.imageView_center_bubble);
 
 
-//            Rect rt = centerBubble.getDrawable().getBounds();
-            //int[] imageCordinates = new int[2];
-            //centerBubble.getLocationOnScreen(imageCordinates);
-            //centerBubble.getLocationInWindow(imageCordinates);
-
-
-            //float centerX = 510; //centerBubble.getRight() - centerBubble.getLeft();
-            //float centerY = 370; //centerBubble.getBottom() - centerBubble.getTop();
-
-            float centerX = 510;
-            float centerY = 370;
+            float centerX = 570;
+            float centerY = 345;
 
             ArrayList<FpcTalkRecord.Bubble> bubbles = setBubblesDistance( getBubblesCenter( talk_record._bubbles), talk_record.CopyBubbles(), 40 );
 
@@ -184,63 +176,91 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 //FpcTalkRecord.Bubble item = talk_record._bubbles.get(i);
                 FpcTalkRecord.Bubble item = bubbles.get(i);
 
-                int bubble_size = (int)(item._radius * 100.8f);
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size);
+                int bubble_size = (int)(item._radius * 250.8f);
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size); // button
+                params.width = (int) bubble_size/2;
+                params.height = (int) bubble_size/2;
+                params.gravity = Gravity.CENTER;
+                FrameLayout.LayoutParams backParams = new FrameLayout.LayoutParams((int) bubble_size, (int) bubble_size); // button background
+
                 BubbleButton bubbleButton = bubbleButtons_Create(item);
                 Button bbt = bubbleButton._button;
-                //ImageView flwor
-
-                FrameLayout lay = (FrameLayout) findViewById(R.id.frame_talkhistory_playback_bubbles);
-                params.setMargins( (int)centerX + (int) item._x, (int)centerY + (int) item._y, 0, 0);
+                params.setMargins( 0, 0, 0, 0);
+                backParams.setMargins( (int)centerX + (int) item._x, (int)centerY + (int) item._y, 0, 0);
 
                 // todo: 버블 컬러 변경
                 switch (item._color)
                 {
-//                    case R.color.red:  bbt.setBackgroundResource (R.drawable.image_bubble_red); break;
-//                    case R.color.yellow: bbt.setBackgroundResource (R.drawable.image_bubble_yellow); break;
-//                    case R.color.purple: bbt.setBackgroundResource(R.drawable.image_bubble_purple); break;
-//                    case R.color.dncolor: bbt.setBackgroundResource(R.drawable.image_bubble_donotcolor); break;
 
-//                    case 0:  bbt.setBackgroundResource (R.drawable.image_bubble_pink); break;
-//                    case 1: bbt.setBackgroundResource(R.drawable.image_bubble_red); break; // 녹색으로
-//                    case 2: bbt.setBackgroundResource (R.drawable.image_bubble_yellow); break;
-//                    case 3: bbt.setBackgroundResource(R.drawable.image_bubble_green); break;
-//                    case 4: bbt.setBackgroundResource(R.drawable.image_bubble_phthalogreen); break;
-//                    case 5: bbt.setBackgroundResource(R.drawable.image_bubble_blue); break;
-
-                    case 0: bbt.setBackgroundResource (R.drawable.image_bead_4); break;
-                    case 1: bbt.setBackgroundResource(R.drawable.image_bead_0);  break; // 녹색으로
-                    case 2: bbt.setBackgroundResource (R.drawable.image_bead_2); break;
-                    case 3: bbt.setBackgroundResource(R.drawable.image_bead_1);  break;
-                    case 4: bbt.setBackgroundResource(R.drawable.image_bead_5);  break;
-                    case 5: bbt.setBackgroundResource(R.drawable.image_bead_3);  break;
+                    case 0:// 오렌지
+                        bbt.setBackgroundResource (R.drawable.flopop_server_resources_06);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_06);
+                        break;
+                    case 1:// 녹색
+                        bbt.setBackgroundResource(R.drawable.flopop_server_resources_07);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_07);
+                        break;
+                    case 2:// 보라색
+                        bbt.setBackgroundResource (R.drawable.flopop_server_resources_08);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_08);
+                        break;
+                    case 3:// 파란색
+                        bbt.setBackgroundResource(R.drawable.flopop_server_resources_09);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_09);
+                        break;
+                    case 4:// 붉은색.
+                        bbt.setBackgroundResource(R.drawable.flopop_server_resources_10);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_10);
+                        break;
+                    case 5:
+                        bbt.setBackgroundResource(R.drawable.flopop_server_resources_01);
+                        centerBubble.setBackgroundResource(R.drawable.flopop_server_resources_01);
+                        break;
 
                     //case 100: bbt.setBackgroundResource(R.drawable.image_bubble_red_smile); break; // smile
                     case 100: bbt.setBackgroundResource(R.drawable.image_bubble_orange_smile);
                         //params.setMargins(455 + (int) item._x, 315 + (int) item._y, 0, 0);
-                        params.setMargins(400 + (int) item._x, 260 + (int) item._y, 0, 0);
+                        //params.setMargins(400 + (int) item._x, 260 + (int) item._y, 0, 0);
                         break; // smile
                 }
+
+                // 꽃잎
+                //bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_01);
+                switch (item._flowerColor)
+                {
+                    case 0: bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_01); break;  // 오렌지.
+                    case 1: bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_02); break;  // 녹색.
+                    case 2: bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_03); break;  // 보라색.
+                    case 3: bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_04); break;  // 파란색.
+                    case 4: bubbleButton._buttonLayout.setBackgroundResource(R.drawable.flopop_server_resources_05); break;  // 붉은색.
+
+                    case 100: bbt.setBackgroundResource(R.drawable.image_bubble_orange_smile);
+                }
+
                 Log.i("[J2Y]", String.format("[Playback][Bubble]:%f,%f", item._x, item._y));
 
+                //params.setLayoutDirection(backParams.getLayoutDirection());
+                bubbleButton._buttonLayout.setLayoutParams(backParams);
                 //params.setMargins(0, 0, 0, 0);
+                //버튼 파람 설정.
                 bbt.setLayoutParams(params);
                 bbt.requestLayout();
+
+
             }
 
-            // 가운데 이미지 결정.
-            _imageview_center_bubble = (ImageView) findViewById(R.id.imageView_center_bubble);
-            switch (talk_record._bubble_color_type)
-            {
-                case 0: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_06);   break;   // 노랑
-                case 1: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_07);   break;   // 녹색
-                case 2: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_08);   break;   // 보라색
-                case 3: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_09);   break;   // 파랑색
-                case 4: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_10);   break;   // 빨간색
-                case 5: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_3);   break;
-                case 6: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_6);   break;
-            }
-
+//            // 가운데 이미지 결정.
+//            _imageview_center_bubble = (ImageView) findViewById(R.id.imageView_center_bubble);
+//            switch (talk_record._bubble_color_type)
+//            {
+//                case 0: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_06);   break;   // 노랑
+//                case 1: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_07);   break;   // 녹색
+//                case 2: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_08);   break;   // 보라색
+//                case 3: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_09);   break;   // 파랑색
+//                case 4: _imageview_center_bubble.setBackgroundResource(R.drawable.flopop_server_resources_10);   break;   // 빨간색
+//                case 5: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_3);   break;
+//                case 6: _imageview_center_bubble.setBackgroundResource(R.drawable.image_bead_6);   break;
+//            }
         }
         //end buttons test (bubbles)
 
@@ -433,7 +453,7 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                     case R.id.button_custom_dialog_ok:
                         finish();
                         break;
-                    case R.id.button_custom_dialog_cancel:
+                    case R.id.button_popupmessagebox_cancel:
                         cancel();
                         break;
                 }
@@ -510,18 +530,21 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
                 0xff47D4CD,		// phthalogreen
                 0xff4D82D6,     // blue
                 0xff66ff66, // 임시
+
+                  COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4);
         */
         if(index < 0 || index > 5)
             index = clientIndex;
 
         switch(index)
         {
-            case 0: return R.color.pink;
-            case 1: return R.color.red;
-            case 2: return R.color.yellow;
-            case 3: return R.color.green;
-            case 4: return R.color.phthalogreen;
-            case 5: return R.color.blue;
+            //case 0: return R.color.yellow;
+            case 0: return R.color.orange;
+            case 1: return R.color.green;
+            case 2: return R.color.purple;
+            case 3: return R.color.blue;
+            case 4: return R.color.red;
+            case 5: return R.color.black;
         }
 
         return R.color.black; // 없는 컬러
@@ -546,7 +569,7 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             mProgressItem = new ProgressItem();
             mProgressItem.progressItemPercentage = ((backstartTime / total) * 100);
 
-            mProgressItem.color =  getColor(i, talkrecord.get(i)._color);
+            mProgressItem.color =  getColor(i, talkrecord.get(i)._flowerColor);
 
             progressItemList.add(mProgressItem);
 
@@ -659,6 +682,9 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     public class  BubbleButton
     {
+        private ViewGroup _mainlayout = null;
+        public FrameLayout _buttonLayout;
+
         public Button _button;
         public ImageView _imageView;
         int _id;
@@ -668,22 +694,51 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
 
         public BubbleButton(int id, ViewGroup layout, Activity_talkHistoryPlayback parents )
         {
+            _mainlayout = layout;
             //_button.addChildren
 
             // init
             _id = id;
+
             _parents = parents;
 
-            // create button
+            // back
+//            // create layout
+//            // create button
+//            _button = new Button(parents);
+//            _button.setOnClickListener(parents);
+//            _button.setId(_id);
+//            layout.addView(_button);
+//
+//            //create imageView
+//            _imageView = new ImageView(parents);
+//            _imageView.setId(generateViewId());
+//            //_imageView.getParent();
+//            layout.addView(_imageView);
+
+            // 1. 레이아웃 생성 , 배경 이미지 선택
+            _buttonLayout = new FrameLayout(parents);
+            _buttonLayout.setId(generateViewId());
+
+            //메인 layout 에 등록.
+            _mainlayout.addView(_buttonLayout);
+            // 크기 조정
+            //_buttonLayout.getLayoutParams().height = 50;
+            //_buttonLayout.getLayoutParams().width = 50;
+
+             // 2. 버튼 생성, 버튼 이미지 선택
             _button = new Button(parents);
             _button.setOnClickListener(parents);
-            _button.setId(_id);
-            layout.addView(_button);
+            _button.setId(id);
 
-            //create imageView
-            _imageView = new ImageView(parents);
-            _imageView.setId(generateViewId());
-            layout.addView(_imageView);
+            // 버튼 레이아웃에 등록.
+            _buttonLayout.addView(_button);
+
+            //메인 layout 에 등록
+            //_mainlayout.addView(_layout_bubbles);
+
+
+
         }
 
         public void onClick(View v)
@@ -696,6 +751,17 @@ public class Activity_talkHistoryPlayback extends BaseActivity implements View.O
             int progress = _media_player.getCurrentPosition() * 100 / _media_player.getDuration();
             _testseekbar.setProgress(progress);
 
+        }
+
+        public void SetFlowerImage(int resid, int x, int y)
+        {
+            _imageView.setBackgroundResource(resid);
+            _imageView.getLayoutParams().width = 50;
+
+//            _imageView.getLayoutParams().height = 50;
+//            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(50, 50);
+//            params.setMargins(x, y, 0, 0);
+//            _imageView.setLayoutParams(params);
         }
 
     }

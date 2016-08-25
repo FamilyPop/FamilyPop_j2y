@@ -36,8 +36,8 @@
         </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/topic_view"
         android:layout_above="@+id/llImageList"
         android:orientation="vertical"
@@ -94,14 +94,17 @@
             android:id="@+id/imageView38"
             android:background="@drawable/text_period"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:visibility="gone"/>
 
+        <!--back-->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -200,10 +203,22 @@
         android:id="@+id/llImageList"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="380dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal|bottom"
-        android:layout_gravity="center_horizontal|bottom">
+        android:layout_gravity="center_horizontal|bottom"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="keyword"
+            android:id="@+id/textView_topic_keyword_top"
+            android:layout_marginTop="50dp"
+            android:textColor="#00a8bf"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <GridView
             android:id="@+id/grid_view"
@@ -213,11 +228,22 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:columnWidth="90dp"
+            android:columnWidth="180dp"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
             android:gravity="center"
-            android:layout_marginTop="5dp" />
+            android:clickable="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="keyword"
+            android:id="@+id/textView_topic_keyword_bottom"
+            android:layout_marginTop="0dp"
+            android:textColor="#00a8bf"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

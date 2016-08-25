@@ -66,7 +66,7 @@ public class FpNetDataRes_recordInfoList extends FpNetData_base
 
     //----------------------------------------------------------------
     // 데이터 추가
-    public void AddRecordData(int start_time, int end_time, float x, float y, float size, int color)
+    public void AddRecordData(int start_time, int end_time, float x, float y, float size, int color, int flowerColor)
     {
         FpNetDataRes_recordInfoData recordData = new FpNetDataRes_recordInfoData();
         recordData._start_time = start_time;
@@ -75,6 +75,7 @@ public class FpNetDataRes_recordInfoList extends FpNetData_base
         recordData._y = y;
         recordData._color = color;
         recordData._size = size;
+        recordData._flowerColor = flowerColor;
 
         _bubbles.add(recordData);
     }
@@ -91,6 +92,8 @@ public class FpNetDataRes_recordInfoList extends FpNetData_base
         public int _color;
         public float _size;
 
+        public int  _flowerColor = -1;
+
         //----------------------------------------------------------------
         // 메시지 파싱
         public void Parse(FpNetIncomingMessage inMsg)
@@ -101,6 +104,8 @@ public class FpNetDataRes_recordInfoList extends FpNetData_base
             _y = inMsg.ReadFloat();
             _color = inMsg.ReadInt();
             _size = inMsg.ReadFloat();
+
+            _flowerColor = inMsg.ReadInt();
         }
 
         //----------------------------------------------------------------
@@ -113,6 +118,8 @@ public class FpNetDataRes_recordInfoList extends FpNetData_base
             outMsg.Write(_y);
             outMsg.Write(_color);
             outMsg.Write(_size);
+
+            outMsg.Write(_flowerColor);
         }
     }
 }

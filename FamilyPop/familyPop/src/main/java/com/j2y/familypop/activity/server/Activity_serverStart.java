@@ -15,11 +15,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.Activity_serverMain_andEngine;
 import com.j2y.familypop.backup.Dialog_MessageBox_ok_cancel;
-import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
-import com.j2y.familypop.server.FpsTalkUser;
 import com.nclab.familypop.R;
 import com.nclab.sociophone.interfaces.MeasurementCallback;
 
@@ -127,7 +124,7 @@ public class Activity_serverStart extends Activity
                         finish();
 
                         break;
-                    case R.id.button_custom_dialog_cancel: //skip
+                    case R.id.button_popupmessagebox_cancel: //skip
 
                         // ���� ����
                         //startActivity(new Intent(MainActivity.Instance, Activity_serverMain.class));

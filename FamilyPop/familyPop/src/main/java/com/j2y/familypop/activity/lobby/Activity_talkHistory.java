@@ -484,7 +484,7 @@ public class Activity_talkHistory extends BaseActivity implements View.OnClickLi
                         cancel();
                         break;
 
-                    case R.id.button_custom_dialog_cancel:
+                    case R.id.button_popupmessagebox_cancel:
                         cancel();
                         break;
                 }

@@ -346,16 +346,15 @@ public class Contents_talk extends BaseContents
                     //_stateDelay -= TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - _startTime);
                     long deltaTime = System.currentTimeMillis() - _connectedTime;
 
-                    Log.i("[talkDelay]","" + deltaTime);
+                    //Log.i("[talkDelay]","" + deltaTime);
 
-                    if( (deltaTime/1000) > Activity_serverMain_andEngine.Instance.GetInfo_regulation()._talkDelayTime )
+                    if( (deltaTime/1000) > Activity_serverMain_andEngine.Instance.GetInfo_regulation()._talkDelayTime + _addWaitEvent )
                     {
                         _connectedTime = System.currentTimeMillis();
                         _eventtrigger = true;
                     }
                 }
             }
-
         }
         previousSpeakerId = currentSpeakerId;
     }
@@ -398,7 +397,8 @@ public class Contents_talk extends BaseContents
     // 대화 상태.
     //long _delayTime = 6000; // 6초
     //public long _delayTime = 10000; // 10초
-    public boolean _eventtrigger = false;
+    public boolean  _eventtrigger = false;
+    public float    _addWaitEvent = 0.0f;
 
     private void talkState()
     {
@@ -412,6 +412,7 @@ public class Contents_talk extends BaseContents
                 case 0:
                     if( regulation._systemEvent_clam == false ) break;
                     _stateMachine.Add_State(new State_clam());
+
                     break;
                 case 1:
                     if( regulation._systemEvent_pair == false ) break;
@@ -419,6 +420,7 @@ public class Contents_talk extends BaseContents
                     break;
             }
             _eventtrigger = false;
+            _addWaitEvent = 10.0f;
         }
     }
     public void testClamPair()

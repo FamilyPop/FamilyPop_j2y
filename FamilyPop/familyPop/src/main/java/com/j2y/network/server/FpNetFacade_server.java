@@ -216,6 +216,7 @@ public class FpNetFacade_server extends FpNetFacade_base
                 outMsg._attractor._y = talk_user._attractor.GetAttractorPos().y;//GetPosition().y;
                 outMsg._attractor._color = client._clientID;
 
+
                 com.badlogic.gdx.math.Vector2 pos;
                 for( CopyOnWriteArrayList<BaseActor> actors : Manager_actor.Instance.GetActors().values())
                 {
@@ -227,18 +228,18 @@ public class FpNetFacade_server extends FpNetFacade_base
                             case ACTOR_TALK:
                                 Actor_talk talk = (Actor_talk)actor;
                                 pos = talk.Get_Body().getPosition();
-                                outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x, pos.y, talk.Get_Scale(), talk.Get_colorId());
+                                outMsg.AddRecordData(talk.GetStart_time(), talk.GetEnd_time(), pos.x, pos.y, talk.Get_Scale(), talk.Get_colorId(), talk._answerID);
                                 break;
                             case ACTOR_SMILE:
                                 // smile time
                                 Actor_smile smile = (Actor_smile)actor;
                                 pos = smile.Get_Body().getPosition();
-                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, smile.Get_Sprite().getScaleCenterX(), smile.Get_colorId());
+                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, smile.Get_Sprite().getScaleCenterX(), smile.Get_colorId(), -1);
                                 break;
                             case ACTOR_GOOD:
                                 Actor_good good = (Actor_good)actor;
                                 pos = good.Get_Body().getPosition();
-                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, good.Get_Sprite().getScaleX(), good.Get_colorId());
+                                outMsg.AddRecordData(-1, -1, pos.x, pos.y, good.Get_Sprite().getScaleX(), good.Get_colorId(), -1);
                                 break;
                         }
 
@@ -246,8 +247,6 @@ public class FpNetFacade_server extends FpNetFacade_base
                         {
 
                         }
-
-
                     }
                 }
 
