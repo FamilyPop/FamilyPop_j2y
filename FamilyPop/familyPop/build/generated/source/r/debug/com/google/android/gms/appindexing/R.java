@@ -27,8 +27,8 @@ public final class R {
 		public static final int common_signin_btn_text_light = 0x7f08002e;
 	}
 	public static final class drawable {
-		public static final int common_full_open_on_phone = 0x7f02007c;
-		public static final int common_ic_googleplayservices = 0x7f02007d;
+		public static final int common_full_open_on_phone = 0x7f020080;
+		public static final int common_ic_googleplayservices = 0x7f020081;
 	}
 	public static final class id {
 		public static final int adjust_height = 0x7f0b0000;

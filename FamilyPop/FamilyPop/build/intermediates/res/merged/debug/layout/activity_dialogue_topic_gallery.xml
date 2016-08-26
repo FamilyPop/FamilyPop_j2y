@@ -59,33 +59,49 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp">
 
-            <RadioButton
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton"
-                android:button="@drawable/check_green"
-                />
+                android:orientation="horizontal"
+                android:id="@+id/radiogroup_intersectionwith">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/radioButton7"
-                android:button="@drawable/check_blue"
-                android:layout_marginLeft="15dp" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton_intersection_0"
+                    android:button="@drawable/check_green"
+                    android:layout_weight="1" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/radioButton8"
-                android:button="@drawable/check_people"
-                android:layout_marginLeft="15dp" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/radioButton_intersection_1"
+                    android:button="@drawable/check_blue"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/radioButton9"
-                android:button="@drawable/check_pink"
-                android:layout_marginLeft="15dp" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton_intersection_2"
+                    android:button="@drawable/check_people"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton_intersection_3"
+                    android:button="@drawable/check_pink"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    />
+
+            </RadioGroup>
+
+
         </LinearLayout>
 
         <ImageView
