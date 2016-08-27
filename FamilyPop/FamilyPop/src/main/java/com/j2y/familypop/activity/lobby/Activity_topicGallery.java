@@ -21,7 +21,7 @@ import com.j2y.familypop.activity.manager.gallery.PhotoGallery;
 import com.nclab.familypop.R;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
 
 /**
  * Created by J2YSoft_Programer on 2016-04-28.
@@ -60,6 +60,9 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     CheckBox _checkbox_blue;
     CheckBox _checkbox_purple;
     CheckBox _checkbox_red;
+
+    // keeping the Information of selected users in "Intersection With"
+    HashSet<String> userSelected = new HashSet<String>();
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
@@ -101,7 +104,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_green.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_A");
+                else
+                    userSelected.remove("User_A");
 
+                sendQueryToTopicModelingServer ();
             }
         });
 
@@ -109,7 +117,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_B");
+                else
+                    userSelected.remove("User_B");
 
+                sendQueryToTopicModelingServer();
             }
         });
 
@@ -117,7 +130,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_purple.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_C");
+                else
+                    userSelected.remove("User_C");
 
+                sendQueryToTopicModelingServer();
             }
         });
         _checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
@@ -130,6 +148,14 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
 //        ImageButton button = (ImageButton)findViewById(R.id.button_photo_select);
 //        button.setOnClickListener(this);
     }
+
+    // create a thread that sends a request to TopicModeling server
+    // - Jungi
+    private void sendQueryToTopicModelingServer()
+    {
+        new QueryThread(userSelected).run();
+    }
+
     //내장 메모리에서 이미지들을 검색해서 넣어줌.
     private void FindMemoryRootImage()
     {
@@ -147,7 +173,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             //이름 추가
             int imageNameCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
 
-
             //커서에서 이미지의 ID와 경로명을 가져와서 Thumb이미지 모델 클래스를 생성하여 리스트에 더해줌
             while(imageCursor.moveToNext())
             {
@@ -156,7 +181,8 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
                 thumbImage.SetId(imageCursor.getString(imageIDCol));
                 thumbImage.SetData(imageCursor.getString(imageDataCol));
                 thumbImage.SetCheckedState(false);  //check 상태 기본값 false
-                thumbImage.SetTopic(imageCursor.getString(imageNameCol));
+                //thumbImage.SetTopic(imageCursor.getString(imageNameCol));
+                thumbImage.SetTopic("Jungi Jeong Presentation");
 
                 _thumb_imageList.add(thumbImage);
             }
