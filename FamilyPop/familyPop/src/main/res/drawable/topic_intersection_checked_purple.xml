@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--이름 잘못 지엇네.,-->
+    <item android:state_checked="true" android:drawable="@drawable/check_people0" />
+    <item android:state_checked="false" android:drawable="@drawable/check_people" />
+
+</selector>
