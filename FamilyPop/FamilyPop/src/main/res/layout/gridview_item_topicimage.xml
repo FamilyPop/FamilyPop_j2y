@@ -23,16 +23,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
-        <CheckBox
-            android:id="@+id/check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:clickable="false"
-            android:focusable="false"
-
-            />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +30,7 @@
             android:text="text"
             android:id="@+id/text_view"
             android:textSize="20dp"
-            android:background="#000000"
+            android:background="#262627"
             android:textColor="#FFFFFF"
             android:textStyle="normal"
             android:layout_marginLeft="10dp"
@@ -48,6 +38,33 @@
             android:layout_alignBottom="@+id/image_view"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/image_view" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_item_deactive"
+            android:background="@drawable/gui_0621_reso_bg_sel_chk_00"
+            android:layout_alignBottom="@+id/image_view"
+            android:layout_toStartOf="@+id/text_view"
+            android:visibility="visible" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_item_active"
+            android:background="@drawable/gui_0621_reso_bg_sel_chk_104"
+            android:layout_alignBottom="@+id/image_view"
+            android:layout_toStartOf="@+id/text_view"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/check_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:button="@drawable/topic_item_checked" />
 
 
     </RelativeLayout>

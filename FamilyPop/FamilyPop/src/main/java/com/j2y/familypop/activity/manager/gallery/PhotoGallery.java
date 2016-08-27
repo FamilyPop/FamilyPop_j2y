@@ -183,6 +183,9 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         ImageView _imageView;
         CheckBox _checkBox;
         TextView _textView;
+
+        ImageView _imageView_item_active;
+        ImageView _imageView_item_deactive;
     }
 
 
@@ -239,6 +242,8 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
                 holder._imageView = (ImageView) convertView.findViewById(R.id.image_view);
                 holder._checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
                 holder._textView = (TextView) convertView.findViewById(R.id.text_view);
+                holder._imageView_item_active = (ImageView)convertView.findViewById(R.id.imageView_item_active);
+                holder._imageView_item_deactive = (ImageView)convertView.findViewById(R.id.imageView_item_deactive);
 
 
                 convertView.setTag(holder);
@@ -249,9 +254,20 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
             if(((ImageInfo) _thumbInfo_List.get(position)).GetCheckedState())
             {
                 holder._checkBox.setChecked(true);
+                if( holder._imageView_item_active != null)
+                {
+                    holder._imageView_item_active.setVisibility(View.VISIBLE);
+                    holder._imageView_item_deactive.setVisibility(View.GONE);
+                }
             }
-            else
+            else {
                 holder._checkBox.setChecked(false);
+                if( holder._imageView_item_active != null)
+                {
+                    holder._imageView_item_active.setVisibility(View.GONE);
+                    holder._imageView_item_deactive.setVisibility(View.VISIBLE);
+                }
+            }
 
             if(_topic)
             {

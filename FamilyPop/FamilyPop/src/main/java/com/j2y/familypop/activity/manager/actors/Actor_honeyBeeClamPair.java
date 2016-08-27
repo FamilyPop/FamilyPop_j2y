@@ -87,8 +87,8 @@ public class Actor_honeyBeeClamPair extends BaseActor
 
                     FpsTalkUser user = Manager_users.Instance.FindTalkUser_byId(_targets[_targetsIndex].Get_colorId());
                     FpNetFacade_server.Instance.Send_UserBang(user, true);
-//                    FpsTalkUser user2 = Manager_users.Instance.FindTalkUser_byId(_target2.Get_colorId());
-//                    FpNetFacade_server.Instance.Send_UserBang(user2);
+                    FpsTalkUser user2 = Manager_users.Instance.FindTalkUser_byId(_target2.Get_colorId());
+                    FpNetFacade_server.Instance.Send_UserBang(user2, true);
 
                     Actor_end();
                 }

@@ -468,7 +468,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
                 //팝업 생성
                 popupWindow.showAtLocation(popupview, Gravity.LEFT, 0, 0);
-                Popup_dialogueMenu popup_dialogueMenu = new Popup_dialogueMenu(popupview, popupWindow,"ㅠㅠ");
+                Popup_dialogueMenu popup_dialogueMenu = new Popup_dialogueMenu(popupview, popupWindow,FpcRoot.Instance._user_name);
 
                 break;
             case R.id.button_client_featuremenu_quitdialogue:
@@ -1516,30 +1516,30 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 //drawble = res.getDrawable(R.drawable.image_stick_pink);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_20x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_pink_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_pink);
-                break;
-            // red
-            case 1:
-                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
-                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_00x4);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_red);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_orange);
                 break;
             // green
-            case 2:
-               // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
+            case 1:
+                //_button_redbubble.setBackgroundResource(R.drawable.image_bead_0);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_40x4);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
-                break;
-            // purple
-            case 3:
-               // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
-                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
-                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_red_top);
                 drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
                 break;
-            // sky bule
+            // purple
+            case 2:
+               // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_purple);
+                break;
+            // blue
+            case 3:
+               // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
+                drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
+                drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_skybule);
+                break;
+            // red
             case 4:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_5);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
@@ -1817,28 +1817,28 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 //drawble = res.getDrawable(R.drawable.image_stick_pink);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_20x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_pink_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_pink);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_orange);
                 break;
             // green
             case 1:
                 // _button_redbubble.setBackgroundResource(R.drawable.image_bead_2);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_40x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_yellow_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_yellow);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
                 break;
             // purple
             case 2:
                 // _button_redbubble.setBackgroundResource(R.drawable.image_bead_1);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_310x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_green);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_purple);
                 break;
             // sky bule
             case 3:
                 //_button_redbubble.setBackgroundResource(R.drawable.image_bead_5);
                 drawble = res.getDrawable(R.drawable.gui_0621_reso_jog_user_10x4);
                 drawbleRotation = res.getDrawable(R.drawable.image_clientpos_green_top);
-                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_phthalogreen);
+                drawbleStickLayout = res.getDrawable(R.drawable.image_sticklayout_skybule);
                 break;
             // red
             case 4:

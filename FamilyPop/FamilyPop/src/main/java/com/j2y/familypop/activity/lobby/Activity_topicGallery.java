@@ -104,15 +104,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _textview_keyword_bottom = (TextView)findViewById(R.id.textView_topic_keyword_bottom);
 
         _radioGroup = (RadioGroup) findViewById(R.id.radiogroup_intersectionwith);
-//        _radioButton_0 = (RadioButton)findViewById(R.id.radioButton_intersection_0);
-//        _radioButton_1 = (RadioButton)findViewById(R.id.radioButton_intersection_1);
-//        _radioButton_2 = (RadioButton)findViewById(R.id.radioButton_intersection_2);
-//        _radioButton_3 = (RadioButton)findViewById(R.id.radioButton_intersection_3);
 
-//        _radioButtons.add( (RadioButton)findViewById(R.id.radioButton_intersection_0) );
-//        _radioButtons.add( (RadioButton)findViewById(R.id.radioButton_intersection_1) );
-//        _radioButtons.add( (RadioButton)findViewById(R.id.radioButton_intersection_2) );
-//        _radioButtons.add( (RadioButton)findViewById(R.id.radioButton_intersection_3) );
         _radioButtons[0] = (RadioButton)findViewById(R.id.radioButton_intersection_0);
         _radioButtons[1] = (RadioButton)findViewById(R.id.radioButton_intersection_1);
         _radioButtons[2] = (RadioButton)findViewById(R.id.radioButton_intersection_2);
@@ -133,6 +125,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _radioActives.add(R.drawable.check_pink0);
 
 
+        //test 라디오 버튼 추가.
         deActive_all();
         active_radioButton(0);
         active_radioButton(1);

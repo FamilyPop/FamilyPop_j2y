@@ -115,7 +115,7 @@ public class Manager_resource
         }
     }
     public enum eImageIndex_color {
-        COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4);
+        COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4); // # color 이걸 기준.
         private int value;
 
         private eImageIndex_color(int value) {
@@ -466,10 +466,10 @@ public class Manager_resource
         switch(clientId)
         {
             case 0: photoFrame = GetSpriteTexture("photoframe_4.png"); break; // orange
-            case 1: photoFrame = GetSpriteTexture("photoframe_0.png"); break; // red
-            case 2: photoFrame = GetSpriteTexture("photoframe_1.png"); break; // green
-            case 3: photoFrame = GetSpriteTexture("photoframe_2.png"); break; // purple
-            case 4: photoFrame = GetSpriteTexture("photoframe_3.png"); break; // skybule
+            case 1: photoFrame = GetSpriteTexture("photoframe_1.png"); break; // green
+            case 2: photoFrame = GetSpriteTexture("photoframe_2.png"); break; // purple
+            case 3: photoFrame = GetSpriteTexture("photoframe_3.png"); break; // skybule
+            case 4: photoFrame = GetSpriteTexture("photoframe_0.png"); break; // red
         }
         //ITextureRegion photoFrame = GetSpriteTexture("photoframe_0.png");
         Sprite photoFrameSprite = new Sprite(posX, posY, photoFrame, gameActivity.getVertexBufferObjectManager());

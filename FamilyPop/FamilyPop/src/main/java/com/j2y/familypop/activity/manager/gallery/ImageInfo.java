@@ -39,7 +39,10 @@ public class ImageInfo
         return _checked_state;
     }
 
-    public  void SetCheckedState(boolean check) { _checked_state = check; }
+    public  void SetCheckedState(boolean check)
+    {
+        _checked_state = check;
+    }
 
     public Bitmap GetBitmap()
     {
