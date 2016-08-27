@@ -54,60 +54,40 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
 
-            <RadioGroup
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/radiogroup_intersectionwith">
+                android:id="@+id/checkBox_intersection_0"
+                android:button="@drawable/topic_intersection_checked_green"
+                android:layout_marginLeft="20dp" />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/radioButton_intersection_0"
-                    android:button="@drawable/check_green"
-                    android:layout_weight="1" />
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/radioButton_intersection_1"
-                    android:button="@drawable/check_blue"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/radioButton_intersection_2"
-                    android:button="@drawable/check_people"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/radioButton_intersection_3"
-                    android:button="@drawable/check_pink"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    />
-
-            </RadioGroup>
-
-            <Button
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button"
-                android:layout_marginLeft="20dp"
-                android:visibility="gone" />
+                android:id="@+id/checkBox_intersection_1"
+                android:button="@drawable/topic_intersection_checked_blue"
+                android:layout_marginLeft="10dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox_intersection_2"
+                android:button="@drawable/topic_intersection_checked_purple"
+                android:layout_marginLeft="10dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox_intersection_3"
+                android:checked="false"
+                android:button="@drawable/topic_intersection_checked_red"
+                android:layout_marginLeft="10dp" />
 
 
         </LinearLayout>
@@ -233,17 +213,35 @@
         android:layout_gravity="center_horizontal|bottom"
         android:weightSum="1">
 
-        <TextView
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="keyword"
-            android:id="@+id/textView_topic_keyword_top"
-            android:layout_marginTop="50dp"
-            android:textColor="#00a8bf"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:background="#262627" />
+            android:layout_height="85dp">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars ="vertical"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword keyword keyword keyword v v keyword "
+                    android:id="@+id/textView_topic_keyword_top"
+                    android:layout_marginTop="50dp"
+                    android:textColor="#00a8bf"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:background="#262627"
+                    android:singleLine="false"
+                    android:nestedScrollingEnabled="false" />
+
+            </ScrollView>
+        </LinearLayout>
 
         <GridView
             android:id="@+id/grid_view"
