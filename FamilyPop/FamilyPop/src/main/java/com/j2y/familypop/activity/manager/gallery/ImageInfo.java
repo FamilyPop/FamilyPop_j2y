@@ -14,11 +14,15 @@ public class ImageInfo
     private String _topic;
     private boolean _checked_state;
 
+    private String _keywords ="";
+
+    public String GetKeyword(){return _keywords;}
+    public void SetKeyword(String keywords){_keywords = keywords; }
+
     public String getId()
     {
         return _id;
     }
-
     public  void SetId(String id)
     {
         _id = id;
@@ -28,7 +32,6 @@ public class ImageInfo
     {
         return _data;
     }
-
     public void SetData(String data)
     {
         _data = data;
@@ -38,7 +41,6 @@ public class ImageInfo
     {
         return _checked_state;
     }
-
     public  void SetCheckedState(boolean check)
     {
         _checked_state = check;

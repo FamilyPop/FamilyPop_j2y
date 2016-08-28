@@ -20,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.j2y.familypop.MainActivity;
@@ -183,6 +184,7 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         ImageView _imageView;
         CheckBox _checkBox;
         TextView _textView;
+        TextView _keyword;
 
         ImageView _imageView_item_active;
         ImageView _imageView_item_deactive;
@@ -242,6 +244,8 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
                 holder._imageView = (ImageView) convertView.findViewById(R.id.image_view);
                 holder._checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
                 holder._textView = (TextView) convertView.findViewById(R.id.text_view);
+                holder._keyword = (TextView) convertView.findViewById(R.id.textView_keyword);
+
                 holder._imageView_item_active = (ImageView)convertView.findViewById(R.id.imageView_item_active);
                 holder._imageView_item_deactive = (ImageView)convertView.findViewById(R.id.imageView_item_deactive);
 
@@ -251,20 +255,42 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
 
             final ImageViewHolder holder = (ImageViewHolder) convertView.getTag();
 
+
+            if( convertView.findViewById(R.id.topic_layout_keyword) !=null)
+            {
+                if( ((ImageInfo) _thumbInfo_List.get(position)).GetKeyword() == "" )
+                {
+                    ((RelativeLayout)convertView.findViewById(R.id.topic_layout_keyword)).setVisibility(View.GONE);
+                    ((RelativeLayout)convertView.findViewById(R.id.topic_layout_topic)).setVisibility(View.VISIBLE);
+
+                }
+                else
+                {
+                    ((RelativeLayout)convertView.findViewById(R.id.topic_layout_keyword)).setVisibility(View.VISIBLE);
+                    ((RelativeLayout)convertView.findViewById(R.id.topic_layout_topic)).setVisibility(View.GONE);
+                    holder._keyword.setText(((ImageInfo) _thumbInfo_List.get(position)).GetKeyword());
+                }
+
+            }
+
             if(((ImageInfo) _thumbInfo_List.get(position)).GetCheckedState())
             {
                 holder._checkBox.setChecked(true);
                 if( holder._imageView_item_active != null)
                 {
-
+                    holder._imageView_item_active.setVisibility(View.VISIBLE);
+                    holder._imageView_item_deactive.setVisibility(View.GONE);
                 }
-                holder._imageView_item_active.setVisibility(View.VISIBLE);
-                holder._imageView_item_deactive.setVisibility(View.GONE);
+
             }
             else {
                 holder._checkBox.setChecked(false);
-                holder._imageView_item_active.setVisibility(View.GONE);
-                holder._imageView_item_deactive.setVisibility(View.VISIBLE);
+                if( holder._imageView_item_active != null)
+                {
+                    holder._imageView_item_active.setVisibility(View.GONE);
+                    holder._imageView_item_deactive.setVisibility(View.VISIBLE);
+                }
+
             }
             if(_topic)
             {
@@ -280,7 +306,6 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
                     String path = ((ImageInfo) _thumbInfo_List.get(position)).GetData();
 
                     Bitmap bmp = (Bitmap) _cache.get(path);
-
 
                     //bmp 객체를 캐쉬에서 가져왔다면 그것을 그대로 사용
                     if(bmp != null)
