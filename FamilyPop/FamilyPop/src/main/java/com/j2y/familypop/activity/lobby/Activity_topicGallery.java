@@ -2,18 +2,15 @@ package com.j2y.familypop.activity.lobby;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
 
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
@@ -22,6 +19,9 @@ import com.nclab.familypop.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by J2YSoft_Programer on 2016-04-28.
@@ -92,7 +92,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _imageButtons[eTopicButtons.YEAR.getValue()] = (ImageButton) findViewById(R.id.button_topic_year);
         _imageButtons[eTopicButtons.YEAR.getValue()].setOnClickListener(this);
 
-        FindMemoryRootImage();
+        //FindMemoryRootImage();
 
         // keyword
         _textview_keyword_top = (TextView)findViewById(R.id.textView_topic_keyword_top);
@@ -155,6 +155,13 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     {
         new QueryThread(userSelected).run();
     }
+
+    private void DisplayTopicModelingContents(
+            ArrayList<String> keywords, ArrayList<String> relatedPosts, ArrayList<String> textInPost)
+    {
+
+    }
+    // - Jungi
 
     //내장 메모리에서 이미지들을 검색해서 넣어줌.
     private void FindMemoryRootImage()
@@ -229,4 +236,76 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         }
     }
 
+    class QueryThread extends Thread
+    {
+        private String userSelected;
+        private final String topicDelim = ",,,,,";
+        private final String postDelim = "!#!#!#";
+
+        QueryThread(HashSet<String> selected)
+        {
+            userSelected = "";
+            Iterator<String> iter = selected.iterator();
+            while(iter.hasNext())
+            {
+                if (userSelected != "")
+                    userSelected += topicDelim;
+                userSelected += iter.next();
+            }
+            Log.i("TopicModeling", "Selected users: " + userSelected);
+        }
+
+        public void run()
+        {
+            try {
+                String query_result = new TopicModelingQuery(userSelected, "").execute("http://143.248.139.91:5000").get();
+
+                // Parse the result
+                String[] sets = query_result.split("##########");
+                String[] topicSet, postSet;
+
+                ArrayList<String> keywords = new ArrayList<String> ();
+                ArrayList<String> relatedPosts = new ArrayList<String> ();
+                ArrayList<String> textInPost = new ArrayList<String> ();
+
+                //for (int i=0; i<sets.length; i++)
+                //    Log.i("TopicModeling", sets[i]);
+                //Log.i("TopicModeling", "length: " + query_result.length());
+
+                //  Parse the keyword sets
+                topicSet = sets[0].split("///");
+                for (int i=0; i<topicSet.length; i++)
+                {
+                    StringTokenizer topics = new StringTokenizer(topicSet[i], topicDelim);
+                    while (topics.hasMoreTokens())
+                        keywords.add(topics.nextToken());
+                }
+
+                //  Parse the related posts
+                postSet = sets[1].split("///");
+                for (int k=0; k<postSet.length; k++)
+                {
+                    String[] posts = postSet[k].split(topicDelim);
+                    for (int i=0; i<posts.length; i++)
+                    {
+                        String[] tk = posts[i].split(postDelim);
+                        relatedPosts.add(tk[0]);
+                        textInPost.add(tk[1]);
+                    }
+                }
+
+                Log.i("TopicModeling", keywords.toString());
+                Log.i("TopicModeling", relatedPosts.toString());
+                Log.i("TopicModeling", textInPost.toString());
+
+                DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+
+                _textview_keyword_top.setText(keywords.get(0) + ", " + keywords.get(1) + ", " + keywords.get(2));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

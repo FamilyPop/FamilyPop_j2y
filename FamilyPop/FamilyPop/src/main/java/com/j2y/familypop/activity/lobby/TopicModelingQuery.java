@@ -2,9 +2,8 @@ package com.j2y.familypop.activity.lobby;
 
 import android.content.ContentValues;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.CheckBox;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,9 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by KJW on 2016-04-25.
@@ -55,9 +51,8 @@ public class TopicModelingQuery extends AsyncTask<String, Void, String> {
 
     private String downloadUrl(String myurl) throws IOException {
         InputStream is = null;
-        // Only display the first 500 characters of the retrieved
-        // web page content.
-        int len = 500;
+        // Get 65,535 characters of the retrieved web page content.
+        int len = 4096;
 
         try {
             URL url = new URL(myurl);
@@ -107,39 +102,21 @@ public class TopicModelingQuery extends AsyncTask<String, Void, String> {
         }
     }
 
-    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+    public String readIt(InputStream stream, int len) throws IOException {
         Reader reader = null;
         reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+
+        String ret;
+        String content = "";
+        while ((ret = bufferedReader.readLine()) != null)
+            content += ret;
+
+        return content;
+        //char[] buffer = new char[len];
+        //reader.read(buffer);
+        //reader.read(buffer, 0, len);
+        //return new String(buffer);
     }
 }
 
-class QueryThread extends Thread
-{
-    private String userSelected;
-    QueryThread(HashSet<String> selected)
-    {
-        userSelected = "";
-        Iterator<String> iter = selected.iterator();
-        while(iter.hasNext())
-        {
-            if (userSelected != "")
-                userSelected += ",";
-            userSelected += iter.next();
-        }
-        Log.i("TopicModeling", "Selected users: " + userSelected);
-    }
-
-    public void run()
-    {
-        try {
-            String query_result = new TopicModelingQuery(userSelected, "").execute("http://143.248.139.91:5000").get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-}
