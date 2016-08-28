@@ -149,19 +149,30 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
 
 
             //커서에서 이미지의 ID와 경로명을 가져와서 Thumb이미지 모델 클래스를 생성하여 리스트에 더해줌
+            int count = 0;
             while(imageCursor.moveToNext())
             {
+
                 ImageInfo thumbImage = new ImageInfo();
+
+                if( count == 3 )
+                {
+                    ImageInfo keyword = new ImageInfo();
+                    keyword.SetKeyword("keyword");
+                    _thumb_imageList.add(keyword);
+                    count = 0;
+                }
 
                 thumbImage.SetId(imageCursor.getString(imageIDCol));
                 thumbImage.SetData(imageCursor.getString(imageDataCol));
                 thumbImage.SetCheckedState(false);  //check 상태 기본값 false
                 thumbImage.SetTopic(imageCursor.getString(imageNameCol));
-
                 _thumb_imageList.add(thumbImage);
+
+
+                count++;
             }
         }
-
         imageCursor.close();
         _photoGallery.SetImageList(_thumb_imageList);
     }
