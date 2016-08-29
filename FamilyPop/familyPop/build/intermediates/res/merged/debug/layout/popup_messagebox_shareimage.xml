@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:background="@drawable/dialog_messagebox_ok_cancel"
+        android:layout_weight="0.68">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_messageBox_ok_cancel"
+            android:layout_alignLeft="@+id/txt_popupmessagebox_content"
+            android:layout_alignRight="@+id/txt_popupmessagebox_content"
+            android:layout_above="@+id/button_popupmessagebox_cancel"
+            android:text="BIRTHDAY DINNER"
+            android:textColor="#000000"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_popupmessagebox_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="OK"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold"
+            android:background="#00000000"
+            android:layout_above="@+id/button_popupmessagebox_cancel"
+            android:layout_toEndOf="@+id/imageView_popupmessagebox_shareimage"
+            android:gravity="center"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="50dp" />
+
+        <Button
+            android:id="@+id/button_popupmessagebox_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="CANCEL"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold"
+            android:layout_gravity="left|bottom"
+            android:background="#00000000"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/imageView_popupmessagebox_shareimage"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="50dp" />
+
+        <ImageView
+            android:layout_width="270dp"
+            android:layout_height="300dp"
+            android:id="@+id/imageView_popupmessagebox_shareimage"
+            android:background="#161616"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/txt_popupmessagebox_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="Do you want to share a      ramdom picture?"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_alignWithParentIfMissing="false"
+            android:singleLine="false"
+
+            android:gravity="left"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_below="@+id/editText_messageBox_ok_cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:phoneNumber="false"
+            android:password="false"
+            android:paddingEnd="0dp"
+            android:paddingLeft="10dp" />
+    </FrameLayout>
+
+
+</LinearLayout>

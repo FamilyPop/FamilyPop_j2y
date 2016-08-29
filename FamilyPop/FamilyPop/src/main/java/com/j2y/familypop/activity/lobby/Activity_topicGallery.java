@@ -2,18 +2,15 @@ package com.j2y.familypop.activity.lobby;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
 
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
@@ -21,7 +18,10 @@ import com.j2y.familypop.activity.manager.gallery.PhotoGallery;
 import com.nclab.familypop.R;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by J2YSoft_Programer on 2016-04-28.
@@ -43,7 +43,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         }
     }
 
-
     GridView _gridView;
     ArrayList<ImageInfo> _thumb_imageList;
     Context _context;
@@ -55,11 +54,13 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     TextView _textview_keyword_top;
     TextView _textview_keyword_bottom;
 
-
     CheckBox _checkbox_green;
     CheckBox _checkbox_blue;
     CheckBox _checkbox_purple;
-    CheckBox _checkbox_red;
+    //CheckBox _checkbox_red;
+
+    // keeping the Information of selected users in "Intersection With"
+    HashSet<String> userSelected = new HashSet<String>();
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
@@ -89,7 +90,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _imageButtons[eTopicButtons.YEAR.getValue()] = (ImageButton) findViewById(R.id.button_topic_year);
         _imageButtons[eTopicButtons.YEAR.getValue()].setOnClickListener(this);
 
-        FindMemoryRootImage();
+        //FindMemoryRootImage();
 
         // keyword
         _textview_keyword_top = (TextView)findViewById(R.id.textView_topic_keyword_top);
@@ -101,7 +102,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_green.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_A");
+                else
+                    userSelected.remove("User_A");
 
+                sendQueryToTopicModelingServer ();
             }
         });
 
@@ -109,7 +115,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_B");
+                else
+                    userSelected.remove("User_B");
 
+                sendQueryToTopicModelingServer();
             }
         });
 
@@ -117,19 +128,98 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _checkbox_purple.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    userSelected.add ("User_C");
+                else
+                    userSelected.remove("User_C");
 
+                sendQueryToTopicModelingServer();
             }
         });
-        _checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
+
+        /*_checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
         _checkbox_red.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
             }
-        });
-//        ImageButton button = (ImageButton)findViewById(R.id.button_photo_select);
-//        button.setOnClickListener(this);
+        });*/
     }
+
+    // create a thread that sends a request to TopicModeling server
+    // - Jungi
+    private void sendQueryToTopicModelingServer()
+    {
+        new QueryThread(userSelected).run();
+    }
+
+    private void DisplayTopicModelingContents(
+            ArrayList<String> keywords, ArrayList<String> relatedPosts, ArrayList<String> textInPost)
+    {
+        //  keywords, relatedPosts, and textInPost must have the same length!
+        assert(keywords.size() == relatedPosts.size() && relatedPosts.size() == textInPost.size());
+
+        //  내부 저장소에 있는 사진들 중에서 관련있는 사진을 선택
+        ArrayList<String> posts = SelectTopicModelingPosts(relatedPosts);
+
+        _thumb_imageList.clear();
+        for (int i=0; i<keywords.size(); i++)
+        {
+            if ((i % 3) == 0)
+            {
+                ImageInfo topicSet = new ImageInfo();
+                topicSet.SetKeyword(keywords.get(i) + ", " + keywords.get(i+1) + ", " + keywords.get(i+2));
+                _thumb_imageList.add(topicSet);
+            }
+            ImageInfo post = new ImageInfo();
+            post.SetData(posts.get(i));
+            post.SetTopic(textInPost.get(i));
+            _thumb_imageList.add(post);
+        }
+
+        _photoGallery.SetImageList(_thumb_imageList);
+    }
+
+    private ArrayList<String> SelectTopicModelingPosts(ArrayList<String> relatedPosts)
+    {
+        ArrayList<String> posts = new ArrayList<>();
+
+        //Select 하고자 하는 컬럼
+        String[] projection = { MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+        //쿼리 수행
+        Cursor imageCursor = _context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null,null, null);
+
+        if (imageCursor != null && imageCursor.getCount() > 0)
+        {
+            for (int i=0;i <relatedPosts.size(); i++)
+            {
+                boolean found = false;
+                imageCursor.moveToFirst();
+
+                int imageDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
+                while (imageCursor.moveToNext())
+                {
+                    //  사진 이름으로 관련 포스트 사진을 찾는다.
+                    if (imageCursor.getString(imageDataCol).contains(relatedPosts.get(i)))
+                    {
+                        Log.i("TopicModeling", imageCursor.getString(imageDataCol));
+                        posts.add(imageCursor.getString(imageDataCol));
+                        found = true;
+                    }
+                }
+
+                if (!found)
+                    posts.add ("");
+            }
+        }
+
+        assert(relatedPosts.size() == posts.size());
+
+        return posts;
+    }
+    // - Jungi
+
     //내장 메모리에서 이미지들을 검색해서 넣어줌.
     private void FindMemoryRootImage()
     {
@@ -147,32 +237,28 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             //이름 추가
             int imageNameCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
 
-
             //커서에서 이미지의 ID와 경로명을 가져와서 Thumb이미지 모델 클래스를 생성하여 리스트에 더해줌
             int count = 0;
             while(imageCursor.moveToNext())
             {
-
                 ImageInfo thumbImage = new ImageInfo();
 
-                if( count == 3 )
+                if (count % 3 == 0)
                 {
                     ImageInfo keyword = new ImageInfo();
                     keyword.SetKeyword("keyword");
                     _thumb_imageList.add(keyword);
-                    count = 0;
                 }
-
                 thumbImage.SetId(imageCursor.getString(imageIDCol));
                 thumbImage.SetData(imageCursor.getString(imageDataCol));
                 thumbImage.SetCheckedState(false);  //check 상태 기본값 false
                 thumbImage.SetTopic(imageCursor.getString(imageNameCol));
                 _thumb_imageList.add(thumbImage);
 
-
                 count++;
             }
         }
+
         imageCursor.close();
         _photoGallery.SetImageList(_thumb_imageList);
     }
@@ -214,4 +300,80 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         }
     }
 
+    class QueryThread extends Thread
+    {
+        private String userSelected;
+        private final String topicDelim = ",,,,,";
+        private final String postDelim = "!#!#!#";
+
+        QueryThread(HashSet<String> selected)
+        {
+            userSelected = "";
+            Iterator<String> iter = selected.iterator();
+            while(iter.hasNext())
+            {
+                if (userSelected != "")
+                    userSelected += topicDelim;
+                userSelected += iter.next();
+            }
+            Log.i("TopicModeling", "Selected users: " + userSelected);
+        }
+
+        public void run()
+        {
+            ArrayList<String> keywords = new ArrayList<String> ();
+            ArrayList<String> relatedPosts = new ArrayList<String> ();
+            ArrayList<String> textInPost = new ArrayList<String> ();
+
+            //  아무 사용자도 선택되지 않았을 때, 빈 ArrayList를 이용한다.
+            if (userSelected == "")
+            {
+                DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+                return;
+            }
+            try {
+                String query_result = new TopicModelingQuery(userSelected, "").execute("http://143.248.139.91:5000").get();
+
+                // Parse the result
+                String[] sets = query_result.split("##########");
+                String[] topicSet, postSet;
+
+                //for (int i=0; i<sets.length; i++)
+                //    Log.i("TopicModeling", sets[i]);
+                //Log.i("TopicModeling", "length: " + query_result.length());
+
+                //  Parse the keyword sets
+                topicSet = sets[0].split("///");
+                for (int i=0; i<topicSet.length; i++)
+                {
+                    StringTokenizer topics = new StringTokenizer(topicSet[i], topicDelim);
+                    while (topics.hasMoreTokens())
+                        keywords.add(topics.nextToken());
+                }
+
+                //  Parse the related posts
+                postSet = sets[1].split("///");
+                for (int k=0; k<postSet.length; k++)
+                {
+                    String[] posts = postSet[k].split(topicDelim);
+                    for (int i=0; i<posts.length; i++)
+                    {
+                        String[] tk = posts[i].split(postDelim);
+                        relatedPosts.add(tk[0]);
+                        textInPost.add(tk[1]);
+                    }
+                }
+
+                Log.i("TopicModeling", keywords.toString());
+                Log.i("TopicModeling", relatedPosts.toString());
+                Log.i("TopicModeling", textInPost.toString());
+
+                DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

@@ -68,8 +68,9 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     //Image List를 받아와서 넣어준다.
     public void SetImageList(ArrayList<ImageInfo> imageList)
     {
-        if(imageList.size() <= 0) { return; }
+        if(imageList.size() < 0) { return; }
 
+        _thumb_imageList.clear();
         for(int i = 0; i < imageList.size(); i++)
         {
             _thumb_imageList.add(imageList.get(i));
