@@ -43,7 +43,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         }
     }
 
-
     GridView _gridView;
     ArrayList<ImageInfo> _thumb_imageList;
     Context _context;
@@ -55,11 +54,10 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     TextView _textview_keyword_top;
     TextView _textview_keyword_bottom;
 
-
     CheckBox _checkbox_green;
     CheckBox _checkbox_blue;
     CheckBox _checkbox_purple;
-    CheckBox _checkbox_red;
+    //CheckBox _checkbox_red;
 
     // keeping the Information of selected users in "Intersection With"
     HashSet<String> userSelected = new HashSet<String>();
@@ -138,15 +136,14 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
                 sendQueryToTopicModelingServer();
             }
         });
-        _checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
+
+        /*_checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
         _checkbox_red.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
             }
-        });
-//        ImageButton button = (ImageButton)findViewById(R.id.button_photo_select);
-//        button.setOnClickListener(this);
+        });*/
     }
 
     // create a thread that sends a request to TopicModeling server
@@ -159,7 +156,67 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     private void DisplayTopicModelingContents(
             ArrayList<String> keywords, ArrayList<String> relatedPosts, ArrayList<String> textInPost)
     {
+        //  keywords, relatedPosts, and textInPost must have the same length!
+        assert(keywords.size() == relatedPosts.size() && relatedPosts.size() == textInPost.size());
 
+        //  내부 저장소에 있는 사진들 중에서 관련있는 사진을 선택
+        ArrayList<String> posts = SelectTopicModelingPosts(relatedPosts);
+
+        _thumb_imageList.clear();
+        for (int i=0; i<keywords.size(); i++)
+        {
+            if ((i % 3) == 0)
+            {
+                ImageInfo topicSet = new ImageInfo();
+                topicSet.SetKeyword(keywords.get(i) + ", " + keywords.get(i+1) + ", " + keywords.get(i+2));
+                _thumb_imageList.add(topicSet);
+            }
+            ImageInfo post = new ImageInfo();
+            post.SetData(posts.get(i));
+            post.SetTopic(textInPost.get(i));
+            _thumb_imageList.add(post);
+        }
+
+        _photoGallery.SetImageList(_thumb_imageList);
+    }
+
+    private ArrayList<String> SelectTopicModelingPosts(ArrayList<String> relatedPosts)
+    {
+        ArrayList<String> posts = new ArrayList<>();
+
+        //Select 하고자 하는 컬럼
+        String[] projection = { MediaStore.Images.Media._ID, MediaStore.Images.Media.DATA,MediaStore.Images.Media.DISPLAY_NAME};
+
+        //쿼리 수행
+        Cursor imageCursor = _context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null,null, null);
+
+        if (imageCursor != null && imageCursor.getCount() > 0)
+        {
+            for (int i=0;i <relatedPosts.size(); i++)
+            {
+                boolean found = false;
+                imageCursor.moveToFirst();
+
+                int imageDataCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
+                while (imageCursor.moveToNext())
+                {
+                    //  사진 이름으로 관련 포스트 사진을 찾는다.
+                    if (imageCursor.getString(imageDataCol).contains(relatedPosts.get(i)))
+                    {
+                        Log.i("TopicModeling", imageCursor.getString(imageDataCol));
+                        posts.add(imageCursor.getString(imageDataCol));
+                        found = true;
+                    }
+                }
+
+                if (!found)
+                    posts.add ("");
+            }
+        }
+
+        assert(relatedPosts.size() == posts.size());
+
+        return posts;
     }
     // - Jungi
 
@@ -181,17 +238,24 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             int imageNameCol = imageCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
 
             //커서에서 이미지의 ID와 경로명을 가져와서 Thumb이미지 모델 클래스를 생성하여 리스트에 더해줌
+            int count = 0;
             while(imageCursor.moveToNext())
             {
                 ImageInfo thumbImage = new ImageInfo();
 
+                if (count % 3 == 0)
+                {
+                    ImageInfo keyword = new ImageInfo();
+                    keyword.SetKeyword("keyword");
+                    _thumb_imageList.add(keyword);
+                }
                 thumbImage.SetId(imageCursor.getString(imageIDCol));
                 thumbImage.SetData(imageCursor.getString(imageDataCol));
                 thumbImage.SetCheckedState(false);  //check 상태 기본값 false
-                //thumbImage.SetTopic(imageCursor.getString(imageNameCol));
-                thumbImage.SetTopic("Jungi Jeong Presentation");
-
+                thumbImage.SetTopic(imageCursor.getString(imageNameCol));
                 _thumb_imageList.add(thumbImage);
+
+                count++;
             }
         }
 
@@ -257,16 +321,22 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
 
         public void run()
         {
+            ArrayList<String> keywords = new ArrayList<String> ();
+            ArrayList<String> relatedPosts = new ArrayList<String> ();
+            ArrayList<String> textInPost = new ArrayList<String> ();
+
+            //  아무 사용자도 선택되지 않았을 때, 빈 ArrayList를 이용한다.
+            if (userSelected == "")
+            {
+                DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+                return;
+            }
             try {
                 String query_result = new TopicModelingQuery(userSelected, "").execute("http://143.248.139.91:5000").get();
 
                 // Parse the result
                 String[] sets = query_result.split("##########");
                 String[] topicSet, postSet;
-
-                ArrayList<String> keywords = new ArrayList<String> ();
-                ArrayList<String> relatedPosts = new ArrayList<String> ();
-                ArrayList<String> textInPost = new ArrayList<String> ();
 
                 //for (int i=0; i<sets.length; i++)
                 //    Log.i("TopicModeling", sets[i]);
@@ -299,8 +369,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
                 Log.i("TopicModeling", textInPost.toString());
 
                 DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
-
-                _textview_keyword_top.setText(keywords.get(0) + ", " + keywords.get(1) + ", " + keywords.get(2));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

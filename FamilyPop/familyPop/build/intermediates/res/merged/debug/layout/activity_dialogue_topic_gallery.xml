@@ -217,7 +217,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="85dp">
+            android:layout_height="85dp"
+            android:visibility="gone">
 
             <ScrollView
                 android:layout_width="fill_parent"
@@ -268,7 +269,8 @@
             android:textColor="#00a8bf"
             android:textSize="25dp"
             android:textStyle="bold"
-            android:background="#262627" />
+            android:background="#262627"
+            android:visibility="gone" />
 
     </LinearLayout>
 
