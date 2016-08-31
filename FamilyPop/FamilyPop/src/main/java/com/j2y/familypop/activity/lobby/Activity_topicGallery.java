@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 import com.j2y.familypop.activity.manager.gallery.PhotoGallery;
+import com.j2y.network.base.data.FpNetDataNoti_clientUpdate;
+import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
 
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     TextView _textview_keyword_top;
     TextView _textview_keyword_bottom;
 
+
+    CheckBox _checkbox_orange;
     CheckBox _checkbox_green;
     CheckBox _checkbox_blue;
     CheckBox _checkbox_purple;
@@ -97,9 +101,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         _textview_keyword_bottom = (TextView)findViewById(R.id.textView_topic_keyword_bottom);
 
 
+        // 접속 한 유저 만큼 checked box 도출하기.
+        ArrayList<FpNetDataNoti_clientUpdate.clientInfo> _userInfos = FpNetFacade_client.Instance.GetClientsInfos();
+
         //checked box
-        _checkbox_green = (CheckBox)findViewById(R.id.checkBox_intersection_0);
-        _checkbox_green.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        _checkbox_orange = (CheckBox)findViewById(R.id.checkBox_intersection_0);
+        _checkbox_orange.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
@@ -111,8 +118,8 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             }
         });
 
-        _checkbox_blue = (CheckBox)findViewById(R.id.checkBox_intersection_1);
-        _checkbox_blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        _checkbox_green = (CheckBox)findViewById(R.id.checkBox_intersection_1);
+        _checkbox_green.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
@@ -137,13 +144,34 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             }
         });
 
-        /*_checkbox_red = (CheckBox)findViewById(R.id.checkBox_intersection_3);
-        _checkbox_red.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        _checkbox_blue = (CheckBox)findViewById(R.id.checkBox_intersection_3);
+        _checkbox_blue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
             }
-        });*/
+        });
+
+        // checked box 전부 gone
+        _checkbox_orange.setVisibility(View.GONE);
+        _checkbox_purple.setVisibility(View.GONE);
+        _checkbox_blue.setVisibility(View.GONE);
+        _checkbox_green.setVisibility(View.GONE);
+
+        //COLOR_ERROR(-1), COLOR_ORANGE(0), COLOR_YELLOW_GREEN(1), COLOR_PURPLE(2), COLOR_SKY_BLUE(3), COLOR_RED(4); // # color 이걸 기준. // common 으로 manager 을 통해서 빼내자.
+        if( _userInfos != null )
+        {
+            for( FpNetDataNoti_clientUpdate.clientInfo uinfo : _userInfos )
+            {
+                switch(uinfo._clientId) // 컬러는 무조건 0 이 들어온다. ( 사용 안하는듯.)
+                {
+                    case 0: _checkbox_orange.setVisibility(View.VISIBLE);   break;
+                    case 1: _checkbox_green.setVisibility(View.VISIBLE);   break;
+                    case 2: _checkbox_purple.setVisibility(View.VISIBLE);   break;
+                    case 3: _checkbox_blue.setVisibility(View.VISIBLE);   break;
+                }
+            }
+        }
     }
 
     // create a thread that sends a request to TopicModeling server

@@ -1,5 +1,6 @@
 package com.j2y.familypop.activity.popup;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.j2y.familypop.MainActivity;
 import com.j2y.familypop.activity.Activity_clientMain;
+import com.j2y.familypop.activity.lobby.Activity_topicGallery;
 import com.j2y.familypop.activity.manager.Manager_contents;
 import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
@@ -103,7 +106,9 @@ public class Popup_dialogueMenu implements View.OnClickListener
                 onSharing_pictures();
                 break;
             case R.id.button_dialog_sharing_keywords:
+
                 _profileName.setText("keywords");
+                MainActivity.Instance.startActivity(new Intent(MainActivity.Instance, Activity_topicGallery.class));
                 break;
             case R.id.button_dialog_flower_bomb:
                 _profileName.setText("flower");
@@ -115,7 +120,6 @@ public class Popup_dialogueMenu implements View.OnClickListener
                 Activity_clientMain.Instance.onClick_Quitdialogue(false, true, true);
                 break;
             //case R.id.test_talk: onTalk();  break;
-
         }
         _popupWindow.dismiss();
     }
