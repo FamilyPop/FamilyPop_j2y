@@ -24,6 +24,8 @@ import com.j2y.familypop.activity.manager.actors.Actor_smile;
 import com.j2y.familypop.activity.manager.actors.Actor_talk;
 import com.j2y.familypop.activity.manager.actors.BaseActor;
 import com.j2y.familypop.activity.manager.contents.server.Contents_talk;
+import com.j2y.familypop.activity.manager.spriteFlash.BaseSpriteFlash;
+import com.j2y.familypop.activity.manager.spriteFlash.Sprite_flash_topic;
 import com.j2y.familypop.activity.manager.states.State_ActorMove;
 import com.j2y.familypop.activity.manager.states.State_ActorRotationAxis;
 import com.j2y.familypop.activity.manager.states.State_machine;
@@ -83,7 +85,6 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
     public static Activity_serverMain_andEngine Instance = null;
     public static final int CAMERA_WIDTH = 800;
     public static final int CAMERA_HEIGHT = 480;
-    //public static final int CAMERA_HEIGHT = 486;
 
     // 서버 이벤트.
     public static final int event_createTalk = 0;
@@ -278,6 +279,8 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
 
 
+    static IUpdateHandler releaseUpdate = null;
+    public long currentTime_releaseTopic = 0;
     @Override
     public synchronized void onUpdate(float pSecondsElapsed)
     {
@@ -290,6 +293,39 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
 
         if( _manager_contents != null ) _manager_contents.update(pSecondsElapsed);
         if ( _manager_actor != null )   _manager_actor.Update(pSecondsElapsed);
+        if( _manager_resource != null)
+        {
+            //topic 데이터가 있다면 일정시간 후에 제거
+            CopyOnWriteArrayList<BaseSpriteFlash> spriteFlashs = _manager_resource.GetSprite_flash();
+
+            Sprite_flash_topic topic = null;
+
+            for( int i=0; i<spriteFlashs.size(); ++i)
+            {
+                if( spriteFlashs.get(i)._Type_flashSprite == Manager_resource.Instance.TYPE_FLASH_SPRITE_TOPIC )
+                {
+                    topic = (Sprite_flash_topic) spriteFlashs.get(i);
+                    break;
+                }
+            }
+            // 처음 넣엇던 토픽 제거 ( arrayList 가 순서를 바꾸지 않는다면. )
+
+            if( currentTime_releaseTopic > 0)
+            {
+                long deltaTime = System.currentTimeMillis() - currentTime_releaseTopic;
+                if( deltaTime > 10000) // 10 초간 대기
+                {
+                    //토픽 제거
+                    releaseUpdate = Manager_resource.Instance.ReleaseAll_flash_Sprites_topic(_scene);
+                    _scene.registerUpdateHandler(releaseUpdate);
+                    Manager_resource.flashSpriteRelease_topic = true;
+
+                    currentTime_releaseTopic = 0;
+                }
+
+
+            }
+        }
     }
     @Override
     public void reset()
@@ -880,7 +916,10 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
         int posX = 0;
         int posY = 0;
 
-        int index = Manager_resource.Instance.GetSprite_flash().size() + (posIndex % 1);
+        //int index = Manager_resource.Instance.GetSprite_flash().size() + (posIndex % 1);
+        int index = Manager_resource.Instance.GetSprite_flash_shareimage_count() + (posIndex % 1);
+
+
 //        if (posIndex == -1)
 //        {
 //            posX = (int)centerX;

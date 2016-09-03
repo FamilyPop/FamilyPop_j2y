@@ -38,7 +38,6 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
     Context _context;
     PhotoGallery _photoGallery;
 
-
     public void Active()
     {
 //        for( int i=0; i<_thumb_imageList.size(); ++i)
@@ -53,6 +52,16 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
         //_thumb_imageList.get(0).SetCheckedState();
         ((BaseActivity)_context).findViewById(R.id.llImageList).setVisibility(View.VISIBLE);
         _gridView.setVisibility(View.VISIBLE);
+
+        //# test :  topic
+        if(_photoGallery.GetImageCount() > 0 )
+        {
+            FpNetFacade_client.Instance.SendPacket_req_topic(10, _photoGallery.GetImageList().get(0).GetBitmap(),
+                    "abcdefghijklmnopqrstuvwxyz\n" +
+                    "\nabcdefghijklmnopqrstuvwxyz\n" +
+                    "\nabcdefghijklmnopqrstuvwxyz\n" +
+                    "\nabcdefghijklmnopqrstuvwxyz");
+        }
 
     }
     public void DeActive()
@@ -77,6 +86,7 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
 
         ImageButton button = (ImageButton)context.findViewById(R.id.button_photo_select);
         button.setOnClickListener(this);
+
 
         //gridView.setVisibility(View.GONE);
     }
@@ -139,7 +149,7 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
     {
         if( v.getId() == R.id.button_photo_select )
         {
-            ArrayList<ImageInfo> checkedList = _photoGallery.GetImageList();
+            ArrayList<ImageInfo> checkedList = _photoGallery.GetImageListCopy();
             MainActivity.Instance._photoManager.SetArrayList(checkedList);
 
             FpNetFacade_client.Instance.SendPacket_req_shareImage();

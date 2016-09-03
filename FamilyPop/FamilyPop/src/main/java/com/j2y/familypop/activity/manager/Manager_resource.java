@@ -5,12 +5,15 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 
 import com.j2y.familypop.activity.Activity_serverMain_andEngine;
+import com.j2y.familypop.activity.manager.spriteFlash.*;
+
 
 import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.font.FontManager;
@@ -27,8 +30,10 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.texture.region.TextureRegionFactory;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
+import org.andengine.util.HorizontalAlign;
 import org.andengine.util.adt.io.in.IInputStreamOpener;
 import org.andengine.util.color.Color;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,30 +77,6 @@ class BitmapTextureAtlasSource extends BaseTextureAtlasSource implements IBitmap
         return Bitmap.createBitmap(mColors, mTextureWidth, mTextureHeight, Bitmap.Config.ARGB_8888);
     }
 }
-//_flash_sprites
-class Sprite_flash
-{
-    private int _clientId = -1;
-    private Sprite _sprite = null;
-    private Sprite _photoFrame = null;
-
-    public Sprite_flash(int clientId, Sprite sprite, Sprite photoFrame)
-    {
-        _clientId = clientId;
-        _sprite = sprite;
-        _photoFrame = photoFrame;
-    }
-
-    public Sprite Get_sprite(){return _sprite;}
-    public Sprite Get_photoFrame(){return _photoFrame;}
-    public int Get_clientID(){return _clientId;}
-    public  void Release( Scene scene)
-    {
-        if( _sprite != null)    scene.detachChild(_sprite);
-        if( _photoFrame != null )   scene.detachChild(_photoFrame);
-    }
-}
-
 public class Manager_resource
 {
     //====================================================================================================
@@ -201,10 +182,15 @@ public class Manager_resource
 
 
     //private CopyOnWriteArrayList<Sprite> _flash_sprites = null;
-    private CopyOnWriteArrayList<Sprite_flash> _flash_sprites = null;
+    private CopyOnWriteArrayList<BaseSpriteFlash> _flash_sprites = null;
+
 
     private Font _font = null;
 
+
+    // popup image
+    public final int TYPE_FLASH_SPRITE_SHAREIMAGE = 0;
+    public final int TYPE_FLASH_SPRITE_TOPIC = 1;
 
     //====================================================================================================
     // init
@@ -366,9 +352,38 @@ public class Manager_resource
     //====================================================================================================
     // get texture
     //====================================================================================================
-    public CopyOnWriteArrayList<Sprite_flash> GetSprite_flash()
+    //public CopyOnWriteArrayList<Sprite_flash> GetSprite_flash()
+    public CopyOnWriteArrayList<BaseSpriteFlash> GetSprite_flash()
     {
         return _flash_sprites;
+    }
+    public int GetSprite_flash_shareimage_count()
+    {
+        int ret = 0;
+
+        for( BaseSpriteFlash bsf : _flash_sprites)
+        {
+            if( bsf._Type_flashSprite == TYPE_FLASH_SPRITE_SHAREIMAGE)
+            {
+                ++ret;
+            }
+        }
+
+        return ret;
+    }
+    public int GetSprite_flash_topic_count()
+    {
+        int ret = 0;
+
+        for( BaseSpriteFlash bsf : _flash_sprites)
+        {
+            if( bsf._Type_flashSprite == TYPE_FLASH_SPRITE_TOPIC)
+            {
+                ++ret;
+            }
+        }
+
+        return ret;
     }
     public ITiledTextureRegion GetTiledTexture(String key) {
         ITiledTextureRegion ret = null;
@@ -454,6 +469,42 @@ public class Manager_resource
 
         return ret;
     }
+    // topic 용 flashSprite
+    Text _topicText;
+    public synchronized Sprite_flash_topic Create_flashSprite(int clientId, Scene scene, SimpleBaseGameActivity gameActivity, Bitmap bitmap, String topicText)
+    {
+        Sprite_flash_topic ret = null;
+        ReleaseAll_flash_Sprites(scene);
+
+        //Text toppicText = null;
+        int camera_width = 800;
+        int camera_height = 480;
+
+
+        // photo
+
+        BitmapTextureAtlasSource source = new BitmapTextureAtlasSource(bitmap);
+        BitmapTextureAtlas texture = new BitmapTextureAtlas(gameActivity.getTextureManager(), 1024, 1024);
+        texture.addTextureAtlasSource(source, 0, 0);
+        texture.load();
+        TextureRegion textureRegion = (TextureRegion)TextureRegionFactory.createFromSource(texture, source, 0, 0);
+
+
+        //new TextOptions(HorizontalAlign.RIGHT)
+
+        ret = new Sprite_flash_topic(clientId,
+                                    new Sprite(0.0f, 0.0f, textureRegion, gameActivity.getVertexBufferObjectManager()),
+                                    new Text(bitmap.getWidth() + 20 , 20,_font , topicText,gameActivity.getVertexBufferObjectManager()));
+
+
+        scene.attachChild(ret.Get_topicText());
+        scene.attachChild(ret.Get_topicImage());
+
+        _flash_sprites.add(ret);
+
+        return ret;
+    }
+
     //todo: 이미지를 잠간 뿌리기 용으로 만들어야함 ( frame 그리는 기능은 빼는걸로 )
     public synchronized Sprite Create_flashSprite(int clientId,  float posX, float posY, Scene scene, SimpleBaseGameActivity gameActivity,Bitmap bitmap)
     {
@@ -500,34 +551,40 @@ public class Manager_resource
     // release
     //====================================================================================================
     public static boolean flashSprittRelease = false;
+    public static boolean flashSpriteRelease_topic = false;
     public static int deleteFlashSprite_clientId = -1; // -1 이면 전부 제거 한다.
+
     public IUpdateHandler ReleaseAll_flash_Sprites(final Scene scene)
     {
         return new IUpdateHandler() {
             @Override
             public void onUpdate(float pSecondsElapsed)
             {
-                if(flashSprittRelease == true )
-                {
-                    //for( Sprite sp : _flash_sprites)
-                    for(Sprite_flash sp : _flash_sprites)
-                    {
-                        if( deleteFlashSprite_clientId == -1)
+                //if( releaseType == -1)
+                if (flashSprittRelease == true) {
+                    for (int i = 0; i < _flash_sprites.size(); ++i) {
+                        BaseSpriteFlash sp = _flash_sprites.get(i);
+
+                        if (sp._Type_flashSprite == TYPE_FLASH_SPRITE_SHAREIMAGE) // 쌓여 있는것들 전부 지워 버린다.
                         {
-                            //scene.detachChild(sp);
-                            sp.Release(scene);
-                            _flash_sprites.remove(sp);
-                        }
-                        else
-                        {
-                            if( sp.Get_clientID() == deleteFlashSprite_clientId)
+                            if (deleteFlashSprite_clientId == -1) // 전부 제거
                             {
+                                //scene.detachChild(sp);
                                 sp.Release(scene);
                                 _flash_sprites.remove(sp);
+                                --i;
+                            } else {
+                                if (sp.Get_clientID() == deleteFlashSprite_clientId) // id 가 같은것만 제거
+                                {
+                                    sp.Release(scene);
+                                    _flash_sprites.remove(sp);
+                                    --i;
+                                }
                             }
                         }
                     }
                     ShareImage_reposition();
+
                     deleteFlashSprite_clientId = -1;
                     flashSprittRelease = false;
                 }
@@ -540,11 +597,44 @@ public class Manager_resource
 
         //_flash_sprites.clear();
     }
+    public IUpdateHandler ReleaseAll_flash_Sprites_topic(final Scene scene)
+    {
+
+        return new IUpdateHandler() {
+            @Override
+            public void onUpdate(float pSecondsElapsed) {
+                //if( releaseType == -1)
+                if (flashSpriteRelease_topic == true)
+                {
+
+                    for (int i = 0; i < _flash_sprites.size(); ++i)
+                    {
+                        BaseSpriteFlash sp = _flash_sprites.get(i);
+
+
+                        // release topic
+                        if (sp._Type_flashSprite == TYPE_FLASH_SPRITE_TOPIC) // 쌓여 있는것들 전부 지워 버린다.
+                        {
+                            sp.Release(scene);
+                            _flash_sprites.remove(sp);
+                            i--;
+                        }
+
+                    }
+                    flashSpriteRelease_topic = false;
+                }
+            }
+            @Override
+            public void reset() {
+
+            }
+        };
+    }
+
     public void ReleaseAll_sprite()
     {
         // box2d  에서 생성한 객체를 고려해서 제거 해줘야할듯.
         // todo : 만들어야함.
-
     }
 
     public void ReleaseAll_tileSprites()
@@ -586,7 +676,8 @@ public class Manager_resource
     }
     public void ShareImage_reposition()
     {
-        int imageCount = Manager_resource.Instance.GetSprite_flash().size();
+        //int imageCount = Manager_resource.Instance.GetSprite_flash().size();
+        int imageCount = Manager_resource.Instance.GetSprite_flash_shareimage_count();
         int cameraWidth = Activity_serverMain_andEngine.CAMERA_WIDTH;
         int cameraHeight = Activity_serverMain_andEngine.CAMERA_HEIGHT;
         float centerX = (cameraWidth / 2);
@@ -602,7 +693,19 @@ public class Manager_resource
 
         if( imageCount == 1 )
         {
-            Sprite_flash centerSprite = ((Sprite_flash) Manager_resource.Instance.GetSprite_flash().get(0));
+            //Sprite_flash centerSprite = ((Sprite_flash) Manager_resource.Instance.GetSprite_flash().get(0));
+
+            Sprite_flash centerSprite = null;
+            for( int i=0; i<_flash_sprites.size(); ++i)
+            {
+                if( _flash_sprites.get(i)._Type_flashSprite == TYPE_FLASH_SPRITE_SHAREIMAGE)
+                {
+                    centerSprite = ((Sprite_flash) Manager_resource.Instance.GetSprite_flash().get(i));
+                    break;
+                }
+            }
+            //if (centerSprite == null) return;
+
             setResize_height(centerSprite.Get_sprite(), 256);
             posX = (cameraWidth / 2) - (centerSprite.Get_sprite().getWidth()/2);
             posY = (cameraHeight / 2) - (centerSprite.Get_sprite().getHeight()/2);
@@ -628,9 +731,15 @@ public class Manager_resource
             float rightBottomX = centerX + centerHalfX;
             float rightBottomY = centerY + centerHalfY;
 
-            int index = 0;
-            for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            int index = 0; // 이미지 개수.
+            //for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            for( int i=0; i<Manager_resource.Instance.GetSprite_flash().size(); ++i) // 전체 루트를 루프 한다
             {
+                CopyOnWriteArrayList<BaseSpriteFlash>  bsf = Manager_resource.Instance.GetSprite_flash();
+                if( bsf.get(i)._Type_flashSprite != TYPE_FLASH_SPRITE_SHAREIMAGE) continue; // shareimage 인지를 검사 한다.
+
+                Sprite_flash sprite_flash = (Sprite_flash)bsf.get(i);
+
                 setResize_height(sprite_flash.Get_sprite(), 120);
 
                 switch (index) {
@@ -666,8 +775,14 @@ public class Manager_resource
             int count_index = 0;
             final int count_tileX = 3;
             final int count_tileY = 3;
-            for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            //for( Sprite_flash sprite_flash : Manager_resource.Instance.GetSprite_flash() )
+            for( int i=0; i<Manager_resource.Instance.GetSprite_flash().size(); ++i )
             {
+                CopyOnWriteArrayList<BaseSpriteFlash>  bsf = Manager_resource.Instance.GetSprite_flash();
+                if( bsf.get(i)._Type_flashSprite != TYPE_FLASH_SPRITE_SHAREIMAGE) continue; // shareimage 인지를 검사 한다.
+
+                Sprite_flash sprite_flash = (Sprite_flash)bsf.get(i);
+
                 count_index %= 9;
                 setResize_height(sprite_flash.Get_sprite(), 95);
 

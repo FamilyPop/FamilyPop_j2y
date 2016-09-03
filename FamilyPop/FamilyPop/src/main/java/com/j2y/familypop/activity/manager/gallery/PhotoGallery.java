@@ -91,7 +91,7 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         _topic = topic;
     }
 
-    public ArrayList<ImageInfo> GetImageList()
+    public ArrayList<ImageInfo> GetImageListCopy()
     {
         if(_thumb_imageList.size() <= 0 )
             return null;
@@ -106,6 +106,16 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
             }
         }
         return imageList;
+    }
+    public int GetImageCount()
+    {
+        return _thumb_imageList.size();
+    }
+    public ArrayList<ImageInfo> GetImageList()
+    {
+        if( _thumb_imageList.size() <= 0) return null;
+
+        return _thumb_imageList;
     }
 
 
