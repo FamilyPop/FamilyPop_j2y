@@ -444,7 +444,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                         FpcScenarioDirectorProxy.Instance._activeScenarioType == FpNetConstants.SCENARIO_GAME) break;
                 if(!_temp_send_talk)
                 {
-
                     //_selectScenario = FpNetConstants.SCENARIO_RECORD;
                     _selectScenario = Manager_contents.eType_contents.CONTENTS_TALK.getValue();
                     FpNetFacade_client.Instance.SendPacket_req_changeScenario(_selectScenario);
@@ -472,7 +471,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
                 break;
             case R.id.button_client_featuremenu_quitdialogue:
-                onClick_Quitdialogue(false, true, true);
+                onClick_Quitdialogue(true, true, true);
                 active_featureMenu(false);
                 break;
             case R.id.button_client_featuremenu_smile_event:
@@ -487,11 +486,9 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                 FpNetFacade_client.Instance.SendPacket_req_clearBubble();
                 active_featureMenu(false);
                 break;
-
             case R.id.button_client_redbubble:
                 onClick_Bubble();
                 break;
-
             // regulation  거품 설정??.
             case R.id.button_client_featuremenu_regulation:
                 _layout_regulation.setVisibility(View.VISIBLE);

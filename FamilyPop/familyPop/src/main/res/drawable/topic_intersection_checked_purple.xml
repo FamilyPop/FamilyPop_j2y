@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--이름 잘못 지엇네.,-->
-    <item android:state_checked="true" android:drawable="@drawable/check_people0" />
-    <item android:state_checked="false" android:drawable="@drawable/check_people" />
 
+    <item android:state_checked="true" android:drawable="@drawable/topic_check_purple0" />
+    <item android:state_checked="false" android:drawable="@drawable/topic_check_purple" />
 </selector>

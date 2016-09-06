@@ -64,14 +64,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBox_intersection_0"
-                android:button="@drawable/topic_intersection_checked_green"
+                android:button="@drawable/topic_intersection_checked_orange"
                 android:layout_marginLeft="20dp" />
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBox_intersection_1"
-                android:button="@drawable/topic_intersection_checked_blue"
+                android:button="@drawable/topic_intersection_checked_green"
                 android:layout_marginLeft="10dp" />
 
             <CheckBox
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBox_intersection_3"
                 android:checked="false"
-                android:button="@drawable/topic_intersection_checked_red"
+                android:button="@drawable/topic_intersection_checked_blue"
                 android:layout_marginLeft="10dp" />
 
 

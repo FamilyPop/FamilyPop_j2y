@@ -22,6 +22,8 @@ public class FpNetDataReq_shareImage extends FpNetData_base
     private int _count_bitmap;
     private ArrayList<byte[]> _bitArrays;
 
+    public int _shareImageType = -1;
+
     public FpNetDataReq_shareImage()
     {
         _count_bitmap = 0;

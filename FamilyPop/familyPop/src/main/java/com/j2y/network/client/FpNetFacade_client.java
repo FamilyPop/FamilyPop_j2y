@@ -38,6 +38,7 @@ import com.j2y.network.base.data.FpNetDataReq_changeScenario;
 import com.j2y.network.base.data.FpNetDataReq_connectId;
 import com.j2y.network.base.data.FpNetDataReq_regulation_info;
 import com.j2y.network.base.data.FpNetDataReq_shareImage;
+import com.j2y.network.base.data.FpNetDataReq_topic;
 import com.j2y.network.base.data.FpNetDataRes_recordInfoList;
 import com.j2y.network.base.data.FpNetData_base;
 import com.j2y.network.base.data.FpNetData_familyTalk;
@@ -46,6 +47,7 @@ import com.j2y.network.base.data.FpNetData_smileEvent;
 import com.j2y.network.base.data.FpNetData_userInteraction;
 import com.nclab.familypop.R;
 
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -447,15 +449,12 @@ public class FpNetFacade_client extends FpNetFacade_base
             {
                 if( data.Get_count() == 0)
                 {
-
                     for (int i = 0; i < 5; ++i) {
                         Activity_clientMain.Instance.SetupSharedImage(i, null);
                     }
                 }
                 else
                 {
-
-
                     if( data.Get_count()  > 1){
                         for (int i = 0; i < data.Get_count(); ++i) {
                             Activity_clientMain.Instance.SetupSharedImage(i, data.Get_bitArray(i));
@@ -551,6 +550,14 @@ public class FpNetFacade_client extends FpNetFacade_base
 
     // 클라이언트 업데이트
     FpNetDataNoti_clientUpdate _clientupdate = null;
+    // ArrayList<FpNetDataNoti_clientUpdate.clientInfo>
+    public ArrayList<FpNetDataNoti_clientUpdate.clientInfo> GetClientsInfos()
+    {
+        if( _clientupdate == null) return null;
+
+        return _clientupdate._clientInfos;
+    }
+
     FpNetMessageCallBack onNoti_clientUpdate = new FpNetMessageCallBack()
     {
         @Override
@@ -721,7 +728,7 @@ public class FpNetFacade_client extends FpNetFacade_base
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 이미지 공유 요청
     //public void SendPacket_req_shareImage(Bitmap shareBitmap)
-        public void SendPacket_req_shareImage()
+    public void SendPacket_req_shareImage()
     {
 //        Popup_messageBox_shareImage  msgbox = new Popup_messageBox_shareImage (Activity_clientMain.Instance)
 //        {
@@ -890,5 +897,34 @@ public class FpNetFacade_client extends FpNetFacade_base
         reqPaket._send_client_id = send_clientId;
 
         sendMessage(FpNetConstants.CSReq_userInteraction, reqPaket);
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------
+    // 토픽 정보를 서버로 전송.
+    public void SendPacket_req_topic(int clientId, Bitmap bitmap, String text)
+    {
+        FpNetDataReq_topic reqPaket = new FpNetDataReq_topic();
+        reqPaket._clientId = clientId;
+
+        // 비트맵 이미지 사이즈를 줄인다.
+
+        int viewHeight = 480;
+        float width = 0.0f;
+        float height = 0.0f;
+
+        width = bitmap.getWidth();
+        height = bitmap.getHeight();
+
+        float percente = (float)(height/100);
+        float scale = (float)(viewHeight/percente);
+
+        width *= (scale/100);
+        height *= (scale/100);
+
+        Bitmap reScaleBitmap = Bitmap.createScaledBitmap(bitmap, (int)width, (int)height,false);
+        reqPaket.Add_bitmap(reScaleBitmap);
+        reqPaket.Add_Text(text);
+
+        sendMessage(FpNetConstants.CSReq_toppic, reqPaket);
     }
 }

@@ -76,6 +76,9 @@ public class FpNetConstants
 	// client update
 	public final static int SCNoti_clientUpdate = 5002;			// 버블 정보를 클라이언트 들 에게 전송해 갱신 하라는 메세제
 
+	// topic
+	public final static int CSReq_toppic = 6000;	// 사용자가 선택한 토픽 하나를 서버로 전송한다.
+
 
     //----------------------------------------------------------------------------
 	// 시나리오

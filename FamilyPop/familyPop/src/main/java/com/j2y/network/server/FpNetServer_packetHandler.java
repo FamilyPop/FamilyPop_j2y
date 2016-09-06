@@ -45,6 +45,7 @@ import com.j2y.network.base.data.FpNetDataReq_changeScenario;
 import com.j2y.network.base.data.FpNetDataReq_regulation_info;
 import com.j2y.network.base.data.FpNetDataReq_setting_systemEvent;
 import com.j2y.network.base.data.FpNetDataReq_shareImage;
+import com.j2y.network.base.data.FpNetDataReq_topic;
 import com.j2y.network.base.data.FpNetDataRes_recordInfoList;
 import com.j2y.network.base.data.FpNetData_familyTalk;
 import com.j2y.network.base.data.FpNetData_setUserInfo;
@@ -129,6 +130,9 @@ public class FpNetServer_packetHandler
 
         // system event setting
         _net_server.RegisterMessageCallBack(FpNetConstants.CSReq_systemEvent, onReq_systemEventSetting);
+
+        // topic
+        _net_server.RegisterMessageCallBack(FpNetConstants.CSReq_toppic, onReq_topping);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 클라 연결
@@ -592,6 +596,7 @@ public class FpNetServer_packetHandler
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 이미지 공유
     static IUpdateHandler releaseUpdate = null;
+    static IUpdateHandler releaseUpdate_topic = null;
     FpNetMessageCallBack onCSC_shareimage = new FpNetMessageCallBack()
     {
         @Override
@@ -611,9 +616,7 @@ public class FpNetServer_packetHandler
             //
 
             //_net_server.BroadcastPacket(FpNetConstants.CSC_ShareImage, data);
-
             //for( int i=0; i<Manager_users.Instance.Get_talk_users().size(); i++)
-
 
             _net_server.SendPacket(FpNetConstants.CSC_ShareImage, data._clientId, data);
 
@@ -645,15 +648,16 @@ public class FpNetServer_packetHandler
                     releaseUpdate = Manager_resource.Instance.ReleaseAll_flash_Sprites(scene);
                     scene.registerUpdateHandler(releaseUpdate);
                     Manager_resource.flashSprittRelease = true;
+                    //Manager_resource.releaseType = Manager_resource.Instance.TYPE_FLASH_SPRITE_SHAREIMAGE;
                     Manager_resource.deleteFlashSprite_clientId = data._clientId;
                 }
                 else
                 {
                     Manager_resource.flashSprittRelease = true;
+                    Scene scene = Activity_serverMain_andEngine.Instance.Get_scene();
                     Manager_resource.deleteFlashSprite_clientId = data._clientId;
                 }
             }
-
 //            //FpNetServer_client client = (FpNetServer_client)inMsg._obj;
 //            FpNetDataReq_shareImage data = new FpNetDataReq_shareImage();
 //            data.Parse(inMsg);
@@ -758,6 +762,21 @@ public class FpNetServer_packetHandler
 
             Event_createGood event = new Event_createGood(data);
             Activity_serverMain_andEngine.Instance.Add_event(event);
+        }
+    };
+
+    FpNetMessageCallBack onReq_topping = new FpNetMessageCallBack() {
+        @Override
+        public void CallBack(FpNetIncomingMessage inMsg) throws InterruptedException
+        {
+
+            FpNetDataReq_topic data = new FpNetDataReq_topic();
+            data.Parse(inMsg);
+
+            Activity_serverMain_andEngine main = Activity_serverMain_andEngine.Instance;
+            Manager_resource.Instance.Create_flashSprite(data._clientId, main.Get_scene(), main, FpNetUtil.ByteArrayToBitmap(data.Get_bitArray()), data.Get_Text() );
+
+            main.currentTime_releaseTopic = System.currentTimeMillis();
         }
     };
 
