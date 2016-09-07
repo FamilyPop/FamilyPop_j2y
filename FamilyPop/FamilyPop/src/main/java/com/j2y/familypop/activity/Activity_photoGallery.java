@@ -53,15 +53,15 @@ public class Activity_photoGallery  implements ListView.OnScrollListener, GridVi
         ((BaseActivity)_context).findViewById(R.id.llImageList).setVisibility(View.VISIBLE);
         _gridView.setVisibility(View.VISIBLE);
 
-        //# test :  topic
-        if(_photoGallery.GetImageCount() > 0 )
-        {
-            FpNetFacade_client.Instance.SendPacket_req_topic(10, _photoGallery.GetImageList().get(0).GetBitmap(),
-                    "abcdefghijklmnopqrstuvwxyz\n" +
-                    "\nabcdefghijklmnopqrstuvwxyz\n" +
-                    "\nabcdefghijklmnopqrstuvwxyz\n" +
-                    "\nabcdefghijklmnopqrstuvwxyz");
-        }
+//        //# test :  topic
+//        if(_photoGallery.GetImageCount() > 0 )
+//        {
+//            FpNetFacade_client.Instance.SendPacket_req_topic(10, _photoGallery.GetImageList().get(0).GetBitmap(),
+//                    "abcdefghijklmnopqrstuvwxyz\n" +
+//                    "\nabcdefghijklmnopqrstuvwxyz\n" +
+//                    "\nabcdefghijklmnopqrstuvwxyz\n" +
+//                    "\nabcdefghijklmnopqrstuvwxyz");
+//        }
 
     }
     public void DeActive()

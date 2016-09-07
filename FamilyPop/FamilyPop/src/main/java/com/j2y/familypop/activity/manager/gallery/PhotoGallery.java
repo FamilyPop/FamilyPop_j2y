@@ -223,8 +223,6 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
             //캐쉬 초기화 : 캐쉬의 최대 보관 크기 30개
             _cache = new ImageCache<String,Bitmap>(30);
         }
-
-
         @Override
         public int getCount()
         {

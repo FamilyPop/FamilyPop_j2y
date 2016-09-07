@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
@@ -66,6 +68,8 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     // keeping the Information of selected users in "Intersection With"
     HashSet<String> userSelected = new HashSet<String>();
 
+    Button _topic_send = null;
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
     //
@@ -75,7 +79,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_dialogue_topic_gallery);
+
+
+        //send button
+        _topic_send = (Button)findViewById(R.id.button_topic_send);
 
         _context = this;
         _thumb_imageList = new ArrayList<ImageInfo>();
@@ -99,7 +108,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
         // keyword
         _textview_keyword_top = (TextView)findViewById(R.id.textView_topic_keyword_top);
         _textview_keyword_bottom = (TextView)findViewById(R.id.textView_topic_keyword_bottom);
-
 
         // 접속 한 유저 만큼 checked box 도출하기.
         ArrayList<FpNetDataNoti_clientUpdate.clientInfo> _userInfos = FpNetFacade_client.Instance.GetClientsInfos();
@@ -204,7 +212,6 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             post.SetTopic(textInPost.get(i));
             _thumb_imageList.add(post);
         }
-
         _photoGallery.SetImageList(_thumb_imageList);
     }
 
@@ -310,6 +317,12 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
             case R.id.button_topic_year:
                 AllButtonsNotSelect();
                 CheckTabMenu(_imageButtons[eTopicButtons.YEAR.getValue()],true);
+                break;
+            case R.id.button_topic_send:
+                //=====================================================================================
+
+
+                //=====================================================================================
                 break;
         }
     }

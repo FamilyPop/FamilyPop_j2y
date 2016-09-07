@@ -29,8 +29,8 @@ dependencies {
 
     compile project(':socioPhone_lib_dist')
     compile project(':mmlib')
-    compile 'com.android.support:support-v4:21.0.0'
-    compile 'com.android.support:palette-v7:21.0.0'
+    compile "com.android.support:support-v4:21.0.+"
+    compile "com.android.support:palette-v7:21.0.+"
     compile files('libs/android-core.jar')
     compile project(':andEngine')
     compile project(':andEnginePhysicsBox2DExtension')
