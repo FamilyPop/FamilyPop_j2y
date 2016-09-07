@@ -393,6 +393,8 @@ public class FpNetFacade_client extends FpNetFacade_base
                 ((Contents_clientTalk)Manager_contents.Instance.GetCurrentContents()).TalkRecordSave( "BIRTHDAY DINNER",
                                                                                                               FpcRoot.Instance._socioPhone.GetWavFileName(),
                                                                                                               FpcRoot.Instance._bubble_color_type );
+
+
             }
         }
     };

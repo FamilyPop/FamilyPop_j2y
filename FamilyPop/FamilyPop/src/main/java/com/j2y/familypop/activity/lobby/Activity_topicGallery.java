@@ -2,7 +2,6 @@ package com.j2y.familypop.activity.lobby;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -25,8 +24,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /**
  * Created by J2YSoft_Programer on 2016-04-28.
@@ -335,6 +332,7 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
     {
         private String userSelected;
         private final String topicDelim = ",,,,,";
+        private final String postDelim = "!#!#!#";
 
         QueryThread(HashSet<String> selected)
         {
@@ -361,15 +359,49 @@ public class Activity_topicGallery extends BaseActivity implements View.OnClickL
                 DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
                 return;
             }
+            try {
+                String query_result = new TopicModelingQuery(userSelected, "").execute("http://143.248.139.91:5000").get();
 
-            AsyncTask<String, Void, String> query_task = new TopicModelingQuery(this, userSelected);
-            query_task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://143.248.139.91:5000");
+                // Parse the result
+                String[] sets = query_result.split("##########");
+                String[] topicSet, postSet;
 
-            return;
-        }
+                //for (int i=0; i<sets.length; i++)
+                //    Log.i("TopicModeling", sets[i]);
+                //Log.i("TopicModeling", "length: " + query_result.length());
 
-        public void displayQueryResult (ArrayList<String> keywords, ArrayList<String> relatedPosts, ArrayList<String> textInPost) {
-            DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+                //  Parse the keyword sets
+                topicSet = sets[0].split("///");
+                for (int i=0; i<topicSet.length; i++)
+                {
+                    StringTokenizer topics = new StringTokenizer(topicSet[i], topicDelim);
+                    while (topics.hasMoreTokens())
+                        keywords.add(topics.nextToken());
+                }
+
+                //  Parse the related posts
+                postSet = sets[1].split("///");
+                for (int k=0; k<postSet.length; k++)
+                {
+                    String[] posts = postSet[k].split(topicDelim);
+                    for (int i=0; i<posts.length; i++)
+                    {
+                        String[] tk = posts[i].split(postDelim);
+                        relatedPosts.add(tk[0]);
+                        textInPost.add(tk[1]);
+                    }
+                }
+
+                Log.i("TopicModeling", keywords.toString());
+                Log.i("TopicModeling", relatedPosts.toString());
+                Log.i("TopicModeling", textInPost.toString());
+
+                DisplayTopicModelingContents(keywords, relatedPosts, textInPost);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

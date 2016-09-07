@@ -345,7 +345,6 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
         // photo sharing
         Manager_photoGallery photoGallery = Manager_photoGallery.Instance;
 
-
         // connect server
         //connectToServer();
 	}
@@ -471,7 +470,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
 
                 break;
             case R.id.button_client_featuremenu_quitdialogue:
-                onClick_Quitdialogue(true, true, true);
+                onClick_Quitdialogue(false, true, true);
                 active_featureMenu(false);
                 break;
             case R.id.button_client_featuremenu_smile_event:
@@ -540,7 +539,7 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
             // tic tac toe
             case R.id.button_client_featuremenu_tictactoe:
 
-                //back 16.01.11
+                // back 16.01.11
 //                _selectScenario = FpNetConstants.SCENARIO_TIC_TAC_TOE;
 //                FpNetFacade_client.Instance.SendPacket_req_start_Tic_Tac_Toe();
 //                _layout_regulation.setVisibility(View.INVISIBLE);
@@ -1971,13 +1970,54 @@ public class Activity_clientMain extends BaseActivity implements OnClickListener
                     }
                         break;
                     case R.id.button_popupmessagebox_cancel:
+
+//                        if(exit_talk)
+//                        {
+//                            if(net_request)
+//                                request_exitRoom();
+//                            else
+//                                ExitRoom();
+//
+//                            finish();
+//                        }
+//                        else
+//                        {
+//                            cancel();
+//                        }
+
+                        //---------------------------
                         if(force_exit) {
 
                             startActivity(new Intent(MainActivity.Instance, Activity_talkHistory.class));
                             finish();
                         }
                         else
-                            cancel();
+                        {
+
+                            // 저장 해논 데이터를 날린다.
+                            FpcTalkRecord recordData = FpcRoot.Instance._selected_talk_record;
+                            FpcRoot.Instance.RemoveTalkRecord(recordData);
+                            FpcRoot.Instance.SaveTalkRecords();
+                            recordData = null;
+
+                            // 위에 종료 로직 복사
+                            if(exit_talk)
+                            {
+                                if(net_request)
+                                    request_exitRoom();
+                                else
+                                    ExitRoom();
+
+                                finish();
+                            }
+                            else
+                            {
+                                cancel();
+                            }
+                            // end 위에 종료 로직 복사
+
+                            cancel(); //back
+                        }
                         break;
                 }
             }
