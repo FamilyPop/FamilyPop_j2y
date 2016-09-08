@@ -24,6 +24,7 @@ import com.j2y.familypop.activity.server.Activity_serverCalibrationLocation;
 import com.j2y.familypop.activity.server.Activity_serverStart;
 import com.j2y.familypop.activity.server.event_server.BaseEvent;
 import com.j2y.familypop.activity.server.event_server.Event_createGood;
+import com.j2y.familypop.activity.server.event_server.Event_deleteTalk;
 import com.j2y.familypop.client.FpcRoot;
 import com.j2y.familypop.server.FpsRoot;
 //import com.j2y.familypop.server.FpsScenarioDirector;
@@ -496,11 +497,11 @@ public class FpNetServer_packetHandler
     FpNetMessageCallBack onReq_clearBubble = new FpNetMessageCallBack()
     {
         @Override
-        public void CallBack(FpNetIncomingMessage inMsg)
-        {
+        public void CallBack(FpNetIncomingMessage inMsg) throws InterruptedException {
 
             //Activity_serverMain.Instance.ClearBubble();
-
+            Event_deleteTalk deleteTalk = new Event_deleteTalk();
+            Activity_serverMain_andEngine.Instance.Add_event(deleteTalk);
         }
     };
 

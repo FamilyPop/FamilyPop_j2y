@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import com.j2y.familypop.activity.Activity_clientMain;
+import com.j2y.familypop.activity.Activity_serverMain_andEngine;
+import com.j2y.familypop.activity.manager.Manager_contents;
+import com.j2y.familypop.activity.manager.Manager_resource;
+import com.j2y.familypop.activity.server.event_server.Event_deleteTalk;
+import com.j2y.network.base.FpNetConstants;
+import com.j2y.network.base.data.FpNetData_base;
+import com.j2y.network.client.FpNetFacade_client;
 import com.nclab.familypop.R;
 
 /**
@@ -25,6 +32,7 @@ public class Popup_settingTalk implements View.OnClickListener
         ((Button)(v.findViewById(R.id.button_talkModeSetting_regulation))).setOnClickListener(this);
         ((Button)(v.findViewById(R.id.button_talkModeSetting_flowerCollider))).setOnClickListener(this);
         ((Button)(v.findViewById(R.id.button_monitoring_dialogue))).setOnClickListener(this);
+        ((Button)(v.findViewById(R.id.button_flower_destroy))).setOnClickListener(this);
     }
 
 
@@ -37,6 +45,13 @@ public class Popup_settingTalk implements View.OnClickListener
             case R.id.button_talkModeSetting_regulation: onSettingRegulation(); break;
             case R.id.button_talkModeSetting_flowerCollider: onSettingFlowerCollider(); break;
             case R.id.button_monitoring_dialogue: onSettingMonitoring_dialogue(); break;
+            case R.id.button_flower_destroy:
+                try {
+                    onFlowerDestroy();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
         _popupWindow.dismiss();
     }
@@ -100,7 +115,6 @@ public class Popup_settingTalk implements View.OnClickListener
     }
     private void onSettingMonitoring_dialogue()
     {
-
         Activity_clientMain main = Activity_clientMain.Instance;
         if( main != null)
         {
@@ -117,6 +131,13 @@ public class Popup_settingTalk implements View.OnClickListener
             //Popup_settingTalk popupSetting = new Popup_settingTalk(popupView, popupWindow);
             Popup_systemEvent popup_systemEvent = new Popup_systemEvent(popupView, popupWindow);
         }
-
+    }
+    private void onFlowerDestroy() throws InterruptedException {
+        if(Manager_contents.Instance.GetCurrentContent() == Manager_contents.eType_contents.CONTENTS_TALK)
+        {
+            // send
+            FpNetData_base reqPaket = new FpNetData_base();
+            FpNetFacade_client.Instance.sendMessage(FpNetConstants.CSReq_clearBubble, reqPaket);
+        }
     }
 }

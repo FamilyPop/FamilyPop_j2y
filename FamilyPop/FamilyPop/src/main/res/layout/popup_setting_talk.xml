@@ -41,4 +41,12 @@
         android:id="@+id/button_monitoring_dialogue"
         android:textColor="#ffffff"
         android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="flower_destroy"
+        android:id="@+id/button_flower_destroy"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

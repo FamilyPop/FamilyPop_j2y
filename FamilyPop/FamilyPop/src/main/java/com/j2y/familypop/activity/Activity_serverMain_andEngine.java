@@ -38,6 +38,7 @@ import com.j2y.familypop.activity.server.event_server.Event_createGood;
 import com.j2y.familypop.activity.server.event_server.Event_createSmile;
 import com.j2y.familypop.activity.server.event_server.Event_deleteBee;
 import com.j2y.familypop.activity.server.event_server.Event_deleteBeeExplosion;
+import com.j2y.familypop.activity.server.event_server.Event_deleteTalk;
 import com.j2y.familypop.activity.server.event_server.Event_mulCollider;
 import com.j2y.familypop.activity.server.event_server.Event_serverClose;
 import com.j2y.familypop.server.FpsRoot;
@@ -971,6 +972,7 @@ public class Activity_serverMain_andEngine extends SimpleBaseGameActivity implem
                     // engine update 주기에서 생성해서 안전하다고 생각 됨.
                     break;
                 case event_deleteTalk:
+                    ((Event_deleteTalk)data).Delete();
                     break;
 
                 // smile
