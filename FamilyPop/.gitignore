@@ -1,0 +1,13 @@
+
+.gradle/2.14.1/
+.idea/
+FamilyPop/build/
+FamilyPop/familyPop-release.apk
+andEngine/build/
+andEnginePhysicsBox2DExtension/build/
+build/
+projectFilesBackup/
+socioPhone_lib_dist/build/
+*.iml
+.gradle
+local.properties
