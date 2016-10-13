@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\fpop\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\res\\merged\\debug\\values-te\\values-te.xml",
+        "outputFile": "D:\\Programs\\Android\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 110
                 },
                 "from": {
-                    "file": "D:\\J2YSoft\\familypop_16_02_04\\FamilyPop_j2y\\fpop\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\values-te\\values.xml",
+                    "file": "D:\\Programs\\Android\\FamilyPop_j2y\\FamilyPop\\FamilyPop\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.1.0\\res\\values-te\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
