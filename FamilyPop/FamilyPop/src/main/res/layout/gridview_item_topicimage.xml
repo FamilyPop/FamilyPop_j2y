@@ -3,8 +3,30 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@null">
+    android:background="@null"><![CDATA[
     >
+
+
+
+    ]]>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="left|top"
+        android:visibility="gone"
+        android:id="@+id/topic_layout_keyword">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="&quot;&quot;"
+            android:id="@+id/textView_keyword"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:singleLine="true" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -59,44 +81,16 @@
             android:layout_toStartOf="@+id/text_view"
             android:visibility="gone" />
 
-        <CheckBox
+        <!--CheckBox
             android:id="@+id/check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:clickable="false"
             android:focusable="false"
-            android:button="@drawable/topic_item_checked" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="send"
-            android:id="@+id/button_topic_send"
-            android:layout_alignBottom="@+id/image_view"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/text_view" />
+            android:button="@drawable/topic_item_checked" /-->
 
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="left|top"
-        android:visibility="gone"
-        android:id="@+id/topic_layout_keyword">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="&quot;&quot;"
-            android:id="@+id/textView_keyword"
-            android:textColor="@color/blue"
-            android:textStyle="bold"
-            android:singleLine="true" />
     </RelativeLayout>
 
 </LinearLayout>

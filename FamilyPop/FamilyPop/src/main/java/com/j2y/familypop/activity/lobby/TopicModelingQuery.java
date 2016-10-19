@@ -61,10 +61,6 @@ public class TopicModelingQuery extends AsyncTask<String, Void, String> {
         String[] sets = query_result.split("##########");
         String[] topicSet, postSet;
 
-        //for (int i=0; i<sets.length; i++)
-        //    Log.i("TopicModeling", sets[i]);
-        //Log.i("TopicModeling", "length: " + query_result.length());
-
         //  Parse the keyword sets
         topicSet = sets[0].split("///");
         for (int i=0; i<topicSet.length; i++)
@@ -97,9 +93,6 @@ public class TopicModelingQuery extends AsyncTask<String, Void, String> {
     /*Connection Module*/
     private String downloadUrl(String myurl) throws IOException {
         InputStream is = null;
-        // Get 65,535 characters of the retrieved web page content.
-        int len = 4096;
-
         try {
             URL url = new URL(myurl);
 
