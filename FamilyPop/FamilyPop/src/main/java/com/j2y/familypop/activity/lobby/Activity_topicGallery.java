@@ -2,7 +2,6 @@ package com.j2y.familypop.activity.lobby;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,10 +13,6 @@ import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.j2y.familypop.activity.BaseActivity;
 import com.j2y.familypop.activity.manager.gallery.ImageInfo;
 import com.j2y.familypop.activity.manager.gallery.PhotoGallery;
@@ -39,13 +34,13 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+    //private GoogleApiClient client;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    public Action getIndexApiAction() {
+    /*public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("Activity_topicGallery Page") // TODO: Define a title for the content shown.
                 // TODO: Make sure this auto-generated URL is correct.
@@ -55,7 +50,7 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
                 .setObject(object)
                 .setActionStatus(Action.STATUS_TYPE_COMPLETED)
                 .build();
-    }
+    }*/
 
     @Override
     public void onStart() {
@@ -63,8 +58,8 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+        //client.connect();
+        //AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
 
     @Override
@@ -73,11 +68,11 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
+        //AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        //client.disconnect();
     }
 
-    public enum eTopicButtons {
+    /*public enum eTopicButtons {
         NONE(-1), DAY(0), WEEK(1), MONTH(2), YEAR(3), MAX(4);
 
         private int value;
@@ -89,7 +84,7 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
         public int getValue() {
             return value;
         }
-    }
+    }*/
 
     GridView _gridView;
     ArrayList<ImageInfo> _thumb_imageList;
@@ -213,7 +208,7 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void shareKeywords (int id) {

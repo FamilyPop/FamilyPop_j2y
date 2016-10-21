@@ -320,26 +320,6 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
 
             }
 
-            if(((ImageInfo) _thumbInfo_List.get(position)).GetCheckedState())
-            {
-                holder._checkBox.setChecked(true);
-                if( holder._imageView_item_active != null)
-                {
-                    holder._imageView_item_active.setVisibility(View.VISIBLE);
-                    holder._imageView_item_deactive.setVisibility(View.GONE);
-                }
-
-            }
-            else {
-                holder._checkBox.setChecked(false);
-                if( holder._imageView_item_active != null)
-                {
-                    holder._imageView_item_active.setVisibility(View.GONE);
-                    holder._imageView_item_deactive.setVisibility(View.VISIBLE);
-                }
-
-            }
-
             if(_topic)
             {
                 String text = _thumbInfo_List.get(position).GetTopic();
@@ -348,7 +328,26 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
             else
             {
                 holder._textView.setVisibility(View.GONE);
+                if(((ImageInfo) _thumbInfo_List.get(position)).GetCheckedState())
+                {
+                    holder._checkBox.setChecked(true);
+                    if( holder._imageView_item_active != null)
+                    {
+                        holder._imageView_item_active.setVisibility(View.VISIBLE);
+                        holder._imageView_item_deactive.setVisibility(View.GONE);
+                    }
+
+                }
+                else {
+                    holder._checkBox.setChecked(false);
+                    if( holder._imageView_item_active != null)
+                    {
+                        holder._imageView_item_active.setVisibility(View.GONE);
+                        holder._imageView_item_deactive.setVisibility(View.VISIBLE);
+                    }
+                }
             }
+
             if(!_busy) {
                 try {
                     String path = ((ImageInfo) _thumbInfo_List.get(position)).GetData();
