@@ -299,8 +299,8 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
             }
 
             AsyncTask<String, Void, String> query_task = new TopicModelingQuery(this, userSelected);
-            query_task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://143.248.139.91:5000");
-            //query_task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://192.168.0.50:5000");
+            //query_task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://143.248.139.91:5000");
+            query_task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "http://192.168.0.50:5000");
 
             return;
         }

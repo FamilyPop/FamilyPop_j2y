@@ -1,14 +1,12 @@
 package com.j2y.familypop.activity.manager.gallery;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +15,12 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.j2y.familypop.MainActivity;
-import com.j2y.familypop.activity.lobby.Activity_talkHistoryPlayback;
+import com.j2y.familypop.activity.topicInterface;
 import com.nclab.familypop.R;
 
 import java.io.File;
@@ -33,7 +29,7 @@ import java.util.ArrayList;
 /**
  * Created by J2YSoft_Programer on 2016-05-03.
  */
-public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemClickListener
+public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemClickListener, GridView.OnItemLongClickListener
 {
     boolean _busy = false;
     boolean _topic = false;
@@ -43,14 +39,15 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     Context _context;
     Activity _activity;
 
+    topicInterface _topicInterface;
+
     private int _list_itemID;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // 초기화
     //
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    public PhotoGallery(Activity activity, GridView gridview, int list_itemID)
-    {
+    public PhotoGallery(Activity activity, GridView gridview, int list_itemID) {
         _context = _activity = activity;
         _thumb_imageList = new ArrayList<ImageInfo>();
         _gridView = gridview;
@@ -59,6 +56,12 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         //Listener SetUp
         _gridView.setOnScrollListener(this);
         _gridView.setOnItemClickListener(this);
+        _gridView.setOnItemLongClickListener(this);
+    }
+
+    public PhotoGallery(Activity activity, GridView gridview, int list_itemID, boolean flag) {
+        this (activity, gridview, list_itemID);
+        this._topicInterface = (topicInterface)_context;
     }
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -128,6 +131,61 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         _gridView.setAdapter(_imageAdapter);
     }
 
+    //스크롤 상태를 판단, 스크롤 상태가 IDLE인 경우 (_busy == false) 에만 이미지 어댑터의 getView에서 이미지 출력
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState)
+    {
+        switch (scrollState)
+        {
+            case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                _busy = false;
+                _imageAdapter.notifyDataSetChanged();
+                break;
+            case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+            case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
+                _busy = true;
+                break;
+        }
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+    { }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+        // ItemLongClick 리스너는 키워드 공유(토픽 모델링) 시나리오에서 사용된다
+        final int selectedTopic = position;
+        Log.i("TopicModeling", "Item [" + selectedTopic + "] is selected");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(_context);
+        builder.setTitle("FamilyPop TopicModeling");
+        builder.setMessage("Want to share this topic?");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+                Log.i("TopicModeling", "Yes clicked: " + selectedTopic);
+                sendTopicToServer (selectedTopic);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int id) {
+                Log.i("TopicModeling", "No clicked: " + selectedTopic);
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        return true;
+    }
+
+    private void sendTopicToServer (int id) {
+        _topicInterface.shareKeywords(id);
+    }
+
     // 아이템 체크시 현재 체크상태를 가져와서 반대로 변경(true -> false, false -> true)시키고
     // 그 결과를 다시 ArrayList의 같은 위치에 담아준다
     // 그리고 어댑터의 notifyDataSetChanged() 메서드를 호출하면 리스트가 현재 보이는
@@ -137,8 +195,8 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
     int _checkCount = 0;
     int _checkcountMax = 4;
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-    {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // ItemClick 리스너는 사진 공유 시나리오에서 사용된다.
         ImageAdapter adapter = (ImageAdapter) parent.getAdapter();
         ImageInfo rowData = (ImageInfo)adapter.getItem(position);
 
@@ -164,29 +222,6 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         adapter.notifyDataSetChanged();
     }
 
-    //스크롤 상태를 판단, 스크롤 상태가 IDLE인 경우 (_busy == false) 에만 이미지 어댑터의 getView에서 이미지 출력
-    @Override
-    public void onScrollStateChanged(AbsListView view, int scrollState)
-    {
-        switch (scrollState)
-        {
-            case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                _busy = false;
-                _imageAdapter.notifyDataSetChanged();
-                break;
-            case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-                _busy = true;
-                break;
-            case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
-                _busy = true;
-                break;
-        }
-    }
-
-    @Override
-    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
-    { }
-
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //Adapter 관련
 
@@ -197,10 +232,12 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         TextView _textView;
         TextView _keyword;
 
+        String topicImage;
+        String topicText;
+
         ImageView _imageView_item_active;
         ImageView _imageView_item_deactive;
     }
-
 
     private class ImageAdapter extends BaseAdapter
     {
@@ -244,7 +281,6 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
         @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
-
             if(convertView == null)
             {
                 convertView = _line_flater.inflate(_cell_layout,parent,false);
@@ -255,15 +291,17 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
                 holder._textView = (TextView) convertView.findViewById(R.id.text_view);
                 holder._keyword = (TextView) convertView.findViewById(R.id.textView_keyword);
 
+                holder.topicImage = _thumbInfo_List.get(position).GetData();
+                holder.topicText = _thumbInfo_List.get(position).GetTopic();
+
                 holder._imageView_item_active = (ImageView)convertView.findViewById(R.id.imageView_item_active);
                 holder._imageView_item_deactive = (ImageView)convertView.findViewById(R.id.imageView_item_deactive);
 
-
+                //Log.i("TopicModeling", "Item added: " + holder.topicImage);
                 convertView.setTag(holder);
             }
 
-            final ImageViewHolder holder = (ImageViewHolder) convertView.getTag();
-
+            ImageViewHolder holder = (ImageViewHolder) convertView.getTag();
 
             if( convertView.findViewById(R.id.topic_layout_keyword) !=null)
             {
@@ -301,6 +339,7 @@ public class PhotoGallery implements ListView.OnScrollListener, GridView.OnItemC
                 }
 
             }
+
             if(_topic)
             {
                 String text = _thumbInfo_List.get(position).GetTopic();
