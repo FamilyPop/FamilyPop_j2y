@@ -29,62 +29,17 @@ import com.j2y.familypop.activity.topicInterface;
 /**
  * Created by J2YSoft_Programer on 2016-04-28.
  */
-public class Activity_topicGallery extends BaseActivity implements /*View.OnClickListener,*/ topicInterface {
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    //private GoogleApiClient client;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    /*public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Activity_topicGallery Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }*/
+public class Activity_topicGallery extends BaseActivity implements topicInterface {
 
     @Override
     public void onStart() {
         super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        //client.connect();
-        //AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        //AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        //client.disconnect();
     }
-
-    /*public enum eTopicButtons {
-        NONE(-1), DAY(0), WEEK(1), MONTH(2), YEAR(3), MAX(4);
-
-        private int value;
-
-        eTopicButtons(int i) {
-            value = i;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }*/
 
     GridView _gridView;
     ArrayList<ImageInfo> _thumb_imageList;
@@ -205,11 +160,7 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
                 }
             }
         }
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
+   }
 
     public void shareKeywords (int id) {
         FpNetFacade_client.Instance.SendPacket_req_topic(
@@ -265,7 +216,6 @@ public class Activity_topicGallery extends BaseActivity implements /*View.OnClic
 
         return posts;
     }
-    // - Jungi
 
     class QueryThread extends Thread {
         private String userSelected;
