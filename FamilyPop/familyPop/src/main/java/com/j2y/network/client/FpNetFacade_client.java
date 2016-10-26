@@ -732,46 +732,7 @@ public class FpNetFacade_client extends FpNetFacade_base
     //public void SendPacket_req_shareImage(Bitmap shareBitmap)
     public void SendPacket_req_shareImage()
     {
-//        Popup_messageBox_shareImage  msgbox = new Popup_messageBox_shareImage (Activity_clientMain.Instance)
-//        {
-//            @Override
-//            protected void onCreate(Bundle savedInstanceState)
-//            {
-//                super.onCreate(savedInstanceState);
-//
-//                // "Do you want to share a ramdom picture?"
-//                _content.setText("Do you want to share a picture?");
-//                //_editText.setVisibility(View.GONE);
-//
-//            }
-//            @Override
-//            public void onClick(View v)
-//            {
-//                super.onClick(v);
-//                switch (v.getId())
-//                {
-//                    case R.id.button_custom_dialog_ok:
-//                        cancel();
-//
-//                        break;
-//                    case R.id.button_popupmessagebox_cancel:
-//                        cancel();
-//                        break;
-//                }
-//            }
-//        };
-//        msgbox.show();
-
-        //
-//        Log.i("[J2Y]", "[C->S] 이미지 공유 요청");
-//        FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
-//        if(shareBitmap != null)
-//            reqPaket._bitMapByteArray = FpNetUtil.BitmapToByteArray(shareBitmap);
-//        else
-//            reqPaket._bitMapByteArray = null;
-//
-//        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
-        FpNetDataReq_shareImage reqPaket = new FpNetDataReq_shareImage();
+        FpNetDataReq_shareImage reqPacket = new FpNetDataReq_shareImage();
         Manager_photoGallery photo = Manager_photoGallery.Instance;
 
         // 서버에 빈 데이터를 보내 화면에 출력한 사진을 제가 한다.
@@ -779,12 +740,12 @@ public class FpNetFacade_client extends FpNetFacade_base
 
         if(photo.Get_countBitmap() == 0 )
         {
-            reqPaket._clientId =  FpcRoot.Instance._clientId;
-            sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
+            reqPacket._clientId =  FpcRoot.Instance._clientId;
+            sendMessage(FpNetConstants.CSC_ShareImage, reqPacket);
             return;
         }
 
-        reqPaket._clientId =  FpcRoot.Instance._clientId;
+        reqPacket._clientId =  FpcRoot.Instance._clientId;
         int viewHeight = 256;
         float width = 0.0f;
         float height = 0.0f;
@@ -793,10 +754,6 @@ public class FpNetFacade_client extends FpNetFacade_base
         //for(int i=0; i<photo.Get_countBitmap(); ++i)
         for(int i=0; i<bitmaps.size(); ++i)
         {
-            //if( photo.Get_countBitmap() == 1){viewHeight = 256;} // 한장전송할때.
-
-//            width = photo.Get_bitmap(i).getWidth();
-//            height = photo.Get_bitmap(i).getHeight();
             if( bitmaps == null) break;
             if( bitmaps.get(i) == null) break;
             width = bitmaps.get(i).getWidth();
@@ -807,10 +764,10 @@ public class FpNetFacade_client extends FpNetFacade_base
 
             width *= (scale/100);
             height *= (scale/100);
-            reqPaket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), (int)width, (int)height, false));
+            reqPacket.Add_bitmap(Bitmap.createScaledBitmap(photo.Get_bitmap(i), (int)width, (int)height, false));
         }
 
-        sendMessage(FpNetConstants.CSC_ShareImage, reqPaket);
+        sendMessage(FpNetConstants.CSC_ShareImage, reqPacket);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------
     // 대화 정보(버블, 웃음 이벤트 목록) 요청
@@ -905,28 +862,28 @@ public class FpNetFacade_client extends FpNetFacade_base
     // 토픽 정보를 서버로 전송.
     public void SendPacket_req_topic(int clientId, Bitmap bitmap, String text)
     {
-        FpNetDataReq_topic reqPaket = new FpNetDataReq_topic();
-        reqPaket._clientId = clientId;
+        FpNetDataReq_topic reqPacket = new FpNetDataReq_topic();
+        reqPacket._clientId = clientId;
 
         // 비트맵 이미지 사이즈를 줄인다.
-
-        int viewHeight = 480;
+        int viewHeight = 256;
         float width = 0.0f;
         float height = 0.0f;
 
         width = bitmap.getWidth();
         height = bitmap.getHeight();
 
-        float percente = (float)(height/100);
-        float scale = (float)(viewHeight/percente);
+        float percente = height/100;
+        float scale = viewHeight/percente;
 
         width *= (scale/100);
         height *= (scale/100);
 
         Bitmap reScaleBitmap = Bitmap.createScaledBitmap(bitmap, (int)width, (int)height,false);
-        reqPaket.Add_bitmap(reScaleBitmap);
-        reqPaket.Add_Text(text);
+        reqPacket.Add_bitmap(reScaleBitmap);
+        reqPacket.Add_Text(text);
 
-        sendMessage(FpNetConstants.CSReq_toppic, reqPaket);
+        //sendMessage(FpNetConstants.CSReq_toppic, reqPacket);
+        sendMessage(FpNetConstants.CSC_ShareImage, reqPacket);
     }
 }
