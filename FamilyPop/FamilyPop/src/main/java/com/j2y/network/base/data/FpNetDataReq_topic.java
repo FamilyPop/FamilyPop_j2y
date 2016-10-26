@@ -71,14 +71,9 @@ public class FpNetDataReq_topic extends FpNetData_base
         super.Packing(outMsg);
 
         outMsg.Write(_clientId);
+        outMsg.Write(1);
         outMsg.Write(_bitArray.length);
         outMsg.Write(_bitArray);
-        outMsg.Write(_text);
-//      outMsg.Write(_count_bitmap);
-//        for(byte[] data : _bitArrays)
-//        {
-//            outMsg.Write(data.length);
-//            outMsg.Write(data);
-//        }
+        //outMsg.Write(_text);
     }
 }
